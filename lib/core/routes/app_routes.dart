@@ -10,3 +10,4 @@ const String TALES_ROUTE = "/tales";
 const String Add_ROUTE = "/add";
 const String CHAT_ROUTE = "/chat";
 const String PROFILE_ROUTE = "/profile";
+const String TEST_ROUTE = "/test";

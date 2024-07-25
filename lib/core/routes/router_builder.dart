@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:storyv2/layers/presentation/feed/screens/test_screen.dart';
 
 import '../../layers/presentation/auth/screens/login_screen.dart';
 import '../../layers/presentation/auth/screens/register_screen.dart';
@@ -40,57 +41,11 @@ final _rootKey = GlobalKey<NavigatorState>();
 
 final _homeShellNavigatorKey = GlobalKey<NavigatorState>();
 final _searchShellNavigatorKey = GlobalKey<NavigatorState>();
-final _chatShellNavigatorKey = GlobalKey<NavigatorState>();
-final _meShellNavigatorKey = GlobalKey<NavigatorState>();
 
 final GoRouter router = GoRouter(
     navigatorKey: _rootKey,
-    initialLocation: WELCOME_ROUTE,
+    initialLocation: SPLASH_ROUTE,
     routerNeglect: true,
-    // redirect: (context, state) async {
-    //   bool isGuest = sl.get<UserSessionBloc>().state.mapOrNull(
-    //         success: (value) {
-    //           return value.userSession.isGuestUser;
-    //         },
-    //       ) ??
-    //       false;
-    //   log("here:$isGuest");
-    //   // bool isGuest =
-    //   //     (await SecureStorageMixin().getValue(SecureStorageKeys.isGuest)) ==
-    //   //         "true";
-    //   if (isGuest) {
-    //     if (state.matchedLocation != SPLASH_ROUTE &&
-    //         state.matchedLocation != REGISTER_ROUTE &&
-    //         state.matchedLocation != ON_BOARDING_ROUTE &&
-    //         state.matchedLocation != WELCOME_ROUTE &&
-    //         state.matchedLocation != FORGOT_PASSWORD_ROUTE &&
-    //         state.matchedLocation != OTP_VERIFICATION_ROUTE &&
-    //         state.matchedLocation != RESET_PASSWORD_ROUTE &&
-    //         state.matchedLocation != HOME_ROUTE &&
-    //         state.matchedLocation != SEARCH_ROUTE) {
-    //       return WELCOME_ROUTE;
-    //     }
-    //   }
-
-    //   return null;
-    // },
-    // redirect: (context, state) async {
-    //   context.read<AppBloc>().state.whenOrNull(
-    //     clearedSession: () {
-    //       return SPLASH_ROUTE;
-    //     },
-    //   );s
-    //   if (state.matchedLocation == SPLASH_ROUTE ||
-    //       state.matchedLocation == ON_BOARDING_ROUTE ||
-    //       state.matchedLocation == FORGOT_PASSWORD_ROUTE ||
-    //       state.matchedLocation == OTP_VERIFICATION_ROUTE ||
-    //       state.matchedLocation == RESET_PASSWORD_ROUTE) {
-    //     return null;
-    //   }
-    //   final bool isLoginPage = state.matchedLocation == LOGIN_ROUTE ||
-    //       state.matchedLocation == REGISTER_ROUTE;
-    //   return null;
-    // },
     routes: [
       GoRoute(
         path: SPLASH_ROUTE,
@@ -115,6 +70,12 @@ final GoRouter router = GoRouter(
         pageBuilder: (context, state) {
           return MaterialPage(
               key: state.pageKey, child: const RegisterScreen());
+        },
+      ),
+      GoRoute(
+        path: TEST_ROUTE,
+        pageBuilder: (context, state) {
+          return MaterialPage(key: state.pageKey, child: const TestScreen());
         },
       ),
       StatefulShellRoute.indexedStack(
