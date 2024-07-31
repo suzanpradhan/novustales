@@ -1,25 +1,20 @@
 import 'dart:io';
-import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:storyv2/old/constants/app_image.dart';
-import 'package:storyv2/layers/presentation/feed/screens/feed_screen.dart';
-import 'package:storyv2/layers/presentation/feed/screens/near_me.dart';
-import 'package:storyv2/old/model/response/user_response.dart';
+import 'package:storyv2/layers/presentation/feed/screens/archived/feed_screen.dart';
 import 'package:storyv2/old/network/repo/story_repo.dart';
 import 'package:storyv2/old/providers/category_view_model.dart';
 import 'package:storyv2/old/providers/for_you_view_model.dart';
 import 'package:storyv2/old/providers/pinned_view_model.dart';
 import 'package:storyv2/old/providers/story_view_model.dart';
 import 'package:storyv2/old/screens/pinned/pinned_screen.dart';
-import 'package:storyv2/old/screens/test_screen.dart';
-import 'package:storyv2/old/screens/trending/trending_screen.dart';
-import 'package:video_player/video_player.dart';
-import '../../providers/common_view_model.dart';
+
 import '../../config/notification_navigation_service.dart';
 import '../../config/preference_utils.dart';
 import '../../providers/auth_view_model.dart';
 import '../../providers/coin_view_model.dart';
+import '../../providers/common_view_model.dart';
 import '../../providers/location_provider.dart';
 import '../add_post/widgets/camera_screen.dart';
 import '../premium/battle_listing.dart';
@@ -70,8 +65,7 @@ class _NavigationState extends State<Navigation>
       _coinViewModel = Provider.of<CoinViewModel>(context, listen: false);
       _coinViewModel.fetchOwnCoins();
       _provider4 = Provider.of<PinnedViewModel>(context, listen: false);
-      categoryViewModel =
-          Provider.of<CategoryViewModel>(context, listen: false);
+      categoryViewModel = Provider.of<CategoryViewModel>(context, listen: false);
       categoryViewModel.fetchCategories();
 
       /// 10
@@ -79,16 +73,14 @@ class _NavigationState extends State<Navigation>
 
       _forYouViewModel.fetchStoryForYou().then((value) {
         for (int i = 0; i < 3; i++) {
-          _forYouViewModel.preload(
-              _forYouViewModel.forYou[i]['media_url'], context);
+          _forYouViewModel.preload(_forYouViewModel.forYou[i]['media_url'], context);
         }
       });
 
       authViewModel = Provider.of<AuthViewModel>(context, listen: false);
       authViewModel.fetchUser().then((value) {
         for (int i = 0; i < 3; i++) {
-          authViewModel.preload(
-              authViewModel.userData['stories'][i]['media_urls'], context);
+          authViewModel.preload(authViewModel.userData['stories'][i]['media_urls'], context);
         }
       });
       _locationProvider = Provider.of<LocationProvider>(context, listen: false);
@@ -126,8 +118,7 @@ class _NavigationState extends State<Navigation>
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
-    if (state == AppLifecycleState.paused ||
-        state == AppLifecycleState.detached) {
+    if (state == AppLifecycleState.paused || state == AppLifecycleState.detached) {
       // User has closed the app or sent it to the background
       storyViewModel.postUserInteraction();
     }
@@ -135,8 +126,7 @@ class _NavigationState extends State<Navigation>
 
   @override
   Widget build(BuildContext context) {
-    return Consumer2<CommonViewModel, StoryViewModel>(
-        builder: (context, common, story, child) {
+    return Consumer2<CommonViewModel, StoryViewModel>(builder: (context, common, story, child) {
       return WillPopScope(
         onWillPop: () {
           if (common.navigationIndex == 0) {

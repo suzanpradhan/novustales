@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:storyv2/core/api/api_client.dart';
+import 'package:storyv2/core/presentation/blocs/internet_checker/internet_checker_bloc.dart';
 import 'package:storyv2/layers/data/repositories/auth_repository_impl.dart';
 import 'package:storyv2/layers/data/sources/auth_remote_source.dart';
 import 'package:storyv2/layers/domain/repositories/auth_repository.dart';
@@ -44,6 +45,7 @@ void _useCase() {
 }
 
 void _blocs() {
+  sl.registerFactory(() => InternetCheckerBloc());
   sl.registerFactory(() => AppBloc());
   sl.registerFactory(() => LoginBloc(sl()));
   sl.registerFactory(() => RegisterBloc(sl()));

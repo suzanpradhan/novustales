@@ -35,25 +35,25 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     });
 
     on<_Attempt>((event, emit) async {
-      emit(state.copyWith(
-          status: FormzSubmissionStatus.inProgress, isFirstAttempt: false));
+      emit(state.copyWith(status: FormzSubmissionStatus.inProgress, isFirstAttempt: false));
       if (state.isValid) {
-        final data = await _postLogin.call(LoginParams(
-            email: state.email.value, password: state.password.value));
+        final data = await _postLogin
+            .call(LoginParams(email: state.email.value, password: state.password.value));
 
         data.fold((failure) {
           if (failure is ServerFailure) {
             emit(state.copyWith(
                 status: FormzSubmissionStatus.failure,
                 message: failure.message ?? "Server Error!"));
+          } else if (failure is UnauthorizedFailure) {
+            emit(state.copyWith(status: FormzSubmissionStatus.failure, message: "Login Failed!"));
           }
         },
-            (login) => emit(state.copyWith(
-                status: FormzSubmissionStatus.success, message: login.token)));
+            (login) =>
+                emit(state.copyWith(status: FormzSubmissionStatus.success, message: login.token)));
       } else {
         emit(state.copyWith(
-            status: FormzSubmissionStatus.failure,
-            message: "Please verify your details."));
+            status: FormzSubmissionStatus.failure, message: "Please verify your details."));
       }
     });
 

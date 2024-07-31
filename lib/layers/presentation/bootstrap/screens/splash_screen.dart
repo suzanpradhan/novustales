@@ -24,8 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return MultiBlocProvider(
       providers: [
         BlocProvider.value(
-          value: context.read<AppBloc>()
-            ..add(const AppEvent.checkAuthetication()),
+          value: context.read<AppBloc>()..add(const AppEvent.checkAuthetication()),
         ),
       ],
       child: MultiBlocListener(
@@ -34,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
             listener: (context, state) {
               state.mapOrNull(
                 authenticated: (value) {
-                  context.replace(TEST_ROUTE);
+                  context.go(HOME_ROUTE);
                 },
                 unAuthenticated: (value) {
                   context.replace(WELCOME_ROUTE);

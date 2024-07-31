@@ -1,12 +1,7 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 // import 'package:flutter_map/flutter_map.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-// import 'package:latlong2/latlong.dart';
-
-import '../widgets/google_tile_layer.dart';
 
 class NearMeScreen extends StatefulWidget {
   const NearMeScreen({super.key});
@@ -50,9 +45,7 @@ class _NearMeScreenState extends State<NearMeScreen> {
       myLocation = await _determinePosition();
       if (myLocation != null) {
         _mapController?.moveCamera(CameraUpdate.newCameraPosition(
-            CameraPosition(
-                target: LatLng(myLocation!.latitude, myLocation!.longitude),
-                zoom: 18)));
+            CameraPosition(target: LatLng(myLocation!.latitude, myLocation!.longitude), zoom: 18)));
       }
       setState(() {});
     });
@@ -79,10 +72,8 @@ class _NearMeScreenState extends State<NearMeScreen> {
       onMapCreated: (controller) {
         _mapController = controller;
         if (myLocation != null) {
-          _mapController?.moveCamera(CameraUpdate.newCameraPosition(
-              CameraPosition(
-                  target: LatLng(myLocation!.latitude, myLocation!.longitude),
-                  zoom: 18)));
+          _mapController?.moveCamera(CameraUpdate.newCameraPosition(CameraPosition(
+              target: LatLng(myLocation!.latitude, myLocation!.longitude), zoom: 18)));
         }
       },
     );
