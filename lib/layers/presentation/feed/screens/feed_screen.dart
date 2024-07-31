@@ -20,12 +20,13 @@ class _FeedScreenState extends State<FeedScreen> {
           children: [
             if (_isGoogleMap) NearMeScreen() else NearMeOpenStreet(),
             Switch(
-                value: _isGoogleMap,
-                onChanged: (value) {
-                  setState(() {
-                    _isGoogleMap = value;
-                  });
-                })
+              value: _isGoogleMap,
+              onChanged: (value) {
+                setState(() {
+                  _isGoogleMap = value;
+                });
+              },
+            ),
           ],
         ),
       ),

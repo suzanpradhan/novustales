@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:storyv2/layers/presentation/feed/screens/test_screen.dart';
+import 'package:storyv2/layers/presentation/feed/screens/home_screen.dart';
 
 import '../../layers/presentation/auth/screens/login_screen.dart';
 import '../../layers/presentation/auth/screens/register_screen.dart';
@@ -75,7 +75,8 @@ final GoRouter router = GoRouter(
       GoRoute(
         path: TEST_ROUTE,
         pageBuilder: (context, state) {
-          return MaterialPage(key: state.pageKey, child: const TestScreen());
+          return MaterialPage(key: state.pageKey, child: const HomeScreen());
+          // return MaterialPage(key: state.pageKey, child: const TestScreen());
         },
       ),
       StatefulShellRoute.indexedStack(
