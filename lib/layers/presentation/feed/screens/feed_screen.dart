@@ -1,33 +1,60 @@
 import 'package:flutter/material.dart';
-import 'package:storyv2/layers/presentation/feed/screens/near_me.dart';
-import 'package:storyv2/layers/presentation/feed/screens/near_me_open_street.dart';
 
-class FeedScreen extends StatefulWidget {
+class FeedScreen extends StatelessWidget {
   const FeedScreen({super.key});
 
   @override
-  State<FeedScreen> createState() => _FeedScreenState();
-}
-
-class _FeedScreenState extends State<FeedScreen> {
-  bool _isGoogleMap = true;
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: SafeArea(
-        child: Stack(
-          children: [
-            if (_isGoogleMap) NearMeScreen() else NearMeOpenStreet(),
-            Switch(
-              value: _isGoogleMap,
-              onChanged: (value) {
-                setState(() {
-                  _isGoogleMap = value;
-                });
-              },
-            ),
-          ],
+        child: PageView.builder(
+          scrollDirection: Axis.vertical,
+          itemCount: 5,
+          itemBuilder: (context, index) {
+            return Stack(
+              children: [
+                Center(
+                  child: Text(
+                    'Page $index',
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 25,
+                              backgroundImage: NetworkImage(
+                                'https://i.pinimg.com/originals/9f/f1/04/9ff104655666bca928e876ee2d1c1480.jpg',
+                              ),
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Miwa",
+                                  style: TextStyle(),
+                                ),
+                                Text(
+                                  "a moment ago",
+                                  style: TextStyle(),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            );
+          },
         ),
       ),
     );

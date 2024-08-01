@@ -1,14 +1,12 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:storyv2/layers/data/near_me_mocks.dart';
-import 'package:storyv2/layers/presentation/feed/screens/ar_view_screen.dart';
-import 'package:storyv2/layers/presentation/feed/screens/story_view_screen.dart';
+import 'package:storyv2/layers/presentation/feed/screens/archived/ar_view_screen.dart';
+import 'package:storyv2/layers/presentation/feed/screens/archived/story_view_screen.dart';
 
-import '../widgets/google_tile_layer.dart';
+import '../../widgets/google_tile_layer.dart';
 
 class NearMeOpenStreet extends StatefulWidget {
   const NearMeOpenStreet({super.key});
@@ -52,8 +50,7 @@ class _NearMeOpenStreetState extends State<NearMeOpenStreet> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       myLocation = await _determinePosition();
       if (myLocation != null) {
-        _mapController.move(
-            LatLng(myLocation!.latitude, myLocation!.longitude), 18);
+        _mapController.move(LatLng(myLocation!.latitude, myLocation!.longitude), 18);
       }
       setState(() {});
     });
@@ -102,16 +99,14 @@ class _NearMeOpenStreetState extends State<NearMeOpenStreet> {
                                 height: 42,
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
-                                        fit: BoxFit.cover,
-                                        image: NetworkImage(item.thumbnail)),
+                                        fit: BoxFit.cover, image: NetworkImage(item.thumbnail)),
                                     boxShadow: [
                                       BoxShadow(
                                           color: Colors.black.withOpacity(0.2),
                                           offset: Offset(0, 2),
                                           blurRadius: 4)
                                     ],
-                                    border: Border.all(
-                                        width: 2, color: Colors.white),
+                                    border: Border.all(width: 2, color: Colors.white),
                                     borderRadius: BorderRadius.circular(24),
                                     color: Colors.blue),
                               ),
@@ -134,8 +129,7 @@ class _NearMeOpenStreetState extends State<NearMeOpenStreet> {
                           point: item.latLng,
                           child: InkWell(
                             onTap: () {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) {
                                 return StoryViewScreen(nearMeItem: item);
                               }));
                             },
@@ -146,20 +140,17 @@ class _NearMeOpenStreetState extends State<NearMeOpenStreet> {
                                   height: 60,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(4),
-                                      border: Border.all(
-                                          color: Colors.white, width: 3),
+                                      border: Border.all(color: Colors.white, width: 3),
                                       boxShadow: [
                                         BoxShadow(
-                                            color:
-                                                Colors.black.withOpacity(0.2),
+                                            color: Colors.black.withOpacity(0.2),
                                             spreadRadius: 1,
                                             blurRadius: 4,
                                             offset: Offset(0, 4))
                                       ],
                                       color: Colors.black,
                                       image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: NetworkImage(item.thumbnail))),
+                                          fit: BoxFit.cover, image: NetworkImage(item.thumbnail))),
                                 ),
                                 SizedBox(
                                   height: 2,
@@ -180,8 +171,7 @@ class _NearMeOpenStreetState extends State<NearMeOpenStreet> {
                     markers: [
                       if (myLocation != null)
                         Marker(
-                            point: LatLng(
-                                myLocation!.latitude, myLocation!.longitude),
+                            point: LatLng(myLocation!.latitude, myLocation!.longitude),
                             width: 80,
                             height: 80,
                             child: Center(
@@ -190,19 +180,14 @@ class _NearMeOpenStreetState extends State<NearMeOpenStreet> {
                                 height: 42,
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
-                                        image: AssetImage(
-                                            'assets/images/person.png')),
+                                        image: AssetImage('assets/images/person.png')),
                                     boxShadow: [
                                       BoxShadow(
-                                          color:
-                                              Color.fromARGB(255, 50, 190, 255)
-                                                  .withOpacity(0.6),
+                                          color: Color.fromARGB(255, 50, 190, 255).withOpacity(0.6),
                                           offset: Offset(0, 2),
                                           blurRadius: 4)
                                     ],
-                                    border: Border.all(
-                                        width: 3,
-                                        color: Colors.blueAccent.shade200),
+                                    border: Border.all(width: 3, color: Colors.blueAccent.shade200),
                                     borderRadius: BorderRadius.circular(24),
                                     color: Colors.blue),
                               ),
@@ -224,9 +209,7 @@ class _NearMeOpenStreetState extends State<NearMeOpenStreet> {
               InkWell(
                 onTap: () {
                   if (myLocation != null) {
-                    _mapController.move(
-                        LatLng(myLocation!.latitude, myLocation!.longitude),
-                        18);
+                    _mapController.move(LatLng(myLocation!.latitude, myLocation!.longitude), 18);
                   }
                 },
                 child: Container(
