@@ -67,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
             listener: (context, state) {
               state.mapOrNull(
                 authenticated: (isGuest) {
-                  context.go(TEST_ROUTE);
+                  context.go(HOME_ROUTE);
                 },
               );
             },

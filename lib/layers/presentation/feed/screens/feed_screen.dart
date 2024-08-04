@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:storyv2/layers/presentation/feed/utils/feed_options.dart';
+import 'package:storyv2/layers/presentation/feed/widgets/feed_info.dart';
 
 class FeedScreen extends StatelessWidget {
   const FeedScreen({super.key});
@@ -18,38 +20,31 @@ class FeedScreen extends StatelessWidget {
                     'Page $index',
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              radius: 25,
-                              backgroundImage: NetworkImage(
-                                'https://i.pinimg.com/originals/9f/f1/04/9ff104655666bca928e876ee2d1c1480.jpg',
-                              ),
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Miwa",
-                                  style: TextStyle(),
-                                ),
-                                Text(
-                                  "a moment ago",
-                                  style: TextStyle(),
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
+                Positioned(
+                  bottom: 20,
+                  left: 8,
+                  right: 8,
+                  child: Row(
+                    children: [
+                      FeedInfo(
+                        avtarUrl:
+                            'https://i.pinimg.com/736x/48/1f/78/481f788038eecbe703a3ce959b03c91b.jpg',
+                        userName: 'Mechamaru',
+                        feedTime: 'a moment age',
+                        feedDescription:
+                            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+                      ),
+                      Column(
+                        children: [
+                          ...feedOptions.map((option) {
+                            return IconButton(
+                              icon: Icon(option.icon),
+                              onPressed: () {},
+                            );
+                          }).toList(),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ],
