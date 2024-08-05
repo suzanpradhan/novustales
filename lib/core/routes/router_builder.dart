@@ -86,8 +86,7 @@ final GoRouter router =
         GoRoute(
           path: HOME_ROUTE,
           pageBuilder: (context, state) {
-            return NoTransitionPage(
-                key: state.pageKey, child: const KeepAlive(keepAlive: true, child: FeedScreen()));
+            return NoTransitionPage(key: state.pageKey, child: FeedScreen());
           },
         ),
       ]),
@@ -95,7 +94,7 @@ final GoRouter router =
         GoRoute(
           path: TALES_ROUTE,
           pageBuilder: (context, state) {
-            return const NoTransitionPage(child: KeepAlive(keepAlive: true, child: TalesScreen()));
+            return const NoTransitionPage(child: TalesScreen());
           },
         ),
       ]),
@@ -103,7 +102,7 @@ final GoRouter router =
         GoRoute(
           path: CREATE_ROUTE,
           pageBuilder: (context, state) {
-            return const NoTransitionPage(child: KeepAlive(keepAlive: true, child: CreateScreen()));
+            return const NoTransitionPage(child: CreateScreen());
           },
         ),
       ]),
@@ -111,7 +110,7 @@ final GoRouter router =
         GoRoute(
           path: CHAT_ROUTE,
           pageBuilder: (context, state) {
-            return const NoTransitionPage(child: KeepAlive(keepAlive: true, child: ChatScreen()));
+            return const NoTransitionPage(child: ChatScreen());
           },
         ),
       ]),
@@ -119,7 +118,7 @@ final GoRouter router =
         GoRoute(
           path: ME_ROUTE,
           pageBuilder: (context, state) {
-            return const NoTransitionPage(child: KeepAlive(keepAlive: true, child: MeScreen()));
+            return const NoTransitionPage(child: MeScreen());
           },
         ),
       ]),

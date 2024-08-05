@@ -8,6 +8,9 @@ import 'package:storyv2/core/presentation/blocs/internet_checker/internet_checke
 import 'package:storyv2/layers/presentation/auth/login/login_bloc.dart';
 import 'package:storyv2/layers/presentation/auth/register/register_bloc.dart';
 import 'package:storyv2/layers/presentation/bootstrap/app_bloc/app_bloc.dart';
+import 'package:storyv2/layers/presentation/tales/blocs/get_near_me_tales/get_near_me_tales_bloc.dart';
+import 'package:storyv2/layers/presentation/tales/blocs/get_popular_tales/get_popular_tales_bloc.dart';
+import 'package:storyv2/layers/presentation/tales/blocs/search_tales/search_tales_bloc.dart';
 
 import 'core/constants/app_colors.dart';
 import 'core/routes/router_builder.dart';
@@ -54,6 +57,15 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => sl<RegisterBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => sl<GetPopularTalesBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => sl<GetNearMeTalesBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => sl<SearchTalesBloc>(),
         ),
       ],
       child: MaterialApp.router(
