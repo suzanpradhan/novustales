@@ -12,4 +12,7 @@ class AppIcons {
   static const addFilled = Ionicons.add;
   static const explore = Ionicons.search_outline;
   static const exploreFilled = Ionicons.search;
+  static const options = Ionicons.ellipsis_vertical;
+  static const shareSocial = Ionicons.share_social;
+  static const sharePlane = Ionicons.paper_plane;
 }

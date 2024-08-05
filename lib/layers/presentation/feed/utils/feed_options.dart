@@ -17,14 +17,14 @@ List<FeedOptions> feedOptions = const [
   ),
   FeedOptions(
     title: "Share",
-    icon: AppIcons.heart,
+    icon: AppIcons.shareSocial,
   ),
   FeedOptions(
     title: "Send",
-    icon: AppIcons.heart,
+    icon: AppIcons.sharePlane,
   ),
   FeedOptions(
     title: "Options",
-    icon: AppIcons.heart,
+    icon: AppIcons.options,
   ),
 ];
