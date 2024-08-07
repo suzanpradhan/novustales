@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:storyv2/core/constants/app_colors.dart';
 import 'package:storyv2/core/constants/ui_constants.dart';
 
 class FeedInfo extends StatelessWidget {
@@ -20,7 +21,7 @@ class FeedInfo extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(UIConstants.borderRadius),
       child: SizedBox(
-        width: MediaQuery.of(context).size.width * 0.8,
+        width: MediaQuery.of(context).size.width * 0.75,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -39,10 +40,10 @@ class FeedInfo extends StatelessWidget {
                     Text(
                       userName,
                       style: TextStyle(
-                        fontFamily: 'Raleway',
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                      ),
+                          fontFamily: 'Raleway',
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                          color: Colors.white),
                     ),
                     Text(
                       feedTime,
@@ -50,6 +51,7 @@ class FeedInfo extends StatelessWidget {
                         fontFamily: 'Satoshi',
                         fontWeight: FontWeight.normal,
                         fontSize: 12,
+                        color: AppColors.greyWhite,
                       ),
                     ),
                   ],
@@ -65,7 +67,8 @@ class FeedInfo extends StatelessWidget {
               style: TextStyle(
                 fontFamily: 'Satoshi',
                 fontWeight: FontWeight.normal,
-                fontSize: 12,
+                fontSize: 16,
+                color: AppColors.greyWhite,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
