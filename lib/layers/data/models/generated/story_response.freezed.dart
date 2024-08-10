@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of '../story_entity.dart';
+part of '../story_response.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,10 +14,14 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+StoryResponse _$StoryResponseFromJson(Map<String, dynamic> json) {
+  return _StoryResponse.fromJson(json);
+}
+
 /// @nodoc
-mixin _$StoryEntity {
+mixin _$StoryResponse {
   int get id => throw _privateConstructorUsedError;
-  UserDetailsEntity get userDetails => throw _privateConstructorUsedError;
+  StoryUserDetail get userDetails => throw _privateConstructorUsedError;
   String get mediaUrl => throw _privateConstructorUsedError;
   String get category => throw _privateConstructorUsedError;
   int get views => throw _privateConstructorUsedError;
@@ -36,19 +40,19 @@ mixin _$StoryEntity {
   DateTime get updatedAt => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $StoryEntityCopyWith<StoryEntity> get copyWith =>
+  $StoryResponseCopyWith<StoryResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $StoryEntityCopyWith<$Res> {
-  factory $StoryEntityCopyWith(
-          StoryEntity value, $Res Function(StoryEntity) then) =
-      _$StoryEntityCopyWithImpl<$Res, StoryEntity>;
+abstract class $StoryResponseCopyWith<$Res> {
+  factory $StoryResponseCopyWith(
+          StoryResponse value, $Res Function(StoryResponse) then) =
+      _$StoryResponseCopyWithImpl<$Res, StoryResponse>;
   @useResult
   $Res call(
       {int id,
-      UserDetailsEntity userDetails,
+      StoryUserDetail userDetails,
       String mediaUrl,
       String category,
       int views,
@@ -66,13 +70,13 @@ abstract class $StoryEntityCopyWith<$Res> {
       DateTime createdAt,
       DateTime updatedAt});
 
-  $UserDetailsEntityCopyWith<$Res> get userDetails;
+  $StoryUserDetailCopyWith<$Res> get userDetails;
 }
 
 /// @nodoc
-class _$StoryEntityCopyWithImpl<$Res, $Val extends StoryEntity>
-    implements $StoryEntityCopyWith<$Res> {
-  _$StoryEntityCopyWithImpl(this._value, this._then);
+class _$StoryResponseCopyWithImpl<$Res, $Val extends StoryResponse>
+    implements $StoryResponseCopyWith<$Res> {
+  _$StoryResponseCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -109,7 +113,7 @@ class _$StoryEntityCopyWithImpl<$Res, $Val extends StoryEntity>
       userDetails: null == userDetails
           ? _value.userDetails
           : userDetails // ignore: cast_nullable_to_non_nullable
-              as UserDetailsEntity,
+              as StoryUserDetail,
       mediaUrl: null == mediaUrl
           ? _value.mediaUrl
           : mediaUrl // ignore: cast_nullable_to_non_nullable
@@ -179,24 +183,24 @@ class _$StoryEntityCopyWithImpl<$Res, $Val extends StoryEntity>
 
   @override
   @pragma('vm:prefer-inline')
-  $UserDetailsEntityCopyWith<$Res> get userDetails {
-    return $UserDetailsEntityCopyWith<$Res>(_value.userDetails, (value) {
+  $StoryUserDetailCopyWith<$Res> get userDetails {
+    return $StoryUserDetailCopyWith<$Res>(_value.userDetails, (value) {
       return _then(_value.copyWith(userDetails: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-abstract class _$$StoryEntityImplCopyWith<$Res>
-    implements $StoryEntityCopyWith<$Res> {
-  factory _$$StoryEntityImplCopyWith(
-          _$StoryEntityImpl value, $Res Function(_$StoryEntityImpl) then) =
-      __$$StoryEntityImplCopyWithImpl<$Res>;
+abstract class _$$StoryResponseImplCopyWith<$Res>
+    implements $StoryResponseCopyWith<$Res> {
+  factory _$$StoryResponseImplCopyWith(
+          _$StoryResponseImpl value, $Res Function(_$StoryResponseImpl) then) =
+      __$$StoryResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {int id,
-      UserDetailsEntity userDetails,
+      StoryUserDetail userDetails,
       String mediaUrl,
       String category,
       int views,
@@ -215,15 +219,15 @@ abstract class _$$StoryEntityImplCopyWith<$Res>
       DateTime updatedAt});
 
   @override
-  $UserDetailsEntityCopyWith<$Res> get userDetails;
+  $StoryUserDetailCopyWith<$Res> get userDetails;
 }
 
 /// @nodoc
-class __$$StoryEntityImplCopyWithImpl<$Res>
-    extends _$StoryEntityCopyWithImpl<$Res, _$StoryEntityImpl>
-    implements _$$StoryEntityImplCopyWith<$Res> {
-  __$$StoryEntityImplCopyWithImpl(
-      _$StoryEntityImpl _value, $Res Function(_$StoryEntityImpl) _then)
+class __$$StoryResponseImplCopyWithImpl<$Res>
+    extends _$StoryResponseCopyWithImpl<$Res, _$StoryResponseImpl>
+    implements _$$StoryResponseImplCopyWith<$Res> {
+  __$$StoryResponseImplCopyWithImpl(
+      _$StoryResponseImpl _value, $Res Function(_$StoryResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -248,7 +252,7 @@ class __$$StoryEntityImplCopyWithImpl<$Res>
     Object? createdAt = null,
     Object? updatedAt = null,
   }) {
-    return _then(_$StoryEntityImpl(
+    return _then(_$StoryResponseImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -256,7 +260,7 @@ class __$$StoryEntityImplCopyWithImpl<$Res>
       userDetails: null == userDetails
           ? _value.userDetails
           : userDetails // ignore: cast_nullable_to_non_nullable
-              as UserDetailsEntity,
+              as StoryUserDetail,
       mediaUrl: null == mediaUrl
           ? _value.mediaUrl
           : mediaUrl // ignore: cast_nullable_to_non_nullable
@@ -326,9 +330,9 @@ class __$$StoryEntityImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
-class _$StoryEntityImpl implements _StoryEntity {
-  const _$StoryEntityImpl(
+@JsonSerializable(createToJson: false)
+class _$StoryResponseImpl extends _StoryResponse {
+  const _$StoryResponseImpl(
       {this.id = 0,
       required this.userDetails,
       required this.mediaUrl,
@@ -346,13 +350,17 @@ class _$StoryEntityImpl implements _StoryEntity {
       required this.city,
       this.county,
       required this.createdAt,
-      required this.updatedAt});
+      required this.updatedAt})
+      : super._();
+
+  factory _$StoryResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$StoryResponseImplFromJson(json);
 
   @override
   @JsonKey()
   final int id;
   @override
-  final UserDetailsEntity userDetails;
+  final StoryUserDetail userDetails;
   @override
   final String mediaUrl;
   @override
@@ -388,14 +396,14 @@ class _$StoryEntityImpl implements _StoryEntity {
 
   @override
   String toString() {
-    return 'StoryEntity(id: $id, userDetails: $userDetails, mediaUrl: $mediaUrl, category: $category, views: $views, title: $title, media: $media, mediaUrls: $mediaUrls, blobRef: $blobRef, latitude: $latitude, longitude: $longitude, name: $name, country: $country, state: $state, city: $city, county: $county, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'StoryResponse(id: $id, userDetails: $userDetails, mediaUrl: $mediaUrl, category: $category, views: $views, title: $title, media: $media, mediaUrls: $mediaUrls, blobRef: $blobRef, latitude: $latitude, longitude: $longitude, name: $name, country: $country, state: $state, city: $city, county: $county, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$StoryEntityImpl &&
+            other is _$StoryResponseImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.userDetails, userDetails) ||
                 other.userDetails == userDetails) &&
@@ -424,6 +432,7 @@ class _$StoryEntityImpl implements _StoryEntity {
                 other.updatedAt == updatedAt));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -449,14 +458,14 @@ class _$StoryEntityImpl implements _StoryEntity {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$StoryEntityImplCopyWith<_$StoryEntityImpl> get copyWith =>
-      __$$StoryEntityImplCopyWithImpl<_$StoryEntityImpl>(this, _$identity);
+  _$$StoryResponseImplCopyWith<_$StoryResponseImpl> get copyWith =>
+      __$$StoryResponseImplCopyWithImpl<_$StoryResponseImpl>(this, _$identity);
 }
 
-abstract class _StoryEntity implements StoryEntity {
-  const factory _StoryEntity(
+abstract class _StoryResponse extends StoryResponse {
+  const factory _StoryResponse(
       {final int id,
-      required final UserDetailsEntity userDetails,
+      required final StoryUserDetail userDetails,
       required final String mediaUrl,
       required final String category,
       required final int views,
@@ -472,12 +481,16 @@ abstract class _StoryEntity implements StoryEntity {
       required final String city,
       final String? county,
       required final DateTime createdAt,
-      required final DateTime updatedAt}) = _$StoryEntityImpl;
+      required final DateTime updatedAt}) = _$StoryResponseImpl;
+  const _StoryResponse._() : super._();
+
+  factory _StoryResponse.fromJson(Map<String, dynamic> json) =
+      _$StoryResponseImpl.fromJson;
 
   @override
   int get id;
   @override
-  UserDetailsEntity get userDetails;
+  StoryUserDetail get userDetails;
   @override
   String get mediaUrl;
   @override
@@ -512,12 +525,16 @@ abstract class _StoryEntity implements StoryEntity {
   DateTime get updatedAt;
   @override
   @JsonKey(ignore: true)
-  _$$StoryEntityImplCopyWith<_$StoryEntityImpl> get copyWith =>
+  _$$StoryResponseImplCopyWith<_$StoryResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
+StoryUserDetail _$StoryUserDetailFromJson(Map<String, dynamic> json) {
+  return _StoryUserDetail.fromJson(json);
+}
+
 /// @nodoc
-mixin _$UserDetailsEntity {
+mixin _$StoryUserDetail {
   int get id => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
@@ -525,24 +542,24 @@ mixin _$UserDetailsEntity {
   String get avatar => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $UserDetailsEntityCopyWith<UserDetailsEntity> get copyWith =>
+  $StoryUserDetailCopyWith<StoryUserDetail> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UserDetailsEntityCopyWith<$Res> {
-  factory $UserDetailsEntityCopyWith(
-          UserDetailsEntity value, $Res Function(UserDetailsEntity) then) =
-      _$UserDetailsEntityCopyWithImpl<$Res, UserDetailsEntity>;
+abstract class $StoryUserDetailCopyWith<$Res> {
+  factory $StoryUserDetailCopyWith(
+          StoryUserDetail value, $Res Function(StoryUserDetail) then) =
+      _$StoryUserDetailCopyWithImpl<$Res, StoryUserDetail>;
   @useResult
   $Res call(
       {int id, String email, String name, String? nickName, String avatar});
 }
 
 /// @nodoc
-class _$UserDetailsEntityCopyWithImpl<$Res, $Val extends UserDetailsEntity>
-    implements $UserDetailsEntityCopyWith<$Res> {
-  _$UserDetailsEntityCopyWithImpl(this._value, this._then);
+class _$StoryUserDetailCopyWithImpl<$Res, $Val extends StoryUserDetail>
+    implements $StoryUserDetailCopyWith<$Res> {
+  _$StoryUserDetailCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -584,11 +601,11 @@ class _$UserDetailsEntityCopyWithImpl<$Res, $Val extends UserDetailsEntity>
 }
 
 /// @nodoc
-abstract class _$$UserDetailsEntityImplCopyWith<$Res>
-    implements $UserDetailsEntityCopyWith<$Res> {
-  factory _$$UserDetailsEntityImplCopyWith(_$UserDetailsEntityImpl value,
-          $Res Function(_$UserDetailsEntityImpl) then) =
-      __$$UserDetailsEntityImplCopyWithImpl<$Res>;
+abstract class _$$StoryUserDetailImplCopyWith<$Res>
+    implements $StoryUserDetailCopyWith<$Res> {
+  factory _$$StoryUserDetailImplCopyWith(_$StoryUserDetailImpl value,
+          $Res Function(_$StoryUserDetailImpl) then) =
+      __$$StoryUserDetailImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -596,11 +613,11 @@ abstract class _$$UserDetailsEntityImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$UserDetailsEntityImplCopyWithImpl<$Res>
-    extends _$UserDetailsEntityCopyWithImpl<$Res, _$UserDetailsEntityImpl>
-    implements _$$UserDetailsEntityImplCopyWith<$Res> {
-  __$$UserDetailsEntityImplCopyWithImpl(_$UserDetailsEntityImpl _value,
-      $Res Function(_$UserDetailsEntityImpl) _then)
+class __$$StoryUserDetailImplCopyWithImpl<$Res>
+    extends _$StoryUserDetailCopyWithImpl<$Res, _$StoryUserDetailImpl>
+    implements _$$StoryUserDetailImplCopyWith<$Res> {
+  __$$StoryUserDetailImplCopyWithImpl(
+      _$StoryUserDetailImpl _value, $Res Function(_$StoryUserDetailImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -612,7 +629,7 @@ class __$$UserDetailsEntityImplCopyWithImpl<$Res>
     Object? nickName = freezed,
     Object? avatar = null,
   }) {
-    return _then(_$UserDetailsEntityImpl(
+    return _then(_$StoryUserDetailImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -638,17 +655,20 @@ class __$$UserDetailsEntityImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
-class _$UserDetailsEntityImpl implements _UserDetailsEntity {
-  const _$UserDetailsEntityImpl(
-      {this.id = 0,
+@JsonSerializable(createToJson: false)
+class _$StoryUserDetailImpl extends _StoryUserDetail {
+  const _$StoryUserDetailImpl(
+      {required this.id,
       required this.email,
       required this.name,
       this.nickName,
-      required this.avatar});
+      required this.avatar})
+      : super._();
+
+  factory _$StoryUserDetailImpl.fromJson(Map<String, dynamic> json) =>
+      _$$StoryUserDetailImplFromJson(json);
 
   @override
-  @JsonKey()
   final int id;
   @override
   final String email;
@@ -661,14 +681,14 @@ class _$UserDetailsEntityImpl implements _UserDetailsEntity {
 
   @override
   String toString() {
-    return 'UserDetailsEntity(id: $id, email: $email, name: $name, nickName: $nickName, avatar: $avatar)';
+    return 'StoryUserDetail(id: $id, email: $email, name: $name, nickName: $nickName, avatar: $avatar)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UserDetailsEntityImpl &&
+            other is _$StoryUserDetailImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.name, name) || other.name == name) &&
@@ -677,6 +697,7 @@ class _$UserDetailsEntityImpl implements _UserDetailsEntity {
             (identical(other.avatar, avatar) || other.avatar == avatar));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode =>
       Object.hash(runtimeType, id, email, name, nickName, avatar);
@@ -684,18 +705,22 @@ class _$UserDetailsEntityImpl implements _UserDetailsEntity {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$UserDetailsEntityImplCopyWith<_$UserDetailsEntityImpl> get copyWith =>
-      __$$UserDetailsEntityImplCopyWithImpl<_$UserDetailsEntityImpl>(
+  _$$StoryUserDetailImplCopyWith<_$StoryUserDetailImpl> get copyWith =>
+      __$$StoryUserDetailImplCopyWithImpl<_$StoryUserDetailImpl>(
           this, _$identity);
 }
 
-abstract class _UserDetailsEntity implements UserDetailsEntity {
-  const factory _UserDetailsEntity(
-      {final int id,
+abstract class _StoryUserDetail extends StoryUserDetail {
+  const factory _StoryUserDetail(
+      {required final int id,
       required final String email,
       required final String name,
       final String? nickName,
-      required final String avatar}) = _$UserDetailsEntityImpl;
+      required final String avatar}) = _$StoryUserDetailImpl;
+  const _StoryUserDetail._() : super._();
+
+  factory _StoryUserDetail.fromJson(Map<String, dynamic> json) =
+      _$StoryUserDetailImpl.fromJson;
 
   @override
   int get id;
@@ -709,6 +734,6 @@ abstract class _UserDetailsEntity implements UserDetailsEntity {
   String get avatar;
   @override
   @JsonKey(ignore: true)
-  _$$UserDetailsEntityImplCopyWith<_$UserDetailsEntityImpl> get copyWith =>
+  _$$StoryUserDetailImplCopyWith<_$StoryUserDetailImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
