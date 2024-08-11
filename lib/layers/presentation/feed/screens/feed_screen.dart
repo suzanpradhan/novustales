@@ -19,7 +19,7 @@ class _FeedScreenState extends State<FeedScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: BlocBuilder<ForYouStoryBloc, ForYouStoryState>(
+    return BlocBuilder<ForYouStoryBloc, ForYouStoryState>(
       builder: (context, state) {
         return state.whenOrNull(
               success: (story) {
@@ -94,10 +94,10 @@ class _FeedScreenState extends State<FeedScreen> {
             SizedBox(
               height: 38,
               child: Center(
-                child: Text('No Stories 2'),
+                child: Text('Failed'),
               ),
             );
       },
-    ));
+    );
   }
 }
