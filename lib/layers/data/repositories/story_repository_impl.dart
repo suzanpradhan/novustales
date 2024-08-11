@@ -19,4 +19,12 @@ class StoryRepositoryImpl implements StoryRepository {
       return Right(response.map((story) => story.toEntity()).toList());
     });
   }
+
+  @override
+  Future<Either<Failure, List<StoryEntity>>> getTrendingStory() async {
+    final response = await storySource.getTrendingStory(NoParams());
+    return response.fold((failure) => Left(failure), (response) {
+      return Right(response.map((story) => story.toEntity()).toList());
+    });
+  }
 }

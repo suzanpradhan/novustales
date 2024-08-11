@@ -7,6 +7,8 @@ import 'package:storyv2/layers/data/models/story_response.dart';
 
 abstract class StorySource {
   Future<Either<Failure, List<StoryResponse>>> getForMeStory(NoParams params);
+  Future<Either<Failure, List<StoryResponse>>> getTrendingStory(
+      NoParams params);
 }
 
 class StorySourceImpl implements StorySource {
@@ -18,6 +20,18 @@ class StorySourceImpl implements StorySource {
       NoParams params) async {
     final response = await _apiClient.getRequest(
       ApiPaths.foryoufeedUrl,
+      converter: (response) => (response["results"] as List)
+          .map((story) => StoryResponse.fromJson(story))
+          .toList(),
+    );
+    return response;
+  }
+
+  @override
+  Future<Either<Failure, List<StoryResponse>>> getTrendingStory(
+      NoParams params) async {
+    final response = await _apiClient.getRequest(
+      ApiPaths.trendingfeedUrl,
       converter: (response) => (response["results"] as List)
           .map((story) => StoryResponse.fromJson(story))
           .toList(),

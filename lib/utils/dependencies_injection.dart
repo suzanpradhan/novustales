@@ -12,6 +12,7 @@ import 'package:storyv2/layers/domain/repositories/tale_repository.dart';
 import 'package:storyv2/layers/domain/usecases/authentication/post_login.dart';
 import 'package:storyv2/layers/domain/usecases/authentication/post_register.dart';
 import 'package:storyv2/layers/domain/usecases/feed/get_for_me_story.dart';
+import 'package:storyv2/layers/domain/usecases/feed/get_trending_story.dart';
 import 'package:storyv2/layers/domain/usecases/tales/get_near_me_tales.dart';
 import 'package:storyv2/layers/domain/usecases/tales/get_popular_tales.dart';
 import 'package:storyv2/layers/domain/usecases/tales/search_tales.dart';
@@ -19,6 +20,7 @@ import 'package:storyv2/layers/presentation/auth/login/login_bloc.dart';
 import 'package:storyv2/layers/presentation/auth/register/register_bloc.dart';
 import 'package:storyv2/layers/presentation/bootstrap/app_bloc/app_bloc.dart';
 import 'package:storyv2/layers/presentation/feed/blocs/for_you_story/for_you_story_bloc.dart';
+import 'package:storyv2/layers/presentation/feed/blocs/trending_story/trending_story_bloc.dart';
 import 'package:storyv2/layers/presentation/tales/blocs/get_near_me_tales/get_near_me_tales_bloc.dart';
 import 'package:storyv2/layers/presentation/tales/blocs/get_popular_tales/get_popular_tales_bloc.dart';
 import 'package:storyv2/layers/presentation/tales/blocs/search_tales/search_tales_bloc.dart';
@@ -73,6 +75,7 @@ void _useCase() {
   sl.registerLazySingleton(() => GetNearMeTales(sl()));
   sl.registerLazySingleton(() => SearchTales(sl()));
   sl.registerLazySingleton(() => GetForMeStory(sl()));
+  sl.registerLazySingleton(() => GetTrendingStory(sl()));
 }
 
 void _blocs() {
@@ -84,4 +87,5 @@ void _blocs() {
   sl.registerFactory(() => GetNearMeTalesBloc(sl()));
   sl.registerFactory(() => SearchTalesBloc(sl()));
   sl.registerFactory(() => ForYouStoryBloc(sl()));
+  sl.registerFactory(() => TrendingStoryBloc(sl()));
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:storyv2/layers/presentation/feed/blocs/for_you_story/for_you_story_bloc.dart';
+import 'package:storyv2/layers/presentation/feed/blocs/trending_story/trending_story_bloc.dart';
 import 'package:storyv2/layers/presentation/tales/blocs/get_popular_tales/get_popular_tales_bloc.dart';
 
 import '../widgets/internet_status_widget.dart';
@@ -33,6 +34,10 @@ class HomeWrapperWidgetState extends State<HomeWrapperWidget> {
         BlocProvider.value(
           value: context.read<ForYouStoryBloc>()
             ..add(ForYouStoryEvent.request()),
+        ),
+        BlocProvider.value(
+          value: context.read<TrendingStoryBloc>()
+            ..add(TrendingStoryEvent.request()),
         ),
       ],
       child: Scaffold(

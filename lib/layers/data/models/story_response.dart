@@ -41,6 +41,7 @@ class StoryResponse with _$StoryResponse {
         views: views,
         title: title,
         media_url: media_url,
+        media: media,
         latitude: latitude,
         longitude: longitude,
         name: name,
