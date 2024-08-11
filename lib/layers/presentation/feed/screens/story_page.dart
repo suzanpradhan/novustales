@@ -5,6 +5,7 @@ import 'package:storyv2/core/constants/ui_constants.dart';
 import 'package:storyv2/core/presentation/ui/time_different.dart';
 import 'package:storyv2/layers/domain/entities/story_entity.dart';
 import 'package:storyv2/layers/presentation/feed/utils/feed_options.dart';
+import 'package:storyv2/layers/presentation/feed/utils/kwargs.dart';
 import 'package:storyv2/layers/presentation/feed/widgets/feed_info.dart';
 
 class StoryPage extends StatefulWidget {
@@ -82,7 +83,20 @@ class _StoryPageState extends State<StoryPage> {
                       ),
                       color: Colors.white,
                       icon: Icon(option.icon),
-                      onPressed: () => option.actions,
+                      onPressed: () async {
+                        if (option.actions != null) {
+                          if (option.title == 'Share') {
+                            await option.actions!.call(
+                              Kwargs(
+                                {
+                                  'title': widget.story.title,
+                                  'link': widget.story.media,
+                                },
+                              ),
+                            );
+                          }
+                        }
+                      },
                     );
                   }).toList(),
                   SizedBox(height: 30),
