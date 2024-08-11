@@ -5,24 +5,24 @@ part 'generated/story_entity.freezed.dart';
 @freezed
 class StoryEntity with _$StoryEntity {
   const factory StoryEntity({
-    @Default(0) int id,
-    required UserDetailsEntity userDetails,
-    required String mediaUrl,
-    required String category,
-    required int views,
-    required String title,
+    int? id,
+    UserDetailsEntity? user_details,
+    String? media_url,
+    String? category,
+    int? views,
+    String? title,
     String? media,
-    required String mediaUrls,
-    String? blobRef,
-    required double latitude,
-    required double longitude,
-    required String name,
-    required String country,
-    required String state,
-    required String city,
+    String? media_urls,
+    String? blob_ref,
+    double? latitude,
+    double? longitude,
+    String? name,
+    String? country,
+    String? state,
+    String? city,
     String? county,
-    required DateTime createdAt,
-    required DateTime updatedAt,
+    DateTime? created_at,
+    DateTime? updated_at,
   }) = _StoryEntity;
 }
 
@@ -30,9 +30,9 @@ class StoryEntity with _$StoryEntity {
 class UserDetailsEntity with _$UserDetailsEntity {
   const factory UserDetailsEntity({
     @Default(0) int id,
-    required String email,
-    required String name,
-    String? nickName,
-    required String avatar,
+    String? email,
+    String? name,
+    String? nick_name,
+    String? avatar,
   }) = _UserDetailsEntity;
 }

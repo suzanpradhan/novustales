@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:storyv2/layers/domain/entities/story_entity.dart';
+import 'package:storyv2/old/screens/premium/constants/api_paths.dart';
 
 part 'generated/story_response.freezed.dart';
 part 'generated/story_response.g.dart';
@@ -7,24 +8,24 @@ part 'generated/story_response.g.dart';
 @Freezed(toJson: false)
 class StoryResponse with _$StoryResponse {
   const factory StoryResponse({
-    @Default(0) int id,
-    required StoryUserDetail userDetails,
-    required String mediaUrl,
-    required String category,
-    required int views,
-    required String title,
+    int? id,
+    StoryUserDetail? user_details,
+    String? media_url,
+    String? category,
+    int? views,
+    String? title,
     String? media,
-    required String mediaUrls,
-    String? blobRef,
-    required double latitude,
-    required double longitude,
-    required String name,
-    required String country,
-    required String state,
-    required String city,
+    String? media_urls,
+    String? blob_ref,
+    double? latitude,
+    double? longitude,
+    String? name,
+    String? country,
+    String? state,
+    String? city,
     String? county,
-    required DateTime createdAt,
-    required DateTime updatedAt,
+    DateTime? created_at,
+    DateTime? updated_at,
   }) = _StoryResponse;
 
   const StoryResponse._();
@@ -34,31 +35,31 @@ class StoryResponse with _$StoryResponse {
 
   StoryEntity toEntity() => StoryEntity(
         id: id,
-        userDetails: userDetails.toEntity(),
-        mediaUrl: mediaUrl,
+        user_details: user_details!.toEntity(),
+        media_urls: media_urls,
         category: category,
         views: views,
         title: title,
-        mediaUrls: mediaUrls,
+        media_url: media_url,
         latitude: latitude,
         longitude: longitude,
         name: name,
         country: country,
         state: state,
         city: city,
-        createdAt: createdAt,
-        updatedAt: updatedAt,
+        created_at: created_at,
+        updated_at: updated_at,
       );
 }
 
 @Freezed(toJson: false)
 class StoryUserDetail with _$StoryUserDetail {
   const factory StoryUserDetail({
-    required int id,
-    required String email,
-    required String name,
-    String? nickName,
-    required String avatar,
+    int? id,
+    String? email,
+    String? name,
+    String? nick_name,
+    String? avatar,
   }) = _StoryUserDetail;
 
   const StoryUserDetail._();
@@ -69,7 +70,7 @@ class StoryUserDetail with _$StoryUserDetail {
   UserDetailsEntity toEntity() => UserDetailsEntity(
         email: email,
         name: name,
-        nickName: nickName,
-        avatar: avatar,
+        nick_name: nick_name,
+        avatar: baseUrl + avatar!,
       );
 }

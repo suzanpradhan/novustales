@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:story_view/story_view.dart';
 import 'package:storyv2/core/constants/app_colors.dart';
 import 'package:storyv2/core/constants/ui_constants.dart';
+import 'package:storyv2/core/presentation/ui/time_different.dart';
 import 'package:storyv2/layers/presentation/feed/blocs/for_you_story/for_you_story_bloc.dart';
 import 'package:storyv2/layers/presentation/feed/utils/feed_options.dart';
 import 'package:storyv2/layers/presentation/feed/widgets/feed_info.dart';
@@ -22,6 +23,13 @@ class _FeedScreenState extends State<FeedScreen> {
     return BlocBuilder<ForYouStoryBloc, ForYouStoryState>(
       builder: (context, state) {
         return state.whenOrNull(
+              failed: (message) {
+                return Center(
+                  child: SizedBox(
+                    child: Text(message),
+                  ),
+                );
+              },
               success: (story) {
                 if (story.isEmpty) {
                   return SizedBox(
@@ -33,16 +41,21 @@ class _FeedScreenState extends State<FeedScreen> {
                 }
                 return PageView.builder(
                   scrollDirection: Axis.vertical,
-                  itemCount: 5,
+                  itemCount: story.length,
                   itemBuilder: (ctx, index) {
                     return Stack(
                       children: [
                         StoryView(
                           storyItems: [
-                            StoryItem.text(
-                              title: 'Testing $index',
-                              backgroundColor: Colors.red,
-                            ),
+                            story[index].media_urls!.endsWith('.mp4') == true
+                                ? StoryItem.pageVideo(
+                                    story[index].media_urls.toString(),
+                                    controller: controller,
+                                  )
+                                : StoryItem.pageImage(
+                                    url: story[index].media_urls.toString(),
+                                    controller: controller,
+                                  ),
                           ],
                           controller: controller,
                           repeat: true,
@@ -59,12 +72,16 @@ class _FeedScreenState extends State<FeedScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               FeedInfo(
-                                avtarUrl:
-                                    'https://i.pinimg.com/736x/48/1f/78/481f788038eecbe703a3ce959b03c91b.jpg',
-                                userName: 'Mechamaru',
-                                feedTime: 'a moment ago',
-                                feedDescription:
-                                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+                                avtarUrl: story[index]
+                                    .user_details!
+                                    .avatar
+                                    .toString(),
+                                userName:
+                                    story[index].user_details!.name.toString(),
+                                feedTime: getTimeDifferenceFromNow(
+                                        story[index].updated_at!)
+                                    .toString(),
+                                feedDescription: story[index].title.toString(),
                               ),
                               Column(
                                 children: [
@@ -75,6 +92,7 @@ class _FeedScreenState extends State<FeedScreen> {
                                         backgroundColor:
                                             AppColors.gray.withOpacity(0.5),
                                       ),
+                                      color: Colors.white,
                                       icon: Icon(option.icon),
                                       onPressed: () {},
                                     );

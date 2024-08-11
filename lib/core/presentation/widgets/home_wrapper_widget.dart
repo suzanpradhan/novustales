@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:storyv2/layers/presentation/feed/blocs/for_you_story/for_you_story_bloc.dart';
 import 'package:storyv2/layers/presentation/tales/blocs/get_popular_tales/get_popular_tales_bloc.dart';
 
 import '../widgets/internet_status_widget.dart';
@@ -23,8 +24,17 @@ class HomeWrapperWidgetState extends State<HomeWrapperWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider.value(
-      value: context.read<GetPopularTalesBloc>()..add(GetPopularTalesEvent.request()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider.value(
+          value: context.read<GetPopularTalesBloc>()
+            ..add(GetPopularTalesEvent.request()),
+        ),
+        BlocProvider.value(
+          value: context.read<ForYouStoryBloc>()
+            ..add(ForYouStoryEvent.request()),
+        ),
+      ],
       child: Scaffold(
         // extendBody: true,
         // extendBodyBehindAppBar: true,
@@ -51,7 +61,10 @@ class HomeWrapperWidgetState extends State<HomeWrapperWidget> {
                   border: Border(
                       top: BorderSide(
                           width: 1,
-                          color: Theme.of(context).colorScheme.outline.withOpacity(0.4)))),
+                          color: Theme.of(context)
+                              .colorScheme
+                              .outline
+                              .withOpacity(0.4)))),
               height: 50,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -59,14 +72,18 @@ class HomeWrapperWidgetState extends State<HomeWrapperWidget> {
                   IconButton(
                       onPressed: () {
                         if (widget.navigationShell.currentIndex != 0) {
-                          widget.navigationShell.goBranch(0, initialLocation: true);
+                          widget.navigationShell
+                              .goBranch(0, initialLocation: true);
                         }
                       },
                       icon: Icon(
-                        (widget.navigationShell.currentIndex == 0) ? Icons.home_filled : Icons.home,
+                        (widget.navigationShell.currentIndex == 0)
+                            ? Icons.home_filled
+                            : Icons.home,
                         size: 22,
-                        color:
-                            (widget.navigationShell.currentIndex == 0) ? Colors.black : Colors.grey,
+                        color: (widget.navigationShell.currentIndex == 0)
+                            ? Colors.black
+                            : Colors.grey,
                       )),
                   IconButton(
                       onPressed: () {
@@ -75,10 +92,13 @@ class HomeWrapperWidgetState extends State<HomeWrapperWidget> {
                         }
                       },
                       icon: Icon(
-                        (widget.navigationShell.currentIndex == 1) ? Icons.explore : Icons.explore,
+                        (widget.navigationShell.currentIndex == 1)
+                            ? Icons.explore
+                            : Icons.explore,
                         size: 22,
-                        color:
-                            (widget.navigationShell.currentIndex == 1) ? Colors.black : Colors.grey,
+                        color: (widget.navigationShell.currentIndex == 1)
+                            ? Colors.black
+                            : Colors.grey,
                       )),
                   IconButton(
                       onPressed: () {
@@ -91,8 +111,9 @@ class HomeWrapperWidgetState extends State<HomeWrapperWidget> {
                             ? Icons.add_box_outlined
                             : Icons.add_box_outlined,
                         size: 22,
-                        color:
-                            (widget.navigationShell.currentIndex == 2) ? Colors.black : Colors.grey,
+                        color: (widget.navigationShell.currentIndex == 2)
+                            ? Colors.black
+                            : Colors.grey,
                       )),
                   IconButton(
                       onPressed: () {
@@ -101,10 +122,13 @@ class HomeWrapperWidgetState extends State<HomeWrapperWidget> {
                         }
                       },
                       icon: Icon(
-                        (widget.navigationShell.currentIndex == 3) ? Icons.message : Icons.message,
+                        (widget.navigationShell.currentIndex == 3)
+                            ? Icons.message
+                            : Icons.message,
                         size: 22,
-                        color:
-                            (widget.navigationShell.currentIndex == 3) ? Colors.black : Colors.grey,
+                        color: (widget.navigationShell.currentIndex == 3)
+                            ? Colors.black
+                            : Colors.grey,
                       )),
                   IconButton(
                       onPressed: () {
@@ -113,10 +137,13 @@ class HomeWrapperWidgetState extends State<HomeWrapperWidget> {
                         }
                       },
                       icon: Icon(
-                        (widget.navigationShell.currentIndex == 4) ? Icons.person : Icons.person,
+                        (widget.navigationShell.currentIndex == 4)
+                            ? Icons.person
+                            : Icons.person,
                         size: 22,
-                        color:
-                            (widget.navigationShell.currentIndex == 4) ? Colors.black : Colors.grey,
+                        color: (widget.navigationShell.currentIndex == 4)
+                            ? Colors.black
+                            : Colors.grey,
                       ))
                 ],
               ),

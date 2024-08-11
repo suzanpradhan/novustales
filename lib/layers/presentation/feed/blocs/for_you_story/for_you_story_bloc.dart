@@ -22,7 +22,7 @@ class ForYouStoryBloc extends Bloc<ForYouStoryEvent, ForYouStoryState> {
           emit(_Success(story: r));
         });
       } catch (e) {
-        emit(_Failed(message: 'Failed to get story'));
+        emit(_Failed(message: e.toString()));
       }
     });
   }
