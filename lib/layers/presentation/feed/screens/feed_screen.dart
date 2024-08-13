@@ -188,18 +188,22 @@ class FeedTabWidget extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: UIConstants.maxPadding),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(42),
-            color: currentTab == tabKey ? chipColor : null,
-            border: Border.all(
-                color: currentTab == tabKey ? AppColors.dark : AppColors.gray)),
+          borderRadius: BorderRadius.circular(42),
+          color: currentTab == tabKey ? chipColor : null,
+          border: Border.all(
+            color: currentTab == tabKey ? AppColors.dark : AppColors.gray,
+          ),
+        ),
         child: Center(
-            child: Text(
-          tabKeyToTitle(tabKey),
-          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: currentTab == tabKey
-                  ? selectedTextColor
-                  : unselectedTextColor),
-        )),
+          child: Text(
+            tabKeyToTitle(tabKey),
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: currentTab == tabKey
+                      ? selectedTextColor
+                      : unselectedTextColor,
+                ),
+          ),
+        ),
       ),
     );
   }

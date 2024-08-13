@@ -9,14 +9,14 @@ part 'generated/story_response.g.dart';
 class StoryResponse with _$StoryResponse {
   const factory StoryResponse({
     int? id,
-    StoryUserDetail? user_details,
-    String? media_url,
+    @JsonKey(name: 'user_details') StoryUserDetail? userDetails,
+    @JsonKey(name: 'media_url') String? mediaUrl,
     String? category,
     int? views,
     String? title,
     String? media,
-    String? media_urls,
-    String? blob_ref,
+    @JsonKey(name: 'media_urls') String? mediaUrls,
+    @JsonKey(name: 'blob_ref') String? blobRef,
     double? latitude,
     double? longitude,
     String? name,
@@ -24,8 +24,8 @@ class StoryResponse with _$StoryResponse {
     String? state,
     String? city,
     String? county,
-    DateTime? created_at,
-    DateTime? updated_at,
+    @JsonKey(name: 'created_at') DateTime? createdAt,
+    @JsonKey(name: 'updated_at') DateTime? updatedAt,
   }) = _StoryResponse;
 
   const StoryResponse._();
@@ -35,21 +35,21 @@ class StoryResponse with _$StoryResponse {
 
   StoryEntity toEntity() => StoryEntity(
         id: id,
-        user_details: user_details!.toEntity(),
-        media_urls: media_urls,
+        userDetails: userDetails!.toEntity(),
+        mediaUrls: mediaUrls,
         category: category,
         views: views,
         title: title,
-        media_url: media_url,
-        media: media,
+        mediaUrl: mediaUrl,
+        media: media!.contains(baseUrl) ? media : baseUrl + media!,
         latitude: latitude,
         longitude: longitude,
         name: name,
         country: country,
         state: state,
         city: city,
-        created_at: created_at,
-        updated_at: updated_at,
+        createdAt: createdAt,
+        updatedAt: updatedAt,
       );
 }
 
@@ -59,7 +59,7 @@ class StoryUserDetail with _$StoryUserDetail {
     int? id,
     String? email,
     String? name,
-    String? nick_name,
+    @JsonKey(name: 'nick_name') String? nickName,
     String? avatar,
   }) = _StoryUserDetail;
 
@@ -71,7 +71,7 @@ class StoryUserDetail with _$StoryUserDetail {
   UserDetailsEntity toEntity() => UserDetailsEntity(
         email: email,
         name: name,
-        nick_name: nick_name,
-        avatar: baseUrl + avatar!,
+        nickName: nickName,
+        avatar: avatar!.contains(baseUrl) ? avatar : baseUrl + avatar!,
       );
 }

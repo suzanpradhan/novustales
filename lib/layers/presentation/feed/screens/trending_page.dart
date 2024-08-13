@@ -18,10 +18,13 @@ class _TrendingPageState extends State<TrendingPage> {
         builder: (context, state) {
       return state.whenOrNull(
             failed: (message) {
-              return Center(
-                child: Text(
-                  message,
-                  style: TextStyle(color: AppColors.white),
+              return Container(
+                color: Colors.black,
+                child: Center(
+                  child: Text(
+                    message,
+                    style: TextStyle(color: AppColors.white),
+                  ),
                 ),
               );
             },

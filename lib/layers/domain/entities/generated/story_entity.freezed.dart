@@ -17,14 +17,18 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$StoryEntity {
   int? get id => throw _privateConstructorUsedError;
-  UserDetailsEntity? get user_details => throw _privateConstructorUsedError;
-  String? get media_url => throw _privateConstructorUsedError;
+  @JsonKey(name: 'user_details')
+  UserDetailsEntity? get userDetails => throw _privateConstructorUsedError;
+  @JsonKey(name: 'media_url')
+  String? get mediaUrl => throw _privateConstructorUsedError;
   String? get category => throw _privateConstructorUsedError;
   int? get views => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
   String? get media => throw _privateConstructorUsedError;
-  String? get media_urls => throw _privateConstructorUsedError;
-  String? get blob_ref => throw _privateConstructorUsedError;
+  @JsonKey(name: 'media_urls')
+  String? get mediaUrls => throw _privateConstructorUsedError;
+  @JsonKey(name: 'blob_ref')
+  String? get blobRef => throw _privateConstructorUsedError;
   double? get latitude => throw _privateConstructorUsedError;
   double? get longitude => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
@@ -32,8 +36,10 @@ mixin _$StoryEntity {
   String? get state => throw _privateConstructorUsedError;
   String? get city => throw _privateConstructorUsedError;
   String? get county => throw _privateConstructorUsedError;
-  DateTime? get created_at => throw _privateConstructorUsedError;
-  DateTime? get updated_at => throw _privateConstructorUsedError;
+  @JsonKey(name: 'created_at')
+  DateTime? get createdAt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'updated_at')
+  DateTime? get updatedAt => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $StoryEntityCopyWith<StoryEntity> get copyWith =>
@@ -48,14 +54,14 @@ abstract class $StoryEntityCopyWith<$Res> {
   @useResult
   $Res call(
       {int? id,
-      UserDetailsEntity? user_details,
-      String? media_url,
+      @JsonKey(name: 'user_details') UserDetailsEntity? userDetails,
+      @JsonKey(name: 'media_url') String? mediaUrl,
       String? category,
       int? views,
       String? title,
       String? media,
-      String? media_urls,
-      String? blob_ref,
+      @JsonKey(name: 'media_urls') String? mediaUrls,
+      @JsonKey(name: 'blob_ref') String? blobRef,
       double? latitude,
       double? longitude,
       String? name,
@@ -63,10 +69,10 @@ abstract class $StoryEntityCopyWith<$Res> {
       String? state,
       String? city,
       String? county,
-      DateTime? created_at,
-      DateTime? updated_at});
+      @JsonKey(name: 'created_at') DateTime? createdAt,
+      @JsonKey(name: 'updated_at') DateTime? updatedAt});
 
-  $UserDetailsEntityCopyWith<$Res>? get user_details;
+  $UserDetailsEntityCopyWith<$Res>? get userDetails;
 }
 
 /// @nodoc
@@ -83,14 +89,14 @@ class _$StoryEntityCopyWithImpl<$Res, $Val extends StoryEntity>
   @override
   $Res call({
     Object? id = freezed,
-    Object? user_details = freezed,
-    Object? media_url = freezed,
+    Object? userDetails = freezed,
+    Object? mediaUrl = freezed,
     Object? category = freezed,
     Object? views = freezed,
     Object? title = freezed,
     Object? media = freezed,
-    Object? media_urls = freezed,
-    Object? blob_ref = freezed,
+    Object? mediaUrls = freezed,
+    Object? blobRef = freezed,
     Object? latitude = freezed,
     Object? longitude = freezed,
     Object? name = freezed,
@@ -98,21 +104,21 @@ class _$StoryEntityCopyWithImpl<$Res, $Val extends StoryEntity>
     Object? state = freezed,
     Object? city = freezed,
     Object? county = freezed,
-    Object? created_at = freezed,
-    Object? updated_at = freezed,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      user_details: freezed == user_details
-          ? _value.user_details
-          : user_details // ignore: cast_nullable_to_non_nullable
+      userDetails: freezed == userDetails
+          ? _value.userDetails
+          : userDetails // ignore: cast_nullable_to_non_nullable
               as UserDetailsEntity?,
-      media_url: freezed == media_url
-          ? _value.media_url
-          : media_url // ignore: cast_nullable_to_non_nullable
+      mediaUrl: freezed == mediaUrl
+          ? _value.mediaUrl
+          : mediaUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       category: freezed == category
           ? _value.category
@@ -130,13 +136,13 @@ class _$StoryEntityCopyWithImpl<$Res, $Val extends StoryEntity>
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
               as String?,
-      media_urls: freezed == media_urls
-          ? _value.media_urls
-          : media_urls // ignore: cast_nullable_to_non_nullable
+      mediaUrls: freezed == mediaUrls
+          ? _value.mediaUrls
+          : mediaUrls // ignore: cast_nullable_to_non_nullable
               as String?,
-      blob_ref: freezed == blob_ref
-          ? _value.blob_ref
-          : blob_ref // ignore: cast_nullable_to_non_nullable
+      blobRef: freezed == blobRef
+          ? _value.blobRef
+          : blobRef // ignore: cast_nullable_to_non_nullable
               as String?,
       latitude: freezed == latitude
           ? _value.latitude
@@ -166,26 +172,26 @@ class _$StoryEntityCopyWithImpl<$Res, $Val extends StoryEntity>
           ? _value.county
           : county // ignore: cast_nullable_to_non_nullable
               as String?,
-      created_at: freezed == created_at
-          ? _value.created_at
-          : created_at // ignore: cast_nullable_to_non_nullable
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      updated_at: freezed == updated_at
-          ? _value.updated_at
-          : updated_at // ignore: cast_nullable_to_non_nullable
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $UserDetailsEntityCopyWith<$Res>? get user_details {
-    if (_value.user_details == null) {
+  $UserDetailsEntityCopyWith<$Res>? get userDetails {
+    if (_value.userDetails == null) {
       return null;
     }
 
-    return $UserDetailsEntityCopyWith<$Res>(_value.user_details!, (value) {
-      return _then(_value.copyWith(user_details: value) as $Val);
+    return $UserDetailsEntityCopyWith<$Res>(_value.userDetails!, (value) {
+      return _then(_value.copyWith(userDetails: value) as $Val);
     });
   }
 }
@@ -200,14 +206,14 @@ abstract class _$$StoryEntityImplCopyWith<$Res>
   @useResult
   $Res call(
       {int? id,
-      UserDetailsEntity? user_details,
-      String? media_url,
+      @JsonKey(name: 'user_details') UserDetailsEntity? userDetails,
+      @JsonKey(name: 'media_url') String? mediaUrl,
       String? category,
       int? views,
       String? title,
       String? media,
-      String? media_urls,
-      String? blob_ref,
+      @JsonKey(name: 'media_urls') String? mediaUrls,
+      @JsonKey(name: 'blob_ref') String? blobRef,
       double? latitude,
       double? longitude,
       String? name,
@@ -215,11 +221,11 @@ abstract class _$$StoryEntityImplCopyWith<$Res>
       String? state,
       String? city,
       String? county,
-      DateTime? created_at,
-      DateTime? updated_at});
+      @JsonKey(name: 'created_at') DateTime? createdAt,
+      @JsonKey(name: 'updated_at') DateTime? updatedAt});
 
   @override
-  $UserDetailsEntityCopyWith<$Res>? get user_details;
+  $UserDetailsEntityCopyWith<$Res>? get userDetails;
 }
 
 /// @nodoc
@@ -234,14 +240,14 @@ class __$$StoryEntityImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? user_details = freezed,
-    Object? media_url = freezed,
+    Object? userDetails = freezed,
+    Object? mediaUrl = freezed,
     Object? category = freezed,
     Object? views = freezed,
     Object? title = freezed,
     Object? media = freezed,
-    Object? media_urls = freezed,
-    Object? blob_ref = freezed,
+    Object? mediaUrls = freezed,
+    Object? blobRef = freezed,
     Object? latitude = freezed,
     Object? longitude = freezed,
     Object? name = freezed,
@@ -249,21 +255,21 @@ class __$$StoryEntityImplCopyWithImpl<$Res>
     Object? state = freezed,
     Object? city = freezed,
     Object? county = freezed,
-    Object? created_at = freezed,
-    Object? updated_at = freezed,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_$StoryEntityImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      user_details: freezed == user_details
-          ? _value.user_details
-          : user_details // ignore: cast_nullable_to_non_nullable
+      userDetails: freezed == userDetails
+          ? _value.userDetails
+          : userDetails // ignore: cast_nullable_to_non_nullable
               as UserDetailsEntity?,
-      media_url: freezed == media_url
-          ? _value.media_url
-          : media_url // ignore: cast_nullable_to_non_nullable
+      mediaUrl: freezed == mediaUrl
+          ? _value.mediaUrl
+          : mediaUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       category: freezed == category
           ? _value.category
@@ -281,13 +287,13 @@ class __$$StoryEntityImplCopyWithImpl<$Res>
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
               as String?,
-      media_urls: freezed == media_urls
-          ? _value.media_urls
-          : media_urls // ignore: cast_nullable_to_non_nullable
+      mediaUrls: freezed == mediaUrls
+          ? _value.mediaUrls
+          : mediaUrls // ignore: cast_nullable_to_non_nullable
               as String?,
-      blob_ref: freezed == blob_ref
-          ? _value.blob_ref
-          : blob_ref // ignore: cast_nullable_to_non_nullable
+      blobRef: freezed == blobRef
+          ? _value.blobRef
+          : blobRef // ignore: cast_nullable_to_non_nullable
               as String?,
       latitude: freezed == latitude
           ? _value.latitude
@@ -317,13 +323,13 @@ class __$$StoryEntityImplCopyWithImpl<$Res>
           ? _value.county
           : county // ignore: cast_nullable_to_non_nullable
               as String?,
-      created_at: freezed == created_at
-          ? _value.created_at
-          : created_at // ignore: cast_nullable_to_non_nullable
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      updated_at: freezed == updated_at
-          ? _value.updated_at
-          : updated_at // ignore: cast_nullable_to_non_nullable
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
     ));
   }
@@ -334,14 +340,14 @@ class __$$StoryEntityImplCopyWithImpl<$Res>
 class _$StoryEntityImpl implements _StoryEntity {
   const _$StoryEntityImpl(
       {this.id,
-      this.user_details,
-      this.media_url,
+      @JsonKey(name: 'user_details') this.userDetails,
+      @JsonKey(name: 'media_url') this.mediaUrl,
       this.category,
       this.views,
       this.title,
       this.media,
-      this.media_urls,
-      this.blob_ref,
+      @JsonKey(name: 'media_urls') this.mediaUrls,
+      @JsonKey(name: 'blob_ref') this.blobRef,
       this.latitude,
       this.longitude,
       this.name,
@@ -349,15 +355,17 @@ class _$StoryEntityImpl implements _StoryEntity {
       this.state,
       this.city,
       this.county,
-      this.created_at,
-      this.updated_at});
+      @JsonKey(name: 'created_at') this.createdAt,
+      @JsonKey(name: 'updated_at') this.updatedAt});
 
   @override
   final int? id;
   @override
-  final UserDetailsEntity? user_details;
+  @JsonKey(name: 'user_details')
+  final UserDetailsEntity? userDetails;
   @override
-  final String? media_url;
+  @JsonKey(name: 'media_url')
+  final String? mediaUrl;
   @override
   final String? category;
   @override
@@ -367,9 +375,11 @@ class _$StoryEntityImpl implements _StoryEntity {
   @override
   final String? media;
   @override
-  final String? media_urls;
+  @JsonKey(name: 'media_urls')
+  final String? mediaUrls;
   @override
-  final String? blob_ref;
+  @JsonKey(name: 'blob_ref')
+  final String? blobRef;
   @override
   final double? latitude;
   @override
@@ -385,13 +395,15 @@ class _$StoryEntityImpl implements _StoryEntity {
   @override
   final String? county;
   @override
-  final DateTime? created_at;
+  @JsonKey(name: 'created_at')
+  final DateTime? createdAt;
   @override
-  final DateTime? updated_at;
+  @JsonKey(name: 'updated_at')
+  final DateTime? updatedAt;
 
   @override
   String toString() {
-    return 'StoryEntity(id: $id, user_details: $user_details, media_url: $media_url, category: $category, views: $views, title: $title, media: $media, media_urls: $media_urls, blob_ref: $blob_ref, latitude: $latitude, longitude: $longitude, name: $name, country: $country, state: $state, city: $city, county: $county, created_at: $created_at, updated_at: $updated_at)';
+    return 'StoryEntity(id: $id, userDetails: $userDetails, mediaUrl: $mediaUrl, category: $category, views: $views, title: $title, media: $media, mediaUrls: $mediaUrls, blobRef: $blobRef, latitude: $latitude, longitude: $longitude, name: $name, country: $country, state: $state, city: $city, county: $county, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -400,19 +412,18 @@ class _$StoryEntityImpl implements _StoryEntity {
         (other.runtimeType == runtimeType &&
             other is _$StoryEntityImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.user_details, user_details) ||
-                other.user_details == user_details) &&
-            (identical(other.media_url, media_url) ||
-                other.media_url == media_url) &&
+            (identical(other.userDetails, userDetails) ||
+                other.userDetails == userDetails) &&
+            (identical(other.mediaUrl, mediaUrl) ||
+                other.mediaUrl == mediaUrl) &&
             (identical(other.category, category) ||
                 other.category == category) &&
             (identical(other.views, views) || other.views == views) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.media, media) || other.media == media) &&
-            (identical(other.media_urls, media_urls) ||
-                other.media_urls == media_urls) &&
-            (identical(other.blob_ref, blob_ref) ||
-                other.blob_ref == blob_ref) &&
+            (identical(other.mediaUrls, mediaUrls) ||
+                other.mediaUrls == mediaUrls) &&
+            (identical(other.blobRef, blobRef) || other.blobRef == blobRef) &&
             (identical(other.latitude, latitude) ||
                 other.latitude == latitude) &&
             (identical(other.longitude, longitude) ||
@@ -422,24 +433,24 @@ class _$StoryEntityImpl implements _StoryEntity {
             (identical(other.state, state) || other.state == state) &&
             (identical(other.city, city) || other.city == city) &&
             (identical(other.county, county) || other.county == county) &&
-            (identical(other.created_at, created_at) ||
-                other.created_at == created_at) &&
-            (identical(other.updated_at, updated_at) ||
-                other.updated_at == updated_at));
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       id,
-      user_details,
-      media_url,
+      userDetails,
+      mediaUrl,
       category,
       views,
       title,
       media,
-      media_urls,
-      blob_ref,
+      mediaUrls,
+      blobRef,
       latitude,
       longitude,
       name,
@@ -447,8 +458,8 @@ class _$StoryEntityImpl implements _StoryEntity {
       state,
       city,
       county,
-      created_at,
-      updated_at);
+      createdAt,
+      updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -459,31 +470,34 @@ class _$StoryEntityImpl implements _StoryEntity {
 
 abstract class _StoryEntity implements StoryEntity {
   const factory _StoryEntity(
-      {final int? id,
-      final UserDetailsEntity? user_details,
-      final String? media_url,
-      final String? category,
-      final int? views,
-      final String? title,
-      final String? media,
-      final String? media_urls,
-      final String? blob_ref,
-      final double? latitude,
-      final double? longitude,
-      final String? name,
-      final String? country,
-      final String? state,
-      final String? city,
-      final String? county,
-      final DateTime? created_at,
-      final DateTime? updated_at}) = _$StoryEntityImpl;
+          {final int? id,
+          @JsonKey(name: 'user_details') final UserDetailsEntity? userDetails,
+          @JsonKey(name: 'media_url') final String? mediaUrl,
+          final String? category,
+          final int? views,
+          final String? title,
+          final String? media,
+          @JsonKey(name: 'media_urls') final String? mediaUrls,
+          @JsonKey(name: 'blob_ref') final String? blobRef,
+          final double? latitude,
+          final double? longitude,
+          final String? name,
+          final String? country,
+          final String? state,
+          final String? city,
+          final String? county,
+          @JsonKey(name: 'created_at') final DateTime? createdAt,
+          @JsonKey(name: 'updated_at') final DateTime? updatedAt}) =
+      _$StoryEntityImpl;
 
   @override
   int? get id;
   @override
-  UserDetailsEntity? get user_details;
+  @JsonKey(name: 'user_details')
+  UserDetailsEntity? get userDetails;
   @override
-  String? get media_url;
+  @JsonKey(name: 'media_url')
+  String? get mediaUrl;
   @override
   String? get category;
   @override
@@ -493,9 +507,11 @@ abstract class _StoryEntity implements StoryEntity {
   @override
   String? get media;
   @override
-  String? get media_urls;
+  @JsonKey(name: 'media_urls')
+  String? get mediaUrls;
   @override
-  String? get blob_ref;
+  @JsonKey(name: 'blob_ref')
+  String? get blobRef;
   @override
   double? get latitude;
   @override
@@ -511,9 +527,11 @@ abstract class _StoryEntity implements StoryEntity {
   @override
   String? get county;
   @override
-  DateTime? get created_at;
+  @JsonKey(name: 'created_at')
+  DateTime? get createdAt;
   @override
-  DateTime? get updated_at;
+  @JsonKey(name: 'updated_at')
+  DateTime? get updatedAt;
   @override
   @JsonKey(ignore: true)
   _$$StoryEntityImplCopyWith<_$StoryEntityImpl> get copyWith =>
@@ -525,7 +543,8 @@ mixin _$UserDetailsEntity {
   int get id => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
-  String? get nick_name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'user_details')
+  String? get nickName => throw _privateConstructorUsedError;
   String? get avatar => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -540,7 +559,11 @@ abstract class $UserDetailsEntityCopyWith<$Res> {
       _$UserDetailsEntityCopyWithImpl<$Res, UserDetailsEntity>;
   @useResult
   $Res call(
-      {int id, String? email, String? name, String? nick_name, String? avatar});
+      {int id,
+      String? email,
+      String? name,
+      @JsonKey(name: 'user_details') String? nickName,
+      String? avatar});
 }
 
 /// @nodoc
@@ -559,7 +582,7 @@ class _$UserDetailsEntityCopyWithImpl<$Res, $Val extends UserDetailsEntity>
     Object? id = null,
     Object? email = freezed,
     Object? name = freezed,
-    Object? nick_name = freezed,
+    Object? nickName = freezed,
     Object? avatar = freezed,
   }) {
     return _then(_value.copyWith(
@@ -575,9 +598,9 @@ class _$UserDetailsEntityCopyWithImpl<$Res, $Val extends UserDetailsEntity>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      nick_name: freezed == nick_name
-          ? _value.nick_name
-          : nick_name // ignore: cast_nullable_to_non_nullable
+      nickName: freezed == nickName
+          ? _value.nickName
+          : nickName // ignore: cast_nullable_to_non_nullable
               as String?,
       avatar: freezed == avatar
           ? _value.avatar
@@ -596,7 +619,11 @@ abstract class _$$UserDetailsEntityImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id, String? email, String? name, String? nick_name, String? avatar});
+      {int id,
+      String? email,
+      String? name,
+      @JsonKey(name: 'user_details') String? nickName,
+      String? avatar});
 }
 
 /// @nodoc
@@ -613,7 +640,7 @@ class __$$UserDetailsEntityImplCopyWithImpl<$Res>
     Object? id = null,
     Object? email = freezed,
     Object? name = freezed,
-    Object? nick_name = freezed,
+    Object? nickName = freezed,
     Object? avatar = freezed,
   }) {
     return _then(_$UserDetailsEntityImpl(
@@ -629,9 +656,9 @@ class __$$UserDetailsEntityImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      nick_name: freezed == nick_name
-          ? _value.nick_name
-          : nick_name // ignore: cast_nullable_to_non_nullable
+      nickName: freezed == nickName
+          ? _value.nickName
+          : nickName // ignore: cast_nullable_to_non_nullable
               as String?,
       avatar: freezed == avatar
           ? _value.avatar
@@ -645,7 +672,11 @@ class __$$UserDetailsEntityImplCopyWithImpl<$Res>
 
 class _$UserDetailsEntityImpl implements _UserDetailsEntity {
   const _$UserDetailsEntityImpl(
-      {this.id = 0, this.email, this.name, this.nick_name, this.avatar});
+      {this.id = 0,
+      this.email,
+      this.name,
+      @JsonKey(name: 'user_details') this.nickName,
+      this.avatar});
 
   @override
   @JsonKey()
@@ -655,13 +686,14 @@ class _$UserDetailsEntityImpl implements _UserDetailsEntity {
   @override
   final String? name;
   @override
-  final String? nick_name;
+  @JsonKey(name: 'user_details')
+  final String? nickName;
   @override
   final String? avatar;
 
   @override
   String toString() {
-    return 'UserDetailsEntity(id: $id, email: $email, name: $name, nick_name: $nick_name, avatar: $avatar)';
+    return 'UserDetailsEntity(id: $id, email: $email, name: $name, nickName: $nickName, avatar: $avatar)';
   }
 
   @override
@@ -672,14 +704,14 @@ class _$UserDetailsEntityImpl implements _UserDetailsEntity {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.nick_name, nick_name) ||
-                other.nick_name == nick_name) &&
+            (identical(other.nickName, nickName) ||
+                other.nickName == nickName) &&
             (identical(other.avatar, avatar) || other.avatar == avatar));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, email, name, nick_name, avatar);
+      Object.hash(runtimeType, id, email, name, nickName, avatar);
 
   @JsonKey(ignore: true)
   @override
@@ -694,7 +726,7 @@ abstract class _UserDetailsEntity implements UserDetailsEntity {
       {final int id,
       final String? email,
       final String? name,
-      final String? nick_name,
+      @JsonKey(name: 'user_details') final String? nickName,
       final String? avatar}) = _$UserDetailsEntityImpl;
 
   @override
@@ -704,7 +736,8 @@ abstract class _UserDetailsEntity implements UserDetailsEntity {
   @override
   String? get name;
   @override
-  String? get nick_name;
+  @JsonKey(name: 'user_details')
+  String? get nickName;
   @override
   String? get avatar;
   @override

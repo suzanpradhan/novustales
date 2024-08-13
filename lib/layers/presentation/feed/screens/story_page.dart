@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:story_view/story_view.dart';
 import 'package:storyv2/core/constants/app_colors.dart';
 import 'package:storyv2/core/constants/ui_constants.dart';
-import 'package:storyv2/core/presentation/ui/time_different.dart';
+import 'package:storyv2/core/presentation/ui/time_difference.dart';
 import 'package:storyv2/layers/domain/entities/story_entity.dart';
 import 'package:storyv2/layers/presentation/feed/utils/feed_options.dart';
 import 'package:storyv2/layers/presentation/feed/utils/kwargs.dart';
@@ -67,9 +67,9 @@ class _StoryPageState extends State<StoryPage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               FeedInfo(
-                avtarUrl: widget.story.user_details!.avatar.toString(),
-                userName: widget.story.user_details!.name.toString(),
-                feedTime: getTimeDifferenceFromNow(widget.story.updated_at!)
+                avtarUrl: widget.story.userDetails!.avatar.toString(),
+                userName: widget.story.userDetails!.name.toString(),
+                feedTime: getTimeDifferenceFromNow(widget.story.updatedAt!)
                     .toString(),
                 feedDescription: widget.story.title.toString(),
               ),

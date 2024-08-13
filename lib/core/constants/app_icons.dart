@@ -15,4 +15,6 @@ class AppIcons {
   static const options = Ionicons.ellipsis_vertical;
   static const shareSocial = Ionicons.share_social;
   static const sharePlane = Ionicons.paper_plane;
+  static const bookmarks = Ionicons.bookmarks_outline;
+  static const film = Iconsax.video_play;
 }

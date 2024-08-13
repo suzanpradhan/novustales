@@ -10,6 +10,7 @@ import 'package:storyv2/layers/presentation/auth/register/register_bloc.dart';
 import 'package:storyv2/layers/presentation/bootstrap/app_bloc/app_bloc.dart';
 import 'package:storyv2/layers/presentation/feed/blocs/for_you_story/for_you_story_bloc.dart';
 import 'package:storyv2/layers/presentation/feed/blocs/trending_story/trending_story_bloc.dart';
+import 'package:storyv2/layers/presentation/me/bloc/profile_bloc/get_profile_bloc.dart';
 import 'package:storyv2/layers/presentation/tales/blocs/get_near_me_tales/get_near_me_tales_bloc.dart';
 import 'package:storyv2/layers/presentation/tales/blocs/get_popular_tales/get_popular_tales_bloc.dart';
 import 'package:storyv2/layers/presentation/tales/blocs/search_tales/search_tales_bloc.dart';
@@ -74,6 +75,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => sl<TrendingStoryBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => sl<GetProfileBloc>(),
         ),
       ],
       child: MaterialApp.router(
