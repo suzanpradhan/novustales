@@ -11,55 +11,61 @@ class ForYouPage extends StatefulWidget {
   State<ForYouPage> createState() => _ForYouPageState();
 }
 
-class _ForYouPageState extends State<ForYouPage> {
+class _ForYouPageState extends State<ForYouPage>
+    with AutomaticKeepAliveClientMixin<ForYouPage> {
+  @override
+  bool get wantKeepAlive => true;
+
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return BlocBuilder<ForYouStoryBloc, ForYouStoryState>(
-        builder: (context, state) {
-      return state.whenOrNull(
-            failed: (message) {
-              return Container(
-                color: AppColors.black,
-                child: Center(
-                  child: Text(
-                    message,
-                    style: TextStyle(color: AppColors.white),
-                  ),
-                ),
-              );
-            },
-            success: (story) {
-              if (story.isEmpty) {
+      builder: (context, state) {
+        return state.whenOrNull(
+              failed: (message) {
                 return Container(
                   color: AppColors.black,
                   child: Center(
                     child: Text(
-                      'No Stories for you currently.',
+                      message,
                       style: TextStyle(color: AppColors.white),
                     ),
                   ),
                 );
-              }
-              return PageView.builder(
-                scrollDirection: Axis.vertical,
-                itemCount: story.length,
-                itemBuilder: (context, index) {
-                  return StoryPage(
-                    story: story[index],
+              },
+              success: (story) {
+                if (story.isEmpty) {
+                  return Container(
+                    color: AppColors.black,
+                    child: Center(
+                      child: Text(
+                        'No Stories for you currently.',
+                        style: TextStyle(color: AppColors.white),
+                      ),
+                    ),
                   );
-                },
-              );
-            },
-          ) ??
-          Container(
-            color: AppColors.black,
-            child: Center(
-              child: Text(
-                'Failed to load',
-                style: TextStyle(color: AppColors.white),
+                }
+                return PageView.builder(
+                  scrollDirection: Axis.vertical,
+                  itemCount: story.length,
+                  itemBuilder: (context, index) {
+                    return StoryPage(
+                      story: story[index],
+                    );
+                  },
+                );
+              },
+            ) ??
+            Container(
+              color: AppColors.black,
+              child: Center(
+                child: Text(
+                  'Failed to load',
+                  style: TextStyle(color: AppColors.white),
+                ),
               ),
-            ),
-          );
-    });
+            );
+      },
+    );
   }
 }

@@ -11,9 +11,13 @@ class TrendingPage extends StatefulWidget {
   State<TrendingPage> createState() => _TrendingPageState();
 }
 
-class _TrendingPageState extends State<TrendingPage> {
+class _TrendingPageState extends State<TrendingPage>
+    with AutomaticKeepAliveClientMixin<TrendingPage> {
+  @override
+  bool get wantKeepAlive => true;
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return BlocBuilder<TrendingStoryBloc, TrendingStoryState>(
         builder: (context, state) {
       return state.whenOrNull(
@@ -42,14 +46,20 @@ class _TrendingPageState extends State<TrendingPage> {
                   ),
                 );
               }
-              return PageView.builder(
-                scrollDirection: Axis.vertical,
-                itemCount: story.length,
-                itemBuilder: (context, index) {
-                  return StoryPage(
-                    story: story[index],
-                  );
+              return RefreshIndicator(
+                onRefresh: () async {
+                  BlocProvider.of<TrendingStoryBloc>(context)
+                      .add(TrendingStoryEvent.request());
                 },
+                child: PageView.builder(
+                  scrollDirection: Axis.vertical,
+                  itemCount: story.length,
+                  itemBuilder: (context, index) {
+                    return StoryPage(
+                      story: story[index],
+                    );
+                  },
+                ),
               );
             },
           ) ??

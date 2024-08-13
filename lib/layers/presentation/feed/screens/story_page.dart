@@ -36,7 +36,6 @@ class _StoryPageState extends State<StoryPage> {
   Widget build(BuildContext context) {
     final bool isVideo = videoFormats.any(
         (format) => widget.story.media?.toLowerCase().endsWith(format) == true);
-
     return Stack(
       children: [
         StoryView(

@@ -41,7 +41,7 @@ class StoryResponse with _$StoryResponse {
         views: views,
         title: title,
         mediaUrl: mediaUrl,
-        media: media!.contains(baseUrl) ? media : baseUrl + media!,
+        media: media,
         latitude: latitude,
         longitude: longitude,
         name: name,
@@ -72,6 +72,6 @@ class StoryUserDetail with _$StoryUserDetail {
         email: email,
         name: name,
         nickName: nickName,
-        avatar: avatar!.contains(baseUrl) ? avatar : baseUrl + avatar!,
+        avatar: baseUrl + avatar!,
       );
 }
