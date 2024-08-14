@@ -11,14 +11,9 @@ class ForYouPage extends StatefulWidget {
   State<ForYouPage> createState() => _ForYouPageState();
 }
 
-class _ForYouPageState extends State<ForYouPage>
-    with AutomaticKeepAliveClientMixin<ForYouPage> {
-  @override
-  bool get wantKeepAlive => true;
-
+class _ForYouPageState extends State<ForYouPage> {
   @override
   Widget build(BuildContext context) {
-    super.build(context);
     return BlocBuilder<ForYouStoryBloc, ForYouStoryState>(
       builder: (context, state) {
         return state.whenOrNull(

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:storyv2/core/constants/app_colors.dart';
 import 'package:storyv2/layers/domain/entities/story_entity.dart';
@@ -29,10 +30,13 @@ class MyStoryPage extends StatelessWidget {
             ),
             color: AppColors.greyWhite,
           ),
-          child: Image.network(
-            '${stories?[index].media}',
-            fit: BoxFit.cover,
+          child: CachedNetworkImage(
+            imageUrl: '${stories?[index].media}',
           ),
+          // Image.network(
+          //   '${stories?[index].media}',
+          //   fit: BoxFit.cover,
+          // ),
         );
       },
     );

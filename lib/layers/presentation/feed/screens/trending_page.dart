@@ -11,13 +11,9 @@ class TrendingPage extends StatefulWidget {
   State<TrendingPage> createState() => _TrendingPageState();
 }
 
-class _TrendingPageState extends State<TrendingPage>
-    with AutomaticKeepAliveClientMixin<TrendingPage> {
-  @override
-  bool get wantKeepAlive => true;
+class _TrendingPageState extends State<TrendingPage> {
   @override
   Widget build(BuildContext context) {
-    super.build(context);
     return BlocBuilder<TrendingStoryBloc, TrendingStoryState>(
         builder: (context, state) {
       return state.whenOrNull(
