@@ -29,6 +29,9 @@ mixin _$TaleResponse {
   String? get categoryName => throw _privateConstructorUsedError;
   @JsonKey(name: "latitude")
   double? get latitude => throw _privateConstructorUsedError;
+  @MapToUserModelConverter()
+  @JsonKey(name: "created_by")
+  UserModel? get createdBy => throw _privateConstructorUsedError;
   @JsonKey(name: "longitude")
   double? get longitude => throw _privateConstructorUsedError;
   double? get distance => throw _privateConstructorUsedError;
@@ -51,8 +54,13 @@ abstract class $TaleResponseCopyWith<$Res> {
       @JsonKey(name: "thumbnail_url") String? thumbnail,
       @JsonKey(name: "category_name") String? categoryName,
       @JsonKey(name: "latitude") double? latitude,
+      @MapToUserModelConverter()
+      @JsonKey(name: "created_by")
+      UserModel? createdBy,
       @JsonKey(name: "longitude") double? longitude,
       double? distance});
+
+  $UserModelCopyWith<$Res>? get createdBy;
 }
 
 /// @nodoc
@@ -74,6 +82,7 @@ class _$TaleResponseCopyWithImpl<$Res, $Val extends TaleResponse>
     Object? thumbnail = freezed,
     Object? categoryName = freezed,
     Object? latitude = freezed,
+    Object? createdBy = freezed,
     Object? longitude = freezed,
     Object? distance = freezed,
   }) {
@@ -102,6 +111,10 @@ class _$TaleResponseCopyWithImpl<$Res, $Val extends TaleResponse>
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
               as double?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as UserModel?,
       longitude: freezed == longitude
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
@@ -111,6 +124,18 @@ class _$TaleResponseCopyWithImpl<$Res, $Val extends TaleResponse>
           : distance // ignore: cast_nullable_to_non_nullable
               as double?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserModelCopyWith<$Res>? get createdBy {
+    if (_value.createdBy == null) {
+      return null;
+    }
+
+    return $UserModelCopyWith<$Res>(_value.createdBy!, (value) {
+      return _then(_value.copyWith(createdBy: value) as $Val);
+    });
   }
 }
 
@@ -129,8 +154,14 @@ abstract class _$$TaleResponseImplCopyWith<$Res>
       @JsonKey(name: "thumbnail_url") String? thumbnail,
       @JsonKey(name: "category_name") String? categoryName,
       @JsonKey(name: "latitude") double? latitude,
+      @MapToUserModelConverter()
+      @JsonKey(name: "created_by")
+      UserModel? createdBy,
       @JsonKey(name: "longitude") double? longitude,
       double? distance});
+
+  @override
+  $UserModelCopyWith<$Res>? get createdBy;
 }
 
 /// @nodoc
@@ -150,6 +181,7 @@ class __$$TaleResponseImplCopyWithImpl<$Res>
     Object? thumbnail = freezed,
     Object? categoryName = freezed,
     Object? latitude = freezed,
+    Object? createdBy = freezed,
     Object? longitude = freezed,
     Object? distance = freezed,
   }) {
@@ -178,6 +210,10 @@ class __$$TaleResponseImplCopyWithImpl<$Res>
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
               as double?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as UserModel?,
       longitude: freezed == longitude
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
@@ -200,6 +236,7 @@ class _$TaleResponseImpl extends _TaleResponse {
       @JsonKey(name: "thumbnail_url") this.thumbnail,
       @JsonKey(name: "category_name") this.categoryName,
       @JsonKey(name: "latitude") this.latitude,
+      @MapToUserModelConverter() @JsonKey(name: "created_by") this.createdBy,
       @JsonKey(name: "longitude") this.longitude,
       this.distance})
       : super._();
@@ -223,6 +260,10 @@ class _$TaleResponseImpl extends _TaleResponse {
   @JsonKey(name: "latitude")
   final double? latitude;
   @override
+  @MapToUserModelConverter()
+  @JsonKey(name: "created_by")
+  final UserModel? createdBy;
+  @override
   @JsonKey(name: "longitude")
   final double? longitude;
   @override
@@ -230,7 +271,7 @@ class _$TaleResponseImpl extends _TaleResponse {
 
   @override
   String toString() {
-    return 'TaleResponse(id: $id, title: $title, description: $description, thumbnail: $thumbnail, categoryName: $categoryName, latitude: $latitude, longitude: $longitude, distance: $distance)';
+    return 'TaleResponse(id: $id, title: $title, description: $description, thumbnail: $thumbnail, categoryName: $categoryName, latitude: $latitude, createdBy: $createdBy, longitude: $longitude, distance: $distance)';
   }
 
   @override
@@ -248,6 +289,8 @@ class _$TaleResponseImpl extends _TaleResponse {
                 other.categoryName == categoryName) &&
             (identical(other.latitude, latitude) ||
                 other.latitude == latitude) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
             (identical(other.longitude, longitude) ||
                 other.longitude == longitude) &&
             (identical(other.distance, distance) ||
@@ -257,7 +300,7 @@ class _$TaleResponseImpl extends _TaleResponse {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, title, description,
-      thumbnail, categoryName, latitude, longitude, distance);
+      thumbnail, categoryName, latitude, createdBy, longitude, distance);
 
   @JsonKey(ignore: true)
   @override
@@ -274,6 +317,9 @@ abstract class _TaleResponse extends TaleResponse {
       @JsonKey(name: "thumbnail_url") final String? thumbnail,
       @JsonKey(name: "category_name") final String? categoryName,
       @JsonKey(name: "latitude") final double? latitude,
+      @MapToUserModelConverter()
+      @JsonKey(name: "created_by")
+      final UserModel? createdBy,
       @JsonKey(name: "longitude") final double? longitude,
       final double? distance}) = _$TaleResponseImpl;
   const _TaleResponse._() : super._();
@@ -296,6 +342,10 @@ abstract class _TaleResponse extends TaleResponse {
   @override
   @JsonKey(name: "latitude")
   double? get latitude;
+  @override
+  @MapToUserModelConverter()
+  @JsonKey(name: "created_by")
+  UserModel? get createdBy;
   @override
   @JsonKey(name: "longitude")
   double? get longitude;

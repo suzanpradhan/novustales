@@ -6,10 +6,12 @@ import 'package:storyv2/core/constants/app_colors.dart';
 import 'package:storyv2/core/constants/ui_constants.dart';
 import 'package:storyv2/layers/domain/usecases/tales/get_near_me_tales.dart';
 import 'package:storyv2/layers/presentation/tales/blocs/get_near_me_tales/get_near_me_tales_bloc.dart';
+import 'package:storyv2/layers/presentation/tales/blocs/get_tale_intro/get_tale_intro_bloc.dart';
 import 'package:storyv2/layers/presentation/tales/blocs/search_tales/search_tales_bloc.dart';
 import 'package:storyv2/layers/presentation/tales/screens/all_tales_page.dart';
 import 'package:storyv2/layers/presentation/tales/screens/near_me_page.dart';
 import 'package:storyv2/layers/presentation/tales/screens/popular_page.dart';
+import 'package:storyv2/layers/presentation/tales/screens/tale_intro_page.dart';
 
 import '../../../../core/presentation/ui/spacer.dart';
 import 'filtered_tales_page.dart';
@@ -241,29 +243,42 @@ class _TalesScreenState extends State<TalesScreen> {
                             ),
                           ),
                           Flexible(
-                              child: currentTab == "all"
-                                  ? AllTalesPage(scrollController: scrollController)
-                                  : currentTab == "search"
-                                      ? FilteredTalesPage(
-                                          scrollController: scrollController,
-                                          tabKey: currentTab,
-                                        )
-                                      : currentTab == "near_me"
-                                          ? NearMePage(scrollController: scrollController)
-                                          : currentTab == "popular"
-                                              ? PopularPage(scrollController: scrollController)
-                                              : Column(
-                                                  children: [
-                                                    Gapper.vmxGap(),
-                                                    Text(
-                                                      "No results",
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .bodyMedium
-                                                          ?.copyWith(color: AppColors.grayDark),
-                                                    ),
-                                                  ],
-                                                ))
+                            child: BlocBuilder<GetTaleIntroBloc, GetTaleIntroState>(
+                                builder: (context, state) {
+                              return state.whenOrNull(
+                                    success: (tale) {
+                                      if (tale == null) return null;
+                                      return TaleIntroPage(
+                                        scrollController: scrollController,
+                                        tale: tale,
+                                      );
+                                    },
+                                  ) ??
+                                  (currentTab == "all"
+                                      ? AllTalesPage(scrollController: scrollController)
+                                      : currentTab == "search"
+                                          ? FilteredTalesPage(
+                                              scrollController: scrollController,
+                                              tabKey: currentTab,
+                                            )
+                                          : currentTab == "near_me"
+                                              ? NearMePage(scrollController: scrollController)
+                                              : currentTab == "popular"
+                                                  ? PopularPage(scrollController: scrollController)
+                                                  : Column(
+                                                      children: [
+                                                        Gapper.vmxGap(),
+                                                        Text(
+                                                          "No results",
+                                                          style: Theme.of(context)
+                                                              .textTheme
+                                                              .bodyMedium
+                                                              ?.copyWith(color: AppColors.grayDark),
+                                                        ),
+                                                      ],
+                                                    ));
+                            }),
+                          )
                           // Flexible(
                           //     child: IndexedStack(
                           //   sizing: StackFit.expand,
@@ -342,97 +357,128 @@ class _TabsWidgetState extends State<TabsWidget> {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 38,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        padding: EdgeInsets.symmetric(horizontal: UIConstants.screenPadding),
-        children: [
-          InkWell(
-            onTap: () {
-              widget.changeTab("search");
-            },
-            child: AnimatedContainer(
-              width: (widget.currentTab == "search")
-                  ? (MediaQuery.of(context).size.width - (UIConstants.screenPadding * 2))
-                  : null,
-              duration: Duration(seconds: 300),
-              padding: EdgeInsets.only(left: UIConstants.maxPadding, right: UIConstants.maxPadding),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(42),
-                  border: Border.all(color: AppColors.gray)),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Icon(Icons.search),
-                  if (widget.currentTab == "search")
-                    Expanded(
-                        child: Padding(
-                      padding: EdgeInsets.only(left: UIConstants.xminPadding),
-                      child: BlocBuilder<SearchTalesBloc, SearchTalesState>(
-                        builder: (context, state) {
-                          return TextField(
-                            controller: _controller,
-                            onEditingComplete: () {
-                              context
-                                  .read<SearchTalesBloc>()
-                                  .add(SearchTalesEvent.request(searchText: _controller.text));
-                              FocusScope.of(context).unfocus();
-                            },
-                            decoration: InputDecoration(
-                                hintText: "Search", isDense: true, border: InputBorder.none),
+      child: BlocBuilder<GetTaleIntroBloc, GetTaleIntroState>(
+        builder: (context, state) {
+          return ListView(
+            scrollDirection: Axis.horizontal,
+            padding: EdgeInsets.symmetric(horizontal: UIConstants.screenPadding),
+            children: [
+              BlocBuilder<GetTaleIntroBloc, GetTaleIntroState>(
+                builder: (context, state) {
+                  return state.whenOrNull(
+                        success: (tale) {
+                          return Padding(
+                            padding: const EdgeInsets.only(right: UIConstants.minPadding),
+                            child: InkWell(
+                              onTap: () {
+                                context
+                                    .read<GetTaleIntroBloc>()
+                                    .add(GetTaleIntroEvent.reInitiate());
+                              },
+                              child: Container(
+                                  padding: EdgeInsets.only(
+                                      left: UIConstants.maxPadding, right: UIConstants.maxPadding),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(42),
+                                      border: Border.all(color: AppColors.gray)),
+                                  child: Icon(Icons.arrow_back)),
+                            ),
                           );
                         },
-                      ),
-                    )),
-                  if (widget.currentTab == "search")
-                    InkWell(
-                      onTap: () {
-                        widget.changeTab("all");
-                      },
-                      child: SizedBox(width: 38, height: 38, child: Icon(Icons.close)),
-                    )
-                ],
+                      ) ??
+                      SizedBox();
+                },
               ),
-            ),
-          ),
-          if (widget.currentTab != "search") ...[
-            Gapper.hmGap(),
-            TalesTabWidget(
-              onChange: widget.changeTab,
-              currentTab: widget.currentTab,
-              tabKey: "all",
-            ),
-            Gapper.hmGap(),
-            TalesTabWidget(
-              onChange: widget.changeTab,
-              currentTab: widget.currentTab,
-              tabKey: "near_me",
-            ),
-            Gapper.hmGap(),
-            TalesTabWidget(
-              onChange: widget.changeTab,
-              currentTab: widget.currentTab,
-              tabKey: "visited",
-            ),
-            Gapper.hmGap(),
-            TalesTabWidget(
-              onChange: widget.changeTab,
-              currentTab: widget.currentTab,
-              tabKey: "popular",
-            ),
-            Gapper.hmGap(),
-            TalesTabWidget(
-              onChange: widget.changeTab,
-              currentTab: widget.currentTab,
-              tabKey: "music",
-            ),
-            Gapper.hmGap(),
-            TalesTabWidget(
-              onChange: widget.changeTab,
-              currentTab: widget.currentTab,
-              tabKey: "food",
-            ),
-          ]
-        ],
+              InkWell(
+                onTap: () {
+                  widget.changeTab("search");
+                },
+                child: AnimatedContainer(
+                  width: (widget.currentTab == "search")
+                      ? (MediaQuery.of(context).size.width - (UIConstants.screenPadding * 2))
+                      : null,
+                  duration: Duration(seconds: 300),
+                  padding:
+                      EdgeInsets.only(left: UIConstants.maxPadding, right: UIConstants.maxPadding),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(42),
+                      border: Border.all(color: AppColors.gray)),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Icon(Icons.search),
+                      if (widget.currentTab == "search")
+                        Expanded(
+                            child: Padding(
+                          padding: EdgeInsets.only(left: UIConstants.xminPadding),
+                          child: BlocBuilder<SearchTalesBloc, SearchTalesState>(
+                            builder: (context, state) {
+                              return TextField(
+                                controller: _controller,
+                                onEditingComplete: () {
+                                  context
+                                      .read<SearchTalesBloc>()
+                                      .add(SearchTalesEvent.request(searchText: _controller.text));
+                                  FocusScope.of(context).unfocus();
+                                },
+                                decoration: InputDecoration(
+                                    hintText: "Search", isDense: true, border: InputBorder.none),
+                              );
+                            },
+                          ),
+                        )),
+                      if (widget.currentTab == "search")
+                        InkWell(
+                          onTap: () {
+                            widget.changeTab("all");
+                          }, 
+                          child: SizedBox(width: 38, height: 38, child: Icon(Icons.close)),
+                        )
+                    ],
+                  ),
+                ),
+              ),
+              if (widget.currentTab != "search") ...[
+                Gapper.hmGap(),
+                TalesTabWidget(
+                  onChange: widget.changeTab,
+                  currentTab: widget.currentTab,
+                  tabKey: "all",
+                ),
+                Gapper.hmGap(),
+                TalesTabWidget(
+                  onChange: widget.changeTab,
+                  currentTab: widget.currentTab,
+                  tabKey: "near_me",
+                ),
+                Gapper.hmGap(),
+                TalesTabWidget(
+                  onChange: widget.changeTab,
+                  currentTab: widget.currentTab,
+                  tabKey: "visited",
+                ),
+                Gapper.hmGap(),
+                TalesTabWidget(
+                  onChange: widget.changeTab,
+                  currentTab: widget.currentTab,
+                  tabKey: "popular",
+                ),
+                Gapper.hmGap(),
+                TalesTabWidget(
+                  onChange: widget.changeTab,
+                  currentTab: widget.currentTab,
+                  tabKey: "music",
+                ),
+                Gapper.hmGap(),
+                TalesTabWidget(
+                  onChange: widget.changeTab,
+                  currentTab: widget.currentTab,
+                  tabKey: "food",
+                ),
+              ]
+            ],
+          );
+        },
       ),
     );
   }

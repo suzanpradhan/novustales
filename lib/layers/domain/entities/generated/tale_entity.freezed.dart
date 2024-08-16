@@ -20,6 +20,7 @@ mixin _$TaleEntity {
   String? get title => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get thumbnail => throw _privateConstructorUsedError;
+  UserEntity? get createdBy => throw _privateConstructorUsedError;
   String? get categoryName => throw _privateConstructorUsedError;
   double? get latitude => throw _privateConstructorUsedError;
   double? get longitude => throw _privateConstructorUsedError;
@@ -41,10 +42,13 @@ abstract class $TaleEntityCopyWith<$Res> {
       String? title,
       String? description,
       String? thumbnail,
+      UserEntity? createdBy,
       String? categoryName,
       double? latitude,
       double? longitude,
       double? distance});
+
+  $UserEntityCopyWith<$Res>? get createdBy;
 }
 
 /// @nodoc
@@ -64,6 +68,7 @@ class _$TaleEntityCopyWithImpl<$Res, $Val extends TaleEntity>
     Object? title = freezed,
     Object? description = freezed,
     Object? thumbnail = freezed,
+    Object? createdBy = freezed,
     Object? categoryName = freezed,
     Object? latitude = freezed,
     Object? longitude = freezed,
@@ -86,6 +91,10 @@ class _$TaleEntityCopyWithImpl<$Res, $Val extends TaleEntity>
           ? _value.thumbnail
           : thumbnail // ignore: cast_nullable_to_non_nullable
               as String?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as UserEntity?,
       categoryName: freezed == categoryName
           ? _value.categoryName
           : categoryName // ignore: cast_nullable_to_non_nullable
@@ -104,6 +113,18 @@ class _$TaleEntityCopyWithImpl<$Res, $Val extends TaleEntity>
               as double?,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserEntityCopyWith<$Res>? get createdBy {
+    if (_value.createdBy == null) {
+      return null;
+    }
+
+    return $UserEntityCopyWith<$Res>(_value.createdBy!, (value) {
+      return _then(_value.copyWith(createdBy: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -119,10 +140,14 @@ abstract class _$$TaleEntityImplCopyWith<$Res>
       String? title,
       String? description,
       String? thumbnail,
+      UserEntity? createdBy,
       String? categoryName,
       double? latitude,
       double? longitude,
       double? distance});
+
+  @override
+  $UserEntityCopyWith<$Res>? get createdBy;
 }
 
 /// @nodoc
@@ -140,6 +165,7 @@ class __$$TaleEntityImplCopyWithImpl<$Res>
     Object? title = freezed,
     Object? description = freezed,
     Object? thumbnail = freezed,
+    Object? createdBy = freezed,
     Object? categoryName = freezed,
     Object? latitude = freezed,
     Object? longitude = freezed,
@@ -162,6 +188,10 @@ class __$$TaleEntityImplCopyWithImpl<$Res>
           ? _value.thumbnail
           : thumbnail // ignore: cast_nullable_to_non_nullable
               as String?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as UserEntity?,
       categoryName: freezed == categoryName
           ? _value.categoryName
           : categoryName // ignore: cast_nullable_to_non_nullable
@@ -190,6 +220,7 @@ class _$TaleEntityImpl implements _TaleEntity {
       this.title,
       this.description,
       this.thumbnail,
+      this.createdBy,
       this.categoryName,
       this.latitude,
       this.longitude,
@@ -204,6 +235,8 @@ class _$TaleEntityImpl implements _TaleEntity {
   @override
   final String? thumbnail;
   @override
+  final UserEntity? createdBy;
+  @override
   final String? categoryName;
   @override
   final double? latitude;
@@ -214,7 +247,7 @@ class _$TaleEntityImpl implements _TaleEntity {
 
   @override
   String toString() {
-    return 'TaleEntity(id: $id, title: $title, description: $description, thumbnail: $thumbnail, categoryName: $categoryName, latitude: $latitude, longitude: $longitude, distance: $distance)';
+    return 'TaleEntity(id: $id, title: $title, description: $description, thumbnail: $thumbnail, createdBy: $createdBy, categoryName: $categoryName, latitude: $latitude, longitude: $longitude, distance: $distance)';
   }
 
   @override
@@ -228,6 +261,8 @@ class _$TaleEntityImpl implements _TaleEntity {
                 other.description == description) &&
             (identical(other.thumbnail, thumbnail) ||
                 other.thumbnail == thumbnail) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
             (identical(other.categoryName, categoryName) ||
                 other.categoryName == categoryName) &&
             (identical(other.latitude, latitude) ||
@@ -240,7 +275,7 @@ class _$TaleEntityImpl implements _TaleEntity {
 
   @override
   int get hashCode => Object.hash(runtimeType, id, title, description,
-      thumbnail, categoryName, latitude, longitude, distance);
+      thumbnail, createdBy, categoryName, latitude, longitude, distance);
 
   @JsonKey(ignore: true)
   @override
@@ -255,6 +290,7 @@ abstract class _TaleEntity implements TaleEntity {
       final String? title,
       final String? description,
       final String? thumbnail,
+      final UserEntity? createdBy,
       final String? categoryName,
       final double? latitude,
       final double? longitude,
@@ -268,6 +304,8 @@ abstract class _TaleEntity implements TaleEntity {
   String? get description;
   @override
   String? get thumbnail;
+  @override
+  UserEntity? get createdBy;
   @override
   String? get categoryName;
   @override

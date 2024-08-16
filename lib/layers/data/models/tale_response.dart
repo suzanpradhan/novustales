@@ -1,6 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:storyv2/layers/domain/entities/tale_entity.dart';
 
+import 'user_model.dart';
+
 part 'generated/tale_response.freezed.dart';
 part 'generated/tale_response.g.dart';
 
@@ -13,6 +15,7 @@ class TaleResponse with _$TaleResponse {
     @JsonKey(name: "thumbnail_url") String? thumbnail,
     @JsonKey(name: "category_name") String? categoryName,
     @JsonKey(name: "latitude") double? latitude,
+    @MapToUserModelConverter() @JsonKey(name: "created_by") UserModel? createdBy,
     @JsonKey(name: "longitude") double? longitude,
     double? distance,
   }) = _TaleResponse;
@@ -28,6 +31,21 @@ class TaleResponse with _$TaleResponse {
       categoryName: categoryName,
       thumbnail: thumbnail,
       latitude: latitude,
+      createdBy: createdBy?.toEntity(),
       longitude: longitude,
       distance: distance);
+}
+
+class MapToUserModelConverter implements JsonConverter<UserModel, Map<String, dynamic>> {
+  const MapToUserModelConverter();
+
+  @override
+  UserModel fromJson(Map<String, dynamic> json) {
+    return UserModel.fromJson(json);
+  }
+
+  @override
+  Map<String, dynamic> toJson(UserModel object) {
+    throw UnimplementedError();
+  }
 }

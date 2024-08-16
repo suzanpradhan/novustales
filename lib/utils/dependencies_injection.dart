@@ -16,6 +16,7 @@ import 'package:storyv2/layers/presentation/auth/register/register_bloc.dart';
 import 'package:storyv2/layers/presentation/bootstrap/app_bloc/app_bloc.dart';
 import 'package:storyv2/layers/presentation/tales/blocs/get_near_me_tales/get_near_me_tales_bloc.dart';
 import 'package:storyv2/layers/presentation/tales/blocs/get_popular_tales/get_popular_tales_bloc.dart';
+import 'package:storyv2/layers/presentation/tales/blocs/get_tale_intro/get_tale_intro_bloc.dart';
 import 'package:storyv2/layers/presentation/tales/blocs/search_tales/search_tales_bloc.dart';
 import 'package:storyv2/utils/secure_storage.dart';
 
@@ -71,4 +72,5 @@ void _blocs() {
   sl.registerFactory(() => GetPopularTalesBloc(sl()));
   sl.registerFactory(() => GetNearMeTalesBloc(sl()));
   sl.registerFactory(() => SearchTalesBloc(sl()));
+  sl.registerFactory(() => GetTaleIntroBloc());
 }

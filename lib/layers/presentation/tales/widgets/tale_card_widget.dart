@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:storyv2/layers/domain/entities/tale_entity.dart';
+import 'package:storyv2/layers/presentation/tales/blocs/get_tale_intro/get_tale_intro_bloc.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/ui_constants.dart';
@@ -13,13 +15,18 @@ class TaleCardWidget extends StatelessWidget {
     return Column(
       children: [
         if (taleEntity.thumbnail != null)
-          ClipRRect(
-            borderRadius: BorderRadius.circular(UIConstants.borderRadius),
-            child: Image.network(
-              taleEntity.thumbnail!,
-              height: 200,
-              width: MediaQuery.of(context).size.width,
-              fit: BoxFit.cover,
+          InkWell(
+            onTap: () {
+              context.read<GetTaleIntroBloc>().add(GetTaleIntroEvent.request(tale: taleEntity));
+            },
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(UIConstants.borderRadius),
+              child: Image.network(
+                taleEntity.thumbnail!,
+                height: 200,
+                width: MediaQuery.of(context).size.width,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
         SizedBox(
@@ -28,20 +35,24 @@ class TaleCardWidget extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  taleEntity.title ?? "--",
-                  style:
-                      Theme.of(context).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
-                ),
-                if (taleEntity.categoryName != null)
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
                   Text(
-                    taleEntity.categoryName!,
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  )
-              ],
+                    taleEntity.title ?? "--",
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyLarge
+                        ?.copyWith(fontWeight: FontWeight.bold),
+                  ),
+                  if (taleEntity.categoryName != null)
+                    Text(
+                      taleEntity.categoryName!,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    )
+                ],
+              ),
             ),
             if (taleEntity.distance != null)
               Container(

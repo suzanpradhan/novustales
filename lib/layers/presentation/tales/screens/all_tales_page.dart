@@ -60,31 +60,33 @@ class _AllTalesPageState extends State<AllTalesPage> {
                             ],
                           ),
                           Gapper.vGap(),
-                          SizedBox(
-                            height: 248,
-                            child: ListView.builder(
-                              physics: const PageScrollPhysics(),
-                              controller: PageController(
-                                initialPage: 0,
-                                viewportFraction: 0.8,
-                              ),
-                              itemCount: tales.length,
-                              padding: EdgeInsets.only(left: UIConstants.screenPadding),
-                              scrollDirection: Axis.horizontal,
-                              itemBuilder: (context, index) {
+                          SingleChildScrollView(
+                            physics: const PageScrollPhysics(),
+                            controller: PageController(
+                              initialPage: 0,
+                              viewportFraction: 0.8,
+                            ),
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: List.generate(tales.length, (index) {
                                 return SizedBox(
                                   width: tales.length == 1
                                       ? MediaQuery.of(context).size.width -
                                           UIConstants.screenPadding
                                       : MediaQuery.of(context).size.width * 0.8,
                                   child: Padding(
-                                    padding: EdgeInsets.only(right: UIConstants.screenPadding),
+                                    padding: EdgeInsets.only(
+                                        left: UIConstants.screenPadding,
+                                        right: index == tales.length - 1
+                                            ? UIConstants.screenPadding
+                                            : 0),
                                     child: TaleCardWidget(
                                       taleEntity: tales[index],
                                     ),
                                   ),
                                 );
-                              },
+                              }),
                             ),
                           ),
                         ],
@@ -131,31 +133,33 @@ class _AllTalesPageState extends State<AllTalesPage> {
                             ],
                           ),
                           Gapper.vGap(),
-                          SizedBox(
-                            height: 248,
-                            child: ListView.builder(
-                              physics: const PageScrollPhysics(),
-                              controller: PageController(
-                                initialPage: 0,
-                                viewportFraction: 0.8,
-                              ),
-                              itemCount: tales.length,
-                              padding: EdgeInsets.only(left: UIConstants.screenPadding),
-                              scrollDirection: Axis.horizontal,
-                              itemBuilder: (context, index) {
+                          SingleChildScrollView(
+                            physics: const PageScrollPhysics(),
+                            controller: PageController(
+                              initialPage: 0,
+                              viewportFraction: 0.8,
+                            ),
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: List.generate(tales.length, (index) {
                                 return SizedBox(
                                   width: tales.length == 1
                                       ? MediaQuery.of(context).size.width -
                                           UIConstants.screenPadding
                                       : MediaQuery.of(context).size.width * 0.8,
                                   child: Padding(
-                                    padding: EdgeInsets.only(right: UIConstants.screenPadding),
+                                    padding: EdgeInsets.only(
+                                        left: UIConstants.screenPadding,
+                                        right: index == tales.length - 1
+                                            ? UIConstants.screenPadding
+                                            : 0),
                                     child: TaleCardWidget(
                                       taleEntity: tales[index],
                                     ),
                                   ),
                                 );
-                              },
+                              }),
                             ),
                           ),
                         ],
