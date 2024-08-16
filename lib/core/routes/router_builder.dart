@@ -43,85 +43,90 @@ class NoTransition extends CustomTransitionPage<void> {
 final _rootKey = GlobalKey<NavigatorState>();
 
 final _homeShellNavigatorKey = GlobalKey<NavigatorState>();
-final GoRouter router =
-    GoRouter(navigatorKey: _rootKey, initialLocation: SPLASH_ROUTE, routerNeglect: true, routes: [
-  GoRoute(
-    path: SPLASH_ROUTE,
-    pageBuilder: (context, state) {
-      return MaterialPage(key: state.pageKey, child: const SplashScreen());
-    },
-  ),
-  GoRoute(
-    path: WELCOME_ROUTE,
-    pageBuilder: (context, state) {
-      return MaterialPage(key: state.pageKey, child: const WelcomeScreen());
-    },
-  ),
-  GoRoute(
-    path: LOGIN_ROUTE,
-    pageBuilder: (context, state) {
-      return MaterialPage(key: state.pageKey, child: const LoginScreen());
-    },
-  ),
-  GoRoute(
-    path: REGISTER_ROUTE,
-    pageBuilder: (context, state) {
-      return MaterialPage(key: state.pageKey, child: const RegisterScreen());
-    },
-  ),
-  GoRoute(
-    path: TEST_ROUTE,
-    pageBuilder: (context, state) {
-      return MaterialPage(key: state.pageKey, child: const TestScreen());
-    },
-  ),
-  StatefulShellRoute.indexedStack(
-    builder: (context, state, navigationShell) {
-      return HomeWrapperWidget(
-        navigationShell: navigationShell,
-      );
-    },
-    branches: [
-      StatefulShellBranch(navigatorKey: _homeShellNavigatorKey, routes: [
-        GoRoute(
-          path: HOME_ROUTE,
-          pageBuilder: (context, state) {
-            return NoTransitionPage(key: state.pageKey, child: FeedScreen());
-          },
-        ),
-      ]),
-      StatefulShellBranch(routes: [
-        GoRoute(
-          path: TALES_ROUTE,
-          pageBuilder: (context, state) {
-            return const NoTransitionPage(child: TalesScreen());
-          },
-        ),
-      ]),
-      StatefulShellBranch(routes: [
-        GoRoute(
-          path: CREATE_ROUTE,
-          pageBuilder: (context, state) {
-            return const NoTransitionPage(child: CreateScreen());
-          },
-        ),
-      ]),
-      StatefulShellBranch(routes: [
-        GoRoute(
-          path: CHAT_ROUTE,
-          pageBuilder: (context, state) {
-            return const NoTransitionPage(child: ChatScreen());
-          },
-        ),
-      ]),
-      StatefulShellBranch(routes: [
-        GoRoute(
-          path: ME_ROUTE,
-          pageBuilder: (context, state) {
-            return const NoTransitionPage(child: MeScreen());
-          },
-        ),
-      ]),
-    ],
-  ),
-]);
+final GoRouter router = GoRouter(
+    navigatorKey: _rootKey,
+    initialLocation: SPLASH_ROUTE,
+    routerNeglect: true,
+    routes: [
+      GoRoute(
+        path: SPLASH_ROUTE,
+        pageBuilder: (context, state) {
+          return MaterialPage(key: state.pageKey, child: const SplashScreen());
+        },
+      ),
+      GoRoute(
+        path: WELCOME_ROUTE,
+        pageBuilder: (context, state) {
+          return MaterialPage(key: state.pageKey, child: const WelcomeScreen());
+        },
+      ),
+      GoRoute(
+        path: LOGIN_ROUTE,
+        pageBuilder: (context, state) {
+          return MaterialPage(key: state.pageKey, child: const LoginScreen());
+        },
+      ),
+      GoRoute(
+        path: REGISTER_ROUTE,
+        pageBuilder: (context, state) {
+          return MaterialPage(
+              key: state.pageKey, child: const RegisterScreen());
+        },
+      ),
+      GoRoute(
+        path: TEST_ROUTE,
+        pageBuilder: (context, state) {
+          return MaterialPage(key: state.pageKey, child: const TestScreen());
+        },
+      ),
+      StatefulShellRoute.indexedStack(
+        builder: (context, state, navigationShell) {
+          return HomeWrapperWidget(
+            navigationShell: navigationShell,
+          );
+        },
+        branches: [
+          StatefulShellBranch(navigatorKey: _homeShellNavigatorKey, routes: [
+            GoRoute(
+              path: HOME_ROUTE,
+              pageBuilder: (context, state) {
+                return NoTransitionPage(
+                    key: state.pageKey, child: FeedScreen());
+              },
+            ),
+          ]),
+          StatefulShellBranch(routes: [
+            GoRoute(
+              path: TALES_ROUTE,
+              pageBuilder: (context, state) {
+                return const NoTransitionPage(child: TalesScreen());
+              },
+            ),
+          ]),
+          StatefulShellBranch(routes: [
+            GoRoute(
+              path: CREATE_ROUTE,
+              pageBuilder: (context, state) {
+                return const NoTransitionPage(child: CreateScreen());
+              },
+            ),
+          ]),
+          StatefulShellBranch(routes: [
+            GoRoute(
+              path: CHAT_ROUTE,
+              pageBuilder: (context, state) {
+                return const NoTransitionPage(child: ChatScreen());
+              },
+            ),
+          ]),
+          StatefulShellBranch(routes: [
+            GoRoute(
+              path: ME_ROUTE,
+              pageBuilder: (context, state) {
+                return const NoTransitionPage(child: MeScreen());
+              },
+            ),
+          ]),
+        ],
+      ),
+    ]);
