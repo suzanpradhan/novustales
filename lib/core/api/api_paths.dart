@@ -9,4 +9,8 @@ class ApiPaths {
   static const String appleSignInUrl = "/login/apple";
   static const String emailRegisterUrl = "/auth/users/";
   static const String logoutUrl = "/logout";
+  static const String talesUrl = "/api/story/wars/";
+  static const String foryoufeedUrl = "/api/story/for_you/";
+  static const String trendingfeedUrl = "/api/story/trending/";
+  static const String profileUrl = "/auth/users/me/";
 }
