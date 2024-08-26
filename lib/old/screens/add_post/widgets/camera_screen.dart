@@ -1,17 +1,16 @@
 import 'dart:io';
 import 'dart:math';
+import 'dart:typed_data';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:video_compress/video_compress.dart';
+// import 'package:video_compress/video_compress.dart';
 import 'package:video_player/video_player.dart';
 
 import '../add_story_screen.dart';
-
-import 'dart:typed_data';
 
 List<CameraDescription> cameras = [];
 
@@ -301,7 +300,7 @@ class _CameraScreenState extends State<CameraScreen> {
                 ),
                 onPressed: _toggleFlash,
               ),
-              _buildCaptureButton(),
+              // _buildCaptureButton(),
               IconButton(
                 icon: Transform.rotate(
                   angle: transform,
@@ -334,24 +333,24 @@ class _CameraScreenState extends State<CameraScreen> {
     );
   }
 
-  Widget _buildCaptureButton() {
-    return GestureDetector(
-      onLongPress: _startVideoRecording,
-      onLongPressUp: _stopVideoRecording,
-      onTap: isRecoring ? null : () => takePhoto(context),
-      child: isRecoring
-          ? const Icon(
-              Icons.radio_button_on,
-              color: Colors.red,
-              size: 80,
-            )
-          : const Icon(
-              Icons.panorama_fish_eye,
-              color: Colors.white,
-              size: 70,
-            ),
-    );
-  }
+  // Widget _buildCaptureButton() {
+  //   return GestureDetector(
+  //     onLongPress: _startVideoRecording,
+  //     onLongPressUp: _stopVideoRecording,
+  //     onTap: isRecoring ? null : () => takePhoto(context),
+  //     child: isRecoring
+  //         ? const Icon(
+  //             Icons.radio_button_on,
+  //             color: Colors.red,
+  //             size: 80,
+  //           )
+  //         : const Icon(
+  //             Icons.panorama_fish_eye,
+  //             color: Colors.white,
+  //             size: 70,
+  //           ),
+  //   );
+  // }
 
   void _toggleFlash() {
     setState(() {
@@ -380,29 +379,29 @@ class _CameraScreenState extends State<CameraScreen> {
     });
   }
 
-  Future<void> _stopVideoRecording() async {
-    XFile videoPath = await _cameraController.stopVideoRecording();
-    setState(() {
-      isRecoring = false;
-    });
-    // Compress the video
-    try {
-      await VideoCompress.setLogLevel(0);
-      final compressedVideoInfo = await VideoCompress.compressVideo(
-        videoPath.path,
-        quality: VideoQuality.MediumQuality,
-      );
-      final compressedVideoPath = compressedVideoInfo!.path;
+  // Future<void> _stopVideoRecording() async {
+  //   XFile videoPath = await _cameraController.stopVideoRecording();
+  //   setState(() {
+  //     isRecoring = false;
+  //   });
+  //   // Compress the video
+  //   try {
+  //     await VideoCompress.setLogLevel(0);
+  //     final compressedVideoInfo = await VideoCompress.compressVideo(
+  //       videoPath.path,
+  //       quality: VideoQuality.MediumQuality,
+  //     );
+  //     final compressedVideoPath = compressedVideoInfo!.path;
 
-      print("Compressed video path: $compressedVideoPath");
+  //     print("Compressed video path: $compressedVideoPath");
 
-      if (context.mounted) {
-        navigateToAddStoryScreen(context, compressedVideoPath.toString());
-      }
-    } catch (error) {
-      print("Error compressing video: $error");
-    }
-  }
+  //     if (context.mounted) {
+  //       navigateToAddStoryScreen(context, compressedVideoPath.toString());
+  //     }
+  //   } catch (error) {
+  //     print("Error compressing video: $error");
+  //   }
+  // }
 
   Future<void> _pickVideoOrImage() async {
     try {
@@ -421,7 +420,7 @@ class _CameraScreenState extends State<CameraScreen> {
     try {
       if (pickedFile.path.contains(".mp4") ||
           pickedFile.path.contains(".mov")) {
-        await handleVideo(pickedFile);
+        // await handleVideo(pickedFile);
       } else {
         await handleImage(pickedFile);
       }
@@ -431,24 +430,24 @@ class _CameraScreenState extends State<CameraScreen> {
     }
   }
 
-  Future<void> handleVideo(XFile pickedVideo) async {
-    try {
-      final info = await VideoCompress.compressVideo(
-        pickedVideo.path,
-        quality: VideoQuality.MediumQuality,
-        deleteOrigin: false,
-        includeAudio: true,
-      );
+  // Future<void> handleVideo(XFile pickedVideo) async {
+  //   try {
+  //     final info = await VideoCompress.compressVideo(
+  //       pickedVideo.path,
+  //       quality: VideoQuality.MediumQuality,
+  //       deleteOrigin: false,
+  //       includeAudio: true,
+  //     );
 
-      if (context.mounted) {
-        navigateToAddStoryScreen(
-            context, XFile(info!.path.toString()).path.toString());
-      }
-    } catch (e) {
-      // Handle video compression errors
-      print("Error compressing video: $e");
-    }
-  }
+  //     if (context.mounted) {
+  //       navigateToAddStoryScreen(
+  //           context, XFile(info!.path.toString()).path.toString());
+  //     }
+  //   } catch (e) {
+  //     // Handle video compression errors
+  //     print("Error compressing video: $e");
+  //   }
+  // }
 
   Future<void> handleImage(XFile pickedImage) async {
     XFile? compressedImageFile = await compressImage(pickedImage);
@@ -493,7 +492,7 @@ class _CameraScreenState extends State<CameraScreen> {
     if (context.mounted) {
       navigateToAddStoryScreen(context, originalFile.path);
     }
-    }
+  }
 
   void navigateToAddStoryScreen(BuildContext context, String imagePath) {
     Navigator.push(
