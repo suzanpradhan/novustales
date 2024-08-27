@@ -50,70 +50,81 @@ class _FeedScreenState extends State<FeedScreen> {
                 horizontal: UIConstants.screenPadding,
               ),
               children: [
-                InkWell(
-                  onTap: () {
-                    changeTab('search');
-                  },
-                  child: AnimatedContainer(
-                    width: currentTab == 'search'
-                        ? (MediaQuery.of(context).size.width -
-                            (UIConstants.screenPadding * 2))
-                        : null,
-                    duration: Duration(seconds: 300),
-                    padding: EdgeInsets.only(
-                        left: UIConstants.maxPadding,
-                        right: UIConstants.maxPadding),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(42),
-                      border: Border.all(color: AppColors.gray),
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.search,
-                          color: Colors.white,
-                        ),
-                        if (currentTab == 'search')
-                          Expanded(
-                            child: Padding(
-                              padding: EdgeInsets.only(
-                                left: UIConstants.xminPadding,
-                              ),
-                              child: TextField(
-                                style: TextStyle(color: Colors.white),
-                                onEditingComplete: () {
-                                  FocusScope.of(context).unfocus();
-                                },
-                                decoration: InputDecoration(
-                                  hintText: "Search",
-                                  isDense: true,
-                                  border: InputBorder.none,
-                                  hintStyle:
-                                      TextStyle(color: AppColors.greyWhite),
+                AnimatedContainer(
+                  width: currentTab == 'search'
+                      ? (MediaQuery.of(context).size.width -
+                          (UIConstants.screenPadding * 2))
+                      // ? 62
+                      : 62,
+                  clipBehavior: Clip.hardEdge,
+                  duration: Duration(milliseconds: 250),
+                  padding: EdgeInsets.only(
+                      left: UIConstants.maxPadding,
+                      right: UIConstants.maxPadding),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(42),
+                    border: Border.all(color: AppColors.gray),
+                  ),
+                  child: InkWell(
+                    onTap: () {
+                      changeTab('search');
+                    },
+                    child: ClipRect(
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.search,
+                            size: 24,
+                            color: Colors.white,
+                          ),
+                          if (currentTab == 'search')
+                            Expanded(
+                              flex: 10,
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                  left: UIConstants.xminPadding,
+                                ),
+                                child: TextField(
+                                  style: TextStyle(color: Colors.white),
+                                  onEditingComplete: () {
+                                    FocusScope.of(context).unfocus();
+                                  },
+                                  decoration: InputDecoration(
+                                    hintText: "Search",
+                                    isDense: true,
+                                    isCollapsed: true,
+                                    border: InputBorder.none,
+                                    hintStyle:
+                                        TextStyle(color: AppColors.greyWhite),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        if (currentTab == "search")
-                          InkWell(
-                            onTap: () {
-                              changeTab("for_you");
-                            },
-                            child: SizedBox(
-                              width: 38,
-                              height: 38,
-                              child: Icon(
-                                Icons.close,
-                                color: Colors.white,
+                          if (currentTab == "search")
+                            Expanded(
+                              flex: 1,
+                              child: SizedBox(
+                                width: 38,
+                                height: 38,
+                                child: InkWell(
+                                  onTap: () {
+                                    changeTab("for_you");
+                                  },
+                                  child: Icon(
+                                    Icons.close,
+                                    color: Colors.white,
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
-                if (currentTab != 'search') ...[
+                ...[
                   Gapper.hmGap(),
                   FeedTabWidget(
                     currentTab: currentTab,
