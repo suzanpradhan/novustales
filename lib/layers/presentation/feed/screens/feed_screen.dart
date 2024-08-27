@@ -6,6 +6,8 @@ import 'package:storyv2/core/presentation/ui/spacer.dart';
 import 'package:storyv2/layers/presentation/feed/screens/for_you_page.dart';
 import 'package:storyv2/layers/presentation/feed/screens/trending_page.dart';
 
+import '../widgets/feed_tab_widget.dart';
+
 class FeedScreen extends StatefulWidget {
   const FeedScreen({super.key});
 
@@ -42,7 +44,7 @@ class _FeedScreenState extends State<FeedScreen> {
                       ),
                     ),
           Container(
-            height: 38,
+            height: 36,
             margin: EdgeInsets.only(top: 20),
             child: ListView(
               scrollDirection: Axis.horizontal,
@@ -54,13 +56,12 @@ class _FeedScreenState extends State<FeedScreen> {
                   width: currentTab == 'search'
                       ? (MediaQuery.of(context).size.width -
                           (UIConstants.screenPadding * 2))
-                      // ? 62
-                      : 62,
+                      : 54,
                   clipBehavior: Clip.hardEdge,
                   duration: Duration(milliseconds: 250),
-                  padding: EdgeInsets.only(
-                      left: UIConstants.maxPadding,
-                      right: UIConstants.maxPadding),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: UIConstants.padding,
+                  ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(42),
                     border: Border.all(color: AppColors.gray),
@@ -157,64 +158,6 @@ class _FeedScreenState extends State<FeedScreen> {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class FeedTabWidget extends StatelessWidget {
-  final String currentTab;
-  final String tabKey;
-  final Function(String)? onChange;
-  final Color chipColor;
-  final Color selectedTextColor;
-  final Color unselectedTextColor;
-  const FeedTabWidget({
-    super.key,
-    required this.currentTab,
-    required this.tabKey,
-    required this.onChange,
-    this.chipColor = AppColors.dark,
-    this.selectedTextColor = AppColors.white,
-    this.unselectedTextColor = AppColors.black,
-  });
-
-  String tabKeyToTitle(String text) {
-    return text
-        .split('_')
-        .map((word) => word.isNotEmpty
-            ? word[0].toUpperCase() + word.substring(1).toLowerCase()
-            : '')
-        .join(' ');
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        if (onChange != null) {
-          onChange!(tabKey);
-        }
-      },
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: UIConstants.maxPadding),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(42),
-          color: currentTab == tabKey ? chipColor : null,
-          border: Border.all(
-            color: currentTab == tabKey ? AppColors.dark : AppColors.gray,
-          ),
-        ),
-        child: Center(
-          child: Text(
-            tabKeyToTitle(tabKey),
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: currentTab == tabKey
-                      ? selectedTextColor
-                      : unselectedTextColor,
-                ),
-          ),
-        ),
       ),
     );
   }

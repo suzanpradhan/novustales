@@ -28,7 +28,7 @@ class FeedInfo extends StatelessWidget {
             Row(
               children: [
                 CircleAvatar(
-                  radius: 25,
+                  radius: 21,
                   backgroundImage: NetworkImage(avtarUrl),
                 ),
                 SizedBox(
