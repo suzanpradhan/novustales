@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/ui_constants.dart';
 
 class ProfileTabs extends StatelessWidget {
@@ -39,7 +38,7 @@ class ProfileTabs extends StatelessWidget {
                 width: 60,
                 height: 2,
                 decoration: BoxDecoration(
-                  color: AppColors.purpleAccent,
+                  color: Theme.of(context).colorScheme.onSecondary,
                 ),
               ),
           ],

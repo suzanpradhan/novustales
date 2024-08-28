@@ -80,7 +80,7 @@ class _MeScreenState extends State<MeScreen> {
                                     border: Border.all(
                                         color: Theme.of(context)
                                             .colorScheme
-                                            .onSurface,
+                                            .onSecondary,
                                         width: UIConstants.borderWidth)),
                                 child: CircleAvatar(
                                   radius: 40,
