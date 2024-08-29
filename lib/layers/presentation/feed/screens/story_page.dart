@@ -1,12 +1,15 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:story_view/story_view.dart';
-import 'package:storyv2/core/constants/app_colors.dart';
-import 'package:storyv2/core/constants/ui_constants.dart';
-import 'package:storyv2/core/presentation/ui/time_difference.dart';
 import 'package:storyv2/layers/domain/entities/story_entity.dart';
-import 'package:storyv2/layers/presentation/feed/utils/feed_options.dart';
-import 'package:storyv2/layers/presentation/feed/utils/kwargs.dart';
-import 'package:storyv2/layers/presentation/feed/widgets/feed_info.dart';
+
+import '../../../../core/constants/app_colors.dart';
+import '../../../../core/constants/ui_constants.dart';
+import '../../../../core/presentation/ui/time_difference.dart';
+import '../utils/feed_options.dart';
+import '../utils/kwargs.dart';
+import '../widgets/feed_info.dart';
 
 class StoryPage extends StatefulWidget {
   const StoryPage({
@@ -20,7 +23,8 @@ class StoryPage extends StatefulWidget {
 }
 
 class _StoryPageState extends State<StoryPage> {
-  final StoryController controller = StoryController();
+  StoryController controller = StoryController();
+  final ValueNotifier<bool> isPaused = ValueNotifier(false);
   final List<String> videoFormats = [
     '.m4v',
     '.mp4',
@@ -57,6 +61,36 @@ class _StoryPageState extends State<StoryPage> {
           onComplete: () {},
           progressPosition: ProgressPosition.none,
         ),
+        if (isVideo)
+          InkWell(
+            onTap: () {
+              log(isPaused.value.toString());
+              if (!isPaused.value) {
+                controller.pause();
+              } else {
+                controller.play();
+              }
+              isPaused.value = !isPaused.value;
+            },
+            child: SizedBox(
+              height: double.infinity,
+              width: double.maxFinite,
+              child: ValueListenableBuilder(
+                  valueListenable: isPaused,
+                  builder: (context, value, child) {
+                    return Center(
+                        child: AnimatedOpacity(
+                      duration: Duration(milliseconds: value ? 1000 : 200),
+                      opacity: value ? 0.8 : 0,
+                      child: Icon(
+                        value ? Icons.pause_circle : Icons.play_circle,
+                        size: 100,
+                        color: AppColors.dark,
+                      ),
+                    ));
+                  }),
+            ),
+          ),
         Positioned(
           bottom: 20,
           left: UIConstants.minPadding,
@@ -104,6 +138,8 @@ class _StoryPageState extends State<StoryPage> {
             ],
           ),
         ),
+        if (controller.playbackNotifier.isPaused)
+          Positioned(child: Icon(Icons.play_circle_fill))
       ],
     );
   }

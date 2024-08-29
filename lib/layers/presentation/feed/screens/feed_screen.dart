@@ -177,7 +177,7 @@ class _FeedScreenState extends State<FeedScreen> {
                   ],
                 ),
               ),
-              Gapper.vGap(),
+              if (currentTab == "search") Gapper.vGap(),
               if (currentTab == "search")
                 Wrap(
                     runAlignment: WrapAlignment.spaceBetween,
