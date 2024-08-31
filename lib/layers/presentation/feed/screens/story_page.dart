@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:story_view/story_view.dart';
@@ -80,12 +81,28 @@ class _StoryPageState extends State<StoryPage> {
                   builder: (context, value, child) {
                     return Center(
                         child: AnimatedOpacity(
-                      duration: Duration(milliseconds: value ? 1000 : 200),
-                      opacity: value ? 0.8 : 0,
-                      child: Icon(
-                        value ? Icons.pause_circle : Icons.play_circle,
-                        size: 100,
-                        color: AppColors.dark,
+                      duration: Duration(milliseconds: 200),
+                      opacity: value ? 1 : 0,
+                      child: Container(
+                        clipBehavior: Clip.hardEdge,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppColors.grayDark.withOpacity(0.5),
+                        ),
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                                vertical: UIConstants.padding,
+                                horizontal: UIConstants.padding),
+                            child: Icon(
+                              value ? Icons.play_arrow : Icons.pause,
+                              size: 40,
+                              color: AppColors.white,
+                              fill: 1,
+                            ),
+                          ),
+                        ),
                       ),
                     ));
                   }),
