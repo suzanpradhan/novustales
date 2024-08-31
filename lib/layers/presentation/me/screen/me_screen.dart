@@ -8,6 +8,9 @@ import 'package:storyv2/layers/presentation/me/bloc/profile_bloc/get_profile_blo
 import 'package:storyv2/layers/presentation/me/screen/bookmarks_page.dart';
 import 'package:storyv2/layers/presentation/me/screen/story_page.dart';
 
+import '../widgets/profile_tabs.dart';
+import '../widgets/user_info_widget.dart';
+
 class MeScreen extends StatefulWidget {
   const MeScreen({super.key});
 
@@ -29,7 +32,13 @@ class _MeScreenState extends State<MeScreen> {
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
-        title: Text('Profile'),
+        title: Text(
+          'Profile',
+          style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontFamily: 'SatoshiBold',
+              fontSize: 16),
+        ),
         actions: [
           IconButton(
             onPressed: () {},
@@ -65,10 +74,19 @@ class _MeScreenState extends State<MeScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              CircleAvatar(
-                                radius: 50,
-                                backgroundColor: Colors.grey,
-                                backgroundImage: NetworkImage(profile.avatar),
+                              Container(
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onSecondary,
+                                        width: UIConstants.borderWidth)),
+                                child: CircleAvatar(
+                                  radius: 40,
+                                  backgroundColor: Colors.grey,
+                                  backgroundImage: NetworkImage(profile.avatar),
+                                ),
                               ),
                               SizedBox(width: UIConstants.minPadding),
                               Expanded(
@@ -98,7 +116,8 @@ class _MeScreenState extends State<MeScreen> {
                                           color: Color(0xff4E4E4E),
                                         ),
                                       ),
-                                      SizedBox(height: UIConstants.minPadding),
+                                      SizedBox(
+                                          height: UIConstants.x2minPadding),
                                       Text(
                                         'Sorcerer',
                                         style: TextStyle(
@@ -119,12 +138,13 @@ class _MeScreenState extends State<MeScreen> {
                                 child: InkWell(
                                   onTap: () {},
                                   child: Container(
+                                    height: 35,
                                     padding:
                                         EdgeInsets.all(UIConstants.minPadding),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(
-                                          UIConstants.borderRadius),
-                                      color: AppColors.gray,
+                                          UIConstants.minBorderRadius),
+                                      color: AppColors.greyAccent,
                                     ),
                                     child: Text(
                                       'Edit Profile',
@@ -132,7 +152,7 @@ class _MeScreenState extends State<MeScreen> {
                                         fontFamily: 'Satoshi',
                                         fontSize: 14,
                                         fontWeight: FontWeight.normal,
-                                        color: Color(0xff27282d),
+                                        color: AppColors.dark,
                                       ),
                                     ),
                                   ),
@@ -199,91 +219,6 @@ class _MeScreenState extends State<MeScreen> {
                 ) ??
                 Container();
           },
-        ),
-      ),
-    );
-  }
-}
-
-class ProfileTabs extends StatelessWidget {
-  const ProfileTabs({
-    super.key,
-    this.onChange,
-    required this.icon,
-    required this.tabKey,
-    required this.currentTab,
-  });
-
-  final Function(String)? onChange;
-  final String tabKey;
-  final String currentTab;
-  final IconData icon;
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      flex: 1,
-      child: InkWell(
-        onTap: () {
-          if (onChange != null) {
-            onChange!(tabKey);
-          }
-        },
-        child: Column(
-          children: [
-            Icon(
-              icon,
-              size: 24,
-            ),
-            SizedBox(height: UIConstants.xminPadding),
-            if (currentTab == tabKey)
-              Container(
-                width: 60,
-                height: 2,
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                ),
-              ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class UserInfoCard extends StatelessWidget {
-  const UserInfoCard({
-    super.key,
-    required this.title,
-    required this.num,
-  });
-  final String title;
-  final String num;
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      flex: 1,
-      child: RichText(
-        text: TextSpan(
-          text: '$num\n',
-          style: TextStyle(
-            fontFamily: 'Satoshi',
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-            color: Color(0xff0B0046),
-          ),
-          children: [
-            TextSpan(
-              text: title,
-              style: TextStyle(
-                fontFamily: 'Satoshi',
-                fontSize: 13,
-                fontWeight: FontWeight.normal,
-                color: Color(0xff414357),
-              ),
-            ),
-          ],
         ),
       ),
     );
