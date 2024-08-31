@@ -15,13 +15,13 @@ class BookmarksPage extends StatelessWidget {
         crossAxisCount: 3,
         childAspectRatio: 0.6,
       ),
-      itemCount: 2,
+      itemCount: 9,
       itemBuilder: (context, index) {
         return Container(
           decoration: BoxDecoration(
             border: Border.all(
               color: Colors.white,
-              width: 0.1,
+              width: 0.5,
             ),
             color: AppColors.greyWhite,
           ),
