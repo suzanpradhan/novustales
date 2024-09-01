@@ -101,62 +101,70 @@ class _FeedScreenState extends State<FeedScreen> {
                           changeTab('search');
                         },
                         child: ClipRect(
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.search,
-                                size: 24,
-                                color: Colors.white,
-                              ),
-                              if (currentTab == 'search')
-                                Expanded(
-                                  flex: 10,
-                                  child: Padding(
-                                    padding: EdgeInsets.only(
-                                        left: UIConstants.xminPadding,
-                                        bottom: 2),
-                                    child: TextField(
-                                      style: TextStyle(color: Colors.white),
-                                      onEditingComplete: () {
-                                        FocusScope.of(context).unfocus();
-                                      },
-                                      decoration: InputDecoration(
-                                        hintText: "Search",
-                                        isDense: true,
-                                        isCollapsed: true,
-                                        border: InputBorder.none,
-                                        hintStyle: Theme.of(context)
-                                            .textTheme
-                                            .bodySmall
-                                            ?.copyWith(
-                                              color: AppColors.greyWhite,
-                                            ),
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.search,
+                                  size: 24,
+                                  color: Colors.white,
+                                ),
+                                if (currentTab == 'search')
+                                  Expanded(
+                                    flex: 10,
+                                    child: Padding(
+                                      padding: EdgeInsets.only(
+                                          left: UIConstants.xminPadding,
+                                          bottom: 2),
+                                      child: TextField(
+                                        style: TextStyle(color: Colors.white),
+                                        onEditingComplete: () {
+                                          context.read<SearchStoriesBloc>().add(
+                                              SearchStoriesEvent.attempt());
+
+                                          FocusScope.of(context).unfocus();
+                                        },
+                                        onChanged: (value) {
+                                          context.read<SearchStoriesBloc>().add(
+                                              SearchStoriesEvent
+                                                  .registerSearchString(
+                                                      search: value));
+                                        },
+                                        decoration: InputDecoration(
+                                          hintText: "Search",
+                                          isDense: true,
+                                          isCollapsed: true,
+                                          border: InputBorder.none,
+                                          hintStyle: Theme.of(context)
+                                              .textTheme
+                                              .bodySmall
+                                              ?.copyWith(
+                                                color: AppColors.greyWhite,
+                                              ),
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              if (currentTab == "search")
-                                Expanded(
-                                  flex: 1,
-                                  child: SizedBox(
-                                    width: 38,
-                                    height: 38,
-                                    child: InkWell(
-                                      onTap: () {
-                                        changeTab("for_you");
-                                      },
-                                      child: Icon(
-                                        Icons.close,
-                                        color: Colors.white,
+                                if (currentTab == "search")
+                                  Expanded(
+                                    flex: 1,
+                                    child: SizedBox(
+                                      width: 38,
+                                      height: 38,
+                                      child: InkWell(
+                                        onTap: () {
+                                          changeTab("for_you");
+                                        },
+                                        child: Icon(
+                                          Icons.close,
+                                          color: Colors.white,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                            ],
-                          ),
-                        ),
+                              ],
+                            )),
                       ),
                     ),
                     ...[

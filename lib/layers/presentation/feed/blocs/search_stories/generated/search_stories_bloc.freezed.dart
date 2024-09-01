@@ -18,7 +18,6 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SearchStoriesEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
     required TResult Function(String search) registerSearchString,
     required TResult Function(String categoryName) registerCategoryName,
     required TResult Function() attempt,
@@ -26,7 +25,6 @@ mixin _$SearchStoriesEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
     TResult? Function(String search)? registerSearchString,
     TResult? Function(String categoryName)? registerCategoryName,
     TResult? Function()? attempt,
@@ -34,7 +32,6 @@ mixin _$SearchStoriesEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
     TResult Function(String search)? registerSearchString,
     TResult Function(String categoryName)? registerCategoryName,
     TResult Function()? attempt,
@@ -43,7 +40,6 @@ mixin _$SearchStoriesEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
     required TResult Function(_RegisterSearchString value) registerSearchString,
     required TResult Function(_RegisterCategoryName value) registerCategoryName,
     required TResult Function(_Attempt value) attempt,
@@ -51,7 +47,6 @@ mixin _$SearchStoriesEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
     TResult? Function(_RegisterSearchString value)? registerSearchString,
     TResult? Function(_RegisterCategoryName value)? registerCategoryName,
     TResult? Function(_Attempt value)? attempt,
@@ -59,7 +54,6 @@ mixin _$SearchStoriesEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
     TResult Function(_RegisterSearchString value)? registerSearchString,
     TResult Function(_RegisterCategoryName value)? registerCategoryName,
     TResult Function(_Attempt value)? attempt,
@@ -84,120 +78,6 @@ class _$SearchStoriesEventCopyWithImpl<$Res, $Val extends SearchStoriesEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-}
-
-/// @nodoc
-abstract class _$$StartedImplCopyWith<$Res> {
-  factory _$$StartedImplCopyWith(
-          _$StartedImpl value, $Res Function(_$StartedImpl) then) =
-      __$$StartedImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$StartedImplCopyWithImpl<$Res>
-    extends _$SearchStoriesEventCopyWithImpl<$Res, _$StartedImpl>
-    implements _$$StartedImplCopyWith<$Res> {
-  __$$StartedImplCopyWithImpl(
-      _$StartedImpl _value, $Res Function(_$StartedImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$StartedImpl implements _Started {
-  const _$StartedImpl();
-
-  @override
-  String toString() {
-    return 'SearchStoriesEvent.started()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$StartedImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() started,
-    required TResult Function(String search) registerSearchString,
-    required TResult Function(String categoryName) registerCategoryName,
-    required TResult Function() attempt,
-  }) {
-    return started();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
-    TResult? Function(String search)? registerSearchString,
-    TResult? Function(String categoryName)? registerCategoryName,
-    TResult? Function()? attempt,
-  }) {
-    return started?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function(String search)? registerSearchString,
-    TResult Function(String categoryName)? registerCategoryName,
-    TResult Function()? attempt,
-    required TResult orElse(),
-  }) {
-    if (started != null) {
-      return started();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
-    required TResult Function(_RegisterSearchString value) registerSearchString,
-    required TResult Function(_RegisterCategoryName value) registerCategoryName,
-    required TResult Function(_Attempt value) attempt,
-  }) {
-    return started(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
-    TResult? Function(_RegisterSearchString value)? registerSearchString,
-    TResult? Function(_RegisterCategoryName value)? registerCategoryName,
-    TResult? Function(_Attempt value)? attempt,
-  }) {
-    return started?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_RegisterSearchString value)? registerSearchString,
-    TResult Function(_RegisterCategoryName value)? registerCategoryName,
-    TResult Function(_Attempt value)? attempt,
-    required TResult orElse(),
-  }) {
-    if (started != null) {
-      return started(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Started implements SearchStoriesEvent {
-  const factory _Started() = _$StartedImpl;
 }
 
 /// @nodoc
@@ -267,7 +147,6 @@ class _$RegisterSearchStringImpl implements _RegisterSearchString {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
     required TResult Function(String search) registerSearchString,
     required TResult Function(String categoryName) registerCategoryName,
     required TResult Function() attempt,
@@ -278,7 +157,6 @@ class _$RegisterSearchStringImpl implements _RegisterSearchString {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
     TResult? Function(String search)? registerSearchString,
     TResult? Function(String categoryName)? registerCategoryName,
     TResult? Function()? attempt,
@@ -289,7 +167,6 @@ class _$RegisterSearchStringImpl implements _RegisterSearchString {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
     TResult Function(String search)? registerSearchString,
     TResult Function(String categoryName)? registerCategoryName,
     TResult Function()? attempt,
@@ -304,7 +181,6 @@ class _$RegisterSearchStringImpl implements _RegisterSearchString {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
     required TResult Function(_RegisterSearchString value) registerSearchString,
     required TResult Function(_RegisterCategoryName value) registerCategoryName,
     required TResult Function(_Attempt value) attempt,
@@ -315,7 +191,6 @@ class _$RegisterSearchStringImpl implements _RegisterSearchString {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
     TResult? Function(_RegisterSearchString value)? registerSearchString,
     TResult? Function(_RegisterCategoryName value)? registerCategoryName,
     TResult? Function(_Attempt value)? attempt,
@@ -326,7 +201,6 @@ class _$RegisterSearchStringImpl implements _RegisterSearchString {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
     TResult Function(_RegisterSearchString value)? registerSearchString,
     TResult Function(_RegisterCategoryName value)? registerCategoryName,
     TResult Function(_Attempt value)? attempt,
@@ -417,7 +291,6 @@ class _$RegisterCategoryNameImpl implements _RegisterCategoryName {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
     required TResult Function(String search) registerSearchString,
     required TResult Function(String categoryName) registerCategoryName,
     required TResult Function() attempt,
@@ -428,7 +301,6 @@ class _$RegisterCategoryNameImpl implements _RegisterCategoryName {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
     TResult? Function(String search)? registerSearchString,
     TResult? Function(String categoryName)? registerCategoryName,
     TResult? Function()? attempt,
@@ -439,7 +311,6 @@ class _$RegisterCategoryNameImpl implements _RegisterCategoryName {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
     TResult Function(String search)? registerSearchString,
     TResult Function(String categoryName)? registerCategoryName,
     TResult Function()? attempt,
@@ -454,7 +325,6 @@ class _$RegisterCategoryNameImpl implements _RegisterCategoryName {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
     required TResult Function(_RegisterSearchString value) registerSearchString,
     required TResult Function(_RegisterCategoryName value) registerCategoryName,
     required TResult Function(_Attempt value) attempt,
@@ -465,7 +335,6 @@ class _$RegisterCategoryNameImpl implements _RegisterCategoryName {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
     TResult? Function(_RegisterSearchString value)? registerSearchString,
     TResult? Function(_RegisterCategoryName value)? registerCategoryName,
     TResult? Function(_Attempt value)? attempt,
@@ -476,7 +345,6 @@ class _$RegisterCategoryNameImpl implements _RegisterCategoryName {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
     TResult Function(_RegisterSearchString value)? registerSearchString,
     TResult Function(_RegisterCategoryName value)? registerCategoryName,
     TResult Function(_Attempt value)? attempt,
@@ -537,7 +405,6 @@ class _$AttemptImpl implements _Attempt {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
     required TResult Function(String search) registerSearchString,
     required TResult Function(String categoryName) registerCategoryName,
     required TResult Function() attempt,
@@ -548,7 +415,6 @@ class _$AttemptImpl implements _Attempt {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
     TResult? Function(String search)? registerSearchString,
     TResult? Function(String categoryName)? registerCategoryName,
     TResult? Function()? attempt,
@@ -559,7 +425,6 @@ class _$AttemptImpl implements _Attempt {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
     TResult Function(String search)? registerSearchString,
     TResult Function(String categoryName)? registerCategoryName,
     TResult Function()? attempt,
@@ -574,7 +439,6 @@ class _$AttemptImpl implements _Attempt {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
     required TResult Function(_RegisterSearchString value) registerSearchString,
     required TResult Function(_RegisterCategoryName value) registerCategoryName,
     required TResult Function(_Attempt value) attempt,
@@ -585,7 +449,6 @@ class _$AttemptImpl implements _Attempt {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
     TResult? Function(_RegisterSearchString value)? registerSearchString,
     TResult? Function(_RegisterCategoryName value)? registerCategoryName,
     TResult? Function(_Attempt value)? attempt,
@@ -596,7 +459,6 @@ class _$AttemptImpl implements _Attempt {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
     TResult Function(_RegisterSearchString value)? registerSearchString,
     TResult Function(_RegisterCategoryName value)? registerCategoryName,
     TResult Function(_Attempt value)? attempt,

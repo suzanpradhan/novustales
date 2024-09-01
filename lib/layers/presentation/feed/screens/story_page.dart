@@ -47,6 +47,7 @@ class _StoryPageState extends State<StoryPage> {
 
   @override
   Widget build(BuildContext context) {
+    isPaused.value = false;
     final bool isVideo = videoFormats.any(
         (format) => widget.story.media?.toLowerCase().endsWith(format) == true);
     return Stack(
