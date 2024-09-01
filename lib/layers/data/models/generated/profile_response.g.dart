@@ -15,6 +15,7 @@ _$ProfileResponseImpl _$$ProfileResponseImplFromJson(
       lastName: json['last_name'] as String,
       nickName: json['nick_name'] as String,
       avatar: json['avatar'] as String,
+      bio: json['bio'] as String?,
       numberOfStories: json['number_of_stories'] as int? ?? 0,
       numberOfViews: json['number_of_views'] as int? ?? 0,
       stories: (json['stories'] as List<dynamic>)

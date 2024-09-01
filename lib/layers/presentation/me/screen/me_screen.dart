@@ -8,6 +8,7 @@ import 'package:storyv2/layers/presentation/me/bloc/profile_bloc/get_profile_blo
 import 'package:storyv2/layers/presentation/me/screen/bookmarks_page.dart';
 import 'package:storyv2/layers/presentation/me/screen/story_page.dart';
 
+import '../../../../core/presentation/ui/spacer.dart';
 import '../widgets/profile_tabs.dart';
 import '../widgets/user_info_widget.dart';
 
@@ -161,7 +162,7 @@ class _MeScreenState extends State<MeScreen> {
                             ],
                           ),
                         ),
-                        SizedBox(height: 20),
+                        Gapper.vmxGap(),
                         Container(
                           padding: EdgeInsets.symmetric(
                               horizontal: UIConstants.padding),
@@ -184,12 +185,16 @@ class _MeScreenState extends State<MeScreen> {
                             ],
                           ),
                         ),
-                        SizedBox(height: 20),
-                        RichText(
-                          text: TextSpan(
-                            text: '',
+                        Gapper.vmxGap(),
+                        Gapper.screenPadding(
+                          child: RichText(
+                            text: TextSpan(
+                                text: profile.bio,
+                                style: Theme.of(context).textTheme.bodySmall),
                           ),
                         ),
+                        Gapper.vmxGap(),
+                        // Text(profile.bio ?? ''),
                         Divider(),
                         SizedBox(
                           child: Row(

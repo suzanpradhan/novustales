@@ -25,6 +25,7 @@ mixin _$ProfileEntity {
   @JsonKey(name: 'nick_name')
   String get nickName => throw _privateConstructorUsedError;
   String get avatar => throw _privateConstructorUsedError;
+  String? get bio => throw _privateConstructorUsedError;
   @JsonKey(name: 'number_of_stories')
   int get numberOfStories => throw _privateConstructorUsedError;
   @JsonKey(name: 'number_of_views')
@@ -49,6 +50,7 @@ abstract class $ProfileEntityCopyWith<$Res> {
       @JsonKey(name: 'last_name') String lastName,
       @JsonKey(name: 'nick_name') String nickName,
       String avatar,
+      String? bio,
       @JsonKey(name: 'number_of_stories') int numberOfStories,
       @JsonKey(name: 'number_of_views') int numberOfViews,
       List<StoryEntity> stories});
@@ -73,6 +75,7 @@ class _$ProfileEntityCopyWithImpl<$Res, $Val extends ProfileEntity>
     Object? lastName = null,
     Object? nickName = null,
     Object? avatar = null,
+    Object? bio = freezed,
     Object? numberOfStories = null,
     Object? numberOfViews = null,
     Object? stories = null,
@@ -102,6 +105,10 @@ class _$ProfileEntityCopyWithImpl<$Res, $Val extends ProfileEntity>
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
               as String,
+      bio: freezed == bio
+          ? _value.bio
+          : bio // ignore: cast_nullable_to_non_nullable
+              as String?,
       numberOfStories: null == numberOfStories
           ? _value.numberOfStories
           : numberOfStories // ignore: cast_nullable_to_non_nullable
@@ -133,6 +140,7 @@ abstract class _$$ProfileEntityImplCopyWith<$Res>
       @JsonKey(name: 'last_name') String lastName,
       @JsonKey(name: 'nick_name') String nickName,
       String avatar,
+      String? bio,
       @JsonKey(name: 'number_of_stories') int numberOfStories,
       @JsonKey(name: 'number_of_views') int numberOfViews,
       List<StoryEntity> stories});
@@ -155,6 +163,7 @@ class __$$ProfileEntityImplCopyWithImpl<$Res>
     Object? lastName = null,
     Object? nickName = null,
     Object? avatar = null,
+    Object? bio = freezed,
     Object? numberOfStories = null,
     Object? numberOfViews = null,
     Object? stories = null,
@@ -184,6 +193,10 @@ class __$$ProfileEntityImplCopyWithImpl<$Res>
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
               as String,
+      bio: freezed == bio
+          ? _value.bio
+          : bio // ignore: cast_nullable_to_non_nullable
+              as String?,
       numberOfStories: null == numberOfStories
           ? _value.numberOfStories
           : numberOfStories // ignore: cast_nullable_to_non_nullable
@@ -210,6 +223,7 @@ class _$ProfileEntityImpl implements _ProfileEntity {
       @JsonKey(name: 'last_name') required this.lastName,
       @JsonKey(name: 'nick_name') required this.nickName,
       required this.avatar,
+      this.bio,
       @JsonKey(name: 'number_of_stories') this.numberOfStories = 0,
       @JsonKey(name: 'number_of_views') this.numberOfViews = 0,
       required final List<StoryEntity> stories})
@@ -231,6 +245,8 @@ class _$ProfileEntityImpl implements _ProfileEntity {
   @override
   final String avatar;
   @override
+  final String? bio;
+  @override
   @JsonKey(name: 'number_of_stories')
   final int numberOfStories;
   @override
@@ -246,7 +262,7 @@ class _$ProfileEntityImpl implements _ProfileEntity {
 
   @override
   String toString() {
-    return 'ProfileEntity(id: $id, email: $email, firstName: $firstName, lastName: $lastName, nickName: $nickName, avatar: $avatar, numberOfStories: $numberOfStories, numberOfViews: $numberOfViews, stories: $stories)';
+    return 'ProfileEntity(id: $id, email: $email, firstName: $firstName, lastName: $lastName, nickName: $nickName, avatar: $avatar, bio: $bio, numberOfStories: $numberOfStories, numberOfViews: $numberOfViews, stories: $stories)';
   }
 
   @override
@@ -263,6 +279,7 @@ class _$ProfileEntityImpl implements _ProfileEntity {
             (identical(other.nickName, nickName) ||
                 other.nickName == nickName) &&
             (identical(other.avatar, avatar) || other.avatar == avatar) &&
+            (identical(other.bio, bio) || other.bio == bio) &&
             (identical(other.numberOfStories, numberOfStories) ||
                 other.numberOfStories == numberOfStories) &&
             (identical(other.numberOfViews, numberOfViews) ||
@@ -279,6 +296,7 @@ class _$ProfileEntityImpl implements _ProfileEntity {
       lastName,
       nickName,
       avatar,
+      bio,
       numberOfStories,
       numberOfViews,
       const DeepCollectionEquality().hash(_stories));
@@ -298,6 +316,7 @@ abstract class _ProfileEntity implements ProfileEntity {
       @JsonKey(name: 'last_name') required final String lastName,
       @JsonKey(name: 'nick_name') required final String nickName,
       required final String avatar,
+      final String? bio,
       @JsonKey(name: 'number_of_stories') final int numberOfStories,
       @JsonKey(name: 'number_of_views') final int numberOfViews,
       required final List<StoryEntity> stories}) = _$ProfileEntityImpl;
@@ -317,6 +336,8 @@ abstract class _ProfileEntity implements ProfileEntity {
   String get nickName;
   @override
   String get avatar;
+  @override
+  String? get bio;
   @override
   @JsonKey(name: 'number_of_stories')
   int get numberOfStories;
