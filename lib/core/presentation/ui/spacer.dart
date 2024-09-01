@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../constants/ui_constants.dart';
 
 class Gapper {
-  static screenPadding({required Widget child}) {
+  static Widget screenPadding({required Widget child}) {
     return Padding(
       padding:
           const EdgeInsets.symmetric(horizontal: UIConstants.screenPadding),

@@ -33,6 +33,11 @@ import 'package:storyv2/layers/presentation/tales/blocs/search_tales/search_tale
 import 'package:storyv2/utils/secure_storage.dart';
 
 import '../layers/data/repositories/tale_repository_impl.dart';
+import '../layers/domain/usecases/feed/get_categories.dart';
+import '../layers/domain/usecases/feed/get_stories.dart';
+import '../layers/presentation/feed/blocs/get_categories/get_categories_bloc.dart';
+import '../layers/presentation/feed/blocs/get_stories/get_stories_bloc.dart';
+import '../layers/presentation/feed/blocs/search_stories/search_stories_bloc.dart';
 
 GetIt sl = GetIt.instance;
 
@@ -89,6 +94,8 @@ void _useCase() {
   sl.registerLazySingleton(() => GetForMeStory(sl()));
   sl.registerLazySingleton(() => GetTrendingStory(sl()));
   sl.registerLazySingleton(() => GetMyProfile(sl()));
+  sl.registerLazySingleton(() => GetStories(sl()));
+  sl.registerLazySingleton(() => GetCategories(sl()));
 }
 
 void _blocs() {
@@ -103,4 +110,7 @@ void _blocs() {
   sl.registerFactory(() => ForYouStoryBloc(sl()));
   sl.registerFactory(() => TrendingStoryBloc(sl()));
   sl.registerFactory(() => GetProfileBloc(sl()));
+  sl.registerFactory(() => GetStoriesBloc(sl()));
+  sl.registerFactory(() => GetCategoriesBloc(sl()));
+  sl.registerFactory(() => SearchStoriesBloc(sl()));
 }

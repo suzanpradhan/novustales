@@ -1,13 +1,18 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:story_view/story_view.dart';
 import 'package:storyv2/core/constants/app_colors.dart';
 import 'package:storyv2/core/constants/ui_constants.dart';
 import 'package:storyv2/core/presentation/ui/spacer.dart';
 import 'package:storyv2/layers/presentation/feed/screens/for_you_page.dart';
+import 'package:storyv2/layers/presentation/feed/screens/search_page.dart';
 import 'package:storyv2/layers/presentation/feed/screens/trending_page.dart';
 
+import '../../../../core/presentation/widgets/form_fields/chips_radio_field.dart';
+import '../blocs/get_categories/get_categories_bloc.dart';
+import '../blocs/search_stories/search_stories_bloc.dart';
 import '../widgets/feed_tab_widget.dart';
 
 const searchFilters = [
@@ -38,24 +43,33 @@ class _FeedScreenState extends State<FeedScreen> {
     });
   }
 
+  Widget _getPageForCurrentTab() {
+    switch (currentTab) {
+      case 'for_you':
+        return ForYouPage();
+      case 'trending':
+        return TrendingPage();
+      case 'search':
+        return SearchPage();
+      default:
+        return Container(
+          color: AppColors.black,
+          child: Center(
+            child: Text(
+              'Work in progress',
+              style: TextStyle(color: AppColors.white),
+            ),
+          ),
+        );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Stack(
         children: [
-          currentTab == 'for_you'
-              ? ForYouPage()
-              : currentTab == 'trending'
-                  ? TrendingPage()
-                  : Container(
-                      color: AppColors.black,
-                      child: Center(
-                        child: Text(
-                          'Work in progess',
-                          style: TextStyle(color: AppColors.white),
-                        ),
-                      ),
-                    ),
+          _getPageForCurrentTab(),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -178,38 +192,157 @@ class _FeedScreenState extends State<FeedScreen> {
                 ),
               ),
               if (currentTab == "search") Gapper.vGap(),
+              // if (currentTab == "search") SearchCategoriesWidget()
               if (currentTab == "search")
-                Wrap(
-                    runAlignment: WrapAlignment.spaceBetween,
-                    crossAxisAlignment: WrapCrossAlignment.start,
-                    runSpacing: UIConstants.padding,
-                    spacing: UIConstants.minPadding,
-                    children: searchFilters
-                        .map((item) => ClipRRect(
-                              borderRadius: BorderRadius.all(Radius.circular(
-                                  (UIConstants.minPadding + 24))),
-                              child: BackdropFilter(
-                                filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                                child: Container(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: UIConstants.minPadding,
-                                      horizontal: UIConstants.maxPadding),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(
-                                            (UIConstants.minPadding + 24))),
-                                    border: Border.all(
-                                        color:
-                                            AppColors.border.withOpacity(0.2)),
-                                  ),
-                                  child: Text(
-                                    item,
-                                    style: TextStyle(color: AppColors.white),
-                                  ),
-                                ),
-                              ),
-                            ))
-                        .toList())
+                BlocBuilder<SearchStoriesBloc, SearchStoriesState>(
+                  builder: (context, searchState) {
+                    return BlocBuilder<GetCategoriesBloc, GetCategoriesState>(
+                      builder: (context, state) {
+                        return state.mapOrNull(
+                              success: (value) {
+                                return Gapper.screenPadding(
+                                    child: ChipsRadioField(
+                                  items: [
+                                    ...value.categories
+                                        .map((item) => ChipItemData(
+                                            label: item.name, value: item.name))
+                                        .toList()
+                                  ],
+                                  chipBuilder: (item) {
+                                    return GestureDetector(
+                                      onTap: () {
+                                        context.read<SearchStoriesBloc>().add(
+                                            SearchStoriesEvent
+                                                .registerCategoryName(
+                                                    categoryName: item.value));
+                                      },
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(
+                                                (UIConstants.minPadding + 24))),
+                                        child: BackdropFilter(
+                                          filter: ImageFilter.blur(
+                                              sigmaX: 5, sigmaY: 5),
+                                          child: Container(
+                                            padding: EdgeInsets.symmetric(
+                                                vertical:
+                                                    UIConstants.minPadding,
+                                                horizontal:
+                                                    UIConstants.maxPadding),
+                                            decoration: BoxDecoration(
+                                              color: searchState.categoryNames
+                                                              .value !=
+                                                          null &&
+                                                      searchState
+                                                          .categoryNames.value!
+                                                          .contains(item.value)
+                                                  ? AppColors.white
+                                                  : null,
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(
+                                                      (UIConstants.minPadding +
+                                                          24))),
+                                              border: Border.all(
+                                                  color: AppColors.border
+                                                      .withOpacity(0.2)),
+                                            ),
+                                            child: Text(
+                                              item.label,
+                                              style: TextStyle(
+                                                  color: searchState
+                                                                  .categoryNames
+                                                                  .value !=
+                                                              null &&
+                                                          searchState
+                                                              .categoryNames
+                                                              .value!
+                                                              .contains(
+                                                                  item.value)
+                                                      ? AppColors.black
+                                                      : AppColors.white),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  context: context,
+                                )
+                                    // child: Wrap(
+                                    //     runAlignment: WrapAlignment.spaceBetween,
+                                    //     crossAxisAlignment:
+                                    //         WrapCrossAlignment.start,
+                                    //     runSpacing: UIConstants.padding,
+                                    //     spacing: UIConstants.minPadding,
+                                    //     children: value.categories
+                                    //         .map((item) => GestureDetector(
+                                    //               onTap: () {
+                                    //                 context
+                                    //                     .read<SearchStoriesBloc>()
+                                    //                     .add(SearchStoriesEvent
+                                    //                         .registerCategoryName(
+                                    //                             categoryName:
+                                    //                                 item.name));
+                                    //                 // selectedCategories = [
+                                    //                 //   ...selectedCategories,
+                                    //                 //   item.id
+                                    //                 // ];
+                                    //                 // setState(() {});
+                                    //                 // log(selectedCategories.toString());
+                                    //               },
+                                    //               child: ClipRRect(
+                                    //                 borderRadius: BorderRadius.all(
+                                    //                     Radius.circular((UIConstants
+                                    //                             .minPadding +
+                                    //                         24))),
+                                    //                 child: BackdropFilter(
+                                    //                   filter: ImageFilter.blur(
+                                    //                       sigmaX: 5, sigmaY: 5),
+                                    //                   child: Container(
+                                    //                     padding:
+                                    //                         EdgeInsets.symmetric(
+                                    //                             vertical:
+                                    //                                 UIConstants
+                                    //                                     .minPadding,
+                                    //                             horizontal:
+                                    //                                 UIConstants
+                                    //                                     .maxPadding),
+                                    //                     decoration: BoxDecoration(
+                                    //                       color: searchState
+                                    //                               .categoryNames
+                                    //                               .contains(item.id)
+                                    //                           ? AppColors.white
+                                    //                           : null,
+                                    //                       borderRadius: BorderRadius
+                                    //                           .all(Radius.circular(
+                                    //                               (UIConstants
+                                    //                                       .minPadding +
+                                    //                                   24))),
+                                    //                       border: Border.all(
+                                    //                           color: AppColors
+                                    //                               .border
+                                    //                               .withOpacity(
+                                    //                                   0.2)),
+                                    //                     ),
+                                    //                     child: Text(
+                                    //                       item.name,
+                                    //                       style: TextStyle(
+                                    //                           color:
+                                    //                               AppColors.white),
+                                    //                     ),
+                                    //                   ),
+                                    //                 ),
+                                    //               ),
+                                    //             ))
+                                    //         .toList()),
+                                    );
+                              },
+                            ) ??
+                            SizedBox();
+                      },
+                    );
+                  },
+                ),
             ],
           ),
         ],

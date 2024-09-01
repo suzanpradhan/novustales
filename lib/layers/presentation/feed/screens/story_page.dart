@@ -38,6 +38,14 @@ class _StoryPageState extends State<StoryPage> {
   ];
 
   @override
+  void dispose() {
+    // Dispose of your resources here
+    controller.dispose();
+    isPaused.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final bool isVideo = videoFormats.any(
         (format) => widget.story.media?.toLowerCase().endsWith(format) == true);
@@ -87,7 +95,7 @@ class _StoryPageState extends State<StoryPage> {
                         clipBehavior: Clip.hardEdge,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: AppColors.grayDark.withOpacity(0.5),
+                          color: AppColors.grayDark.withOpacity(0.3),
                         ),
                         child: BackdropFilter(
                           filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),

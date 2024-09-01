@@ -4,6 +4,8 @@ import 'package:storyv2/core/constants/app_colors.dart';
 import 'package:storyv2/layers/presentation/feed/blocs/trending_story/trending_story_bloc.dart';
 import 'package:storyv2/layers/presentation/feed/screens/story_page.dart';
 
+import '../blocs/get_stories/get_stories_bloc.dart';
+
 class TrendingPage extends StatefulWidget {
   const TrendingPage({super.key});
 
@@ -14,7 +16,7 @@ class TrendingPage extends StatefulWidget {
 class _TrendingPageState extends State<TrendingPage> {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TrendingStoryBloc, TrendingStoryState>(
+    return BlocBuilder<GetStoriesBloc, GetStoriesState>(
         builder: (context, state) {
       return state.whenOrNull(
             failed: (message) {
