@@ -13,6 +13,7 @@ class ProfileResponse with _$ProfileResponse {
   const factory ProfileResponse({
     required int id,
     required String email,
+    required String uuid,
     @JsonKey(name: 'first_name') required String firstName,
     @JsonKey(name: 'last_name') required String lastName,
     @JsonKey(name: 'nick_name') required String nickName,
@@ -31,6 +32,7 @@ class ProfileResponse with _$ProfileResponse {
   ProfileEntity toEntity() => ProfileEntity(
         id: id,
         email: email,
+        uuid: uuid,
         bio: bio,
         firstName: firstName,
         lastName: lastName,

@@ -22,6 +22,7 @@ ProfileResponse _$ProfileResponseFromJson(Map<String, dynamic> json) {
 mixin _$ProfileResponse {
   int get id => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
+  String get uuid => throw _privateConstructorUsedError;
   @JsonKey(name: 'first_name')
   String get firstName => throw _privateConstructorUsedError;
   @JsonKey(name: 'last_name')
@@ -50,6 +51,7 @@ abstract class $ProfileResponseCopyWith<$Res> {
   $Res call(
       {int id,
       String email,
+      String uuid,
       @JsonKey(name: 'first_name') String firstName,
       @JsonKey(name: 'last_name') String lastName,
       @JsonKey(name: 'nick_name') String nickName,
@@ -75,6 +77,7 @@ class _$ProfileResponseCopyWithImpl<$Res, $Val extends ProfileResponse>
   $Res call({
     Object? id = null,
     Object? email = null,
+    Object? uuid = null,
     Object? firstName = null,
     Object? lastName = null,
     Object? nickName = null,
@@ -92,6 +95,10 @@ class _$ProfileResponseCopyWithImpl<$Res, $Val extends ProfileResponse>
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      uuid: null == uuid
+          ? _value.uuid
+          : uuid // ignore: cast_nullable_to_non_nullable
               as String,
       firstName: null == firstName
           ? _value.firstName
@@ -140,6 +147,7 @@ abstract class _$$ProfileResponseImplCopyWith<$Res>
   $Res call(
       {int id,
       String email,
+      String uuid,
       @JsonKey(name: 'first_name') String firstName,
       @JsonKey(name: 'last_name') String lastName,
       @JsonKey(name: 'nick_name') String nickName,
@@ -163,6 +171,7 @@ class __$$ProfileResponseImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? email = null,
+    Object? uuid = null,
     Object? firstName = null,
     Object? lastName = null,
     Object? nickName = null,
@@ -180,6 +189,10 @@ class __$$ProfileResponseImplCopyWithImpl<$Res>
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      uuid: null == uuid
+          ? _value.uuid
+          : uuid // ignore: cast_nullable_to_non_nullable
               as String,
       firstName: null == firstName
           ? _value.firstName
@@ -223,6 +236,7 @@ class _$ProfileResponseImpl extends _ProfileResponse {
   const _$ProfileResponseImpl(
       {required this.id,
       required this.email,
+      required this.uuid,
       @JsonKey(name: 'first_name') required this.firstName,
       @JsonKey(name: 'last_name') required this.lastName,
       @JsonKey(name: 'nick_name') required this.nickName,
@@ -241,6 +255,8 @@ class _$ProfileResponseImpl extends _ProfileResponse {
   final int id;
   @override
   final String email;
+  @override
+  final String uuid;
   @override
   @JsonKey(name: 'first_name')
   final String firstName;
@@ -270,7 +286,7 @@ class _$ProfileResponseImpl extends _ProfileResponse {
 
   @override
   String toString() {
-    return 'ProfileResponse(id: $id, email: $email, firstName: $firstName, lastName: $lastName, nickName: $nickName, avatar: $avatar, bio: $bio, numberOfStories: $numberOfStories, numberOfViews: $numberOfViews, stories: $stories)';
+    return 'ProfileResponse(id: $id, email: $email, uuid: $uuid, firstName: $firstName, lastName: $lastName, nickName: $nickName, avatar: $avatar, bio: $bio, numberOfStories: $numberOfStories, numberOfViews: $numberOfViews, stories: $stories)';
   }
 
   @override
@@ -280,6 +296,7 @@ class _$ProfileResponseImpl extends _ProfileResponse {
             other is _$ProfileResponseImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.email, email) || other.email == email) &&
+            (identical(other.uuid, uuid) || other.uuid == uuid) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
             (identical(other.lastName, lastName) ||
@@ -301,6 +318,7 @@ class _$ProfileResponseImpl extends _ProfileResponse {
       runtimeType,
       id,
       email,
+      uuid,
       firstName,
       lastName,
       nickName,
@@ -322,6 +340,7 @@ abstract class _ProfileResponse extends ProfileResponse {
   const factory _ProfileResponse(
       {required final int id,
       required final String email,
+      required final String uuid,
       @JsonKey(name: 'first_name') required final String firstName,
       @JsonKey(name: 'last_name') required final String lastName,
       @JsonKey(name: 'nick_name') required final String nickName,
@@ -339,6 +358,8 @@ abstract class _ProfileResponse extends ProfileResponse {
   int get id;
   @override
   String get email;
+  @override
+  String get uuid;
   @override
   @JsonKey(name: 'first_name')
   String get firstName;

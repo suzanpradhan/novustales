@@ -8,7 +8,6 @@ import 'package:storyv2/layers/presentation/tales/blocs/get_popular_tales/get_po
 
 import '../../../layers/presentation/feed/blocs/get_categories/get_categories_bloc.dart';
 import '../../../layers/presentation/feed/blocs/get_stories/get_stories_bloc.dart';
-import '../../../layers/presentation/feed/blocs/search_stories/search_stories_bloc.dart';
 import '../widgets/internet_status_widget.dart';
 
 class HomeWrapperWidget extends StatefulWidget {
@@ -46,10 +45,10 @@ class HomeWrapperWidgetState extends State<HomeWrapperWidget> {
         BlocProvider.value(
           value: context.read<GetStoriesBloc>()..add(GetStoriesEvent.started()),
         ),
-        BlocProvider.value(
-          value: context.read<SearchStoriesBloc>()
-            ..add(SearchStoriesEvent.attempt()),
-        ),
+        // BlocProvider.value(
+        //   value: context.read<SearchStoriesBloc>()
+        //     ..add(SearchStoriesEvent.attempt()),
+        // ),
         BlocProvider.value(
           value: context.read<GetCategoriesBloc>()
             ..add(GetCategoriesEvent.started()),

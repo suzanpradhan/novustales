@@ -1,10 +1,6 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-enum SecureStorageKeys {
-  token,
-  isFirstTime,
-  isLogin,
-}
+enum SecureStorageKeys { token, isFirstTime, isLogin, uuid }
 
 mixin class SecureStorageMixin {
   static late FlutterSecureStorage? secureStorage;

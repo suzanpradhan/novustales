@@ -11,6 +11,7 @@ _$ProfileResponseImpl _$$ProfileResponseImplFromJson(
     _$ProfileResponseImpl(
       id: json['id'] as int,
       email: json['email'] as String,
+      uuid: json['uuid'] as String,
       firstName: json['first_name'] as String,
       lastName: json['last_name'] as String,
       nickName: json['nick_name'] as String,

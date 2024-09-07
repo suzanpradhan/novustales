@@ -7,6 +7,7 @@ part 'generated/profile_entity.freezed.dart';
 class ProfileEntity with _$ProfileEntity {
   const factory ProfileEntity({
     required int id,
+    required String uuid,
     required String email,
     @JsonKey(name: 'first_name') required String firstName,
     @JsonKey(name: 'last_name') required String lastName,

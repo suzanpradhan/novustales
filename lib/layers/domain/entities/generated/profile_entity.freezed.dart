@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ProfileEntity {
   int get id => throw _privateConstructorUsedError;
+  String get uuid => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   @JsonKey(name: 'first_name')
   String get firstName => throw _privateConstructorUsedError;
@@ -45,6 +46,7 @@ abstract class $ProfileEntityCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
+      String uuid,
       String email,
       @JsonKey(name: 'first_name') String firstName,
       @JsonKey(name: 'last_name') String lastName,
@@ -70,6 +72,7 @@ class _$ProfileEntityCopyWithImpl<$Res, $Val extends ProfileEntity>
   @override
   $Res call({
     Object? id = null,
+    Object? uuid = null,
     Object? email = null,
     Object? firstName = null,
     Object? lastName = null,
@@ -85,6 +88,10 @@ class _$ProfileEntityCopyWithImpl<$Res, $Val extends ProfileEntity>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
+      uuid: null == uuid
+          ? _value.uuid
+          : uuid // ignore: cast_nullable_to_non_nullable
+              as String,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -135,6 +142,7 @@ abstract class _$$ProfileEntityImplCopyWith<$Res>
   @useResult
   $Res call(
       {int id,
+      String uuid,
       String email,
       @JsonKey(name: 'first_name') String firstName,
       @JsonKey(name: 'last_name') String lastName,
@@ -158,6 +166,7 @@ class __$$ProfileEntityImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
+    Object? uuid = null,
     Object? email = null,
     Object? firstName = null,
     Object? lastName = null,
@@ -173,6 +182,10 @@ class __$$ProfileEntityImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
+      uuid: null == uuid
+          ? _value.uuid
+          : uuid // ignore: cast_nullable_to_non_nullable
+              as String,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -218,6 +231,7 @@ class __$$ProfileEntityImplCopyWithImpl<$Res>
 class _$ProfileEntityImpl implements _ProfileEntity {
   const _$ProfileEntityImpl(
       {required this.id,
+      required this.uuid,
       required this.email,
       @JsonKey(name: 'first_name') required this.firstName,
       @JsonKey(name: 'last_name') required this.lastName,
@@ -231,6 +245,8 @@ class _$ProfileEntityImpl implements _ProfileEntity {
 
   @override
   final int id;
+  @override
+  final String uuid;
   @override
   final String email;
   @override
@@ -262,7 +278,7 @@ class _$ProfileEntityImpl implements _ProfileEntity {
 
   @override
   String toString() {
-    return 'ProfileEntity(id: $id, email: $email, firstName: $firstName, lastName: $lastName, nickName: $nickName, avatar: $avatar, bio: $bio, numberOfStories: $numberOfStories, numberOfViews: $numberOfViews, stories: $stories)';
+    return 'ProfileEntity(id: $id, uuid: $uuid, email: $email, firstName: $firstName, lastName: $lastName, nickName: $nickName, avatar: $avatar, bio: $bio, numberOfStories: $numberOfStories, numberOfViews: $numberOfViews, stories: $stories)';
   }
 
   @override
@@ -271,6 +287,7 @@ class _$ProfileEntityImpl implements _ProfileEntity {
         (other.runtimeType == runtimeType &&
             other is _$ProfileEntityImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.uuid, uuid) || other.uuid == uuid) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
@@ -291,6 +308,7 @@ class _$ProfileEntityImpl implements _ProfileEntity {
   int get hashCode => Object.hash(
       runtimeType,
       id,
+      uuid,
       email,
       firstName,
       lastName,
@@ -311,6 +329,7 @@ class _$ProfileEntityImpl implements _ProfileEntity {
 abstract class _ProfileEntity implements ProfileEntity {
   const factory _ProfileEntity(
       {required final int id,
+      required final String uuid,
       required final String email,
       @JsonKey(name: 'first_name') required final String firstName,
       @JsonKey(name: 'last_name') required final String lastName,
@@ -323,6 +342,8 @@ abstract class _ProfileEntity implements ProfileEntity {
 
   @override
   int get id;
+  @override
+  String get uuid;
   @override
   String get email;
   @override
