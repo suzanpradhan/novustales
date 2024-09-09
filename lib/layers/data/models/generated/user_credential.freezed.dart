@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$UserCredential {
   String? get accessToken => throw _privateConstructorUsedError;
+  String? get uuid => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UserCredentialCopyWith<UserCredential> get copyWith =>
@@ -29,7 +30,7 @@ abstract class $UserCredentialCopyWith<$Res> {
           UserCredential value, $Res Function(UserCredential) then) =
       _$UserCredentialCopyWithImpl<$Res, UserCredential>;
   @useResult
-  $Res call({String? accessToken});
+  $Res call({String? accessToken, String? uuid});
 }
 
 /// @nodoc
@@ -46,11 +47,16 @@ class _$UserCredentialCopyWithImpl<$Res, $Val extends UserCredential>
   @override
   $Res call({
     Object? accessToken = freezed,
+    Object? uuid = freezed,
   }) {
     return _then(_value.copyWith(
       accessToken: freezed == accessToken
           ? _value.accessToken
           : accessToken // ignore: cast_nullable_to_non_nullable
+              as String?,
+      uuid: freezed == uuid
+          ? _value.uuid
+          : uuid // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -64,7 +70,7 @@ abstract class _$$UserCredentialImplCopyWith<$Res>
       __$$UserCredentialImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? accessToken});
+  $Res call({String? accessToken, String? uuid});
 }
 
 /// @nodoc
@@ -79,11 +85,16 @@ class __$$UserCredentialImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? accessToken = freezed,
+    Object? uuid = freezed,
   }) {
     return _then(_$UserCredentialImpl(
       accessToken: freezed == accessToken
           ? _value.accessToken
           : accessToken // ignore: cast_nullable_to_non_nullable
+              as String?,
+      uuid: freezed == uuid
+          ? _value.uuid
+          : uuid // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -92,14 +103,16 @@ class __$$UserCredentialImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$UserCredentialImpl extends _UserCredential {
-  const _$UserCredentialImpl({this.accessToken}) : super._();
+  const _$UserCredentialImpl({this.accessToken, this.uuid}) : super._();
 
   @override
   final String? accessToken;
+  @override
+  final String? uuid;
 
   @override
   String toString() {
-    return 'UserCredential(accessToken: $accessToken)';
+    return 'UserCredential(accessToken: $accessToken, uuid: $uuid)';
   }
 
   @override
@@ -108,11 +121,12 @@ class _$UserCredentialImpl extends _UserCredential {
         (other.runtimeType == runtimeType &&
             other is _$UserCredentialImpl &&
             (identical(other.accessToken, accessToken) ||
-                other.accessToken == accessToken));
+                other.accessToken == accessToken) &&
+            (identical(other.uuid, uuid) || other.uuid == uuid));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, accessToken);
+  int get hashCode => Object.hash(runtimeType, accessToken, uuid);
 
   @JsonKey(ignore: true)
   @override
@@ -123,12 +137,14 @@ class _$UserCredentialImpl extends _UserCredential {
 }
 
 abstract class _UserCredential extends UserCredential {
-  const factory _UserCredential({final String? accessToken}) =
-      _$UserCredentialImpl;
+  const factory _UserCredential(
+      {final String? accessToken, final String? uuid}) = _$UserCredentialImpl;
   const _UserCredential._() : super._();
 
   @override
   String? get accessToken;
+  @override
+  String? get uuid;
   @override
   @JsonKey(ignore: true)
   _$$UserCredentialImplCopyWith<_$UserCredentialImpl> get copyWith =>

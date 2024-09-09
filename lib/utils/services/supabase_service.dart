@@ -35,16 +35,16 @@ class SupabaseService {
 
   Future<List<RoomModel>> getMyContacts(
       {int? page, int? size, required String uuid}) async {
+    log("rooms logs");
+
     final paginationRange = getPagination(page: page, size: size);
-    final rooms = await client
-        .from("rooms")
-        .select(
+    final rooms = await client.from("rooms").select(
           'id, name, members!inner(*)',
-        )
-        .filter("members.profile_id", "eq", uuid);
+        );
+
+    // .filter("members.profile_id", "eq", uuid);
     // .limit(10)
     // .range(paginationRange.$1, paginationRange.$2);
-    log(rooms.toString());
     return rooms.map((room) => RoomModel.fromJson(room)).toList();
   }
 }

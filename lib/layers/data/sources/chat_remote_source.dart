@@ -1,5 +1,8 @@
 import 'dart:developer';
 
+import 'package:dartz/dartz.dart';
+import 'package:storyv2/layers/domain/usecases/chat/send_message.dart';
+
 import '../../../core/error/failures.dart';
 import '../../../core/usecases/usecase.dart';
 import '../../../utils/dependencies_injection.dart';
@@ -7,12 +10,17 @@ import '../../../utils/secure_storage.dart';
 import '../../../utils/services/supabase_service.dart';
 import '../../domain/usecases/chat/check_or_create_profile.dart';
 import '../models/chat/chat_user.dart';
+import '../models/chat/message_modal.dart';
 import '../models/chat/room_response.dart';
 import 'user_source.dart';
 
 abstract class ChatRemoteSource {
   Future<List<RoomModel>> getRooms(NoParams noParams);
   Future<bool> checkOrCreateProfileSource(CheckOrCreateProfileParams params);
+  Stream<List<MessageModel>> getMessagesStream({required String roomId});
+
+  Future<Either<Failure, bool>> sendMessage(
+      {required SendMessageParams params});
 }
 
 class ChatRemoteSourceImpl implements ChatRemoteSource {
@@ -26,6 +34,7 @@ class ChatRemoteSourceImpl implements ChatRemoteSource {
     try {
       String? uuid =
           await sl<SecureStorageMixin>().getValue(SecureStorageKeys.uuid);
+      log("contacts $uuid");
       if (uuid != null) {
         final contacts = await supabaseService.getMyContacts(uuid: uuid);
         List<RoomModel> newContacts = [];
@@ -36,13 +45,22 @@ class ChatRemoteSourceImpl implements ChatRemoteSource {
               .select("profiles (*)")
               .eq("room_id", contact.id)
               .neq("profile_id", uuid);
+
+          final lastMessage = await supabaseService.client
+              .from("messages")
+              .select("content")
+              .order("created_at", ascending: false)
+              .limit(1);
+
           if (receiverUserData.isNotEmpty) {
             newContacts.add(contact.copyWith(
+                lastMessage: lastMessage[0]['content'],
                 receiverUser:
                     ChatUser.fromJson(receiverUserData.first["profiles"])));
           }
+          log("last message >>>>>>>>>>>>>>> $newContacts");
         }
-        return contacts;
+        return newContacts;
       } else {
         log("_>>>>>>>>>>>>>>>>>>>>>>>>>>>> no user found");
         throw const ServerFailure(message: "No user found");
@@ -77,5 +95,27 @@ class ChatRemoteSourceImpl implements ChatRemoteSource {
       log("Stack trace: $stackTrace");
       return false;
     }
+  }
+
+  @override
+  Future<Either<Failure, bool>> sendMessage(
+      {required SendMessageParams params}) async {
+    try {
+      await supabaseService.client.from("messages").insert(params.toJson());
+      return const Right(true);
+    } catch (e) {
+      log(e.toString());
+      return const Left(ServerFailure(message: 'Failed to send message.'));
+    }
+  }
+
+  @override
+  Stream<List<MessageModel>> getMessagesStream({required String roomId}) {
+    return supabaseService.client
+        .from("messages")
+        .stream(primaryKey: ['id'])
+        .eq("room_id", roomId)
+        .order("created_at", ascending: false)
+        .map((maps) => maps.map((map) => MessageModel.fromJson(map)).toList());
   }
 }

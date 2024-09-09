@@ -39,9 +39,12 @@ import '../layers/data/sources/user_source.dart';
 import '../layers/domain/repositories/chat_repository.dart';
 import '../layers/domain/usecases/chat/check_or_create_profile.dart';
 import '../layers/domain/usecases/chat/get_rooms.dart';
+import '../layers/domain/usecases/chat/message_stream.dart';
+import '../layers/domain/usecases/chat/send_message.dart';
 import '../layers/domain/usecases/feed/get_categories.dart';
 import '../layers/domain/usecases/feed/get_stories.dart';
 import '../layers/presentation/chat/blocs/chat_rooms/chat_rooms_bloc.dart';
+import '../layers/presentation/chat/blocs/send_message/send_message_bloc.dart';
 import '../layers/presentation/feed/blocs/get_categories/get_categories_bloc.dart';
 import '../layers/presentation/feed/blocs/get_stories/get_stories_bloc.dart';
 import '../layers/presentation/feed/blocs/search_stories/search_stories_bloc.dart';
@@ -94,7 +97,8 @@ void _repositories() {
     () => StoryRepositoryImpl(storySource: sl()),
   );
   sl.registerLazySingleton<ProfileRepository>(
-    () => ProfileRepositoryImpl(profileSource: sl()),
+    () => ProfileRepositoryImpl(
+        profileSource: sl(), secureStorageMixin: SecureStorageMixin()),
   );
   sl.registerLazySingleton<ChatRepository>(
     () => ChatRepositoryImpl(sl()),
@@ -135,6 +139,8 @@ void _useCase() {
   sl.registerLazySingleton(() => GetCategories(sl()));
   sl.registerLazySingleton(() => GetRooms(sl()));
   sl.registerLazySingleton(() => CheckOrCreateProfile(sl()));
+  sl.registerLazySingleton(() => SendMessage(sl()));
+  sl.registerLazySingleton(() => MessageStream(sl()));
 }
 
 void _blocs() {
@@ -153,4 +159,5 @@ void _blocs() {
   sl.registerFactory(() => GetCategoriesBloc(sl()));
   sl.registerFactory(() => SearchStoriesBloc(sl()));
   sl.registerFactory(() => ChatRoomsBloc(sl()));
+  sl.registerFactory(() => SendMessageBloc(sl()));
 }

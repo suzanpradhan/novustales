@@ -10,5 +10,6 @@ class RoomEntity with _$RoomEntity {
       {required String uuid,
       String? name,
       DateTime? createdAt,
+      String? lastMessage,
       ChatProfileEntity? receiverUser}) = _RoomEntity;
 }

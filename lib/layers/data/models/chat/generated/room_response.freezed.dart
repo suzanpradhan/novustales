@@ -24,6 +24,8 @@ mixin _$RoomModel {
   String? get name => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
   @JsonKey(includeFromJson: false)
+  String? get lastMessage => throw _privateConstructorUsedError;
+  @JsonKey(includeFromJson: false)
   ChatUser? get receiverUser => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -40,6 +42,7 @@ abstract class $RoomModelCopyWith<$Res> {
       {String id,
       String? name,
       DateTime? createdAt,
+      @JsonKey(includeFromJson: false) String? lastMessage,
       @JsonKey(includeFromJson: false) ChatUser? receiverUser});
 
   $ChatUserCopyWith<$Res>? get receiverUser;
@@ -61,6 +64,7 @@ class _$RoomModelCopyWithImpl<$Res, $Val extends RoomModel>
     Object? id = null,
     Object? name = freezed,
     Object? createdAt = freezed,
+    Object? lastMessage = freezed,
     Object? receiverUser = freezed,
   }) {
     return _then(_value.copyWith(
@@ -76,6 +80,10 @@ class _$RoomModelCopyWithImpl<$Res, $Val extends RoomModel>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      lastMessage: freezed == lastMessage
+          ? _value.lastMessage
+          : lastMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
       receiverUser: freezed == receiverUser
           ? _value.receiverUser
           : receiverUser // ignore: cast_nullable_to_non_nullable
@@ -108,6 +116,7 @@ abstract class _$$RoomModelImplCopyWith<$Res>
       {String id,
       String? name,
       DateTime? createdAt,
+      @JsonKey(includeFromJson: false) String? lastMessage,
       @JsonKey(includeFromJson: false) ChatUser? receiverUser});
 
   @override
@@ -128,6 +137,7 @@ class __$$RoomModelImplCopyWithImpl<$Res>
     Object? id = null,
     Object? name = freezed,
     Object? createdAt = freezed,
+    Object? lastMessage = freezed,
     Object? receiverUser = freezed,
   }) {
     return _then(_$RoomModelImpl(
@@ -143,6 +153,10 @@ class __$$RoomModelImplCopyWithImpl<$Res>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      lastMessage: freezed == lastMessage
+          ? _value.lastMessage
+          : lastMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
       receiverUser: freezed == receiverUser
           ? _value.receiverUser
           : receiverUser // ignore: cast_nullable_to_non_nullable
@@ -158,6 +172,7 @@ class _$RoomModelImpl extends _RoomModel {
       {required this.id,
       this.name,
       this.createdAt,
+      @JsonKey(includeFromJson: false) this.lastMessage,
       @JsonKey(includeFromJson: false) this.receiverUser})
       : super._();
 
@@ -172,11 +187,14 @@ class _$RoomModelImpl extends _RoomModel {
   final DateTime? createdAt;
   @override
   @JsonKey(includeFromJson: false)
+  final String? lastMessage;
+  @override
+  @JsonKey(includeFromJson: false)
   final ChatUser? receiverUser;
 
   @override
   String toString() {
-    return 'RoomModel(id: $id, name: $name, createdAt: $createdAt, receiverUser: $receiverUser)';
+    return 'RoomModel(id: $id, name: $name, createdAt: $createdAt, lastMessage: $lastMessage, receiverUser: $receiverUser)';
   }
 
   @override
@@ -188,6 +206,8 @@ class _$RoomModelImpl extends _RoomModel {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
+            (identical(other.lastMessage, lastMessage) ||
+                other.lastMessage == lastMessage) &&
             (identical(other.receiverUser, receiverUser) ||
                 other.receiverUser == receiverUser));
   }
@@ -195,7 +215,7 @@ class _$RoomModelImpl extends _RoomModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, name, createdAt, receiverUser);
+      Object.hash(runtimeType, id, name, createdAt, lastMessage, receiverUser);
 
   @JsonKey(ignore: true)
   @override
@@ -209,6 +229,7 @@ abstract class _RoomModel extends RoomModel {
           {required final String id,
           final String? name,
           final DateTime? createdAt,
+          @JsonKey(includeFromJson: false) final String? lastMessage,
           @JsonKey(includeFromJson: false) final ChatUser? receiverUser}) =
       _$RoomModelImpl;
   const _RoomModel._() : super._();
@@ -222,6 +243,9 @@ abstract class _RoomModel extends RoomModel {
   String? get name;
   @override
   DateTime? get createdAt;
+  @override
+  @JsonKey(includeFromJson: false)
+  String? get lastMessage;
   @override
   @JsonKey(includeFromJson: false)
   ChatUser? get receiverUser;

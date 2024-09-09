@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:storyv2/core/usecases/usecase.dart';
@@ -17,9 +19,10 @@ class ChatRoomsBloc extends Bloc<ChatRoomsEvent, ChatRoomsState> {
       emit(const _Loading());
       try {
         List<RoomEntity> rooms = await getRooms.call(NoParams());
-
+        log("rooms >>>>>>>>> $rooms");
         emit(_Success(rooms: rooms));
       } catch (e) {
+        log("chat room failyree $e");
         emit(_Failure("error"));
       }
     });

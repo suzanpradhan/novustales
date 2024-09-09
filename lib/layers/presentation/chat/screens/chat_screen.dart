@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/constants/app_colors.dart';
+import '../../../../core/presentation/ui/spacer.dart';
 import '../blocs/chat_rooms/chat_rooms_bloc.dart';
+import '../widget/room_card.dart';
 
 class ChatScreen extends StatelessWidget {
   const ChatScreen({super.key});
@@ -20,11 +22,13 @@ class ChatScreen extends StatelessWidget {
                       title: Text("Messages"),
                     ),
                     body: value.rooms.isNotEmpty
-                        ? ListView.builder(
-                            itemCount: value.rooms.length,
-                            itemBuilder: (context, index) => ListTile(
-                              title: Text(value.rooms[index].name ?? ''),
-                            ),
+                        ? Gapper.screenPadding(
+                            child: ListView.builder(
+                                itemCount: value.rooms.length,
+                                itemBuilder: (context, index) {
+                                  final room = value.rooms[index];
+                                  return RoomCard(room: room);
+                                }),
                           )
                         : Container(
                             color: AppColors.black,

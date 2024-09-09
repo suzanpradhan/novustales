@@ -6,10 +6,12 @@ import 'package:storyv2/layers/presentation/feed/screens/archived/test_screen.da
 import 'package:storyv2/layers/presentation/feed/screens/feed_screen.dart';
 import 'package:storyv2/layers/presentation/me/screen/me_screen.dart';
 
+import '../../layers/domain/entities/chat/room_entity.dart';
 import '../../layers/presentation/auth/screens/login_screen.dart';
 import '../../layers/presentation/auth/screens/register_screen.dart';
 import '../../layers/presentation/bootstrap/screens/splash_screen.dart';
 import '../../layers/presentation/bootstrap/screens/welcome_screen.dart';
+import '../../layers/presentation/chat/screens/single_chat_screen.dart';
 import '../../layers/presentation/tales/screens/tales_screen.dart';
 import '../presentation/widgets/home_wrapper_widget.dart';
 import 'app_routes.dart';
@@ -128,5 +130,14 @@ final GoRouter router = GoRouter(
             ),
           ]),
         ],
+      ),
+      GoRoute(
+        path: SINGLE_CHAT_ROUTE,
+        pageBuilder: (context, state) {
+          return MaterialPage(
+              child: SignleChatScreen(
+            room: state.extra as RoomEntity,
+          ));
+        },
       ),
     ]);

@@ -19,6 +19,7 @@ mixin _$RoomEntity {
   String get uuid => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
+  String? get lastMessage => throw _privateConstructorUsedError;
   ChatProfileEntity? get receiverUser => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -36,6 +37,7 @@ abstract class $RoomEntityCopyWith<$Res> {
       {String uuid,
       String? name,
       DateTime? createdAt,
+      String? lastMessage,
       ChatProfileEntity? receiverUser});
 
   $ChatProfileEntityCopyWith<$Res>? get receiverUser;
@@ -57,6 +59,7 @@ class _$RoomEntityCopyWithImpl<$Res, $Val extends RoomEntity>
     Object? uuid = null,
     Object? name = freezed,
     Object? createdAt = freezed,
+    Object? lastMessage = freezed,
     Object? receiverUser = freezed,
   }) {
     return _then(_value.copyWith(
@@ -72,6 +75,10 @@ class _$RoomEntityCopyWithImpl<$Res, $Val extends RoomEntity>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      lastMessage: freezed == lastMessage
+          ? _value.lastMessage
+          : lastMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
       receiverUser: freezed == receiverUser
           ? _value.receiverUser
           : receiverUser // ignore: cast_nullable_to_non_nullable
@@ -104,6 +111,7 @@ abstract class _$$RoomEntityImplCopyWith<$Res>
       {String uuid,
       String? name,
       DateTime? createdAt,
+      String? lastMessage,
       ChatProfileEntity? receiverUser});
 
   @override
@@ -124,6 +132,7 @@ class __$$RoomEntityImplCopyWithImpl<$Res>
     Object? uuid = null,
     Object? name = freezed,
     Object? createdAt = freezed,
+    Object? lastMessage = freezed,
     Object? receiverUser = freezed,
   }) {
     return _then(_$RoomEntityImpl(
@@ -139,6 +148,10 @@ class __$$RoomEntityImplCopyWithImpl<$Res>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      lastMessage: freezed == lastMessage
+          ? _value.lastMessage
+          : lastMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
       receiverUser: freezed == receiverUser
           ? _value.receiverUser
           : receiverUser // ignore: cast_nullable_to_non_nullable
@@ -151,7 +164,11 @@ class __$$RoomEntityImplCopyWithImpl<$Res>
 
 class _$RoomEntityImpl implements _RoomEntity {
   const _$RoomEntityImpl(
-      {required this.uuid, this.name, this.createdAt, this.receiverUser});
+      {required this.uuid,
+      this.name,
+      this.createdAt,
+      this.lastMessage,
+      this.receiverUser});
 
   @override
   final String uuid;
@@ -160,11 +177,13 @@ class _$RoomEntityImpl implements _RoomEntity {
   @override
   final DateTime? createdAt;
   @override
+  final String? lastMessage;
+  @override
   final ChatProfileEntity? receiverUser;
 
   @override
   String toString() {
-    return 'RoomEntity(uuid: $uuid, name: $name, createdAt: $createdAt, receiverUser: $receiverUser)';
+    return 'RoomEntity(uuid: $uuid, name: $name, createdAt: $createdAt, lastMessage: $lastMessage, receiverUser: $receiverUser)';
   }
 
   @override
@@ -176,13 +195,15 @@ class _$RoomEntityImpl implements _RoomEntity {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
+            (identical(other.lastMessage, lastMessage) ||
+                other.lastMessage == lastMessage) &&
             (identical(other.receiverUser, receiverUser) ||
                 other.receiverUser == receiverUser));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, uuid, name, createdAt, receiverUser);
+  int get hashCode => Object.hash(
+      runtimeType, uuid, name, createdAt, lastMessage, receiverUser);
 
   @JsonKey(ignore: true)
   @override
@@ -196,6 +217,7 @@ abstract class _RoomEntity implements RoomEntity {
       {required final String uuid,
       final String? name,
       final DateTime? createdAt,
+      final String? lastMessage,
       final ChatProfileEntity? receiverUser}) = _$RoomEntityImpl;
 
   @override
@@ -204,6 +226,8 @@ abstract class _RoomEntity implements RoomEntity {
   String? get name;
   @override
   DateTime? get createdAt;
+  @override
+  String? get lastMessage;
   @override
   ChatProfileEntity? get receiverUser;
   @override
