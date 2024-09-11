@@ -21,6 +21,7 @@ mixin _$SearchStoriesEvent {
     required TResult Function(String search) registerSearchString,
     required TResult Function(String categoryName) registerCategoryName,
     required TResult Function() attempt,
+    required TResult Function() paginate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +29,7 @@ mixin _$SearchStoriesEvent {
     TResult? Function(String search)? registerSearchString,
     TResult? Function(String categoryName)? registerCategoryName,
     TResult? Function()? attempt,
+    TResult? Function()? paginate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +37,7 @@ mixin _$SearchStoriesEvent {
     TResult Function(String search)? registerSearchString,
     TResult Function(String categoryName)? registerCategoryName,
     TResult Function()? attempt,
+    TResult Function()? paginate,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +46,7 @@ mixin _$SearchStoriesEvent {
     required TResult Function(_RegisterSearchString value) registerSearchString,
     required TResult Function(_RegisterCategoryName value) registerCategoryName,
     required TResult Function(_Attempt value) attempt,
+    required TResult Function(_Paginate value) paginate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +54,7 @@ mixin _$SearchStoriesEvent {
     TResult? Function(_RegisterSearchString value)? registerSearchString,
     TResult? Function(_RegisterCategoryName value)? registerCategoryName,
     TResult? Function(_Attempt value)? attempt,
+    TResult? Function(_Paginate value)? paginate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +62,7 @@ mixin _$SearchStoriesEvent {
     TResult Function(_RegisterSearchString value)? registerSearchString,
     TResult Function(_RegisterCategoryName value)? registerCategoryName,
     TResult Function(_Attempt value)? attempt,
+    TResult Function(_Paginate value)? paginate,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -150,6 +156,7 @@ class _$RegisterSearchStringImpl implements _RegisterSearchString {
     required TResult Function(String search) registerSearchString,
     required TResult Function(String categoryName) registerCategoryName,
     required TResult Function() attempt,
+    required TResult Function() paginate,
   }) {
     return registerSearchString(search);
   }
@@ -160,6 +167,7 @@ class _$RegisterSearchStringImpl implements _RegisterSearchString {
     TResult? Function(String search)? registerSearchString,
     TResult? Function(String categoryName)? registerCategoryName,
     TResult? Function()? attempt,
+    TResult? Function()? paginate,
   }) {
     return registerSearchString?.call(search);
   }
@@ -170,6 +178,7 @@ class _$RegisterSearchStringImpl implements _RegisterSearchString {
     TResult Function(String search)? registerSearchString,
     TResult Function(String categoryName)? registerCategoryName,
     TResult Function()? attempt,
+    TResult Function()? paginate,
     required TResult orElse(),
   }) {
     if (registerSearchString != null) {
@@ -184,6 +193,7 @@ class _$RegisterSearchStringImpl implements _RegisterSearchString {
     required TResult Function(_RegisterSearchString value) registerSearchString,
     required TResult Function(_RegisterCategoryName value) registerCategoryName,
     required TResult Function(_Attempt value) attempt,
+    required TResult Function(_Paginate value) paginate,
   }) {
     return registerSearchString(this);
   }
@@ -194,6 +204,7 @@ class _$RegisterSearchStringImpl implements _RegisterSearchString {
     TResult? Function(_RegisterSearchString value)? registerSearchString,
     TResult? Function(_RegisterCategoryName value)? registerCategoryName,
     TResult? Function(_Attempt value)? attempt,
+    TResult? Function(_Paginate value)? paginate,
   }) {
     return registerSearchString?.call(this);
   }
@@ -204,6 +215,7 @@ class _$RegisterSearchStringImpl implements _RegisterSearchString {
     TResult Function(_RegisterSearchString value)? registerSearchString,
     TResult Function(_RegisterCategoryName value)? registerCategoryName,
     TResult Function(_Attempt value)? attempt,
+    TResult Function(_Paginate value)? paginate,
     required TResult orElse(),
   }) {
     if (registerSearchString != null) {
@@ -294,6 +306,7 @@ class _$RegisterCategoryNameImpl implements _RegisterCategoryName {
     required TResult Function(String search) registerSearchString,
     required TResult Function(String categoryName) registerCategoryName,
     required TResult Function() attempt,
+    required TResult Function() paginate,
   }) {
     return registerCategoryName(categoryName);
   }
@@ -304,6 +317,7 @@ class _$RegisterCategoryNameImpl implements _RegisterCategoryName {
     TResult? Function(String search)? registerSearchString,
     TResult? Function(String categoryName)? registerCategoryName,
     TResult? Function()? attempt,
+    TResult? Function()? paginate,
   }) {
     return registerCategoryName?.call(categoryName);
   }
@@ -314,6 +328,7 @@ class _$RegisterCategoryNameImpl implements _RegisterCategoryName {
     TResult Function(String search)? registerSearchString,
     TResult Function(String categoryName)? registerCategoryName,
     TResult Function()? attempt,
+    TResult Function()? paginate,
     required TResult orElse(),
   }) {
     if (registerCategoryName != null) {
@@ -328,6 +343,7 @@ class _$RegisterCategoryNameImpl implements _RegisterCategoryName {
     required TResult Function(_RegisterSearchString value) registerSearchString,
     required TResult Function(_RegisterCategoryName value) registerCategoryName,
     required TResult Function(_Attempt value) attempt,
+    required TResult Function(_Paginate value) paginate,
   }) {
     return registerCategoryName(this);
   }
@@ -338,6 +354,7 @@ class _$RegisterCategoryNameImpl implements _RegisterCategoryName {
     TResult? Function(_RegisterSearchString value)? registerSearchString,
     TResult? Function(_RegisterCategoryName value)? registerCategoryName,
     TResult? Function(_Attempt value)? attempt,
+    TResult? Function(_Paginate value)? paginate,
   }) {
     return registerCategoryName?.call(this);
   }
@@ -348,6 +365,7 @@ class _$RegisterCategoryNameImpl implements _RegisterCategoryName {
     TResult Function(_RegisterSearchString value)? registerSearchString,
     TResult Function(_RegisterCategoryName value)? registerCategoryName,
     TResult Function(_Attempt value)? attempt,
+    TResult Function(_Paginate value)? paginate,
     required TResult orElse(),
   }) {
     if (registerCategoryName != null) {
@@ -408,6 +426,7 @@ class _$AttemptImpl implements _Attempt {
     required TResult Function(String search) registerSearchString,
     required TResult Function(String categoryName) registerCategoryName,
     required TResult Function() attempt,
+    required TResult Function() paginate,
   }) {
     return attempt();
   }
@@ -418,6 +437,7 @@ class _$AttemptImpl implements _Attempt {
     TResult? Function(String search)? registerSearchString,
     TResult? Function(String categoryName)? registerCategoryName,
     TResult? Function()? attempt,
+    TResult? Function()? paginate,
   }) {
     return attempt?.call();
   }
@@ -428,6 +448,7 @@ class _$AttemptImpl implements _Attempt {
     TResult Function(String search)? registerSearchString,
     TResult Function(String categoryName)? registerCategoryName,
     TResult Function()? attempt,
+    TResult Function()? paginate,
     required TResult orElse(),
   }) {
     if (attempt != null) {
@@ -442,6 +463,7 @@ class _$AttemptImpl implements _Attempt {
     required TResult Function(_RegisterSearchString value) registerSearchString,
     required TResult Function(_RegisterCategoryName value) registerCategoryName,
     required TResult Function(_Attempt value) attempt,
+    required TResult Function(_Paginate value) paginate,
   }) {
     return attempt(this);
   }
@@ -452,6 +474,7 @@ class _$AttemptImpl implements _Attempt {
     TResult? Function(_RegisterSearchString value)? registerSearchString,
     TResult? Function(_RegisterCategoryName value)? registerCategoryName,
     TResult? Function(_Attempt value)? attempt,
+    TResult? Function(_Paginate value)? paginate,
   }) {
     return attempt?.call(this);
   }
@@ -462,6 +485,7 @@ class _$AttemptImpl implements _Attempt {
     TResult Function(_RegisterSearchString value)? registerSearchString,
     TResult Function(_RegisterCategoryName value)? registerCategoryName,
     TResult Function(_Attempt value)? attempt,
+    TResult Function(_Paginate value)? paginate,
     required TResult orElse(),
   }) {
     if (attempt != null) {
@@ -476,11 +500,127 @@ abstract class _Attempt implements SearchStoriesEvent {
 }
 
 /// @nodoc
+abstract class _$$PaginateImplCopyWith<$Res> {
+  factory _$$PaginateImplCopyWith(
+          _$PaginateImpl value, $Res Function(_$PaginateImpl) then) =
+      __$$PaginateImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$PaginateImplCopyWithImpl<$Res>
+    extends _$SearchStoriesEventCopyWithImpl<$Res, _$PaginateImpl>
+    implements _$$PaginateImplCopyWith<$Res> {
+  __$$PaginateImplCopyWithImpl(
+      _$PaginateImpl _value, $Res Function(_$PaginateImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$PaginateImpl implements _Paginate {
+  const _$PaginateImpl();
+
+  @override
+  String toString() {
+    return 'SearchStoriesEvent.paginate()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$PaginateImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String search) registerSearchString,
+    required TResult Function(String categoryName) registerCategoryName,
+    required TResult Function() attempt,
+    required TResult Function() paginate,
+  }) {
+    return paginate();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String search)? registerSearchString,
+    TResult? Function(String categoryName)? registerCategoryName,
+    TResult? Function()? attempt,
+    TResult? Function()? paginate,
+  }) {
+    return paginate?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String search)? registerSearchString,
+    TResult Function(String categoryName)? registerCategoryName,
+    TResult Function()? attempt,
+    TResult Function()? paginate,
+    required TResult orElse(),
+  }) {
+    if (paginate != null) {
+      return paginate();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_RegisterSearchString value) registerSearchString,
+    required TResult Function(_RegisterCategoryName value) registerCategoryName,
+    required TResult Function(_Attempt value) attempt,
+    required TResult Function(_Paginate value) paginate,
+  }) {
+    return paginate(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_RegisterSearchString value)? registerSearchString,
+    TResult? Function(_RegisterCategoryName value)? registerCategoryName,
+    TResult? Function(_Attempt value)? attempt,
+    TResult? Function(_Paginate value)? paginate,
+  }) {
+    return paginate?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_RegisterSearchString value)? registerSearchString,
+    TResult Function(_RegisterCategoryName value)? registerCategoryName,
+    TResult Function(_Attempt value)? attempt,
+    TResult Function(_Paginate value)? paginate,
+    required TResult orElse(),
+  }) {
+    if (paginate != null) {
+      return paginate(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Paginate implements SearchStoriesEvent {
+  const factory _Paginate() = _$PaginateImpl;
+}
+
+/// @nodoc
 mixin _$SearchStoriesState {
   FormzSubmissionStatus get status => throw _privateConstructorUsedError;
   SearchInput get search => throw _privateConstructorUsedError;
   ArrayInput get categoryNames =>
       throw _privateConstructorUsedError; // @Default(true) bool isFirstAttempt,
+  bool get isFirstAttempt => throw _privateConstructorUsedError;
+  bool get hasMoreData => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
   List<StoryEntity>? get filterData => throw _privateConstructorUsedError;
 
@@ -499,6 +639,8 @@ abstract class $SearchStoriesStateCopyWith<$Res> {
       {FormzSubmissionStatus status,
       SearchInput search,
       ArrayInput categoryNames,
+      bool isFirstAttempt,
+      bool hasMoreData,
       String? message,
       List<StoryEntity>? filterData});
 }
@@ -519,6 +661,8 @@ class _$SearchStoriesStateCopyWithImpl<$Res, $Val extends SearchStoriesState>
     Object? status = null,
     Object? search = null,
     Object? categoryNames = null,
+    Object? isFirstAttempt = null,
+    Object? hasMoreData = null,
     Object? message = freezed,
     Object? filterData = freezed,
   }) {
@@ -535,6 +679,14 @@ class _$SearchStoriesStateCopyWithImpl<$Res, $Val extends SearchStoriesState>
           ? _value.categoryNames
           : categoryNames // ignore: cast_nullable_to_non_nullable
               as ArrayInput,
+      isFirstAttempt: null == isFirstAttempt
+          ? _value.isFirstAttempt
+          : isFirstAttempt // ignore: cast_nullable_to_non_nullable
+              as bool,
+      hasMoreData: null == hasMoreData
+          ? _value.hasMoreData
+          : hasMoreData // ignore: cast_nullable_to_non_nullable
+              as bool,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -559,6 +711,8 @@ abstract class _$$SearchStoriesStateImplCopyWith<$Res>
       {FormzSubmissionStatus status,
       SearchInput search,
       ArrayInput categoryNames,
+      bool isFirstAttempt,
+      bool hasMoreData,
       String? message,
       List<StoryEntity>? filterData});
 }
@@ -577,6 +731,8 @@ class __$$SearchStoriesStateImplCopyWithImpl<$Res>
     Object? status = null,
     Object? search = null,
     Object? categoryNames = null,
+    Object? isFirstAttempt = null,
+    Object? hasMoreData = null,
     Object? message = freezed,
     Object? filterData = freezed,
   }) {
@@ -593,6 +749,14 @@ class __$$SearchStoriesStateImplCopyWithImpl<$Res>
           ? _value.categoryNames
           : categoryNames // ignore: cast_nullable_to_non_nullable
               as ArrayInput,
+      isFirstAttempt: null == isFirstAttempt
+          ? _value.isFirstAttempt
+          : isFirstAttempt // ignore: cast_nullable_to_non_nullable
+              as bool,
+      hasMoreData: null == hasMoreData
+          ? _value.hasMoreData
+          : hasMoreData // ignore: cast_nullable_to_non_nullable
+              as bool,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -612,6 +776,8 @@ class _$SearchStoriesStateImpl implements _SearchStoriesState {
       {this.status = FormzSubmissionStatus.initial,
       this.search = const SearchInput.pure(),
       this.categoryNames = const ArrayInput.pure(),
+      this.isFirstAttempt = true,
+      this.hasMoreData = true,
       this.message,
       final List<StoryEntity>? filterData})
       : _filterData = filterData;
@@ -627,6 +793,12 @@ class _$SearchStoriesStateImpl implements _SearchStoriesState {
   final ArrayInput categoryNames;
 // @Default(true) bool isFirstAttempt,
   @override
+  @JsonKey()
+  final bool isFirstAttempt;
+  @override
+  @JsonKey()
+  final bool hasMoreData;
+  @override
   final String? message;
   final List<StoryEntity>? _filterData;
   @override
@@ -640,7 +812,7 @@ class _$SearchStoriesStateImpl implements _SearchStoriesState {
 
   @override
   String toString() {
-    return 'SearchStoriesState(status: $status, search: $search, categoryNames: $categoryNames, message: $message, filterData: $filterData)';
+    return 'SearchStoriesState(status: $status, search: $search, categoryNames: $categoryNames, isFirstAttempt: $isFirstAttempt, hasMoreData: $hasMoreData, message: $message, filterData: $filterData)';
   }
 
   @override
@@ -652,14 +824,25 @@ class _$SearchStoriesStateImpl implements _SearchStoriesState {
             (identical(other.search, search) || other.search == search) &&
             (identical(other.categoryNames, categoryNames) ||
                 other.categoryNames == categoryNames) &&
+            (identical(other.isFirstAttempt, isFirstAttempt) ||
+                other.isFirstAttempt == isFirstAttempt) &&
+            (identical(other.hasMoreData, hasMoreData) ||
+                other.hasMoreData == hasMoreData) &&
             (identical(other.message, message) || other.message == message) &&
             const DeepCollectionEquality()
                 .equals(other._filterData, _filterData));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, search, categoryNames,
-      message, const DeepCollectionEquality().hash(_filterData));
+  int get hashCode => Object.hash(
+      runtimeType,
+      status,
+      search,
+      categoryNames,
+      isFirstAttempt,
+      hasMoreData,
+      message,
+      const DeepCollectionEquality().hash(_filterData));
 
   @JsonKey(ignore: true)
   @override
@@ -674,6 +857,8 @@ abstract class _SearchStoriesState implements SearchStoriesState {
       {final FormzSubmissionStatus status,
       final SearchInput search,
       final ArrayInput categoryNames,
+      final bool isFirstAttempt,
+      final bool hasMoreData,
       final String? message,
       final List<StoryEntity>? filterData}) = _$SearchStoriesStateImpl;
 
@@ -684,6 +869,10 @@ abstract class _SearchStoriesState implements SearchStoriesState {
   @override
   ArrayInput get categoryNames;
   @override // @Default(true) bool isFirstAttempt,
+  bool get isFirstAttempt;
+  @override
+  bool get hasMoreData;
+  @override
   String? get message;
   @override
   List<StoryEntity>? get filterData;

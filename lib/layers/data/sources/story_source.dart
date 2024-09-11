@@ -7,12 +7,13 @@ import 'package:storyv2/layers/data/models/category_response.dart';
 import 'package:storyv2/layers/data/models/story_response.dart';
 
 import '../../domain/usecases/feed/get_stories.dart';
+import '../models/paginated_response.dart';
 
 abstract class StorySource {
   Future<Either<Failure, List<StoryResponse>>> getForMeStory(NoParams params);
   Future<Either<Failure, List<StoryResponse>>> getTrendingStory(
       NoParams params);
-  Future<Either<Failure, List<StoryResponse>>> getStories(
+  Future<Either<Failure, PaginatedResponse<StoryResponse>>> getStories(
       SearchStoryParams params);
   Future<Either<Failure, List<CategoryResponse>>> getCategories(
       NoParams params);
@@ -47,13 +48,12 @@ class StorySourceImpl implements StorySource {
   }
 
   @override
-  Future<Either<Failure, List<StoryResponse>>> getStories(
+  Future<Either<Failure, PaginatedResponse<StoryResponse>>> getStories(
       SearchStoryParams params) async {
     final response = await _apiClient.getRequest(
       ApiPaths.storyUrl,
-      converter: (response) => (response["results"] as List)
-          .map((story) => StoryResponse.fromJson(story))
-          .toList(),
+      converter: (response) =>
+          PaginatedResponse<StoryResponse>.fromJson(response),
       queryParameters: params.toJson(),
     );
     return response;

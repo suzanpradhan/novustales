@@ -5,17 +5,21 @@ import 'package:storyv2/core/usecases/usecase.dart';
 import 'package:storyv2/layers/domain/entities/story_entity.dart';
 import 'package:storyv2/layers/domain/repositories/story_repository.dart';
 
+import '../../entities/pagination_entity.dart';
+
 part 'generated/get_stories.freezed.dart';
 part 'generated/get_stories.g.dart';
 
 class GetStories
-    implements UseCase<Either<Failure, List<StoryEntity>>, SearchStoryParams> {
+    implements
+        UseCase<Either<Failure, PaginationEntity<StoryEntity>>,
+            SearchStoryParams> {
   final StoryRepository storyRepository;
 
   const GetStories(this.storyRepository);
 
   @override
-  Future<Either<Failure, List<StoryEntity>>> call(
+  Future<Either<Failure, PaginationEntity<StoryEntity>>> call(
       SearchStoryParams params) async {
     return await storyRepository.getStories(params);
   }

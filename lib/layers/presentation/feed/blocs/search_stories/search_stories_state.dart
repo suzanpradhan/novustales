@@ -7,6 +7,8 @@ class SearchStoriesState with _$SearchStoriesState {
     @Default(SearchInput.pure()) SearchInput search,
     @Default(ArrayInput.pure()) ArrayInput categoryNames,
     // @Default(true) bool isFirstAttempt,
+    @Default(true) bool isFirstAttempt,
+    @Default(true) bool hasMoreData,
     String? message,
     List<StoryEntity>? filterData,
     // @Default(true) bool hasMoreData,

@@ -140,6 +140,7 @@ dependencies:
   supabase_flutter: ^2.6.0
   isar_flutter_libs: ^3.1.0+1
   flutter_blurhash: ^0.8.2
+  pull_to_refresh_plus: ^2.0.3
 
 dev_dependencies:
   flutter_test:

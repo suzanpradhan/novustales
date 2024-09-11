@@ -7,4 +7,5 @@ class SearchStoriesEvent with _$SearchStoriesEvent {
   const factory SearchStoriesEvent.registerCategoryName(
       {@Default("") String categoryName}) = _RegisterCategoryName;
   const factory SearchStoriesEvent.attempt() = _Attempt;
+  const factory SearchStoriesEvent.paginate() = _Paginate;
 }

@@ -19,7 +19,9 @@ class GetStoriesBloc extends Bloc<GetStoriesEvent, GetStoriesState> {
         response.fold((l) {
           emit(_Failed(message: "Failed to get tales"));
         }, (r) {
-          emit(_Success(stories: r));
+          if (r.results != null) {
+            emit(_Success(stories: r.results!));
+          }
         });
       } catch (e) {
         emit(_Failed(message: "Failed to get tales"));

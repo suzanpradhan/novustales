@@ -16,6 +16,7 @@ part 'search_stories_state.dart';
 
 class SearchStoriesBloc extends Bloc<SearchStoriesEvent, SearchStoriesState> {
   final GetStories _getstories;
+  int currentPage = 0;
   SearchStoriesBloc(this._getstories) : super(SearchStoriesState()) {
     on<SearchStoriesEvent>((event, emit) {});
 
@@ -48,6 +49,19 @@ class SearchStoriesBloc extends Bloc<SearchStoriesEvent, SearchStoriesState> {
     );
 
     on<_Attempt>((event, emit) async {
+      emit(state.copyWith(
+        status: FormzSubmissionStatus.inProgress,
+      ));
+      currentPage = 1;
+      await search(emit);
+    });
+
+    on<_Paginate>((event, emit) async {
+      emit(state.copyWith(
+        status: FormzSubmissionStatus.inProgress,
+      ));
+      if (!state.hasMoreData) return;
+      currentPage = currentPage + 1;
       await search(emit);
     });
   }
@@ -60,9 +74,12 @@ class SearchStoriesBloc extends Bloc<SearchStoriesEvent, SearchStoriesState> {
         emit(state.copyWith(message: failure.message ?? "Server Error!"));
       }
     }, (response) {
+      bool hasMoreData = response.nextPage ?? false;
       emit(state.copyWith(
-        filterData: response,
-      ));
+          message: "Successful fetching Stories",
+          filterData: response.results,
+          status: FormzSubmissionStatus.success,
+          hasMoreData: hasMoreData));
     });
   }
 }
