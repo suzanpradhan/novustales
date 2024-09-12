@@ -9,6 +9,7 @@ part of '../get_stories.dart';
 _$SearchStoryParamsImpl _$$SearchStoryParamsImplFromJson(
         Map<String, dynamic> json) =>
     _$SearchStoryParamsImpl(
+      page: json['page'] as int? ?? 1,
       search: json['search'] as String?,
       categoryNameIn: (json['category__name__in'] as List<dynamic>?)
           ?.map((e) => e as String)
@@ -18,6 +19,7 @@ _$SearchStoryParamsImpl _$$SearchStoryParamsImplFromJson(
 Map<String, dynamic> _$$SearchStoryParamsImplToJson(
         _$SearchStoryParamsImpl instance) =>
     <String, dynamic>{
+      'page': instance.page,
       'search': instance.search,
       'category__name__in': instance.categoryNameIn,
     };

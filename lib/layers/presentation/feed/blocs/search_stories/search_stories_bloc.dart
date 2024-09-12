@@ -68,7 +68,9 @@ class SearchStoriesBloc extends Bloc<SearchStoriesEvent, SearchStoriesState> {
 
   search(Emitter<SearchStoriesState> emit) async {
     final data = await _getstories.call(SearchStoryParams(
-        search: state.search.value, categoryNameIn: state.categoryNames.value));
+        page: currentPage,
+        search: state.search.value,
+        categoryNameIn: state.categoryNames.value));
     data.fold((failure) {
       if (failure is ServerFailure) {
         emit(state.copyWith(message: failure.message ?? "Server Error!"));
@@ -77,7 +79,10 @@ class SearchStoriesBloc extends Bloc<SearchStoriesEvent, SearchStoriesState> {
       bool hasMoreData = response.nextPage ?? false;
       emit(state.copyWith(
           message: "Successful fetching Stories",
-          filterData: response.results,
+          filterData: [
+            ...state.filterData ?? [],
+            ...response.results ?? [],
+          ],
           status: FormzSubmissionStatus.success,
           hasMoreData: hasMoreData));
     });

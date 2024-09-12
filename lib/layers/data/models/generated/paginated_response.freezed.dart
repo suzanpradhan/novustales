@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$PaginatedResponse<T> {
   Pagination? get pagination => throw _privateConstructorUsedError;
-  T get results => throw _privateConstructorUsedError;
+  List<T> get results => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PaginatedResponseCopyWith<T, PaginatedResponse<T>> get copyWith =>
@@ -30,7 +30,7 @@ abstract class $PaginatedResponseCopyWith<T, $Res> {
           $Res Function(PaginatedResponse<T>) then) =
       _$PaginatedResponseCopyWithImpl<T, $Res, PaginatedResponse<T>>;
   @useResult
-  $Res call({Pagination? pagination, T results});
+  $Res call({Pagination? pagination, List<T> results});
 
   $PaginationCopyWith<$Res>? get pagination;
 }
@@ -50,17 +50,17 @@ class _$PaginatedResponseCopyWithImpl<T, $Res,
   @override
   $Res call({
     Object? pagination = freezed,
-    Object? results = freezed,
+    Object? results = null,
   }) {
     return _then(_value.copyWith(
       pagination: freezed == pagination
           ? _value.pagination
           : pagination // ignore: cast_nullable_to_non_nullable
               as Pagination?,
-      results: freezed == results
+      results: null == results
           ? _value.results
           : results // ignore: cast_nullable_to_non_nullable
-              as T,
+              as List<T>,
     ) as $Val);
   }
 
@@ -85,7 +85,7 @@ abstract class _$$PaginatedResponseImplCopyWith<T, $Res>
       __$$PaginatedResponseImplCopyWithImpl<T, $Res>;
   @override
   @useResult
-  $Res call({Pagination? pagination, T results});
+  $Res call({Pagination? pagination, List<T> results});
 
   @override
   $PaginationCopyWith<$Res>? get pagination;
@@ -103,17 +103,17 @@ class __$$PaginatedResponseImplCopyWithImpl<T, $Res>
   @override
   $Res call({
     Object? pagination = freezed,
-    Object? results = freezed,
+    Object? results = null,
   }) {
     return _then(_$PaginatedResponseImpl<T>(
       pagination: freezed == pagination
           ? _value.pagination
           : pagination // ignore: cast_nullable_to_non_nullable
               as Pagination?,
-      results: freezed == results
-          ? _value.results
+      results: null == results
+          ? _value._results
           : results // ignore: cast_nullable_to_non_nullable
-              as T,
+              as List<T>,
     ));
   }
 }
@@ -121,13 +121,20 @@ class __$$PaginatedResponseImplCopyWithImpl<T, $Res>
 /// @nodoc
 
 class _$PaginatedResponseImpl<T> extends _PaginatedResponse<T> {
-  const _$PaginatedResponseImpl({this.pagination, required this.results})
-      : super._();
+  const _$PaginatedResponseImpl(
+      {this.pagination, required final List<T> results})
+      : _results = results,
+        super._();
 
   @override
   final Pagination? pagination;
+  final List<T> _results;
   @override
-  final T results;
+  List<T> get results {
+    if (_results is EqualUnmodifiableListView) return _results;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_results);
+  }
 
   @override
   String toString() {
@@ -141,12 +148,12 @@ class _$PaginatedResponseImpl<T> extends _PaginatedResponse<T> {
             other is _$PaginatedResponseImpl<T> &&
             (identical(other.pagination, pagination) ||
                 other.pagination == pagination) &&
-            const DeepCollectionEquality().equals(other.results, results));
+            const DeepCollectionEquality().equals(other._results, _results));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, pagination, const DeepCollectionEquality().hash(results));
+      runtimeType, pagination, const DeepCollectionEquality().hash(_results));
 
   @JsonKey(ignore: true)
   @override
@@ -160,144 +167,15 @@ class _$PaginatedResponseImpl<T> extends _PaginatedResponse<T> {
 abstract class _PaginatedResponse<T> extends PaginatedResponse<T> {
   const factory _PaginatedResponse(
       {final Pagination? pagination,
-      required final T results}) = _$PaginatedResponseImpl<T>;
+      required final List<T> results}) = _$PaginatedResponseImpl<T>;
   const _PaginatedResponse._() : super._();
 
   @override
   Pagination? get pagination;
   @override
-  T get results;
+  List<T> get results;
   @override
   @JsonKey(ignore: true)
   _$$PaginatedResponseImplCopyWith<T, _$PaginatedResponseImpl<T>>
       get copyWith => throw _privateConstructorUsedError;
-}
-
-Pagination _$PaginationFromJson(Map<String, dynamic> json) {
-  return _Pagination.fromJson(json);
-}
-
-/// @nodoc
-mixin _$Pagination {
-  String? get next => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $PaginationCopyWith<Pagination> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $PaginationCopyWith<$Res> {
-  factory $PaginationCopyWith(
-          Pagination value, $Res Function(Pagination) then) =
-      _$PaginationCopyWithImpl<$Res, Pagination>;
-  @useResult
-  $Res call({String? next});
-}
-
-/// @nodoc
-class _$PaginationCopyWithImpl<$Res, $Val extends Pagination>
-    implements $PaginationCopyWith<$Res> {
-  _$PaginationCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? next = freezed,
-  }) {
-    return _then(_value.copyWith(
-      next: freezed == next
-          ? _value.next
-          : next // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$PaginationImplCopyWith<$Res>
-    implements $PaginationCopyWith<$Res> {
-  factory _$$PaginationImplCopyWith(
-          _$PaginationImpl value, $Res Function(_$PaginationImpl) then) =
-      __$$PaginationImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String? next});
-}
-
-/// @nodoc
-class __$$PaginationImplCopyWithImpl<$Res>
-    extends _$PaginationCopyWithImpl<$Res, _$PaginationImpl>
-    implements _$$PaginationImplCopyWith<$Res> {
-  __$$PaginationImplCopyWithImpl(
-      _$PaginationImpl _value, $Res Function(_$PaginationImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? next = freezed,
-  }) {
-    return _then(_$PaginationImpl(
-      next: freezed == next
-          ? _value.next
-          : next // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable(createToJson: false)
-class _$PaginationImpl extends _Pagination {
-  const _$PaginationImpl({this.next}) : super._();
-
-  factory _$PaginationImpl.fromJson(Map<String, dynamic> json) =>
-      _$$PaginationImplFromJson(json);
-
-  @override
-  final String? next;
-
-  @override
-  String toString() {
-    return 'Pagination(next: $next)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$PaginationImpl &&
-            (identical(other.next, next) || other.next == next));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(runtimeType, next);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$PaginationImplCopyWith<_$PaginationImpl> get copyWith =>
-      __$$PaginationImplCopyWithImpl<_$PaginationImpl>(this, _$identity);
-}
-
-abstract class _Pagination extends Pagination {
-  const factory _Pagination({final String? next}) = _$PaginationImpl;
-  const _Pagination._() : super._();
-
-  factory _Pagination.fromJson(Map<String, dynamic> json) =
-      _$PaginationImpl.fromJson;
-
-  @override
-  String? get next;
-  @override
-  @JsonKey(ignore: true)
-  _$$PaginationImplCopyWith<_$PaginationImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }

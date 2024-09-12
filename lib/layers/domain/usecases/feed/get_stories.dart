@@ -28,6 +28,7 @@ class GetStories
 @freezed
 class SearchStoryParams with _$SearchStoryParams {
   const factory SearchStoryParams({
+    @Default(1) int page,
     String? search,
     @JsonKey(name: "category__name__in") List<String>? categoryNameIn,
   }) = _SearchStoryParams;

@@ -51,9 +51,9 @@ class StorySourceImpl implements StorySource {
   Future<Either<Failure, PaginatedResponse<StoryResponse>>> getStories(
       SearchStoryParams params) async {
     final response = await _apiClient.getRequest(
-      ApiPaths.storyUrl,
-      converter: (response) =>
-          PaginatedResponse<StoryResponse>.fromJson(response),
+      '${ApiPaths.storyUrl}/?page=${params.page}',
+      converter: (response) => PaginatedResponse<StoryResponse>.fromJson(
+          response, StoryResponse.fromJson),
       queryParameters: params.toJson(),
     );
     return response;

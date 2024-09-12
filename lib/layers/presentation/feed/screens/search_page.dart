@@ -91,6 +91,7 @@ class _SearchPageState extends State<SearchPage> {
               itemBuilder: (context, index) {
                 if (state.filterData != null && state.filterData!.isNotEmpty) {
                   return StoryPage(
+                    key: GlobalKey(debugLabel: index.toString()),
                     story: state.filterData![index],
                   );
                 } else if (state.status.isInProgress) {

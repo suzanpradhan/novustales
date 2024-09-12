@@ -20,6 +20,7 @@ SearchStoryParams _$SearchStoryParamsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SearchStoryParams {
+  int get page => throw _privateConstructorUsedError;
   String? get search => throw _privateConstructorUsedError;
   @JsonKey(name: "category__name__in")
   List<String>? get categoryNameIn => throw _privateConstructorUsedError;
@@ -37,7 +38,8 @@ abstract class $SearchStoryParamsCopyWith<$Res> {
       _$SearchStoryParamsCopyWithImpl<$Res, SearchStoryParams>;
   @useResult
   $Res call(
-      {String? search,
+      {int page,
+      String? search,
       @JsonKey(name: "category__name__in") List<String>? categoryNameIn});
 }
 
@@ -54,10 +56,15 @@ class _$SearchStoryParamsCopyWithImpl<$Res, $Val extends SearchStoryParams>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? page = null,
     Object? search = freezed,
     Object? categoryNameIn = freezed,
   }) {
     return _then(_value.copyWith(
+      page: null == page
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int,
       search: freezed == search
           ? _value.search
           : search // ignore: cast_nullable_to_non_nullable
@@ -79,7 +86,8 @@ abstract class _$$SearchStoryParamsImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? search,
+      {int page,
+      String? search,
       @JsonKey(name: "category__name__in") List<String>? categoryNameIn});
 }
 
@@ -94,10 +102,15 @@ class __$$SearchStoryParamsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? page = null,
     Object? search = freezed,
     Object? categoryNameIn = freezed,
   }) {
     return _then(_$SearchStoryParamsImpl(
+      page: null == page
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int,
       search: freezed == search
           ? _value.search
           : search // ignore: cast_nullable_to_non_nullable
@@ -114,13 +127,17 @@ class __$$SearchStoryParamsImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SearchStoryParamsImpl implements _SearchStoryParams {
   const _$SearchStoryParamsImpl(
-      {this.search,
+      {this.page = 1,
+      this.search,
       @JsonKey(name: "category__name__in") final List<String>? categoryNameIn})
       : _categoryNameIn = categoryNameIn;
 
   factory _$SearchStoryParamsImpl.fromJson(Map<String, dynamic> json) =>
       _$$SearchStoryParamsImplFromJson(json);
 
+  @override
+  @JsonKey()
+  final int page;
   @override
   final String? search;
   final List<String>? _categoryNameIn;
@@ -136,7 +153,7 @@ class _$SearchStoryParamsImpl implements _SearchStoryParams {
 
   @override
   String toString() {
-    return 'SearchStoryParams(search: $search, categoryNameIn: $categoryNameIn)';
+    return 'SearchStoryParams(page: $page, search: $search, categoryNameIn: $categoryNameIn)';
   }
 
   @override
@@ -144,6 +161,7 @@ class _$SearchStoryParamsImpl implements _SearchStoryParams {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SearchStoryParamsImpl &&
+            (identical(other.page, page) || other.page == page) &&
             (identical(other.search, search) || other.search == search) &&
             const DeepCollectionEquality()
                 .equals(other._categoryNameIn, _categoryNameIn));
@@ -151,7 +169,7 @@ class _$SearchStoryParamsImpl implements _SearchStoryParams {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, search,
+  int get hashCode => Object.hash(runtimeType, page, search,
       const DeepCollectionEquality().hash(_categoryNameIn));
 
   @JsonKey(ignore: true)
@@ -171,13 +189,16 @@ class _$SearchStoryParamsImpl implements _SearchStoryParams {
 
 abstract class _SearchStoryParams implements SearchStoryParams {
   const factory _SearchStoryParams(
-      {final String? search,
+      {final int page,
+      final String? search,
       @JsonKey(name: "category__name__in")
       final List<String>? categoryNameIn}) = _$SearchStoryParamsImpl;
 
   factory _SearchStoryParams.fromJson(Map<String, dynamic> json) =
       _$SearchStoryParamsImpl.fromJson;
 
+  @override
+  int get page;
   @override
   String? get search;
   @override

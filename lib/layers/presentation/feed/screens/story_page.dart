@@ -148,7 +148,7 @@ class _StoryPageState extends State<StoryPage> {
                             await option.actions!.call(
                               Kwargs(
                                 {
-                                  'title': widget.story.title,
+                                  'title': "${widget.story.title}",
                                   'link': widget.story.media,
                                 },
                               ),

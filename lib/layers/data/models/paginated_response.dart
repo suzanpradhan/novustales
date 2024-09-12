@@ -1,30 +1,22 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import 'pagination.dart';
+
 part 'generated/paginated_response.freezed.dart';
 
 @Freezed(toJson: false)
 class PaginatedResponse<T> with _$PaginatedResponse<T> {
   const factory PaginatedResponse(
-      {Pagination? pagination, required T results}) = _PaginatedResponse;
+      {Pagination? pagination, required List<T> results}) = _PaginatedResponse;
 
   const PaginatedResponse._();
 
-  factory PaginatedResponse.fromJson(
-      Map<String, dynamic> json, T Function(dynamic) resultsFromJson) {
+  factory PaginatedResponse.fromJson(Map<String, dynamic> json,
+      T Function(Map<String, dynamic>) resultsFromJson) {
     return PaginatedResponse(
         pagination: Pagination.fromJson(json["pagination"]),
-        results: resultsFromJson(json["results"]));
+        results: (json["results"] as List)
+            .map((resultJson) => resultsFromJson(resultJson))
+            .toList());
   }
-}
-
-@Freezed(toJson: false)
-class Pagination with _$Pagination {
-  const factory Pagination({
-    String? next,
-  }) = _Pagination;
-
-  const Pagination._();
-
-  factory Pagination.fromJson(Map<String, dynamic> json) =>
-      _$PaginationFromJson(json);
 }
