@@ -11,5 +11,5 @@ class RoomEntity with _$RoomEntity {
       String? name,
       DateTime? createdAt,
       String? lastMessage,
-      ChatProfileEntity? receiverUser}) = _RoomEntity;
+      List<ChatProfileEntity>? receiverUser}) = _RoomEntity;
 }

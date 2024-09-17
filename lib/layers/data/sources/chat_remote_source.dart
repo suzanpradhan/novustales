@@ -34,7 +34,6 @@ class ChatRemoteSourceImpl implements ChatRemoteSource {
     try {
       String? uuid =
           await sl<SecureStorageMixin>().getValue(SecureStorageKeys.uuid);
-      log("contacts $uuid");
       if (uuid != null) {
         final contacts = await supabaseService.getMyContacts(uuid: uuid);
         List<RoomModel> newContacts = [];
@@ -55,8 +54,9 @@ class ChatRemoteSourceImpl implements ChatRemoteSource {
           if (receiverUserData.isNotEmpty) {
             newContacts.add(contact.copyWith(
                 lastMessage: lastMessage[0]['content'],
-                receiverUser:
-                    ChatUser.fromJson(receiverUserData.first["profiles"])));
+                receiverUser: receiverUserData
+                    .map((user) => ChatUser.fromJson(user["profiles"]))
+                    .toList()));
           }
           log("last message >>>>>>>>>>>>>>> $newContacts");
         }

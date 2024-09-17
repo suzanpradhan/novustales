@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:storyv2/core/constants/ui_constants.dart';
+import 'package:storyv2/layers/presentation/chat/widget/chat_image_widget.dart';
 
-import '../../../../core/constants/app_colors.dart';
-import '../../../../core/constants/assets.dart';
 import '../../../../core/presentation/ui/spacer.dart';
-import '../../../../core/presentation/widgets/image_widget.dart';
 import '../../../../core/routes/app_routes.dart';
 import '../../../domain/entities/chat/room_entity.dart';
 
@@ -37,17 +35,11 @@ class RoomCard extends StatelessWidget {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                 ),
-                child: ImageWidget(
-                  imageUrl: room.receiverUser?.avatar,
-                  placeholderColor: AppColors.white,
-                  placeholder: (room.receiverUser?.avatar == null ||
-                          room.receiverUser!.avatar!.isEmpty)
-                      ? Image.asset(
-                          Assets.noProfile,
-                          fit: BoxFit.cover,
-                        )
-                      : null,
-                ),
+                child: ChatImageWidget(
+                    imageUrls: room.receiverUser
+                            ?.map((e) => e.avatar ?? '')
+                            .toList() ??
+                        []),
               ),
               Gapper.hmGap(),
               Expanded(
@@ -55,7 +47,9 @@ class RoomCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      room.receiverUser?.name ?? '',
+                      room.receiverUser?.length == 1
+                          ? room.receiverUser?.first.name ?? "-"
+                          : room.name ?? "-",
                       style: TextStyle(
                         fontFamily: 'RalewayRegular',
                         fontSize: 16,

@@ -26,7 +26,7 @@ mixin _$RoomModel {
   @JsonKey(includeFromJson: false)
   String? get lastMessage => throw _privateConstructorUsedError;
   @JsonKey(includeFromJson: false)
-  ChatUser? get receiverUser => throw _privateConstructorUsedError;
+  List<ChatUser>? get receiverUser => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $RoomModelCopyWith<RoomModel> get copyWith =>
@@ -43,9 +43,7 @@ abstract class $RoomModelCopyWith<$Res> {
       String? name,
       DateTime? createdAt,
       @JsonKey(includeFromJson: false) String? lastMessage,
-      @JsonKey(includeFromJson: false) ChatUser? receiverUser});
-
-  $ChatUserCopyWith<$Res>? get receiverUser;
+      @JsonKey(includeFromJson: false) List<ChatUser>? receiverUser});
 }
 
 /// @nodoc
@@ -87,20 +85,8 @@ class _$RoomModelCopyWithImpl<$Res, $Val extends RoomModel>
       receiverUser: freezed == receiverUser
           ? _value.receiverUser
           : receiverUser // ignore: cast_nullable_to_non_nullable
-              as ChatUser?,
+              as List<ChatUser>?,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ChatUserCopyWith<$Res>? get receiverUser {
-    if (_value.receiverUser == null) {
-      return null;
-    }
-
-    return $ChatUserCopyWith<$Res>(_value.receiverUser!, (value) {
-      return _then(_value.copyWith(receiverUser: value) as $Val);
-    });
   }
 }
 
@@ -117,10 +103,7 @@ abstract class _$$RoomModelImplCopyWith<$Res>
       String? name,
       DateTime? createdAt,
       @JsonKey(includeFromJson: false) String? lastMessage,
-      @JsonKey(includeFromJson: false) ChatUser? receiverUser});
-
-  @override
-  $ChatUserCopyWith<$Res>? get receiverUser;
+      @JsonKey(includeFromJson: false) List<ChatUser>? receiverUser});
 }
 
 /// @nodoc
@@ -158,9 +141,9 @@ class __$$RoomModelImplCopyWithImpl<$Res>
           : lastMessage // ignore: cast_nullable_to_non_nullable
               as String?,
       receiverUser: freezed == receiverUser
-          ? _value.receiverUser
+          ? _value._receiverUser
           : receiverUser // ignore: cast_nullable_to_non_nullable
-              as ChatUser?,
+              as List<ChatUser>?,
     ));
   }
 }
@@ -173,8 +156,9 @@ class _$RoomModelImpl extends _RoomModel {
       this.name,
       this.createdAt,
       @JsonKey(includeFromJson: false) this.lastMessage,
-      @JsonKey(includeFromJson: false) this.receiverUser})
-      : super._();
+      @JsonKey(includeFromJson: false) final List<ChatUser>? receiverUser})
+      : _receiverUser = receiverUser,
+        super._();
 
   factory _$RoomModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$RoomModelImplFromJson(json);
@@ -188,9 +172,16 @@ class _$RoomModelImpl extends _RoomModel {
   @override
   @JsonKey(includeFromJson: false)
   final String? lastMessage;
+  final List<ChatUser>? _receiverUser;
   @override
   @JsonKey(includeFromJson: false)
-  final ChatUser? receiverUser;
+  List<ChatUser>? get receiverUser {
+    final value = _receiverUser;
+    if (value == null) return null;
+    if (_receiverUser is EqualUnmodifiableListView) return _receiverUser;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
@@ -208,14 +199,14 @@ class _$RoomModelImpl extends _RoomModel {
                 other.createdAt == createdAt) &&
             (identical(other.lastMessage, lastMessage) ||
                 other.lastMessage == lastMessage) &&
-            (identical(other.receiverUser, receiverUser) ||
-                other.receiverUser == receiverUser));
+            const DeepCollectionEquality()
+                .equals(other._receiverUser, _receiverUser));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, name, createdAt, lastMessage, receiverUser);
+  int get hashCode => Object.hash(runtimeType, id, name, createdAt, lastMessage,
+      const DeepCollectionEquality().hash(_receiverUser));
 
   @JsonKey(ignore: true)
   @override
@@ -226,12 +217,12 @@ class _$RoomModelImpl extends _RoomModel {
 
 abstract class _RoomModel extends RoomModel {
   const factory _RoomModel(
-          {required final String id,
-          final String? name,
-          final DateTime? createdAt,
-          @JsonKey(includeFromJson: false) final String? lastMessage,
-          @JsonKey(includeFromJson: false) final ChatUser? receiverUser}) =
-      _$RoomModelImpl;
+      {required final String id,
+      final String? name,
+      final DateTime? createdAt,
+      @JsonKey(includeFromJson: false) final String? lastMessage,
+      @JsonKey(includeFromJson: false)
+      final List<ChatUser>? receiverUser}) = _$RoomModelImpl;
   const _RoomModel._() : super._();
 
   factory _RoomModel.fromJson(Map<String, dynamic> json) =
@@ -248,7 +239,7 @@ abstract class _RoomModel extends RoomModel {
   String? get lastMessage;
   @override
   @JsonKey(includeFromJson: false)
-  ChatUser? get receiverUser;
+  List<ChatUser>? get receiverUser;
   @override
   @JsonKey(ignore: true)
   _$$RoomModelImplCopyWith<_$RoomModelImpl> get copyWith =>

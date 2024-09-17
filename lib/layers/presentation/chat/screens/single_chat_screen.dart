@@ -39,7 +39,9 @@ class _SignleChatScreenState extends State<SignleChatScreen> {
       ],
       child: Scaffold(
         appBar: AppBar(
-          title: Text(widget.room.receiverUser?.name ?? "-"),
+          title: Text(widget.room.receiverUser?.length == 1
+              ? widget.room.receiverUser?.first.name ?? "-"
+              : widget.room.name ?? "-"),
         ),
         body: Gapper.screenPadding(
           child: Column(

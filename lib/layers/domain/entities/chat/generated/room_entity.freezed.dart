@@ -20,7 +20,8 @@ mixin _$RoomEntity {
   String? get name => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
   String? get lastMessage => throw _privateConstructorUsedError;
-  ChatProfileEntity? get receiverUser => throw _privateConstructorUsedError;
+  List<ChatProfileEntity>? get receiverUser =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $RoomEntityCopyWith<RoomEntity> get copyWith =>
@@ -38,9 +39,7 @@ abstract class $RoomEntityCopyWith<$Res> {
       String? name,
       DateTime? createdAt,
       String? lastMessage,
-      ChatProfileEntity? receiverUser});
-
-  $ChatProfileEntityCopyWith<$Res>? get receiverUser;
+      List<ChatProfileEntity>? receiverUser});
 }
 
 /// @nodoc
@@ -82,20 +81,8 @@ class _$RoomEntityCopyWithImpl<$Res, $Val extends RoomEntity>
       receiverUser: freezed == receiverUser
           ? _value.receiverUser
           : receiverUser // ignore: cast_nullable_to_non_nullable
-              as ChatProfileEntity?,
+              as List<ChatProfileEntity>?,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ChatProfileEntityCopyWith<$Res>? get receiverUser {
-    if (_value.receiverUser == null) {
-      return null;
-    }
-
-    return $ChatProfileEntityCopyWith<$Res>(_value.receiverUser!, (value) {
-      return _then(_value.copyWith(receiverUser: value) as $Val);
-    });
   }
 }
 
@@ -112,10 +99,7 @@ abstract class _$$RoomEntityImplCopyWith<$Res>
       String? name,
       DateTime? createdAt,
       String? lastMessage,
-      ChatProfileEntity? receiverUser});
-
-  @override
-  $ChatProfileEntityCopyWith<$Res>? get receiverUser;
+      List<ChatProfileEntity>? receiverUser});
 }
 
 /// @nodoc
@@ -153,9 +137,9 @@ class __$$RoomEntityImplCopyWithImpl<$Res>
           : lastMessage // ignore: cast_nullable_to_non_nullable
               as String?,
       receiverUser: freezed == receiverUser
-          ? _value.receiverUser
+          ? _value._receiverUser
           : receiverUser // ignore: cast_nullable_to_non_nullable
-              as ChatProfileEntity?,
+              as List<ChatProfileEntity>?,
     ));
   }
 }
@@ -168,7 +152,8 @@ class _$RoomEntityImpl implements _RoomEntity {
       this.name,
       this.createdAt,
       this.lastMessage,
-      this.receiverUser});
+      final List<ChatProfileEntity>? receiverUser})
+      : _receiverUser = receiverUser;
 
   @override
   final String uuid;
@@ -178,8 +163,15 @@ class _$RoomEntityImpl implements _RoomEntity {
   final DateTime? createdAt;
   @override
   final String? lastMessage;
+  final List<ChatProfileEntity>? _receiverUser;
   @override
-  final ChatProfileEntity? receiverUser;
+  List<ChatProfileEntity>? get receiverUser {
+    final value = _receiverUser;
+    if (value == null) return null;
+    if (_receiverUser is EqualUnmodifiableListView) return _receiverUser;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
@@ -197,13 +189,13 @@ class _$RoomEntityImpl implements _RoomEntity {
                 other.createdAt == createdAt) &&
             (identical(other.lastMessage, lastMessage) ||
                 other.lastMessage == lastMessage) &&
-            (identical(other.receiverUser, receiverUser) ||
-                other.receiverUser == receiverUser));
+            const DeepCollectionEquality()
+                .equals(other._receiverUser, _receiverUser));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, uuid, name, createdAt, lastMessage, receiverUser);
+  int get hashCode => Object.hash(runtimeType, uuid, name, createdAt,
+      lastMessage, const DeepCollectionEquality().hash(_receiverUser));
 
   @JsonKey(ignore: true)
   @override
@@ -218,7 +210,7 @@ abstract class _RoomEntity implements RoomEntity {
       final String? name,
       final DateTime? createdAt,
       final String? lastMessage,
-      final ChatProfileEntity? receiverUser}) = _$RoomEntityImpl;
+      final List<ChatProfileEntity>? receiverUser}) = _$RoomEntityImpl;
 
   @override
   String get uuid;
@@ -229,7 +221,7 @@ abstract class _RoomEntity implements RoomEntity {
   @override
   String? get lastMessage;
   @override
-  ChatProfileEntity? get receiverUser;
+  List<ChatProfileEntity>? get receiverUser;
   @override
   @JsonKey(ignore: true)
   _$$RoomEntityImplCopyWith<_$RoomEntityImpl> get copyWith =>

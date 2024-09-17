@@ -16,7 +16,7 @@ class RoomModel with _$RoomModel {
     String? name,
     DateTime? createdAt,
     @JsonKey(includeFromJson: false) String? lastMessage,
-    @JsonKey(includeFromJson: false) ChatUser? receiverUser,
+    @JsonKey(includeFromJson: false) List<ChatUser>? receiverUser,
   }) = _RoomModel;
 
   const RoomModel._();
@@ -29,12 +29,12 @@ class RoomModel with _$RoomModel {
       name: name,
       createdAt: createdAt,
       lastMessage: lastMessage,
-      receiverUser: receiverUser != null
-          ? ChatProfileEntity(
-              id: receiverUser!.id,
-              avatar: receiverUser?.avatar,
-              createdAt: receiverUser?.createdAt,
-              email: receiverUser!.email,
-              name: receiverUser!.name)
-          : null);
+      receiverUser: receiverUser
+          ?.map((item) => ChatProfileEntity(
+              id: item.id,
+              avatar: item.avatar,
+              createdAt: item.createdAt,
+              email: item.email,
+              name: item.name))
+          .toList());
 }
