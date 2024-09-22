@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
+import 'package:storyv2/layers/domain/entities/chat/chat_profile_entity.dart';
 
 import '../../../../core/constants/ui_constants.dart';
 import '../../../../core/presentation/ui/spacer.dart';
@@ -56,6 +57,44 @@ class _SignleChatScreenState extends State<SignleChatScreen> {
                                 reverse: true,
                                 itemCount: value.messages.length,
                                 itemBuilder: (context, index) {
+                                  final profileImage = value.messages.first ==
+                                          value.messages[index]
+                                      ? widget.room.receiverUser!
+                                          .firstWhere(
+                                              (user) =>
+                                                  user.id ==
+                                                  value.messages[index]
+                                                      .profileId,
+                                              orElse: () =>
+                                                  ChatProfileEntity(id: "null"))
+                                          .avatar
+                                      : value.messages[index - 1].profileId !=
+                                              value.messages[index].profileId
+                                          ? widget.room.receiverUser!
+                                              .firstWhere(
+                                                  (user) =>
+                                                      user.id ==
+                                                      value.messages[index]
+                                                          .profileId,
+                                                  orElse: () =>
+                                                      ChatProfileEntity(
+                                                          id: "null"))
+                                              .avatar
+                                          : null;
+                                  final profileName = value.messages.length >=
+                                              index + 2 &&
+                                          value.messages[index + 1].profileId !=
+                                              value.messages[index].profileId
+                                      ? widget.room.receiverUser!
+                                          .firstWhere(
+                                              (user) =>
+                                                  user.id ==
+                                                  value.messages[index]
+                                                      .profileId,
+                                              orElse: () =>
+                                                  ChatProfileEntity(id: "null"))
+                                          .name
+                                      : null;
                                   return Padding(
                                     padding: EdgeInsets.only(
                                         top:
@@ -66,6 +105,12 @@ class _SignleChatScreenState extends State<SignleChatScreen> {
                                             ? UIConstants.padding
                                             : UIConstants.xminPadding),
                                     child: TextingBox(
+                                        name:
+                                            widget.room.receiverUser?.length !=
+                                                    1
+                                                ? profileName
+                                                : null,
+                                        profileImage: profileImage,
                                         message: value.messages[index]),
                                   );
                                 });

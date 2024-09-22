@@ -58,7 +58,6 @@ class ChatRemoteSourceImpl implements ChatRemoteSource {
                     .map((user) => ChatUser.fromJson(user["profiles"]))
                     .toList()));
           }
-          log("last message >>>>>>>>>>>>>>> $newContacts");
         }
         return newContacts;
       } else {

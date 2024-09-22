@@ -15,10 +15,10 @@ class ChatImageWidget extends StatelessWidget {
       return ImageWidget(
         imageUrl: image,
         placeholderColor: AppColors.white,
+        fit: BoxFit.cover,
         placeholder: (image == null || image!.isEmpty)
             ? Image.asset(
                 Assets.noProfile,
-                fit: BoxFit.cover,
               )
             : SizedBox(),
       );

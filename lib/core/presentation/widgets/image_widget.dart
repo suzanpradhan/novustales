@@ -67,7 +67,7 @@ class ImageWidget extends StatelessWidget {
                     image: BlurHashImage(
                       blurhash!,
                     ),
-                    fit: BoxFit.cover,
+                    fit: fit,
                   )
                 : (hasShimmer
                     ? Shimmer.fromColors(

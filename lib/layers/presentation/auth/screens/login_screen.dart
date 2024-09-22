@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
@@ -44,8 +42,6 @@ class _LoginScreenState extends State<LoginScreen> {
         listeners: [
           BlocListener<LoginBloc, LoginState>(
             listener: (_, state) {
-              log(">>>>>>>>>>>>>>>>>>check authentication ${state.status}");
-
               if (state.status == FormzSubmissionStatus.success ||
                   state.googleSignInSatus == FormzSubmissionStatus.success ||
                   state.appleSignInStatus == FormzSubmissionStatus.success) {
