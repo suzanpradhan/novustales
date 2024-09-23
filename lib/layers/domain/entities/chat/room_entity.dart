@@ -9,7 +9,9 @@ class RoomEntity with _$RoomEntity {
   const factory RoomEntity(
       {required String uuid,
       String? name,
-      DateTime? createdAt,
+      bool? read,
+      String? createdAt,
       String? lastMessage,
+      String? lastMessageTime,
       List<ChatProfileEntity>? receiverUser}) = _RoomEntity;
 }

@@ -12,5 +12,6 @@ _$MessageModelImpl _$$MessageModelImplFromJson(Map<String, dynamic> json) =>
       profileId: json['profile_id'] as String,
       roomId: json['room_id'] as String,
       content: json['content'] as String?,
+      createdAt: json['created_at'] as String?,
       read: json['read'] as bool?,
     );

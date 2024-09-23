@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -74,7 +73,6 @@ class _StoryPageState extends State<StoryPage> {
         if (isVideo)
           InkWell(
             onTap: () {
-              log(isPaused.value.toString());
               if (!isPaused.value) {
                 controller.pause();
               } else {

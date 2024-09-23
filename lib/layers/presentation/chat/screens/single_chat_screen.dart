@@ -9,6 +9,7 @@ import '../../../../core/presentation/widgets/form_fields/form_input_field.dart'
 import '../../../../utils/dependencies_injection.dart';
 import '../../../domain/entities/chat/room_entity.dart';
 import '../../me/bloc/profile_bloc/get_profile_bloc.dart';
+import '../blocs/chat_rooms/chat_rooms_bloc.dart';
 import '../blocs/message_stream/message_stream_bloc.dart';
 import '../blocs/send_message/send_message_bloc.dart';
 import '../widget/texting_box_card.dart';
@@ -95,6 +96,10 @@ class _SignleChatScreenState extends State<SignleChatScreen> {
                                                   ChatProfileEntity(id: "null"))
                                           .name
                                       : null;
+
+                                  final createdAt =
+                                      value.messages[index].createdAt;
+
                                   return Padding(
                                     padding: EdgeInsets.only(
                                         top:
@@ -105,6 +110,7 @@ class _SignleChatScreenState extends State<SignleChatScreen> {
                                             ? UIConstants.padding
                                             : UIConstants.xminPadding),
                                     child: TextingBox(
+                                        createdAt: createdAt,
                                         name:
                                             widget.room.receiverUser?.length !=
                                                     1
@@ -122,12 +128,12 @@ class _SignleChatScreenState extends State<SignleChatScreen> {
               ),
               BlocListener<SendMessageBloc, SendMessageState>(
                 listener: (context, state) {
-                  // if (state.status == FormzSubmissionStatus.success ) {
-                  //   context.read<ChatRoomsBloc>()..add(event);
-                  // }
                   if (state.status == FormzSubmissionStatus.success ||
                       state.status == FormzSubmissionStatus.failure) {
                     _messageController.text = "";
+                    context
+                        .read<ChatRoomsBloc>()
+                        .add(ChatRoomsEvent.attempted());
                   }
                 },
                 child: BlocBuilder<SendMessageBloc, SendMessageState>(

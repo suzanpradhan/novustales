@@ -9,5 +9,6 @@ class MessageEntity with _$MessageEntity {
       required String profileId,
       required String roomId,
       String? content,
+      String? createdAt,
       bool? read}) = _MessageEntity;
 }

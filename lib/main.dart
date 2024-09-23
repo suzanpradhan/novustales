@@ -9,6 +9,7 @@ import 'package:storyv2/layers/presentation/auth/login/login_bloc.dart';
 import 'package:storyv2/layers/presentation/auth/register/register_bloc.dart';
 import 'package:storyv2/layers/presentation/bootstrap/app_bloc/app_bloc.dart';
 import 'package:storyv2/layers/presentation/chat/blocs/chat_rooms/chat_rooms_bloc.dart';
+import 'package:storyv2/layers/presentation/chat/blocs/read_message/read_message_bloc.dart';
 import 'package:storyv2/layers/presentation/feed/blocs/for_you_story/for_you_story_bloc.dart';
 import 'package:storyv2/layers/presentation/feed/blocs/trending_story/trending_story_bloc.dart';
 import 'package:storyv2/layers/presentation/me/bloc/profile_bloc/get_profile_bloc.dart';
@@ -98,6 +99,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => sl<ChatRoomsBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => ReadMessageBloc(sl()),
         ),
       ],
       child: MaterialApp.router(

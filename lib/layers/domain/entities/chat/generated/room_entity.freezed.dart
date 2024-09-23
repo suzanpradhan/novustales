@@ -18,8 +18,10 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$RoomEntity {
   String get uuid => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
-  DateTime? get createdAt => throw _privateConstructorUsedError;
+  bool? get read => throw _privateConstructorUsedError;
+  String? get createdAt => throw _privateConstructorUsedError;
   String? get lastMessage => throw _privateConstructorUsedError;
+  String? get lastMessageTime => throw _privateConstructorUsedError;
   List<ChatProfileEntity>? get receiverUser =>
       throw _privateConstructorUsedError;
 
@@ -37,8 +39,10 @@ abstract class $RoomEntityCopyWith<$Res> {
   $Res call(
       {String uuid,
       String? name,
-      DateTime? createdAt,
+      bool? read,
+      String? createdAt,
       String? lastMessage,
+      String? lastMessageTime,
       List<ChatProfileEntity>? receiverUser});
 }
 
@@ -57,8 +61,10 @@ class _$RoomEntityCopyWithImpl<$Res, $Val extends RoomEntity>
   $Res call({
     Object? uuid = null,
     Object? name = freezed,
+    Object? read = freezed,
     Object? createdAt = freezed,
     Object? lastMessage = freezed,
+    Object? lastMessageTime = freezed,
     Object? receiverUser = freezed,
   }) {
     return _then(_value.copyWith(
@@ -70,13 +76,21 @@ class _$RoomEntityCopyWithImpl<$Res, $Val extends RoomEntity>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
+      read: freezed == read
+          ? _value.read
+          : read // ignore: cast_nullable_to_non_nullable
+              as bool?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       lastMessage: freezed == lastMessage
           ? _value.lastMessage
           : lastMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastMessageTime: freezed == lastMessageTime
+          ? _value.lastMessageTime
+          : lastMessageTime // ignore: cast_nullable_to_non_nullable
               as String?,
       receiverUser: freezed == receiverUser
           ? _value.receiverUser
@@ -97,8 +111,10 @@ abstract class _$$RoomEntityImplCopyWith<$Res>
   $Res call(
       {String uuid,
       String? name,
-      DateTime? createdAt,
+      bool? read,
+      String? createdAt,
       String? lastMessage,
+      String? lastMessageTime,
       List<ChatProfileEntity>? receiverUser});
 }
 
@@ -115,8 +131,10 @@ class __$$RoomEntityImplCopyWithImpl<$Res>
   $Res call({
     Object? uuid = null,
     Object? name = freezed,
+    Object? read = freezed,
     Object? createdAt = freezed,
     Object? lastMessage = freezed,
+    Object? lastMessageTime = freezed,
     Object? receiverUser = freezed,
   }) {
     return _then(_$RoomEntityImpl(
@@ -128,13 +146,21 @@ class __$$RoomEntityImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
+      read: freezed == read
+          ? _value.read
+          : read // ignore: cast_nullable_to_non_nullable
+              as bool?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       lastMessage: freezed == lastMessage
           ? _value.lastMessage
           : lastMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastMessageTime: freezed == lastMessageTime
+          ? _value.lastMessageTime
+          : lastMessageTime // ignore: cast_nullable_to_non_nullable
               as String?,
       receiverUser: freezed == receiverUser
           ? _value._receiverUser
@@ -150,8 +176,10 @@ class _$RoomEntityImpl implements _RoomEntity {
   const _$RoomEntityImpl(
       {required this.uuid,
       this.name,
+      this.read,
       this.createdAt,
       this.lastMessage,
+      this.lastMessageTime,
       final List<ChatProfileEntity>? receiverUser})
       : _receiverUser = receiverUser;
 
@@ -160,9 +188,13 @@ class _$RoomEntityImpl implements _RoomEntity {
   @override
   final String? name;
   @override
-  final DateTime? createdAt;
+  final bool? read;
+  @override
+  final String? createdAt;
   @override
   final String? lastMessage;
+  @override
+  final String? lastMessageTime;
   final List<ChatProfileEntity>? _receiverUser;
   @override
   List<ChatProfileEntity>? get receiverUser {
@@ -175,7 +207,7 @@ class _$RoomEntityImpl implements _RoomEntity {
 
   @override
   String toString() {
-    return 'RoomEntity(uuid: $uuid, name: $name, createdAt: $createdAt, lastMessage: $lastMessage, receiverUser: $receiverUser)';
+    return 'RoomEntity(uuid: $uuid, name: $name, read: $read, createdAt: $createdAt, lastMessage: $lastMessage, lastMessageTime: $lastMessageTime, receiverUser: $receiverUser)';
   }
 
   @override
@@ -185,17 +217,27 @@ class _$RoomEntityImpl implements _RoomEntity {
             other is _$RoomEntityImpl &&
             (identical(other.uuid, uuid) || other.uuid == uuid) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.read, read) || other.read == read) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.lastMessage, lastMessage) ||
                 other.lastMessage == lastMessage) &&
+            (identical(other.lastMessageTime, lastMessageTime) ||
+                other.lastMessageTime == lastMessageTime) &&
             const DeepCollectionEquality()
                 .equals(other._receiverUser, _receiverUser));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, uuid, name, createdAt,
-      lastMessage, const DeepCollectionEquality().hash(_receiverUser));
+  int get hashCode => Object.hash(
+      runtimeType,
+      uuid,
+      name,
+      read,
+      createdAt,
+      lastMessage,
+      lastMessageTime,
+      const DeepCollectionEquality().hash(_receiverUser));
 
   @JsonKey(ignore: true)
   @override
@@ -208,8 +250,10 @@ abstract class _RoomEntity implements RoomEntity {
   const factory _RoomEntity(
       {required final String uuid,
       final String? name,
-      final DateTime? createdAt,
+      final bool? read,
+      final String? createdAt,
       final String? lastMessage,
+      final String? lastMessageTime,
       final List<ChatProfileEntity>? receiverUser}) = _$RoomEntityImpl;
 
   @override
@@ -217,9 +261,13 @@ abstract class _RoomEntity implements RoomEntity {
   @override
   String? get name;
   @override
-  DateTime? get createdAt;
+  bool? get read;
+  @override
+  String? get createdAt;
   @override
   String? get lastMessage;
+  @override
+  String? get lastMessageTime;
   @override
   List<ChatProfileEntity>? get receiverUser;
   @override

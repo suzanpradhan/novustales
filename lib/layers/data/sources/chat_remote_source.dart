@@ -21,6 +21,8 @@ abstract class ChatRemoteSource {
 
   Future<Either<Failure, bool>> sendMessage(
       {required SendMessageParams params});
+  Future<Either<Failure, bool>> readMessage(
+      {required SendMessageParams params});
 }
 
 class ChatRemoteSourceImpl implements ChatRemoteSource {
@@ -48,17 +50,35 @@ class ChatRemoteSourceImpl implements ChatRemoteSource {
           final lastMessage = await supabaseService.client
               .from("messages")
               .select("content")
+              .eq("room_id", contact.id)
               .order("created_at", ascending: false)
               .limit(1);
+          final lastMessageTime = await supabaseService.client
+              .from("messages")
+              .select("created_at")
+              .eq("room_id", contact.id)
+              .order("created_at", ascending: false)
+              .limit(1);
+
+          final unReadMessages = await supabaseService.client
+              .from("messages")
+              .select("content")
+              .eq("room_id", contact.id)
+              .eq("read", false)
+              .order("created_at", ascending: false);
 
           if (receiverUserData.isNotEmpty) {
             newContacts.add(contact.copyWith(
                 lastMessage: lastMessage[0]['content'],
+                read: unReadMessages.isEmpty ? true : false,
+                createdAt: lastMessageTime[0]['created_at'],
                 receiverUser: receiverUserData
                     .map((user) => ChatUser.fromJson(user["profiles"]))
                     .toList()));
           }
         }
+        log("_>>>>>>>>>>>>>>>>>>>>>>>>>>>> $newContacts ");
+
         return newContacts;
       } else {
         log("_>>>>>>>>>>>>>>>>>>>>>>>>>>>> no user found");
@@ -101,9 +121,25 @@ class ChatRemoteSourceImpl implements ChatRemoteSource {
       {required SendMessageParams params}) async {
     try {
       await supabaseService.client.from("messages").insert(params.toJson());
+      await supabaseService.client.from("messages").insert(params.toJson());
+
       return const Right(true);
     } catch (e) {
       log(e.toString());
+      return const Left(ServerFailure(message: 'Failed to send message.'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> readMessage(
+      {required SendMessageParams params}) async {
+    try {
+      await supabaseService.client
+          .from("messages")
+          .update({'read': true}).eq("room_id", params.roomId);
+      return const Right(true);
+    } catch (e) {
+      log("read message error: ${e.toString()}");
       return const Left(ServerFailure(message: 'Failed to send message.'));
     }
   }

@@ -26,6 +26,8 @@ mixin _$MessageModel {
   @JsonKey(name: "room_id")
   String get roomId => throw _privateConstructorUsedError;
   String? get content => throw _privateConstructorUsedError;
+  @JsonKey(name: "created_at")
+  String? get createdAt => throw _privateConstructorUsedError;
   bool? get read => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -44,6 +46,7 @@ abstract class $MessageModelCopyWith<$Res> {
       @JsonKey(name: "profile_id") String profileId,
       @JsonKey(name: "room_id") String roomId,
       String? content,
+      @JsonKey(name: "created_at") String? createdAt,
       bool? read});
 }
 
@@ -64,6 +67,7 @@ class _$MessageModelCopyWithImpl<$Res, $Val extends MessageModel>
     Object? profileId = null,
     Object? roomId = null,
     Object? content = freezed,
+    Object? createdAt = freezed,
     Object? read = freezed,
   }) {
     return _then(_value.copyWith(
@@ -82,6 +86,10 @@ class _$MessageModelCopyWithImpl<$Res, $Val extends MessageModel>
       content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
               as String?,
       read: freezed == read
           ? _value.read
@@ -104,6 +112,7 @@ abstract class _$$MessageModelImplCopyWith<$Res>
       @JsonKey(name: "profile_id") String profileId,
       @JsonKey(name: "room_id") String roomId,
       String? content,
+      @JsonKey(name: "created_at") String? createdAt,
       bool? read});
 }
 
@@ -122,6 +131,7 @@ class __$$MessageModelImplCopyWithImpl<$Res>
     Object? profileId = null,
     Object? roomId = null,
     Object? content = freezed,
+    Object? createdAt = freezed,
     Object? read = freezed,
   }) {
     return _then(_$MessageModelImpl(
@@ -141,6 +151,10 @@ class __$$MessageModelImplCopyWithImpl<$Res>
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
               as String?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
       read: freezed == read
           ? _value.read
           : read // ignore: cast_nullable_to_non_nullable
@@ -157,6 +171,7 @@ class _$MessageModelImpl extends _MessageModel {
       @JsonKey(name: "profile_id") required this.profileId,
       @JsonKey(name: "room_id") required this.roomId,
       this.content,
+      @JsonKey(name: "created_at") this.createdAt,
       this.read})
       : super._();
 
@@ -174,11 +189,14 @@ class _$MessageModelImpl extends _MessageModel {
   @override
   final String? content;
   @override
+  @JsonKey(name: "created_at")
+  final String? createdAt;
+  @override
   final bool? read;
 
   @override
   String toString() {
-    return 'MessageModel(id: $id, profileId: $profileId, roomId: $roomId, content: $content, read: $read)';
+    return 'MessageModel(id: $id, profileId: $profileId, roomId: $roomId, content: $content, createdAt: $createdAt, read: $read)';
   }
 
   @override
@@ -191,13 +209,15 @@ class _$MessageModelImpl extends _MessageModel {
                 other.profileId == profileId) &&
             (identical(other.roomId, roomId) || other.roomId == roomId) &&
             (identical(other.content, content) || other.content == content) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
             (identical(other.read, read) || other.read == read));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, profileId, roomId, content, read);
+      Object.hash(runtimeType, id, profileId, roomId, content, createdAt, read);
 
   @JsonKey(ignore: true)
   @override
@@ -212,6 +232,7 @@ abstract class _MessageModel extends MessageModel {
       @JsonKey(name: "profile_id") required final String profileId,
       @JsonKey(name: "room_id") required final String roomId,
       final String? content,
+      @JsonKey(name: "created_at") final String? createdAt,
       final bool? read}) = _$MessageModelImpl;
   const _MessageModel._() : super._();
 
@@ -228,6 +249,9 @@ abstract class _MessageModel extends MessageModel {
   String get roomId;
   @override
   String? get content;
+  @override
+  @JsonKey(name: "created_at")
+  String? get createdAt;
   @override
   bool? get read;
   @override

@@ -16,6 +16,7 @@ class MessageModel with _$MessageModel {
       @JsonKey(name: "profile_id") required String profileId,
       @JsonKey(name: "room_id") required String roomId,
       String? content,
+      @JsonKey(name: "created_at") String? createdAt,
       bool? read}) = _MessageModel;
 
   factory MessageModel.fromJson(Map<String, dynamic> json) =>
@@ -26,5 +27,6 @@ class MessageModel with _$MessageModel {
       profileId: profileId,
       read: read,
       roomId: roomId,
+      createdAt: createdAt,
       content: content);
 }

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -24,8 +22,6 @@ class SearchStoriesBloc extends Bloc<SearchStoriesEvent, SearchStoriesState> {
       (event, emit) async {
         if (state.categoryNames.value == null ||
             !state.categoryNames.value!.contains(event.categoryName)) {
-          log("here");
-
           emit(state.copyWith(
               categoryNames: ArrayInput.dirty(
                   [...state.categoryNames.value ?? [], event.categoryName])));

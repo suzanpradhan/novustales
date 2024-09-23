@@ -40,10 +40,12 @@ import '../layers/domain/repositories/chat_repository.dart';
 import '../layers/domain/usecases/chat/check_or_create_profile.dart';
 import '../layers/domain/usecases/chat/get_rooms.dart';
 import '../layers/domain/usecases/chat/message_stream.dart';
+import '../layers/domain/usecases/chat/read_message.dart';
 import '../layers/domain/usecases/chat/send_message.dart';
 import '../layers/domain/usecases/feed/get_categories.dart';
 import '../layers/domain/usecases/feed/get_stories.dart';
 import '../layers/presentation/chat/blocs/chat_rooms/chat_rooms_bloc.dart';
+import '../layers/presentation/chat/blocs/read_message/read_message_bloc.dart';
 import '../layers/presentation/chat/blocs/send_message/send_message_bloc.dart';
 import '../layers/presentation/feed/blocs/get_categories/get_categories_bloc.dart';
 import '../layers/presentation/feed/blocs/get_stories/get_stories_bloc.dart';
@@ -141,6 +143,7 @@ void _useCase() {
   sl.registerLazySingleton(() => CheckOrCreateProfile(sl()));
   sl.registerLazySingleton(() => SendMessage(sl()));
   sl.registerLazySingleton(() => MessageStream(sl()));
+  sl.registerLazySingleton(() => ReadMessage(sl()));
 }
 
 void _blocs() {
@@ -160,4 +163,5 @@ void _blocs() {
   sl.registerFactory(() => SearchStoriesBloc(sl()));
   sl.registerFactory(() => ChatRoomsBloc(sl()));
   sl.registerFactory(() => SendMessageBloc(sl()));
+  sl.registerFactory(() => ReadMessageBloc(sl()));
 }

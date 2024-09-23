@@ -20,6 +20,7 @@ mixin _$MessageEntity {
   String get profileId => throw _privateConstructorUsedError;
   String get roomId => throw _privateConstructorUsedError;
   String? get content => throw _privateConstructorUsedError;
+  String? get createdAt => throw _privateConstructorUsedError;
   bool? get read => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -38,6 +39,7 @@ abstract class $MessageEntityCopyWith<$Res> {
       String profileId,
       String roomId,
       String? content,
+      String? createdAt,
       bool? read});
 }
 
@@ -58,6 +60,7 @@ class _$MessageEntityCopyWithImpl<$Res, $Val extends MessageEntity>
     Object? profileId = null,
     Object? roomId = null,
     Object? content = freezed,
+    Object? createdAt = freezed,
     Object? read = freezed,
   }) {
     return _then(_value.copyWith(
@@ -76,6 +79,10 @@ class _$MessageEntityCopyWithImpl<$Res, $Val extends MessageEntity>
       content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
               as String?,
       read: freezed == read
           ? _value.read
@@ -98,6 +105,7 @@ abstract class _$$MessageEntityImplCopyWith<$Res>
       String profileId,
       String roomId,
       String? content,
+      String? createdAt,
       bool? read});
 }
 
@@ -116,6 +124,7 @@ class __$$MessageEntityImplCopyWithImpl<$Res>
     Object? profileId = null,
     Object? roomId = null,
     Object? content = freezed,
+    Object? createdAt = freezed,
     Object? read = freezed,
   }) {
     return _then(_$MessageEntityImpl(
@@ -135,6 +144,10 @@ class __$$MessageEntityImplCopyWithImpl<$Res>
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
               as String?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
       read: freezed == read
           ? _value.read
           : read // ignore: cast_nullable_to_non_nullable
@@ -151,6 +164,7 @@ class _$MessageEntityImpl implements _MessageEntity {
       required this.profileId,
       required this.roomId,
       this.content,
+      this.createdAt,
       this.read});
 
   @override
@@ -162,11 +176,13 @@ class _$MessageEntityImpl implements _MessageEntity {
   @override
   final String? content;
   @override
+  final String? createdAt;
+  @override
   final bool? read;
 
   @override
   String toString() {
-    return 'MessageEntity(id: $id, profileId: $profileId, roomId: $roomId, content: $content, read: $read)';
+    return 'MessageEntity(id: $id, profileId: $profileId, roomId: $roomId, content: $content, createdAt: $createdAt, read: $read)';
   }
 
   @override
@@ -179,12 +195,14 @@ class _$MessageEntityImpl implements _MessageEntity {
                 other.profileId == profileId) &&
             (identical(other.roomId, roomId) || other.roomId == roomId) &&
             (identical(other.content, content) || other.content == content) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
             (identical(other.read, read) || other.read == read));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, profileId, roomId, content, read);
+      Object.hash(runtimeType, id, profileId, roomId, content, createdAt, read);
 
   @JsonKey(ignore: true)
   @override
@@ -199,6 +217,7 @@ abstract class _MessageEntity implements MessageEntity {
       required final String profileId,
       required final String roomId,
       final String? content,
+      final String? createdAt,
       final bool? read}) = _$MessageEntityImpl;
 
   @override
@@ -209,6 +228,8 @@ abstract class _MessageEntity implements MessageEntity {
   String get roomId;
   @override
   String? get content;
+  @override
+  String? get createdAt;
   @override
   bool? get read;
   @override

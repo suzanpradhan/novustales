@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../layers/data/models/chat/room_response.dart';
@@ -35,8 +33,6 @@ class SupabaseService {
 
   Future<List<RoomModel>> getMyContacts(
       {int? page, int? size, required String uuid}) async {
-    log("rooms logs");
-
     final paginationRange = getPagination(page: page, size: size);
     final rooms = await client.from("rooms").select(
           'id, name, members!inner(*)',

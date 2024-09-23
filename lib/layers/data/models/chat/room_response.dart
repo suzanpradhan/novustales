@@ -14,8 +14,9 @@ class RoomModel with _$RoomModel {
   const factory RoomModel({
     required String id,
     String? name,
-    DateTime? createdAt,
     @JsonKey(includeFromJson: false) String? lastMessage,
+    @JsonKey(includeFromJson: false) bool? read,
+    @JsonKey(includeFromJson: false) String? createdAt,
     @JsonKey(includeFromJson: false) List<ChatUser>? receiverUser,
   }) = _RoomModel;
 
@@ -27,8 +28,9 @@ class RoomModel with _$RoomModel {
   RoomEntity toEntity() => RoomEntity(
       uuid: id,
       name: name,
-      createdAt: createdAt,
+      read: read,
       lastMessage: lastMessage,
+      lastMessageTime: createdAt,
       receiverUser: receiverUser
           ?.map((item) => ChatProfileEntity(
               id: item.id,

@@ -40,4 +40,10 @@ class ChatRepositoryImpl extends ChatRepository {
       SendMessageParams sendMessageParams) {
     return chatRemoteSource.sendMessage(params: sendMessageParams);
   }
+
+  @override
+  Future<Either<Failure, bool>> readMessage(
+      SendMessageParams sendMessageParams) {
+    return chatRemoteSource.readMessage(params: sendMessageParams);
+  }
 }

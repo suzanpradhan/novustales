@@ -14,4 +14,6 @@ abstract class ChatRepository {
   Stream<List<MessageEntity>> messageStream(GetStreamParams getStreamParams);
   Future<Either<Failure, bool>> sendMessage(
       SendMessageParams sendMessageParams);
+  Future<Either<Failure, bool>> readMessage(
+      SendMessageParams sendMessageParams);
 }

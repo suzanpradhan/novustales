@@ -22,9 +22,12 @@ RoomModel _$RoomModelFromJson(Map<String, dynamic> json) {
 mixin _$RoomModel {
   String get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
-  DateTime? get createdAt => throw _privateConstructorUsedError;
   @JsonKey(includeFromJson: false)
   String? get lastMessage => throw _privateConstructorUsedError;
+  @JsonKey(includeFromJson: false)
+  bool? get read => throw _privateConstructorUsedError;
+  @JsonKey(includeFromJson: false)
+  String? get createdAt => throw _privateConstructorUsedError;
   @JsonKey(includeFromJson: false)
   List<ChatUser>? get receiverUser => throw _privateConstructorUsedError;
 
@@ -41,8 +44,9 @@ abstract class $RoomModelCopyWith<$Res> {
   $Res call(
       {String id,
       String? name,
-      DateTime? createdAt,
       @JsonKey(includeFromJson: false) String? lastMessage,
+      @JsonKey(includeFromJson: false) bool? read,
+      @JsonKey(includeFromJson: false) String? createdAt,
       @JsonKey(includeFromJson: false) List<ChatUser>? receiverUser});
 }
 
@@ -61,8 +65,9 @@ class _$RoomModelCopyWithImpl<$Res, $Val extends RoomModel>
   $Res call({
     Object? id = null,
     Object? name = freezed,
-    Object? createdAt = freezed,
     Object? lastMessage = freezed,
+    Object? read = freezed,
+    Object? createdAt = freezed,
     Object? receiverUser = freezed,
   }) {
     return _then(_value.copyWith(
@@ -74,13 +79,17 @@ class _$RoomModelCopyWithImpl<$Res, $Val extends RoomModel>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
       lastMessage: freezed == lastMessage
           ? _value.lastMessage
           : lastMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      read: freezed == read
+          ? _value.read
+          : read // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
               as String?,
       receiverUser: freezed == receiverUser
           ? _value.receiverUser
@@ -101,8 +110,9 @@ abstract class _$$RoomModelImplCopyWith<$Res>
   $Res call(
       {String id,
       String? name,
-      DateTime? createdAt,
       @JsonKey(includeFromJson: false) String? lastMessage,
+      @JsonKey(includeFromJson: false) bool? read,
+      @JsonKey(includeFromJson: false) String? createdAt,
       @JsonKey(includeFromJson: false) List<ChatUser>? receiverUser});
 }
 
@@ -119,8 +129,9 @@ class __$$RoomModelImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = freezed,
-    Object? createdAt = freezed,
     Object? lastMessage = freezed,
+    Object? read = freezed,
+    Object? createdAt = freezed,
     Object? receiverUser = freezed,
   }) {
     return _then(_$RoomModelImpl(
@@ -132,13 +143,17 @@ class __$$RoomModelImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
       lastMessage: freezed == lastMessage
           ? _value.lastMessage
           : lastMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      read: freezed == read
+          ? _value.read
+          : read // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
               as String?,
       receiverUser: freezed == receiverUser
           ? _value._receiverUser
@@ -154,8 +169,9 @@ class _$RoomModelImpl extends _RoomModel {
   const _$RoomModelImpl(
       {required this.id,
       this.name,
-      this.createdAt,
       @JsonKey(includeFromJson: false) this.lastMessage,
+      @JsonKey(includeFromJson: false) this.read,
+      @JsonKey(includeFromJson: false) this.createdAt,
       @JsonKey(includeFromJson: false) final List<ChatUser>? receiverUser})
       : _receiverUser = receiverUser,
         super._();
@@ -168,10 +184,14 @@ class _$RoomModelImpl extends _RoomModel {
   @override
   final String? name;
   @override
-  final DateTime? createdAt;
-  @override
   @JsonKey(includeFromJson: false)
   final String? lastMessage;
+  @override
+  @JsonKey(includeFromJson: false)
+  final bool? read;
+  @override
+  @JsonKey(includeFromJson: false)
+  final String? createdAt;
   final List<ChatUser>? _receiverUser;
   @override
   @JsonKey(includeFromJson: false)
@@ -185,7 +205,7 @@ class _$RoomModelImpl extends _RoomModel {
 
   @override
   String toString() {
-    return 'RoomModel(id: $id, name: $name, createdAt: $createdAt, lastMessage: $lastMessage, receiverUser: $receiverUser)';
+    return 'RoomModel(id: $id, name: $name, lastMessage: $lastMessage, read: $read, createdAt: $createdAt, receiverUser: $receiverUser)';
   }
 
   @override
@@ -195,18 +215,19 @@ class _$RoomModelImpl extends _RoomModel {
             other is _$RoomModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
             (identical(other.lastMessage, lastMessage) ||
                 other.lastMessage == lastMessage) &&
+            (identical(other.read, read) || other.read == read) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
             const DeepCollectionEquality()
                 .equals(other._receiverUser, _receiverUser));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, createdAt, lastMessage,
-      const DeepCollectionEquality().hash(_receiverUser));
+  int get hashCode => Object.hash(runtimeType, id, name, lastMessage, read,
+      createdAt, const DeepCollectionEquality().hash(_receiverUser));
 
   @JsonKey(ignore: true)
   @override
@@ -219,8 +240,9 @@ abstract class _RoomModel extends RoomModel {
   const factory _RoomModel(
       {required final String id,
       final String? name,
-      final DateTime? createdAt,
       @JsonKey(includeFromJson: false) final String? lastMessage,
+      @JsonKey(includeFromJson: false) final bool? read,
+      @JsonKey(includeFromJson: false) final String? createdAt,
       @JsonKey(includeFromJson: false)
       final List<ChatUser>? receiverUser}) = _$RoomModelImpl;
   const _RoomModel._() : super._();
@@ -233,10 +255,14 @@ abstract class _RoomModel extends RoomModel {
   @override
   String? get name;
   @override
-  DateTime? get createdAt;
-  @override
   @JsonKey(includeFromJson: false)
   String? get lastMessage;
+  @override
+  @JsonKey(includeFromJson: false)
+  bool? get read;
+  @override
+  @JsonKey(includeFromJson: false)
+  String? get createdAt;
   @override
   @JsonKey(includeFromJson: false)
   List<ChatUser>? get receiverUser;
