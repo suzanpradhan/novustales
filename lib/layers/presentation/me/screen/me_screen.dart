@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:storyv2/core/constants/app_colors.dart';
-import 'package:storyv2/core/constants/app_icons.dart';
-import 'package:storyv2/core/constants/ui_constants.dart';
-import 'package:storyv2/core/presentation/ui/number_to_string.dart';
-import 'package:storyv2/layers/presentation/me/bloc/profile_bloc/get_profile_bloc.dart';
-import 'package:storyv2/layers/presentation/me/screen/bookmarks_page.dart';
-import 'package:storyv2/layers/presentation/me/screen/story_page.dart';
 
+import '../../../../core/constants/app_colors.dart';
+import '../../../../core/constants/app_icons.dart';
+import '../../../../core/constants/assets.dart';
 import '../../../../core/presentation/ui/spacer.dart';
+import '../../../../core/presentation/widgets/simple_button.dart';
+import '../bloc/profile_bloc/get_profile_bloc.dart';
 import '../widgets/profile_tabs.dart';
+import '../widgets/shimmer/profile_shimmer.dart';
 import '../widgets/user_info_widget.dart';
+import 'bookmarks_page.dart';
+import 'story_page.dart';
 
 class MeScreen extends StatefulWidget {
   const MeScreen({super.key});
@@ -36,9 +37,9 @@ class _MeScreenState extends State<MeScreen> {
         title: Text(
           'Profile',
           style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontFamily: 'SatoshiBold',
-              fontSize: 16),
+            fontFamily: 'UberBold',
+            fontSize: 16,
+          ),
         ),
         actions: [
           IconButton(
@@ -52,150 +53,187 @@ class _MeScreenState extends State<MeScreen> {
         scrollDirection: Axis.vertical,
         child: BlocBuilder<GetProfileBloc, GetProfileState>(
           builder: (context, state) {
-            return state.whenOrNull(
-                  failed: (message) {
+            return state.mapOrNull(
+                  loading: (value) => ProfileShimmer(),
+                  failed: (value) {
                     return Container(
                       color: AppColors.black,
                       child: Center(
                         child: Text(
-                          message,
+                          value.message,
                           style: TextStyle(color: AppColors.white),
                         ),
                       ),
                     );
                   },
-                  success: (profile) {
+                  success: (value) {
                     return Column(
                       children: [
-                        SizedBox(height: 20),
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: UIConstants.padding),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                        Gapper.cardPadding(
+                          child: Column(
                             children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    border: Border.all(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .onSecondary,
-                                        width: UIConstants.borderWidth)),
-                                child: CircleAvatar(
-                                  radius: 40,
-                                  backgroundColor: Colors.grey,
-                                  backgroundImage: NetworkImage(profile.avatar),
-                                ),
-                              ),
-                              SizedBox(width: UIConstants.minPadding),
-                              Expanded(
-                                flex: 1,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: UIConstants.xminPadding),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        '${profile.firstName} ${profile.lastName}',
-                                        style: TextStyle(
-                                          fontFamily: 'Raleway',
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 16,
-                                          color: Color(0xff27282D),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Expanded(
+                                    child: Row(
+                                      children: [
+                                        Stack(
+                                          alignment: Alignment.center,
+                                          children: [
+                                            Container(
+                                              width: 90,
+                                              height: 90,
+                                              decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                border: Border.all(
+                                                  color: AppColors.purpleAccent,
+                                                  width: 2,
+                                                ),
+                                              ),
+                                            ),
+                                            // Circular image inside the border
+                                            Container(
+                                              width:
+                                                  84, // Image size (should be slightly smaller than the outer border)
+                                              height: 84,
+                                              clipBehavior: Clip.hardEdge,
+                                              decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                              ),
+                                              child: Image.asset(Assets.test,
+                                                  fit: BoxFit.cover),
+                                            ),
+                                          ],
                                         ),
-                                      ),
-                                      Text(
-                                        '@${profile.nickName}',
-                                        style: TextStyle(
-                                          fontFamily: 'Raleway',
-                                          fontWeight: FontWeight.normal,
-                                          fontSize: 14,
-                                          color: Color(0xff4E4E4E),
+                                        Gapper.hGap(),
+                                        Expanded(
+                                          child: Row(
+                                            children: [
+                                              Expanded(
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      "${value.me.firstName} ${value.me.lastName}",
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyMedium!
+                                                          .copyWith(
+                                                            color:
+                                                                AppColors.black,
+                                                            fontFamily:
+                                                                'RalewayBold',
+                                                          ),
+                                                    ),
+                                                    if (value.me.nickName != "")
+                                                      Text(
+                                                        "@${value.me.nickName}",
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium!
+                                                            .copyWith(
+                                                              color: AppColors
+                                                                  .grayDark,
+                                                              fontFamily:
+                                                                  'RalewayRegular',
+                                                            ),
+                                                      ),
+                                                    Gapper.v2xmGap(),
+                                                    Text(
+                                                      "Entrepreneur",
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodySmall!
+                                                          .copyWith(
+                                                            color:
+                                                                AppColors.dark,
+                                                            fontFamily:
+                                                                'RalewayRegular',
+                                                          ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                      SizedBox(
-                                          height: UIConstants.x2minPadding),
-                                      Text(
-                                        'Sorcerer',
-                                        style: TextStyle(
-                                          fontFamily: 'Raleway',
-                                          fontWeight: FontWeight.normal,
-                                          fontSize: 12,
-                                          color: Color(0xff0e0e0e),
-                                        ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
-                                ),
+                                  SimpleButton(
+                                    buttonLabel: "Login",
+                                    label: Text(
+                                      "Edit Profile",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium!
+                                          .copyWith(
+                                            color: AppColors.dark,
+                                          ),
+                                    ),
+                                    height: 36,
+                                    isFilled: true,
+                                    fillColor:
+                                        AppColors.greyWhite.withOpacity(.5),
+                                    alignment: MainAxisAlignment.center,
+                                    handleTap: () {},
+                                  ),
+                                ],
                               ),
-                              SizedBox(width: UIConstants.minPadding),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    top: UIConstants.xminPadding),
-                                child: InkWell(
-                                  onTap: () {},
-                                  child: Container(
-                                    height: 35,
-                                    padding:
-                                        EdgeInsets.all(UIConstants.minPadding),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(
-                                          UIConstants.minBorderRadius),
-                                      color: AppColors.greyAccent,
-                                    ),
-                                    child: Text(
-                                      'Edit Profile',
-                                      style: TextStyle(
-                                        fontFamily: 'Satoshi',
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.normal,
-                                        color: AppColors.dark,
+                              Gapper.vGap(),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: userInfo.map(
+                                  (info) {
+                                    return UserInfoCard(
+                                      title: info['title'],
+                                      count: info['count'],
+                                    );
+                                  },
+                                ).toList(),
+                              ),
+                              Gapper.vGap(),
+                              SizedBox(
+                                child: RichText(
+                                  text: TextSpan(
+                                    children: [
+                                      TextSpan(
+                                        text:
+                                            "Entrepreneur | Innovator | [Industry/Field] Enthusiast | Turning ideas into success stories. 🚀 ",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .labelSmall!
+                                            .copyWith(
+                                              fontFamily: "SatoshiRegular",
+                                              color: AppColors.dark,
+                                            ),
                                       ),
-                                    ),
+                                      TextSpan(
+                                        text: "#StartupLife #Innovation",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .labelSmall!
+                                            .copyWith(
+                                              fontFamily: "SatoshiBold",
+                                              color: AppColors.purpleAccent,
+                                            ),
+                                      )
+                                    ],
                                   ),
                                 ),
                               )
                             ],
                           ),
                         ),
-                        Gapper.vmxGap(),
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: UIConstants.padding),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              UserInfoCard(
-                                title: 'posts',
-                                num: numberToString(profile.numberOfStories),
-                              ),
-                              UserInfoCard(
-                                title: 'followers',
-                                num: numberToString(1000000),
-                              ),
-                              UserInfoCard(
-                                title: 'following',
-                                num: numberToString(4200),
-                              ),
-                            ],
-                          ),
+                        Divider(
+                          height: 0.0,
+                          thickness: 2,
+                          color: AppColors.greyWhite.withOpacity(.6),
                         ),
-                        Gapper.vmxGap(),
-                        Gapper.screenPadding(
-                          child: RichText(
-                            text: TextSpan(
-                                text: profile.bio,
-                                style: Theme.of(context).textTheme.bodySmall),
-                          ),
-                        ),
-                        Gapper.vmxGap(),
-                        // Text(profile.bio ?? ''),
-                        Divider(),
                         SizedBox(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -204,28 +242,40 @@ class _MeScreenState extends State<MeScreen> {
                                 currentTab: currentTab,
                                 tabKey: 'stories',
                                 onChange: changeTab,
-                                icon: AppIcons.film,
+                                icon: Icon(
+                                  AppIcons.film,
+                                  size: 24,
+                                ),
                               ),
                               ProfileTabs(
                                 currentTab: currentTab,
                                 tabKey: 'bookmarks',
                                 onChange: changeTab,
-                                icon: AppIcons.bookmarks,
+                                icon: Icon(
+                                  AppIcons.bookmarks,
+                                  size: 24,
+                                ),
                               ),
                             ],
                           ),
                         ),
                         currentTab == 'bookmarks'
                             ? BookmarksPage()
-                            : MyStoryPage(stories: profile.stories),
+                            : MyStoryPage(),
                       ],
                     );
                   },
                 ) ??
-                Container();
+                SizedBox();
           },
         ),
       ),
     );
   }
 }
+
+List<Map<String, dynamic>> userInfo = [
+  {'title': 'posts', 'count': 3},
+  {'title': 'followers', 'count': 1000000},
+  {'title': 'following', 'count': 42000},
+];

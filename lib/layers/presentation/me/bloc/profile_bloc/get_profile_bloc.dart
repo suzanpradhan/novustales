@@ -19,7 +19,7 @@ class GetProfileBloc extends Bloc<GetProfileEvent, GetProfileState> {
         response.fold((l) {
           emit(_Failed(message: l.toString()));
         }, (r) {
-          emit(_Success(story: r));
+          emit(_Success(me: r));
         });
       } catch (e) {
         emit(_Failed(message: e.toString()));

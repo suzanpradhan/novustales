@@ -207,9 +207,27 @@ flutter:
         - asset: assets/fonts/inter/Inter-Regular.ttf
         - asset: assets/fonts/inter/Inter-SemiBold.ttf
         - asset: assets/fonts/inter/Inter-Thin.ttf
+
+#   fonts:
+    - family: UberLight
+      fonts:
+        - asset: assets/fonts/Uber/Uber-Light.ttf
+    - family: UberRegular
+      fonts:
+        - asset: assets/fonts/Uber/Uber-Regular.ttf
+    - family: UberMedium
+      fonts:
+        - asset: assets/fonts/Uber/Uber-Medium.ttf
+    - family: UberBold
+      fonts:
+        - asset: assets/fonts/Uber/Uber-Bold.ttf
+
     - family: SatoshiRegular
       fonts:
         - asset: assets/fonts/Satoshi/Satoshi-Regular.otf
+    - family: SatoshiMedium
+      fonts:
+        - asset: assets/fonts/Satoshi/Satoshi-Medium.otf
     - family: SatoshiBold
       fonts:
         - asset: assets/fonts/Satoshi/Satoshi-Bold.otf

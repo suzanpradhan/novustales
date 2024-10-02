@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/constants/ui_constants.dart';
+import '../../../../core/constants/app_colors.dart';
+import '../../../../core/presentation/ui/spacer.dart';
 
 class ProfileTabs extends StatelessWidget {
   const ProfileTabs({
@@ -14,7 +15,7 @@ class ProfileTabs extends StatelessWidget {
   final Function(String)? onChange;
   final String tabKey;
   final String currentTab;
-  final IconData icon;
+  final Icon icon;
 
   @override
   Widget build(BuildContext context) {
@@ -26,21 +27,28 @@ class ProfileTabs extends StatelessWidget {
             onChange!(tabKey);
           }
         },
-        child: Column(
+        child: Stack(
           children: [
-            Icon(
-              icon,
-              size: 24,
+            Gapper.cardPadding(
+              child: Center(child: icon),
             ),
-            SizedBox(height: UIConstants.xminPadding),
             if (currentTab == tabKey)
-              Container(
-                width: 60,
-                height: 2,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.onSecondary,
+              Positioned(
+                bottom: 0,
+                right: 50,
+                left: 50,
+                // child: Container(
+                //   height: 2,
+                //   decoration: BoxDecoration(
+                //     color: Theme.of(context).colorScheme.onSecondary,
+                //   ),
+                // ),
+                child: Divider(
+                  height: 0.0,
+                  thickness: 2,
+                  color: AppColors.purpleAccent,
                 ),
-              ),
+              )
           ],
         ),
       ),

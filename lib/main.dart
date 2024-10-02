@@ -148,7 +148,7 @@ class MyApp extends StatelessWidget {
               tertiary: AppColors.gray,
               onTertiary: AppColors.gray,
               primaryContainer: AppColors.white,
-              secondaryContainer: AppColors.white,
+              secondaryContainer: AppColors.greyWhite,
               outline: AppColors.gray,
               outlineVariant: AppColors.gray,
               inversePrimary: AppColors.white,
@@ -172,19 +172,16 @@ class MyApp extends StatelessWidget {
                     foregroundColor: WidgetStatePropertyAll(AppColors.grayDark),
                     textStyle: WidgetStatePropertyAll(TextStyle(
                         fontSize: 14,
-                        fontFamily: "SatoshiRegular",
+                        fontFamily: "UberRegular",
                         color: Colors.black)))),
             textTheme: const TextTheme(
-              displayLarge: TextStyle(fontSize: 24, fontFamily: "RalewayBold"),
-              displayMedium:
-                  TextStyle(fontSize: 16, fontFamily: "SatoshiRegular"),
-              displaySmall:
-                  TextStyle(fontSize: 12, fontFamily: "SatoshiRegular"),
-              titleMedium:
-                  TextStyle(fontSize: 16, fontFamily: "SatoshiRegular"),
-              bodyLarge: TextStyle(fontSize: 18, fontFamily: "SatoshiRegular"),
-              bodyMedium: TextStyle(fontSize: 16, fontFamily: "SatoshiRegular"),
-              bodySmall: TextStyle(fontSize: 14, fontFamily: "SatoshiRegular"),
+              displayLarge: TextStyle(fontSize: 24, fontFamily: "UberBold"),
+              displayMedium: TextStyle(fontSize: 16, fontFamily: "UberRegular"),
+              displaySmall: TextStyle(fontSize: 12, fontFamily: "UberRegular"),
+              titleMedium: TextStyle(fontSize: 16, fontFamily: "UberRegular"),
+              bodyLarge: TextStyle(fontSize: 18, fontFamily: "UberRegular"),
+              bodyMedium: TextStyle(fontSize: 16, fontFamily: "UberRegular"),
+              bodySmall: TextStyle(fontSize: 14, fontFamily: "UberRegular"),
             )),
         themeAnimationDuration: const Duration(seconds: 3),
         builder: (context, child) => ScrollConfiguration(
