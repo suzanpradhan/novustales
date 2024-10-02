@@ -6,6 +6,8 @@ import 'package:storyv2/core/constants/app_colors.dart';
 import 'package:storyv2/core/routes/app_routes.dart';
 import 'package:storyv2/layers/presentation/bootstrap/app_bloc/app_bloc.dart';
 
+import '../../chat/blocs/chat_rooms/chat_rooms_bloc.dart';
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -24,7 +26,12 @@ class _SplashScreenState extends State<SplashScreen> {
     return MultiBlocProvider(
       providers: [
         BlocProvider.value(
-          value: context.read<AppBloc>()..add(const AppEvent.checkAuthetication()),
+          value: context.read<AppBloc>()
+            ..add(const AppEvent.checkAuthetication()),
+        ),
+        BlocProvider.value(
+          value: context.read<ChatRoomsBloc>()
+            ..add(const ChatRoomsEvent.attempted()),
         ),
       ],
       child: MultiBlocListener(

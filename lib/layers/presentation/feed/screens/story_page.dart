@@ -1,12 +1,15 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:story_view/story_view.dart';
-import 'package:storyv2/core/constants/app_colors.dart';
-import 'package:storyv2/core/constants/ui_constants.dart';
-import 'package:storyv2/core/presentation/ui/time_difference.dart';
 import 'package:storyv2/layers/domain/entities/story_entity.dart';
-import 'package:storyv2/layers/presentation/feed/utils/feed_options.dart';
-import 'package:storyv2/layers/presentation/feed/utils/kwargs.dart';
-import 'package:storyv2/layers/presentation/feed/widgets/feed_info.dart';
+
+import '../../../../core/constants/app_colors.dart';
+import '../../../../core/constants/ui_constants.dart';
+import '../../../../core/presentation/ui/time_difference.dart';
+import '../utils/feed_options.dart';
+import '../utils/kwargs.dart';
+import '../widgets/feed_info.dart';
 
 class StoryPage extends StatefulWidget {
   const StoryPage({
@@ -20,7 +23,8 @@ class StoryPage extends StatefulWidget {
 }
 
 class _StoryPageState extends State<StoryPage> {
-  final StoryController controller = StoryController();
+  StoryController controller = StoryController();
+  final ValueNotifier<bool> isPaused = ValueNotifier(false);
   final List<String> videoFormats = [
     '.m4v',
     '.mp4',
@@ -33,7 +37,16 @@ class _StoryPageState extends State<StoryPage> {
   ];
 
   @override
+  void dispose() {
+    // Dispose of your resources here
+    controller.dispose();
+    isPaused.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    isPaused.value = false;
     final bool isVideo = videoFormats.any(
         (format) => widget.story.media?.toLowerCase().endsWith(format) == true);
     return Stack(
@@ -57,6 +70,51 @@ class _StoryPageState extends State<StoryPage> {
           onComplete: () {},
           progressPosition: ProgressPosition.none,
         ),
+        if (isVideo)
+          InkWell(
+            onTap: () {
+              if (!isPaused.value) {
+                controller.pause();
+              } else {
+                controller.play();
+              }
+              isPaused.value = !isPaused.value;
+            },
+            child: SizedBox(
+              height: double.infinity,
+              width: double.maxFinite,
+              child: ValueListenableBuilder(
+                  valueListenable: isPaused,
+                  builder: (context, value, child) {
+                    return Center(
+                        child: AnimatedOpacity(
+                      duration: Duration(milliseconds: 200),
+                      opacity: value ? 1 : 0,
+                      child: Container(
+                        clipBehavior: Clip.hardEdge,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppColors.grayDark.withOpacity(0.3),
+                        ),
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                                vertical: UIConstants.padding,
+                                horizontal: UIConstants.padding),
+                            child: Icon(
+                              value ? Icons.play_arrow : Icons.pause,
+                              size: 40,
+                              color: AppColors.white,
+                              fill: 1,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ));
+                  }),
+            ),
+          ),
         Positioned(
           bottom: 20,
           left: UIConstants.minPadding,
@@ -88,7 +146,7 @@ class _StoryPageState extends State<StoryPage> {
                             await option.actions!.call(
                               Kwargs(
                                 {
-                                  'title': widget.story.title,
+                                  'title': "${widget.story.title}",
                                   'link': widget.story.media,
                                 },
                               ),
@@ -104,6 +162,8 @@ class _StoryPageState extends State<StoryPage> {
             ],
           ),
         ),
+        if (controller.playbackNotifier.isPaused)
+          Positioned(child: Icon(Icons.play_circle_fill))
       ],
     );
   }

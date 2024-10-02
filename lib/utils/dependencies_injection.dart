@@ -32,12 +32,35 @@ import 'package:storyv2/layers/presentation/tales/blocs/get_tale_intro/get_tale_
 import 'package:storyv2/layers/presentation/tales/blocs/search_tales/search_tales_bloc.dart';
 import 'package:storyv2/utils/secure_storage.dart';
 
+import '../layers/data/repositories/chat_repository_impl.dart';
 import '../layers/data/repositories/tale_repository_impl.dart';
+import '../layers/data/sources/chat_remote_source.dart';
+import '../layers/data/sources/user_source.dart';
+import '../layers/domain/repositories/chat_repository.dart';
+import '../layers/domain/usecases/chat/check_or_create_profile.dart';
+import '../layers/domain/usecases/chat/get_rooms.dart';
+import '../layers/domain/usecases/chat/message_stream.dart';
+import '../layers/domain/usecases/chat/read_message.dart';
+import '../layers/domain/usecases/chat/send_message.dart';
+import '../layers/domain/usecases/feed/get_categories.dart';
+import '../layers/domain/usecases/feed/get_stories.dart';
+import '../layers/presentation/chat/blocs/chat_rooms/chat_rooms_bloc.dart';
+import '../layers/presentation/chat/blocs/read_message/read_message_bloc.dart';
+import '../layers/presentation/chat/blocs/send_message/send_message_bloc.dart';
+import '../layers/presentation/feed/blocs/get_categories/get_categories_bloc.dart';
+import '../layers/presentation/feed/blocs/get_stories/get_stories_bloc.dart';
+import '../layers/presentation/feed/blocs/search_stories/search_stories_bloc.dart';
+import 'services/dotenv_service.dart';
+import 'services/isar_service.dart';
+import 'services/supabase_service.dart';
 
 GetIt sl = GetIt.instance;
 
 Future<void> serviceLocator() async {
+  await _initDotEnv();
   await _initSecureStorage();
+  await _initSupabase();
+  await _initIsar();
   sl.registerSingleton<ApiClient>(ApiClient());
   _dataSources();
   _repositories();
@@ -48,6 +71,21 @@ Future<void> serviceLocator() async {
 Future<void> _initSecureStorage() async {
   await SecureStorageMixin.initSecureStorage();
   sl.registerSingleton<SecureStorageMixin>(SecureStorageMixin());
+}
+
+Future<void> _initDotEnv() async {
+  await EnvironmentService.init();
+  sl.registerSingleton<EnvironmentService>(EnvironmentService());
+}
+
+Future<void> _initIsar() async {
+  await IsarServiceMixin.init();
+  sl.registerSingleton<IsarServiceMixin>(IsarServiceMixin());
+}
+
+Future<void> _initSupabase() async {
+  await SupabaseService.init();
+  sl.registerSingleton<SupabaseService>(SupabaseService());
 }
 
 void _repositories() {
@@ -61,7 +99,11 @@ void _repositories() {
     () => StoryRepositoryImpl(storySource: sl()),
   );
   sl.registerLazySingleton<ProfileRepository>(
-    () => ProfileRepositoryImpl(profileSource: sl()),
+    () => ProfileRepositoryImpl(
+        profileSource: sl(), secureStorageMixin: SecureStorageMixin()),
+  );
+  sl.registerLazySingleton<ChatRepository>(
+    () => ChatRepositoryImpl(sl()),
   );
 }
 
@@ -78,6 +120,12 @@ void _dataSources() {
   sl.registerLazySingleton<ProfileSource>(
     () => ProfileSourceImpl(sl()),
   );
+  sl.registerLazySingleton<ChatRemoteSource>(
+    () => ChatRemoteSourceImpl(sl(), sl()),
+  );
+  sl.registerLazySingleton<UserSource>(
+    () => UserSourceImpl(sl(), sl(), sl()),
+  );
 }
 
 void _useCase() {
@@ -89,12 +137,19 @@ void _useCase() {
   sl.registerLazySingleton(() => GetForMeStory(sl()));
   sl.registerLazySingleton(() => GetTrendingStory(sl()));
   sl.registerLazySingleton(() => GetMyProfile(sl()));
+  sl.registerLazySingleton(() => GetStories(sl()));
+  sl.registerLazySingleton(() => GetCategories(sl()));
+  sl.registerLazySingleton(() => GetRooms(sl()));
+  sl.registerLazySingleton(() => CheckOrCreateProfile(sl()));
+  sl.registerLazySingleton(() => SendMessage(sl()));
+  sl.registerLazySingleton(() => MessageStream(sl()));
+  sl.registerLazySingleton(() => ReadMessage(sl()));
 }
 
 void _blocs() {
   sl.registerFactory(() => InternetCheckerBloc());
   sl.registerFactory(() => AppBloc());
-  sl.registerFactory(() => LoginBloc(sl()));
+  sl.registerFactory(() => LoginBloc(sl(), sl(), sl()));
   sl.registerFactory(() => RegisterBloc(sl()));
   sl.registerFactory(() => GetPopularTalesBloc(sl()));
   sl.registerFactory(() => GetNearMeTalesBloc(sl()));
@@ -103,4 +158,10 @@ void _blocs() {
   sl.registerFactory(() => ForYouStoryBloc(sl()));
   sl.registerFactory(() => TrendingStoryBloc(sl()));
   sl.registerFactory(() => GetProfileBloc(sl()));
+  sl.registerFactory(() => GetStoriesBloc(sl()));
+  sl.registerFactory(() => GetCategoriesBloc(sl()));
+  sl.registerFactory(() => SearchStoriesBloc(sl()));
+  sl.registerFactory(() => ChatRoomsBloc(sl()));
+  sl.registerFactory(() => SendMessageBloc(sl()));
+  sl.registerFactory(() => ReadMessageBloc(sl()));
 }

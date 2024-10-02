@@ -5,18 +5,18 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "tit-tit",
+      "name": "novustales",
       "request": "launch",
       "type": "dart"
     },
     {
-      "name": "tit-tit (profile mode)",
+      "name": "novustales (profile mode)",
       "request": "launch",
       "type": "dart",
       "flutterMode": "profile"
     },
     {
-      "name": "tit-tit (release mode)",
+      "name": "novustales (release mode)",
       "request": "launch",
       "type": "dart",
       "flutterMode": "release"

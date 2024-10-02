@@ -8,6 +8,8 @@ import 'package:storyv2/core/presentation/blocs/internet_checker/internet_checke
 import 'package:storyv2/layers/presentation/auth/login/login_bloc.dart';
 import 'package:storyv2/layers/presentation/auth/register/register_bloc.dart';
 import 'package:storyv2/layers/presentation/bootstrap/app_bloc/app_bloc.dart';
+import 'package:storyv2/layers/presentation/chat/blocs/chat_rooms/chat_rooms_bloc.dart';
+import 'package:storyv2/layers/presentation/chat/blocs/read_message/read_message_bloc.dart';
 import 'package:storyv2/layers/presentation/feed/blocs/for_you_story/for_you_story_bloc.dart';
 import 'package:storyv2/layers/presentation/feed/blocs/trending_story/trending_story_bloc.dart';
 import 'package:storyv2/layers/presentation/me/bloc/profile_bloc/get_profile_bloc.dart';
@@ -19,6 +21,9 @@ import 'package:storyv2/layers/presentation/tales/blocs/search_tales/search_tale
 import 'core/constants/app_colors.dart';
 import 'core/routes/router_builder.dart';
 import 'firebase_options.dart';
+import 'layers/presentation/feed/blocs/get_categories/get_categories_bloc.dart';
+import 'layers/presentation/feed/blocs/get_stories/get_stories_bloc.dart';
+import 'layers/presentation/feed/blocs/search_stories/search_stories_bloc.dart';
 import 'utils/bloc_observer.dart';
 import 'utils/dependencies_injection.dart';
 
@@ -82,6 +87,21 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => sl<GetProfileBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => sl<GetStoriesBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => sl<GetCategoriesBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => sl<SearchStoriesBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => sl<ChatRoomsBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => ReadMessageBloc(sl()),
         ),
       ],
       child: MaterialApp.router(

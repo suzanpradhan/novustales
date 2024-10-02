@@ -26,7 +26,6 @@ class AuthRemoteSourceImpl implements AuthRemoteSource {
       converter: (response) =>
           UserCredential.fromJson(response as Map<String, dynamic>),
     );
-
     return response;
   }
 
@@ -39,7 +38,6 @@ class AuthRemoteSourceImpl implements AuthRemoteSource {
       converter: (response) =>
           RegisterResponse.fromJson(response as Map<String, dynamic>),
     );
-
     return response;
   }
 }

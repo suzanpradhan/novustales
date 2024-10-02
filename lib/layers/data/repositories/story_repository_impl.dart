@@ -1,9 +1,14 @@
 import 'package:dartz/dartz.dart';
 import 'package:storyv2/core/error/failures.dart';
 import 'package:storyv2/core/usecases/usecase.dart';
+import 'package:storyv2/layers/data/models/story_response.dart';
 import 'package:storyv2/layers/data/sources/story_source.dart';
+import 'package:storyv2/layers/domain/entities/category_entity.dart';
 import 'package:storyv2/layers/domain/entities/story_entity.dart';
 import 'package:storyv2/layers/domain/repositories/story_repository.dart';
+
+import '../../domain/entities/pagination_entity.dart';
+import '../../domain/usecases/feed/get_stories.dart';
 
 class StoryRepositoryImpl implements StoryRepository {
   final StorySource storySource;
@@ -25,6 +30,27 @@ class StoryRepositoryImpl implements StoryRepository {
     final response = await storySource.getTrendingStory(NoParams());
     return response.fold((failure) => Left(failure), (response) {
       return Right(response.map((story) => story.toEntity()).toList());
+    });
+  }
+
+  @override
+  Future<Either<Failure, PaginationEntity<StoryEntity>>> getStories(
+      SearchStoryParams params) async {
+    final response = await storySource.getStories(params);
+    return response.fold((failure) => Left(failure), (response) {
+      return Right(PaginationEntity<StoryEntity>(
+          nextPage: response.pagination?.next != null ? true : false,
+          results: (response.results as List<StoryResponse>)
+              .map((e) => e.toEntity())
+              .toList()));
+    });
+  }
+
+  @override
+  Future<Either<Failure, List<CategoryEntity>>> getCategories() async {
+    final response = await storySource.getCategories(NoParams());
+    return response.fold((failure) => Left(failure), (response) {
+      return Right(response.map((e) => e.toEntity()).toList());
     });
   }
 }

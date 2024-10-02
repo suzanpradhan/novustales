@@ -135,6 +135,14 @@ dependencies:
   formz: ^0.7.0
   flutter_secure_storage: ^9.2.2
   logger: ^2.4.0
+  isar: ^3.1.0+1
+  isar_generator: ^3.1.0+1
+  supabase_flutter: ^2.6.0
+  isar_flutter_libs: ^3.1.0+1
+  flutter_blurhash: ^0.8.2
+  pull_to_refresh_plus: ^2.0.3
+  timeago: ^3.7.0
+  humanize_duration: ^0.0.2
 
 dev_dependencies:
   flutter_test:
@@ -169,6 +177,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - .env
     - assets/
     - assets/images/
     - assets/icons/

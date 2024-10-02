@@ -81,7 +81,7 @@ class _VerticalInputFieldState extends State<VerticalInputField> {
     return Container(
       constraints: BoxConstraints(minHeight: widget.height ?? 42),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.greyAccent,
         border: widget.border ??
             Border.all(
               color: (widget.state.hasError || widget.errorText != null)

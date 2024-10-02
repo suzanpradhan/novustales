@@ -45,7 +45,9 @@ class _LoginScreenState extends State<LoginScreen> {
               if (state.status == FormzSubmissionStatus.success ||
                   state.googleSignInSatus == FormzSubmissionStatus.success ||
                   state.appleSignInStatus == FormzSubmissionStatus.success) {
-                context.read<AppBloc>().add(const AppEvent.checkAuthetication());
+                context
+                    .read<AppBloc>()
+                    .add(const AppEvent.checkAuthetication());
               } else {
                 if (state.isFirstAttempt &&
                     state.googleSignInSatus == FormzSubmissionStatus.failure &&
@@ -77,7 +79,8 @@ class _LoginScreenState extends State<LoginScreen> {
               key: _loginFormKey,
               child: Container(
                 height: heightWithoutappBarNavBar,
-                constraints: BoxConstraints(minHeight: heightWithoutappBarNavBar),
+                constraints:
+                    BoxConstraints(minHeight: heightWithoutappBarNavBar),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -95,8 +98,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           Padding(
                             padding: const EdgeInsets.fromLTRB(18, 5, 18, 30),
-                            child: Text('Sign in by entering the information below',
-                                style: Theme.of(context).textTheme.displayMedium),
+                            child: Text(
+                                'Sign in by entering the information below',
+                                style:
+                                    Theme.of(context).textTheme.displayMedium),
                           ),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 18),
@@ -109,15 +114,16 @@ class _LoginScreenState extends State<LoginScreen> {
                                   context: context,
                                   errorText: state.isFirstAttempt
                                       ? null
-                                      : state.email.displayError == EmailValidationError.empty
+                                      : state.email.displayError ==
+                                              EmailValidationError.empty
                                           ? "Email is required"
-                                          : state.email.displayError == EmailValidationError.invalid
+                                          : state.email.displayError ==
+                                                  EmailValidationError.invalid
                                               ? "Enter a valid email"
                                               : null,
                                   onChanged: (value) {
-                                    context
-                                        .read<LoginBloc>()
-                                        .add(LoginEvent.validateEmail(email: value));
+                                    context.read<LoginBloc>().add(
+                                        LoginEvent.validateEmail(email: value));
                                   },
                                   alignment: InputAlignment.vertical,
                                   // onSaved: (value) {
@@ -139,19 +145,21 @@ class _LoginScreenState extends State<LoginScreen> {
                                   isSecret: true,
                                   errorText: state.isFirstAttempt
                                       ? null
-                                      : state.password.displayError == PasswordValidationError.empty
+                                      : state.password.displayError ==
+                                              PasswordValidationError.empty
                                           ? "Password is required"
                                           : state.password.displayError ==
-                                                  PasswordValidationError.atLeastSix
+                                                  PasswordValidationError
+                                                      .atLeastSix
                                               ? "Minimum 6 characters"
                                               : null,
                                   // controller: _passwordController,
                                   placeholder: "Password",
                                   context: context,
                                   onChanged: (value) {
-                                    context
-                                        .read<LoginBloc>()
-                                        .add(LoginEvent.validatePassword(password: value));
+                                    context.read<LoginBloc>().add(
+                                        LoginEvent.validatePassword(
+                                            password: value));
                                   },
                                   alignment: InputAlignment.vertical,
                                   // onSaved: (value) {
@@ -165,34 +173,49 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           BlocBuilder<LoginBloc, LoginState>(
                             builder: (context, state) {
-                              if (state.status.isFailure && state.message != null) {
+                              if (state.status.isFailure &&
+                                  state.message != null) {
                                 return Container(
-                                  constraints: const BoxConstraints(minHeight: 38),
+                                  constraints:
+                                      const BoxConstraints(minHeight: 38),
                                   width: double.infinity,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(4),
-                                      border:
-                                          Border.all(color: Theme.of(context).colorScheme.onError),
-                                      color: Theme.of(context).colorScheme.errorContainer),
-                                  margin: const EdgeInsets.fromLTRB(18, 12, 18, 0),
-                                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                                      border: Border.all(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onError),
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .errorContainer),
+                                  margin:
+                                      const EdgeInsets.fromLTRB(18, 12, 18, 0),
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 8),
                                   child: Row(
                                     children: [
                                       Icon(
                                         Icons.error_outline,
-                                        color: Theme.of(context).colorScheme.onErrorContainer,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onErrorContainer,
                                       ),
                                       const SizedBox(
                                         width: 4,
                                       ),
                                       Expanded(
                                         child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 4),
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 4),
                                           child: Text(
                                             state.message!,
-                                            style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                                                color:
-                                                    Theme.of(context).colorScheme.onErrorContainer),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodySmall!
+                                                .copyWith(
+                                                    color: Theme.of(context)
+                                                        .colorScheme
+                                                        .onErrorContainer),
                                           ),
                                         ),
                                       ),
@@ -210,7 +233,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.symmetric(vertical: 8),
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 8),
                                   child: SizedBox(
                                     height: 32,
                                     child: TextButton(
@@ -219,7 +243,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                         },
                                         child: Text(
                                           'Forgot Password?',
-                                          style: Theme.of(context).textTheme.bodyMedium,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium,
                                         )),
                                   ),
                                 ),
@@ -229,7 +255,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           BlocBuilder<LoginBloc, LoginState>(
                             builder: (context, state) {
                               return Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 18),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 18),
                                 child: SimpleButton(
                                   buttonLabel: "Login",
                                   isFilled: true,
@@ -237,7 +264,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                   isLoading: state.status.isInProgress,
                                   alignment: MainAxisAlignment.center,
                                   handleTap: () {
-                                    context.read<LoginBloc>().add(const LoginEvent.attempt());
+                                    context
+                                        .read<LoginBloc>()
+                                        .add(const LoginEvent.attempt());
                                     // }
                                   },
                                 ),
@@ -245,14 +274,16 @@ class _LoginScreenState extends State<LoginScreen> {
                             },
                           ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 18),
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 20, horizontal: 18),
                             child: Row(
                               children: [
                                 Expanded(
                                   child: Container(
                                     height: 1,
                                     width: 40,
-                                    color: Theme.of(context).colorScheme.outline,
+                                    color:
+                                        Theme.of(context).colorScheme.outline,
                                   ),
                                 ),
                                 Padding(
@@ -270,7 +301,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                   child: Container(
                                     height: 1,
                                     width: 40,
-                                    color: Theme.of(context).colorScheme.outline,
+                                    color:
+                                        Theme.of(context).colorScheme.outline,
                                   ),
                                 ),
                               ],
@@ -279,23 +311,25 @@ class _LoginScreenState extends State<LoginScreen> {
                           BlocBuilder<LoginBloc, LoginState>(
                             builder: (context, state) {
                               return Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 18),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 18),
                                 child: SimpleButton(
                                   handleTap: () {
-                                    context
-                                        .read<LoginBloc>()
-                                        .add(const LoginEvent.googleSignInAttempt());
+                                    context.read<LoginBloc>().add(
+                                        const LoginEvent.googleSignInAttempt());
                                   },
                                   alignment: MainAxisAlignment.spaceBetween,
                                   prefixWidget: const SizedBox(
                                       height: 32,
                                       width: 32,
-                                      child: Image(image: AssetImage(Assets.googleLogo))),
+                                      child: Image(
+                                          image:
+                                              AssetImage(Assets.googleLogo))),
                                   suffixWidget: const SizedBox(
                                     width: 20,
                                   ),
-                                  isLoading:
-                                      state.googleSignInSatus == FormzSubmissionStatus.inProgress,
+                                  isLoading: state.googleSignInSatus ==
+                                      FormzSubmissionStatus.inProgress,
                                   splashColor: AppColors.dark.withOpacity(0.2),
                                   buttonLabel: 'Continue with Google',
                                   textColor: Colors.black,
@@ -306,7 +340,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             },
                           ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 18, vertical: 8),
                             child: Align(
                               alignment: Alignment.center,
                               child: SizedBox(
@@ -317,14 +352,19 @@ class _LoginScreenState extends State<LoginScreen> {
                                     },
                                     child: RichText(
                                       text: TextSpan(
-                                          style: Theme.of(context).textTheme.bodySmall,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodySmall,
                                           children: const [
                                             TextSpan(
                                                 text: "Don't have an account?",
-                                                style: TextStyle(color: AppColors.grayDark)),
+                                                style: TextStyle(
+                                                    color: AppColors.grayDark)),
                                             TextSpan(
                                                 text: " Sign up",
-                                                style: TextStyle(color: AppColors.purpleAccent))
+                                                style: TextStyle(
+                                                    color:
+                                                        AppColors.purpleAccent))
                                           ]),
                                     )),
                               ),
@@ -343,7 +383,10 @@ class _LoginScreenState extends State<LoginScreen> {
                               style: Theme.of(context)
                                   .textTheme
                                   .displayMedium!
-                                  .copyWith(color: Theme.of(context).colorScheme.onPrimary),
+                                  .copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onPrimary),
                             )),
                       ],
                     ),

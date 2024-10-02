@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../constants/ui_constants.dart';
 
 class Gapper {
-  static screenPadding({required Widget child}) {
+  static Widget screenPadding({required Widget child}) {
     return Padding(
       padding:
           const EdgeInsets.symmetric(horizontal: UIConstants.screenPadding),
@@ -41,6 +41,12 @@ class Gapper {
     );
   }
 
+  static SizedBox h2xmGap() {
+    return const SizedBox(
+      width: UIConstants.x2minPadding,
+    );
+  }
+
   static SizedBox vmGap() {
     return const SizedBox(
       height: UIConstants.minPadding,
@@ -50,6 +56,12 @@ class Gapper {
   static SizedBox vxmGap() {
     return const SizedBox(
       height: UIConstants.xminPadding,
+    );
+  }
+
+  static SizedBox v2xmGap() {
+    return const SizedBox(
+      height: UIConstants.x2minPadding,
     );
   }
 

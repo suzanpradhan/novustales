@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:storyv2/core/constants/app_colors.dart';
-import 'package:storyv2/layers/presentation/feed/blocs/for_you_story/for_you_story_bloc.dart';
 import 'package:storyv2/layers/presentation/feed/screens/story_page.dart';
+
+import '../blocs/get_stories/get_stories_bloc.dart';
 
 class ForYouPage extends StatefulWidget {
   const ForYouPage({super.key});
@@ -14,7 +15,7 @@ class ForYouPage extends StatefulWidget {
 class _ForYouPageState extends State<ForYouPage> {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ForYouStoryBloc, ForYouStoryState>(
+    return BlocBuilder<GetStoriesBloc, GetStoriesState>(
       builder: (context, state) {
         return state.whenOrNull(
               failed: (message) {
