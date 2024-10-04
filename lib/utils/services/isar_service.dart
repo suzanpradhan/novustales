@@ -13,8 +13,7 @@ mixin class IsarServiceMixin {
   static Future<Isar> _openDb() async {
     if (Isar.instanceNames.isEmpty) {
       final dir = await getApplicationDocumentsDirectory();
-      return await Isar.open([UserDataSchema],
-          inspector: true, directory: dir.path);
+      return await Isar.open([UserDataSchema], inspector: true, directory: dir.path);
     }
     return Future.value(Isar.getInstance());
   }
