@@ -8,7 +8,7 @@ part of '../tale_response.dart';
 
 _$TaleResponseImpl _$$TaleResponseImplFromJson(Map<String, dynamic> json) =>
     _$TaleResponseImpl(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       title: json['title'] as String?,
       description: json['description'] as String?,
       thumbnail: json['thumbnail_url'] as String?,

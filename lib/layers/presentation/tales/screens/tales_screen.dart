@@ -5,6 +5,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:storyv2/core/constants/app_colors.dart';
 import 'package:storyv2/core/constants/ui_constants.dart';
 import 'package:storyv2/layers/domain/usecases/tales/get_near_me_tales.dart';
+import 'package:storyv2/layers/presentation/tales/blocs/get_direction/get_direction_bloc.dart';
 import 'package:storyv2/layers/presentation/tales/blocs/get_near_me_tales/get_near_me_tales_bloc.dart';
 import 'package:storyv2/layers/presentation/tales/blocs/get_tale_intro/get_tale_intro_bloc.dart';
 import 'package:storyv2/layers/presentation/tales/blocs/search_tales/search_tales_bloc.dart';
@@ -106,55 +107,73 @@ class _TalesScreenState extends State<TalesScreen> {
                       (constraints.maxHeight - (constraints.maxHeight * _bottomSheetHeight)) + 20,
                   child: BlocBuilder<GetNearMeTalesBloc, GetNearMeTalesState>(
                     builder: (context, state) {
-                      return LayoutBuilder(builder: (context, constraints) {
-                        return GoogleMap(
-                          initialCameraPosition: CameraPosition(
-                              target: myLocation != null
-                                  ? LatLng(myLocation!.latitude, myLocation!.longitude)
-                                  : LatLng(37.7749, -122.4194),
-                              zoom: 18),
-                          myLocationEnabled: true,
-                          myLocationButtonEnabled: false,
-                          compassEnabled: false,
-                          indoorViewEnabled: false,
-                          buildingsEnabled: false,
-                          mapToolbarEnabled: false,
-                          zoomControlsEnabled: false,
-                          onCameraIdle: () async {
-                            if (_mapController == null) return;
-                            LatLng center = await _mapController!.getLatLng(ScreenCoordinate(
-                              x: constraints.maxWidth ~/ 2,
-                              y: constraints.maxHeight ~/ 2,
-                            ));
-                            if (mounted) {
-                              context.read<GetNearMeTalesBloc>().add(GetNearMeTalesEvent.request(
-                                  params: NearMeTalesParams(
-                                      latitude: center.latitude.toString(),
-                                      longitude: center.longitude.toString(),
-                                      radius: "5")));
-                            }
-                          },
-                          markers: state.whenOrNull(
-                                success: (tales) {
-                                  return tales
-                                      .map((tale) => Marker(
-                                          markerId: MarkerId(tale.id.toString()),
-                                          position: LatLng(tale.latitude!, tale.longitude!)))
-                                      .toSet();
-                                },
-                              ) ??
-                              {},
-                          onMapCreated: (controller) {
-                            _mapController = controller;
-                            if (myLocation != null) {
-                              _mapController?.moveCamera(CameraUpdate.newCameraPosition(
-                                  CameraPosition(
-                                      target: LatLng(myLocation!.latitude, myLocation!.longitude),
-                                      zoom: 18)));
-                            }
-                          },
-                        );
-                      });
+                      return BlocBuilder<GetDirectionBloc, GetDirectionState>(
+                        builder: (context, getDirectionState) {
+                          return LayoutBuilder(builder: (context, constraints) {
+                            return GoogleMap(
+                              initialCameraPosition: CameraPosition(
+                                  target: myLocation != null
+                                      ? LatLng(myLocation!.latitude, myLocation!.longitude)
+                                      : LatLng(37.7749, -122.4194),
+                                  zoom: 18),
+                              myLocationEnabled: true,
+                              myLocationButtonEnabled: false,
+                              compassEnabled: false,
+                              indoorViewEnabled: false,
+                              buildingsEnabled: false,
+                              mapToolbarEnabled: false,
+                              zoomControlsEnabled: false,
+                              onCameraIdle: () async {
+                                if (_mapController == null) return;
+                                LatLng center = await _mapController!.getLatLng(ScreenCoordinate(
+                                  x: constraints.maxWidth ~/ 2,
+                                  y: constraints.maxHeight ~/ 2,
+                                ));
+                                if (mounted) {
+                                  context.read<GetNearMeTalesBloc>().add(
+                                      GetNearMeTalesEvent.request(
+                                          params: NearMeTalesParams(
+                                              latitude: center.latitude.toString(),
+                                              longitude: center.longitude.toString(),
+                                              radius: "5")));
+                                }
+                              },
+                              markers: state.whenOrNull(
+                                    success: (tales) {
+                                      return tales
+                                          .map((tale) => Marker(
+                                              markerId: MarkerId(tale.id.toString()),
+                                              position: LatLng(tale.latitude!, tale.longitude!)))
+                                          .toSet();
+                                    },
+                                  ) ??
+                                  {},
+                              polylines: getDirectionState.whenOrNull(
+                                    success: (polylinePoints) {
+                                      return {
+                                        Polyline(
+                                            polylineId: PolylineId("router"),
+                                            points: polylinePoints,
+                                            color: AppColors.purpleAccent,
+                                            width: 5)
+                                      };
+                                    },
+                                  ) ??
+                                  {},
+                              onMapCreated: (controller) {
+                                _mapController = controller;
+                                if (myLocation != null) {
+                                  _mapController?.moveCamera(CameraUpdate.newCameraPosition(
+                                      CameraPosition(
+                                          target:
+                                              LatLng(myLocation!.latitude, myLocation!.longitude),
+                                          zoom: 18)));
+                                }
+                              },
+                            );
+                          });
+                        },
+                      );
                     },
                   ),
                 ),
@@ -249,6 +268,7 @@ class _TalesScreenState extends State<TalesScreen> {
                                     success: (tale) {
                                       if (tale == null) return null;
                                       return TaleIntroPage(
+                                        currentLocation: myLocation,
                                         scrollController: scrollController,
                                         tale: tale,
                                       );
@@ -431,7 +451,7 @@ class _TabsWidgetState extends State<TabsWidget> {
                         InkWell(
                           onTap: () {
                             widget.changeTab("all");
-                          }, 
+                          },
                           child: SizedBox(width: 38, height: 38, child: Icon(Icons.close)),
                         )
                     ],

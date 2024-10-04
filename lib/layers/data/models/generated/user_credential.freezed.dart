@@ -18,7 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$UserCredential {
   String? get accessToken => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UserCredential
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $UserCredentialCopyWith<UserCredential> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -42,6 +44,8 @@ class _$UserCredentialCopyWithImpl<$Res, $Val extends UserCredential>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of UserCredential
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -75,6 +79,8 @@ class __$$UserCredentialImplCopyWithImpl<$Res>
       _$UserCredentialImpl _value, $Res Function(_$UserCredentialImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of UserCredential
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -114,7 +120,9 @@ class _$UserCredentialImpl extends _UserCredential {
   @override
   int get hashCode => Object.hash(runtimeType, accessToken);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UserCredential
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UserCredentialImplCopyWith<_$UserCredentialImpl> get copyWith =>
@@ -129,8 +137,11 @@ abstract class _UserCredential extends UserCredential {
 
   @override
   String? get accessToken;
+
+  /// Create a copy of UserCredential
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UserCredentialImplCopyWith<_$UserCredentialImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

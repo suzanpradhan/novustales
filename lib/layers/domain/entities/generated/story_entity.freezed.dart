@@ -41,7 +41,9 @@ mixin _$StoryEntity {
   @JsonKey(name: 'updated_at')
   DateTime? get updatedAt => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of StoryEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $StoryEntityCopyWith<StoryEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -85,6 +87,8 @@ class _$StoryEntityCopyWithImpl<$Res, $Val extends StoryEntity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of StoryEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -183,6 +187,8 @@ class _$StoryEntityCopyWithImpl<$Res, $Val extends StoryEntity>
     ) as $Val);
   }
 
+  /// Create a copy of StoryEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $UserDetailsEntityCopyWith<$Res>? get userDetails {
@@ -236,6 +242,8 @@ class __$$StoryEntityImplCopyWithImpl<$Res>
       _$StoryEntityImpl _value, $Res Function(_$StoryEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of StoryEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -461,7 +469,9 @@ class _$StoryEntityImpl implements _StoryEntity {
       createdAt,
       updatedAt);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of StoryEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$StoryEntityImplCopyWith<_$StoryEntityImpl> get copyWith =>
@@ -532,8 +542,11 @@ abstract class _StoryEntity implements StoryEntity {
   @override
   @JsonKey(name: 'updated_at')
   DateTime? get updatedAt;
+
+  /// Create a copy of StoryEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$StoryEntityImplCopyWith<_$StoryEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -547,7 +560,9 @@ mixin _$UserDetailsEntity {
   String? get nickName => throw _privateConstructorUsedError;
   String? get avatar => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UserDetailsEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $UserDetailsEntityCopyWith<UserDetailsEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -576,6 +591,8 @@ class _$UserDetailsEntityCopyWithImpl<$Res, $Val extends UserDetailsEntity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of UserDetailsEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -634,6 +651,8 @@ class __$$UserDetailsEntityImplCopyWithImpl<$Res>
       $Res Function(_$UserDetailsEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of UserDetailsEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -713,7 +732,9 @@ class _$UserDetailsEntityImpl implements _UserDetailsEntity {
   int get hashCode =>
       Object.hash(runtimeType, id, email, name, nickName, avatar);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UserDetailsEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UserDetailsEntityImplCopyWith<_$UserDetailsEntityImpl> get copyWith =>
@@ -740,8 +761,11 @@ abstract class _UserDetailsEntity implements UserDetailsEntity {
   String? get nickName;
   @override
   String? get avatar;
+
+  /// Create a copy of UserDetailsEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UserDetailsEntityImplCopyWith<_$UserDetailsEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

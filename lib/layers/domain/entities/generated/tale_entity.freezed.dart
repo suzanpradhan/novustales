@@ -26,7 +26,9 @@ mixin _$TaleEntity {
   double? get longitude => throw _privateConstructorUsedError;
   double? get distance => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TaleEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TaleEntityCopyWith<TaleEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -61,6 +63,8 @@ class _$TaleEntityCopyWithImpl<$Res, $Val extends TaleEntity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TaleEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -114,6 +118,8 @@ class _$TaleEntityCopyWithImpl<$Res, $Val extends TaleEntity>
     ) as $Val);
   }
 
+  /// Create a copy of TaleEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $UserEntityCopyWith<$Res>? get createdBy {
@@ -158,6 +164,8 @@ class __$$TaleEntityImplCopyWithImpl<$Res>
       _$TaleEntityImpl _value, $Res Function(_$TaleEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TaleEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -277,7 +285,9 @@ class _$TaleEntityImpl implements _TaleEntity {
   int get hashCode => Object.hash(runtimeType, id, title, description,
       thumbnail, createdBy, categoryName, latitude, longitude, distance);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TaleEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TaleEntityImplCopyWith<_$TaleEntityImpl> get copyWith =>
@@ -314,8 +324,11 @@ abstract class _TaleEntity implements TaleEntity {
   double? get longitude;
   @override
   double? get distance;
+
+  /// Create a copy of TaleEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TaleEntityImplCopyWith<_$TaleEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

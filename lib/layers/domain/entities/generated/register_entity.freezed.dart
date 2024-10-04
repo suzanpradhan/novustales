@@ -18,7 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$RegisterEntity {
   String? get message => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RegisterEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RegisterEntityCopyWith<RegisterEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -42,6 +44,8 @@ class _$RegisterEntityCopyWithImpl<$Res, $Val extends RegisterEntity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of RegisterEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -75,6 +79,8 @@ class __$$RegisterEntityImplCopyWithImpl<$Res>
       _$RegisterEntityImpl _value, $Res Function(_$RegisterEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RegisterEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -113,7 +119,9 @@ class _$RegisterEntityImpl implements _RegisterEntity {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RegisterEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RegisterEntityImplCopyWith<_$RegisterEntityImpl> get copyWith =>
@@ -126,8 +134,11 @@ abstract class _RegisterEntity implements RegisterEntity {
 
   @override
   String? get message;
+
+  /// Create a copy of RegisterEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RegisterEntityImplCopyWith<_$RegisterEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

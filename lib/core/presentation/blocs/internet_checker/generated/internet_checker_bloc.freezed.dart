@@ -67,6 +67,9 @@ class _$InternetCheckerEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of InternetCheckerEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -83,6 +86,9 @@ class __$$StartedImplCopyWithImpl<$Res>
   __$$StartedImplCopyWithImpl(
       _$StartedImpl _value, $Res Function(_$StartedImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of InternetCheckerEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -169,7 +175,9 @@ abstract class _Started implements InternetCheckerEvent {
 mixin _$InternetCheckerState {
   InternetStatus? get status => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of InternetCheckerState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $InternetCheckerStateCopyWith<InternetCheckerState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -194,6 +202,8 @@ class _$InternetCheckerStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of InternetCheckerState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -227,6 +237,8 @@ class __$$InternetCheckerStateImplCopyWithImpl<$Res>
       $Res Function(_$InternetCheckerStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of InternetCheckerState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -266,7 +278,9 @@ class _$InternetCheckerStateImpl implements _InternetCheckerState {
   @override
   int get hashCode => Object.hash(runtimeType, status);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of InternetCheckerState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$InternetCheckerStateImplCopyWith<_$InternetCheckerStateImpl>
@@ -281,8 +295,11 @@ abstract class _InternetCheckerState implements InternetCheckerState {
 
   @override
   InternetStatus? get status;
+
+  /// Create a copy of InternetCheckerState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$InternetCheckerStateImplCopyWith<_$InternetCheckerStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

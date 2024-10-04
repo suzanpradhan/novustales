@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:go_router/go_router.dart';
+import 'package:storyv2/core/routes/app_routes.dart';
 import 'package:storyv2/layers/domain/entities/tale_entity.dart';
 
 import '../../../../core/constants/app_colors.dart';
@@ -6,9 +9,11 @@ import '../../../../core/constants/ui_constants.dart';
 import '../../../../core/presentation/ui/spacer.dart';
 
 class TaleIntroPage extends StatelessWidget {
+  final Position? currentLocation;
   final TaleEntity tale;
   final ScrollController scrollController;
-  const TaleIntroPage({super.key, required this.tale, required this.scrollController});
+  const TaleIntroPage(
+      {super.key, this.currentLocation, required this.tale, required this.scrollController});
 
   @override
   Widget build(BuildContext context) {
@@ -77,40 +82,53 @@ class TaleIntroPage extends StatelessWidget {
                   if (tale.distance != null)
                     Column(
                       children: [
-                        Container(
-                          height: 58,
-                          width: 58,
-                          padding: EdgeInsets.symmetric(horizontal: UIConstants.minPadding),
-                          decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                    color: AppColors.purpleAccent.withOpacity(0.4),
-                                    blurRadius: 10,
-                                    spreadRadius: 1,
-                                    offset: Offset(0, 3))
-                              ],
-                              color: AppColors.purpleAccent,
-                              borderRadius: BorderRadius.circular(UIConstants.borderRadius)),
-                          child: (tale.distance! <= 1.00)
-                              ? Center(
-                                  child: Text(
-                                  "Join",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium
-                                      ?.copyWith(color: Colors.white, fontWeight: FontWeight.bold),
-                                ))
-                              : Transform.rotate(
-                                  angle: 45 * (3.14159265359 / 180),
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(bottom: 6),
-                                    child: Icon(
-                                      Icons.navigation_rounded,
-                                      color: AppColors.white,
-                                      size: 34,
+                        InkWell(
+                          onTap: () {
+                            // if (tale.distance! > 1.00 &&
+                            //     tale.latitude != null &&
+                            //     tale.longitude != null &&
+                            //     currentLocation != null) {
+                            //   context.read<GetDirectionBloc>().add(GetDirectionEvent.request(
+                            //       origin:
+                            //           LatLng(currentLocation!.latitude, currentLocation!.longitude),
+                            //       destination: LatLng(tale.latitude!, tale.longitude!)));
+                            // } else {
+                            context.push(TALE_DETAIL_ROUTE, extra: tale);
+                            // }
+                          },
+                          child: Container(
+                            height: 58,
+                            width: 58,
+                            padding: EdgeInsets.symmetric(horizontal: UIConstants.minPadding),
+                            decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: AppColors.purpleAccent.withOpacity(0.4),
+                                      blurRadius: 10,
+                                      spreadRadius: 1,
+                                      offset: Offset(0, 3))
+                                ],
+                                color: AppColors.purpleAccent,
+                                borderRadius: BorderRadius.circular(UIConstants.borderRadius)),
+                            child: (tale.distance! <= 1.00)
+                                ? Center(
+                                    child: Text(
+                                    "Join",
+                                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                        color: Colors.white, fontWeight: FontWeight.bold),
+                                  ))
+                                : Transform.rotate(
+                                    angle: 45 * (3.14159265359 / 180),
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(bottom: 6),
+                                      child: Icon(
+                                        Icons.navigation_rounded,
+                                        color: AppColors.white,
+                                        size: 34,
+                                      ),
                                     ),
                                   ),
-                                ),
+                          ),
                         ),
                         Gapper.vxmGap(),
                         Text(

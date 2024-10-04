@@ -90,6 +90,9 @@ class _$LoginEventCopyWithImpl<$Res, $Val extends LoginEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of LoginEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -109,6 +112,8 @@ class __$$ValidateEmailImplCopyWithImpl<$Res>
       _$ValidateEmailImpl _value, $Res Function(_$ValidateEmailImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LoginEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -148,7 +153,9 @@ class _$ValidateEmailImpl implements _ValidateEmail {
   @override
   int get hashCode => Object.hash(runtimeType, email);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LoginEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ValidateEmailImplCopyWith<_$ValidateEmailImpl> get copyWith =>
@@ -239,7 +246,10 @@ abstract class _ValidateEmail implements LoginEvent {
   const factory _ValidateEmail({final String email}) = _$ValidateEmailImpl;
 
   String get email;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LoginEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ValidateEmailImplCopyWith<_$ValidateEmailImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -261,6 +271,8 @@ class __$$ValidatePasswordImplCopyWithImpl<$Res>
       $Res Function(_$ValidatePasswordImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LoginEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -301,7 +313,9 @@ class _$ValidatePasswordImpl implements _ValidatePassword {
   @override
   int get hashCode => Object.hash(runtimeType, password);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LoginEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ValidatePasswordImplCopyWith<_$ValidatePasswordImpl> get copyWith =>
@@ -394,7 +408,10 @@ abstract class _ValidatePassword implements LoginEvent {
       _$ValidatePasswordImpl;
 
   String get password;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LoginEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ValidatePasswordImplCopyWith<_$ValidatePasswordImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -413,6 +430,9 @@ class __$$AttemptImplCopyWithImpl<$Res>
   __$$AttemptImplCopyWithImpl(
       _$AttemptImpl _value, $Res Function(_$AttemptImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of LoginEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -533,6 +553,9 @@ class __$$GoogleSignInAttemptImplCopyWithImpl<$Res>
   __$$GoogleSignInAttemptImplCopyWithImpl(_$GoogleSignInAttemptImpl _value,
       $Res Function(_$GoogleSignInAttemptImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of LoginEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -654,6 +677,9 @@ class __$$AppleSignInAttemptImplCopyWithImpl<$Res>
   __$$AppleSignInAttemptImplCopyWithImpl(_$AppleSignInAttemptImpl _value,
       $Res Function(_$AppleSignInAttemptImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of LoginEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -773,7 +799,9 @@ mixin _$LoginState {
       throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LoginState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LoginStateCopyWith<LoginState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -805,6 +833,8 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LoginState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -881,6 +911,8 @@ class __$$LoginStateImplCopyWithImpl<$Res>
       _$LoginStateImpl _value, $Res Function(_$LoginStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LoginState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -995,7 +1027,9 @@ class _$LoginStateImpl implements _LoginState {
   int get hashCode => Object.hash(runtimeType, status, email, password, isValid,
       isFirstAttempt, googleSignInSatus, appleSignInStatus, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LoginState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LoginStateImplCopyWith<_$LoginStateImpl> get copyWith =>
@@ -1029,8 +1063,11 @@ abstract class _LoginState implements LoginState {
   FormzSubmissionStatus get appleSignInStatus;
   @override
   String? get message;
+
+  /// Create a copy of LoginState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoginStateImplCopyWith<_$LoginStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

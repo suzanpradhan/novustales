@@ -18,7 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$LoginEntity {
   String? get token => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LoginEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LoginEntityCopyWith<LoginEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -42,6 +44,8 @@ class _$LoginEntityCopyWithImpl<$Res, $Val extends LoginEntity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LoginEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -75,6 +79,8 @@ class __$$LoginEntityImplCopyWithImpl<$Res>
       _$LoginEntityImpl _value, $Res Function(_$LoginEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LoginEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -113,7 +119,9 @@ class _$LoginEntityImpl implements _LoginEntity {
   @override
   int get hashCode => Object.hash(runtimeType, token);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LoginEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LoginEntityImplCopyWith<_$LoginEntityImpl> get copyWith =>
@@ -125,8 +133,11 @@ abstract class _LoginEntity implements LoginEntity {
 
   @override
   String? get token;
+
+  /// Create a copy of LoginEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoginEntityImplCopyWith<_$LoginEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

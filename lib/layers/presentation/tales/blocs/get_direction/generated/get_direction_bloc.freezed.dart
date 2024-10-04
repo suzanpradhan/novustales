@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of '../get_tale_intro_bloc.dart';
+part of '../get_direction_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,139 +15,125 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$GetTaleIntroEvent {
-  TaleEntity? get tale => throw _privateConstructorUsedError;
+mixin _$GetDirectionEvent {
+  LatLng get origin => throw _privateConstructorUsedError;
+  LatLng get destination => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(TaleEntity? tale) request,
-    required TResult Function(TaleEntity? tale) reInitiate,
+    required TResult Function(LatLng origin, LatLng destination) request,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(TaleEntity? tale)? request,
-    TResult? Function(TaleEntity? tale)? reInitiate,
+    TResult? Function(LatLng origin, LatLng destination)? request,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(TaleEntity? tale)? request,
-    TResult Function(TaleEntity? tale)? reInitiate,
+    TResult Function(LatLng origin, LatLng destination)? request,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Request value) request,
-    required TResult Function(_ReInitiate value) reInitiate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Request value)? request,
-    TResult? Function(_ReInitiate value)? reInitiate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Request value)? request,
-    TResult Function(_ReInitiate value)? reInitiate,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 
-  /// Create a copy of GetTaleIntroEvent
+  /// Create a copy of GetDirectionEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $GetTaleIntroEventCopyWith<GetTaleIntroEvent> get copyWith =>
+  $GetDirectionEventCopyWith<GetDirectionEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GetTaleIntroEventCopyWith<$Res> {
-  factory $GetTaleIntroEventCopyWith(
-          GetTaleIntroEvent value, $Res Function(GetTaleIntroEvent) then) =
-      _$GetTaleIntroEventCopyWithImpl<$Res, GetTaleIntroEvent>;
+abstract class $GetDirectionEventCopyWith<$Res> {
+  factory $GetDirectionEventCopyWith(
+          GetDirectionEvent value, $Res Function(GetDirectionEvent) then) =
+      _$GetDirectionEventCopyWithImpl<$Res, GetDirectionEvent>;
   @useResult
-  $Res call({TaleEntity? tale});
-
-  $TaleEntityCopyWith<$Res>? get tale;
+  $Res call({LatLng origin, LatLng destination});
 }
 
 /// @nodoc
-class _$GetTaleIntroEventCopyWithImpl<$Res, $Val extends GetTaleIntroEvent>
-    implements $GetTaleIntroEventCopyWith<$Res> {
-  _$GetTaleIntroEventCopyWithImpl(this._value, this._then);
+class _$GetDirectionEventCopyWithImpl<$Res, $Val extends GetDirectionEvent>
+    implements $GetDirectionEventCopyWith<$Res> {
+  _$GetDirectionEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of GetTaleIntroEvent
+  /// Create a copy of GetDirectionEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? tale = freezed,
+    Object? origin = null,
+    Object? destination = null,
   }) {
     return _then(_value.copyWith(
-      tale: freezed == tale
-          ? _value.tale
-          : tale // ignore: cast_nullable_to_non_nullable
-              as TaleEntity?,
+      origin: null == origin
+          ? _value.origin
+          : origin // ignore: cast_nullable_to_non_nullable
+              as LatLng,
+      destination: null == destination
+          ? _value.destination
+          : destination // ignore: cast_nullable_to_non_nullable
+              as LatLng,
     ) as $Val);
-  }
-
-  /// Create a copy of GetTaleIntroEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $TaleEntityCopyWith<$Res>? get tale {
-    if (_value.tale == null) {
-      return null;
-    }
-
-    return $TaleEntityCopyWith<$Res>(_value.tale!, (value) {
-      return _then(_value.copyWith(tale: value) as $Val);
-    });
   }
 }
 
 /// @nodoc
 abstract class _$$RequestImplCopyWith<$Res>
-    implements $GetTaleIntroEventCopyWith<$Res> {
+    implements $GetDirectionEventCopyWith<$Res> {
   factory _$$RequestImplCopyWith(
           _$RequestImpl value, $Res Function(_$RequestImpl) then) =
       __$$RequestImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({TaleEntity? tale});
-
-  @override
-  $TaleEntityCopyWith<$Res>? get tale;
+  $Res call({LatLng origin, LatLng destination});
 }
 
 /// @nodoc
 class __$$RequestImplCopyWithImpl<$Res>
-    extends _$GetTaleIntroEventCopyWithImpl<$Res, _$RequestImpl>
+    extends _$GetDirectionEventCopyWithImpl<$Res, _$RequestImpl>
     implements _$$RequestImplCopyWith<$Res> {
   __$$RequestImplCopyWithImpl(
       _$RequestImpl _value, $Res Function(_$RequestImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of GetTaleIntroEvent
+  /// Create a copy of GetDirectionEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? tale = freezed,
+    Object? origin = null,
+    Object? destination = null,
   }) {
     return _then(_$RequestImpl(
-      tale: freezed == tale
-          ? _value.tale
-          : tale // ignore: cast_nullable_to_non_nullable
-              as TaleEntity?,
+      origin: null == origin
+          ? _value.origin
+          : origin // ignore: cast_nullable_to_non_nullable
+              as LatLng,
+      destination: null == destination
+          ? _value.destination
+          : destination // ignore: cast_nullable_to_non_nullable
+              as LatLng,
     ));
   }
 }
@@ -155,14 +141,16 @@ class __$$RequestImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$RequestImpl implements _Request {
-  const _$RequestImpl({this.tale});
+  const _$RequestImpl({required this.origin, required this.destination});
 
   @override
-  final TaleEntity? tale;
+  final LatLng origin;
+  @override
+  final LatLng destination;
 
   @override
   String toString() {
-    return 'GetTaleIntroEvent.request(tale: $tale)';
+    return 'GetDirectionEvent.request(origin: $origin, destination: $destination)';
   }
 
   @override
@@ -170,13 +158,15 @@ class _$RequestImpl implements _Request {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RequestImpl &&
-            (identical(other.tale, tale) || other.tale == tale));
+            (identical(other.origin, origin) || other.origin == origin) &&
+            (identical(other.destination, destination) ||
+                other.destination == destination));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, tale);
+  int get hashCode => Object.hash(runtimeType, origin, destination);
 
-  /// Create a copy of GetTaleIntroEvent
+  /// Create a copy of GetDirectionEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -187,30 +177,27 @@ class _$RequestImpl implements _Request {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(TaleEntity? tale) request,
-    required TResult Function(TaleEntity? tale) reInitiate,
+    required TResult Function(LatLng origin, LatLng destination) request,
   }) {
-    return request(tale);
+    return request(origin, destination);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(TaleEntity? tale)? request,
-    TResult? Function(TaleEntity? tale)? reInitiate,
+    TResult? Function(LatLng origin, LatLng destination)? request,
   }) {
-    return request?.call(tale);
+    return request?.call(origin, destination);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(TaleEntity? tale)? request,
-    TResult Function(TaleEntity? tale)? reInitiate,
+    TResult Function(LatLng origin, LatLng destination)? request,
     required TResult orElse(),
   }) {
     if (request != null) {
-      return request(tale);
+      return request(origin, destination);
     }
     return orElse();
   }
@@ -219,7 +206,6 @@ class _$RequestImpl implements _Request {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Request value) request,
-    required TResult Function(_ReInitiate value) reInitiate,
   }) {
     return request(this);
   }
@@ -228,7 +214,6 @@ class _$RequestImpl implements _Request {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Request value)? request,
-    TResult? Function(_ReInitiate value)? reInitiate,
   }) {
     return request?.call(this);
   }
@@ -237,7 +222,6 @@ class _$RequestImpl implements _Request {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Request value)? request,
-    TResult Function(_ReInitiate value)? reInitiate,
     required TResult orElse(),
   }) {
     if (request != null) {
@@ -247,13 +231,17 @@ class _$RequestImpl implements _Request {
   }
 }
 
-abstract class _Request implements GetTaleIntroEvent {
-  const factory _Request({final TaleEntity? tale}) = _$RequestImpl;
+abstract class _Request implements GetDirectionEvent {
+  const factory _Request(
+      {required final LatLng origin,
+      required final LatLng destination}) = _$RequestImpl;
 
   @override
-  TaleEntity? get tale;
+  LatLng get origin;
+  @override
+  LatLng get destination;
 
-  /// Create a copy of GetTaleIntroEvent
+  /// Create a copy of GetDirectionEvent
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -262,159 +250,12 @@ abstract class _Request implements GetTaleIntroEvent {
 }
 
 /// @nodoc
-abstract class _$$ReInitiateImplCopyWith<$Res>
-    implements $GetTaleIntroEventCopyWith<$Res> {
-  factory _$$ReInitiateImplCopyWith(
-          _$ReInitiateImpl value, $Res Function(_$ReInitiateImpl) then) =
-      __$$ReInitiateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({TaleEntity? tale});
-
-  @override
-  $TaleEntityCopyWith<$Res>? get tale;
-}
-
-/// @nodoc
-class __$$ReInitiateImplCopyWithImpl<$Res>
-    extends _$GetTaleIntroEventCopyWithImpl<$Res, _$ReInitiateImpl>
-    implements _$$ReInitiateImplCopyWith<$Res> {
-  __$$ReInitiateImplCopyWithImpl(
-      _$ReInitiateImpl _value, $Res Function(_$ReInitiateImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of GetTaleIntroEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? tale = freezed,
-  }) {
-    return _then(_$ReInitiateImpl(
-      tale: freezed == tale
-          ? _value.tale
-          : tale // ignore: cast_nullable_to_non_nullable
-              as TaleEntity?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$ReInitiateImpl implements _ReInitiate {
-  const _$ReInitiateImpl({this.tale});
-
-  @override
-  final TaleEntity? tale;
-
-  @override
-  String toString() {
-    return 'GetTaleIntroEvent.reInitiate(tale: $tale)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ReInitiateImpl &&
-            (identical(other.tale, tale) || other.tale == tale));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, tale);
-
-  /// Create a copy of GetTaleIntroEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ReInitiateImplCopyWith<_$ReInitiateImpl> get copyWith =>
-      __$$ReInitiateImplCopyWithImpl<_$ReInitiateImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(TaleEntity? tale) request,
-    required TResult Function(TaleEntity? tale) reInitiate,
-  }) {
-    return reInitiate(tale);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(TaleEntity? tale)? request,
-    TResult? Function(TaleEntity? tale)? reInitiate,
-  }) {
-    return reInitiate?.call(tale);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(TaleEntity? tale)? request,
-    TResult Function(TaleEntity? tale)? reInitiate,
-    required TResult orElse(),
-  }) {
-    if (reInitiate != null) {
-      return reInitiate(tale);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Request value) request,
-    required TResult Function(_ReInitiate value) reInitiate,
-  }) {
-    return reInitiate(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Request value)? request,
-    TResult? Function(_ReInitiate value)? reInitiate,
-  }) {
-    return reInitiate?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Request value)? request,
-    TResult Function(_ReInitiate value)? reInitiate,
-    required TResult orElse(),
-  }) {
-    if (reInitiate != null) {
-      return reInitiate(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _ReInitiate implements GetTaleIntroEvent {
-  const factory _ReInitiate({final TaleEntity? tale}) = _$ReInitiateImpl;
-
-  @override
-  TaleEntity? get tale;
-
-  /// Create a copy of GetTaleIntroEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ReInitiateImplCopyWith<_$ReInitiateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-mixin _$GetTaleIntroState {
+mixin _$GetDirectionState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(TaleEntity? tale) success,
+    required TResult Function(List<LatLng> polylinePoints) success,
     required TResult Function(String message) failed,
   }) =>
       throw _privateConstructorUsedError;
@@ -422,7 +263,7 @@ mixin _$GetTaleIntroState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(TaleEntity? tale)? success,
+    TResult? Function(List<LatLng> polylinePoints)? success,
     TResult? Function(String message)? failed,
   }) =>
       throw _privateConstructorUsedError;
@@ -430,7 +271,7 @@ mixin _$GetTaleIntroState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(TaleEntity? tale)? success,
+    TResult Function(List<LatLng> polylinePoints)? success,
     TResult Function(String message)? failed,
     required TResult orElse(),
   }) =>
@@ -463,23 +304,23 @@ mixin _$GetTaleIntroState {
 }
 
 /// @nodoc
-abstract class $GetTaleIntroStateCopyWith<$Res> {
-  factory $GetTaleIntroStateCopyWith(
-          GetTaleIntroState value, $Res Function(GetTaleIntroState) then) =
-      _$GetTaleIntroStateCopyWithImpl<$Res, GetTaleIntroState>;
+abstract class $GetDirectionStateCopyWith<$Res> {
+  factory $GetDirectionStateCopyWith(
+          GetDirectionState value, $Res Function(GetDirectionState) then) =
+      _$GetDirectionStateCopyWithImpl<$Res, GetDirectionState>;
 }
 
 /// @nodoc
-class _$GetTaleIntroStateCopyWithImpl<$Res, $Val extends GetTaleIntroState>
-    implements $GetTaleIntroStateCopyWith<$Res> {
-  _$GetTaleIntroStateCopyWithImpl(this._value, this._then);
+class _$GetDirectionStateCopyWithImpl<$Res, $Val extends GetDirectionState>
+    implements $GetDirectionStateCopyWith<$Res> {
+  _$GetDirectionStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of GetTaleIntroState
+  /// Create a copy of GetDirectionState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -492,13 +333,13 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$GetTaleIntroStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$GetDirectionStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of GetTaleIntroState
+  /// Create a copy of GetDirectionState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -509,7 +350,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'GetTaleIntroState.initial()';
+    return 'GetDirectionState.initial()';
   }
 
   @override
@@ -526,7 +367,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(TaleEntity? tale) success,
+    required TResult Function(List<LatLng> polylinePoints) success,
     required TResult Function(String message) failed,
   }) {
     return initial();
@@ -537,7 +378,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(TaleEntity? tale)? success,
+    TResult? Function(List<LatLng> polylinePoints)? success,
     TResult? Function(String message)? failed,
   }) {
     return initial?.call();
@@ -548,7 +389,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(TaleEntity? tale)? success,
+    TResult Function(List<LatLng> polylinePoints)? success,
     TResult Function(String message)? failed,
     required TResult orElse(),
   }) {
@@ -596,7 +437,7 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements GetTaleIntroState {
+abstract class _Initial implements GetDirectionState {
   const factory _Initial() = _$InitialImpl;
 }
 
@@ -609,13 +450,13 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$GetTaleIntroStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$GetDirectionStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of GetTaleIntroState
+  /// Create a copy of GetDirectionState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -626,7 +467,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'GetTaleIntroState.loading()';
+    return 'GetDirectionState.loading()';
   }
 
   @override
@@ -643,7 +484,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(TaleEntity? tale) success,
+    required TResult Function(List<LatLng> polylinePoints) success,
     required TResult Function(String message) failed,
   }) {
     return loading();
@@ -654,7 +495,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(TaleEntity? tale)? success,
+    TResult? Function(List<LatLng> polylinePoints)? success,
     TResult? Function(String message)? failed,
   }) {
     return loading?.call();
@@ -665,7 +506,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(TaleEntity? tale)? success,
+    TResult Function(List<LatLng> polylinePoints)? success,
     TResult Function(String message)? failed,
     required TResult orElse(),
   }) {
@@ -713,7 +554,7 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements GetTaleIntroState {
+abstract class _Loading implements GetDirectionState {
   const factory _Loading() = _$LoadingImpl;
 }
 
@@ -723,60 +564,50 @@ abstract class _$$SuccessImplCopyWith<$Res> {
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({TaleEntity? tale});
-
-  $TaleEntityCopyWith<$Res>? get tale;
+  $Res call({List<LatLng> polylinePoints});
 }
 
 /// @nodoc
 class __$$SuccessImplCopyWithImpl<$Res>
-    extends _$GetTaleIntroStateCopyWithImpl<$Res, _$SuccessImpl>
+    extends _$GetDirectionStateCopyWithImpl<$Res, _$SuccessImpl>
     implements _$$SuccessImplCopyWith<$Res> {
   __$$SuccessImplCopyWithImpl(
       _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of GetTaleIntroState
+  /// Create a copy of GetDirectionState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? tale = freezed,
+    Object? polylinePoints = null,
   }) {
     return _then(_$SuccessImpl(
-      tale: freezed == tale
-          ? _value.tale
-          : tale // ignore: cast_nullable_to_non_nullable
-              as TaleEntity?,
+      polylinePoints: null == polylinePoints
+          ? _value._polylinePoints
+          : polylinePoints // ignore: cast_nullable_to_non_nullable
+              as List<LatLng>,
     ));
-  }
-
-  /// Create a copy of GetTaleIntroState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $TaleEntityCopyWith<$Res>? get tale {
-    if (_value.tale == null) {
-      return null;
-    }
-
-    return $TaleEntityCopyWith<$Res>(_value.tale!, (value) {
-      return _then(_value.copyWith(tale: value));
-    });
   }
 }
 
 /// @nodoc
 
 class _$SuccessImpl implements _Success {
-  const _$SuccessImpl({this.tale});
+  const _$SuccessImpl({required final List<LatLng> polylinePoints})
+      : _polylinePoints = polylinePoints;
 
+  final List<LatLng> _polylinePoints;
   @override
-  final TaleEntity? tale;
+  List<LatLng> get polylinePoints {
+    if (_polylinePoints is EqualUnmodifiableListView) return _polylinePoints;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_polylinePoints);
+  }
 
   @override
   String toString() {
-    return 'GetTaleIntroState.success(tale: $tale)';
+    return 'GetDirectionState.success(polylinePoints: $polylinePoints)';
   }
 
   @override
@@ -784,13 +615,15 @@ class _$SuccessImpl implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SuccessImpl &&
-            (identical(other.tale, tale) || other.tale == tale));
+            const DeepCollectionEquality()
+                .equals(other._polylinePoints, _polylinePoints));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, tale);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_polylinePoints));
 
-  /// Create a copy of GetTaleIntroState
+  /// Create a copy of GetDirectionState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -803,10 +636,10 @@ class _$SuccessImpl implements _Success {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(TaleEntity? tale) success,
+    required TResult Function(List<LatLng> polylinePoints) success,
     required TResult Function(String message) failed,
   }) {
-    return success(tale);
+    return success(polylinePoints);
   }
 
   @override
@@ -814,10 +647,10 @@ class _$SuccessImpl implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(TaleEntity? tale)? success,
+    TResult? Function(List<LatLng> polylinePoints)? success,
     TResult? Function(String message)? failed,
   }) {
-    return success?.call(tale);
+    return success?.call(polylinePoints);
   }
 
   @override
@@ -825,12 +658,12 @@ class _$SuccessImpl implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(TaleEntity? tale)? success,
+    TResult Function(List<LatLng> polylinePoints)? success,
     TResult Function(String message)? failed,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(tale);
+      return success(polylinePoints);
     }
     return orElse();
   }
@@ -873,12 +706,13 @@ class _$SuccessImpl implements _Success {
   }
 }
 
-abstract class _Success implements GetTaleIntroState {
-  const factory _Success({final TaleEntity? tale}) = _$SuccessImpl;
+abstract class _Success implements GetDirectionState {
+  const factory _Success({required final List<LatLng> polylinePoints}) =
+      _$SuccessImpl;
 
-  TaleEntity? get tale;
+  List<LatLng> get polylinePoints;
 
-  /// Create a copy of GetTaleIntroState
+  /// Create a copy of GetDirectionState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
@@ -896,13 +730,13 @@ abstract class _$$FailedImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$FailedImplCopyWithImpl<$Res>
-    extends _$GetTaleIntroStateCopyWithImpl<$Res, _$FailedImpl>
+    extends _$GetDirectionStateCopyWithImpl<$Res, _$FailedImpl>
     implements _$$FailedImplCopyWith<$Res> {
   __$$FailedImplCopyWithImpl(
       _$FailedImpl _value, $Res Function(_$FailedImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of GetTaleIntroState
+  /// Create a copy of GetDirectionState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -928,7 +762,7 @@ class _$FailedImpl implements _Failed {
 
   @override
   String toString() {
-    return 'GetTaleIntroState.failed(message: $message)';
+    return 'GetDirectionState.failed(message: $message)';
   }
 
   @override
@@ -942,7 +776,7 @@ class _$FailedImpl implements _Failed {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  /// Create a copy of GetTaleIntroState
+  /// Create a copy of GetDirectionState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -955,7 +789,7 @@ class _$FailedImpl implements _Failed {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(TaleEntity? tale) success,
+    required TResult Function(List<LatLng> polylinePoints) success,
     required TResult Function(String message) failed,
   }) {
     return failed(message);
@@ -966,7 +800,7 @@ class _$FailedImpl implements _Failed {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(TaleEntity? tale)? success,
+    TResult? Function(List<LatLng> polylinePoints)? success,
     TResult? Function(String message)? failed,
   }) {
     return failed?.call(message);
@@ -977,7 +811,7 @@ class _$FailedImpl implements _Failed {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(TaleEntity? tale)? success,
+    TResult Function(List<LatLng> polylinePoints)? success,
     TResult Function(String message)? failed,
     required TResult orElse(),
   }) {
@@ -1025,12 +859,12 @@ class _$FailedImpl implements _Failed {
   }
 }
 
-abstract class _Failed implements GetTaleIntroState {
+abstract class _Failed implements GetDirectionState {
   const factory _Failed({required final String message}) = _$FailedImpl;
 
   String get message;
 
-  /// Create a copy of GetTaleIntroState
+  /// Create a copy of GetDirectionState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailedImplCopyWith<_$FailedImpl> get copyWith =>

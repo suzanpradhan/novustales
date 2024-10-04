@@ -67,6 +67,9 @@ class _$GetPopularTalesEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of GetPopularTalesEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -83,6 +86,9 @@ class __$$RequestImplCopyWithImpl<$Res>
   __$$RequestImplCopyWithImpl(
       _$RequestImpl _value, $Res Function(_$RequestImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of GetPopularTalesEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -236,6 +242,9 @@ class _$GetPopularTalesStateCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of GetPopularTalesState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -252,6 +261,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of GetPopularTalesState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -366,6 +378,9 @@ class __$$LoadingImplCopyWithImpl<$Res>
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of GetPopularTalesState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -483,6 +498,8 @@ class __$$SuccessImplCopyWithImpl<$Res>
       _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GetPopularTalesState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -527,7 +544,9 @@ class _$SuccessImpl implements _Success {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_tales));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GetPopularTalesState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
@@ -613,7 +632,10 @@ abstract class _Success implements GetPopularTalesState {
       _$SuccessImpl;
 
   List<TaleEntity> get tales;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GetPopularTalesState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -635,6 +657,8 @@ class __$$FailedImplCopyWithImpl<$Res>
       _$FailedImpl _value, $Res Function(_$FailedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GetPopularTalesState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -673,7 +697,9 @@ class _$FailedImpl implements _Failed {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GetPopularTalesState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FailedImplCopyWith<_$FailedImpl> get copyWith =>
@@ -758,7 +784,10 @@ abstract class _Failed implements GetPopularTalesState {
   const factory _Failed({required final String message}) = _$FailedImpl;
 
   String get message;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GetPopularTalesState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailedImplCopyWith<_$FailedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

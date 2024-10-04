@@ -1,12 +1,9 @@
-import 'dart:io';
 import 'dart:math';
-import 'dart:typed_data';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_image_compress/flutter_image_compress.dart';
+// import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:path_provider/path_provider.dart';
 // import 'package:video_compress/video_compress.dart';
 import 'package:video_player/video_player.dart';
 
@@ -367,8 +364,7 @@ class _CameraScreenState extends State<CameraScreen> {
       transform = transform + pi;
     });
     int cameraPos = iscamerafront ? 0 : 1;
-    _cameraController =
-        CameraController(cameras[cameraPos], ResolutionPreset.high);
+    _cameraController = CameraController(cameras[cameraPos], ResolutionPreset.high);
     _cameraInitialization = _cameraController.initialize();
   }
 
@@ -418,8 +414,7 @@ class _CameraScreenState extends State<CameraScreen> {
 
   Future<void> handlePickedFile(XFile pickedFile) async {
     try {
-      if (pickedFile.path.contains(".mp4") ||
-          pickedFile.path.contains(".mov")) {
+      if (pickedFile.path.contains(".mp4") || pickedFile.path.contains(".mov")) {
         // await handleVideo(pickedFile);
       } else {
         await handleImage(pickedFile);
@@ -450,42 +445,40 @@ class _CameraScreenState extends State<CameraScreen> {
   // }
 
   Future<void> handleImage(XFile pickedImage) async {
-    XFile? compressedImageFile = await compressImage(pickedImage);
+    // XFile? compressedImageFile = await compressImage(pickedImage);
 
-    if (compressedImageFile != null) {
-      print(
-          "Compressed Image Path: ${await compressedImageFile.length()} :: ${compressedImageFile.path}");
-      if (context.mounted) {
-        navigateToAddStoryScreen(context, compressedImageFile.path);
-      }
-    } else {
-      // Handle compression failure
-      print("Image compression failed.");
-    }
+    // if (compressedImageFile != null) {
+    //   print(
+    //       "Compressed Image Path: ${await compressedImageFile.length()} :: ${compressedImageFile.path}");
+    //   if (context.mounted) {
+    //     navigateToAddStoryScreen(context, compressedImageFile.path);
+    //   }
+    // } else {
+    //   // Handle compression failure
+    //   print("Image compression failed.");
+    // }
   }
 
-  Future<XFile?> compressImage(XFile originalFile) async {
-    final Uint8List? compressedData =
-        await FlutterImageCompress.compressWithFile(
-      originalFile.path,
-      quality: 80, // Adjust quality as needed
-    );
+  // Future<XFile?> compressImage(XFile originalFile) async {
+  //   final Uint8List? compressedData = await FlutterImageCompress.compressWithFile(
+  //     originalFile.path,
+  //     quality: 80, // Adjust quality as needed
+  //   );
 
-    if (compressedData != null) {
-      // Get the application documents directory
-      final appDocumentsDirectory = await getApplicationDocumentsDirectory();
+  //   if (compressedData != null) {
+  //     // Get the application documents directory
+  //     final appDocumentsDirectory = await getApplicationDocumentsDirectory();
 
-      // Save compressed data to a new file
-      final compressedFilePath =
-          '${appDocumentsDirectory.path}/compressed_image.jpg';
-      await File(compressedFilePath).writeAsBytes(compressedData);
+  //     // Save compressed data to a new file
+  //     final compressedFilePath = '${appDocumentsDirectory.path}/compressed_image.jpg';
+  //     await File(compressedFilePath).writeAsBytes(compressedData);
 
-      return XFile(compressedFilePath);
-    } else {
-      // Handle compression failure or null value as needed
-      return null;
-    }
-  }
+  //     return XFile(compressedFilePath);
+  //   } else {
+  //     // Handle compression failure or null value as needed
+  //     return null;
+  //   }
+  // }
 
   void takePhoto(BuildContext context) async {
     XFile originalFile = await _cameraController.takePicture();

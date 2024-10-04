@@ -24,8 +24,12 @@ mixin _$NearMeTalesParams {
   String get longitude => throw _privateConstructorUsedError;
   String get radius => throw _privateConstructorUsedError;
 
+  /// Serializes this NearMeTalesParams to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of NearMeTalesParams
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $NearMeTalesParamsCopyWith<NearMeTalesParams> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +53,8 @@ class _$NearMeTalesParamsCopyWithImpl<$Res, $Val extends NearMeTalesParams>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of NearMeTalesParams
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -92,6 +98,8 @@ class __$$NearMeTalesParamsImplCopyWithImpl<$Res>
       $Res Function(_$NearMeTalesParamsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of NearMeTalesParams
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -149,11 +157,13 @@ class _$NearMeTalesParamsImpl implements _NearMeTalesParams {
             (identical(other.radius, radius) || other.radius == radius));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, latitude, longitude, radius);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of NearMeTalesParams
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$NearMeTalesParamsImplCopyWith<_$NearMeTalesParamsImpl> get copyWith =>
@@ -183,8 +193,11 @@ abstract class _NearMeTalesParams implements NearMeTalesParams {
   String get longitude;
   @override
   String get radius;
+
+  /// Create a copy of NearMeTalesParams
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$NearMeTalesParamsImplCopyWith<_$NearMeTalesParamsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
