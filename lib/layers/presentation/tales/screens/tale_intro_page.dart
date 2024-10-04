@@ -13,7 +13,10 @@ class TaleIntroPage extends StatelessWidget {
   final TaleEntity tale;
   final ScrollController scrollController;
   const TaleIntroPage(
-      {super.key, this.currentLocation, required this.tale, required this.scrollController});
+      {super.key,
+      this.currentLocation,
+      required this.tale,
+      required this.scrollController});
 
   @override
   Widget build(BuildContext context) {
@@ -64,12 +67,15 @@ class TaleIntroPage extends StatelessWidget {
                                   decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                       image: DecorationImage(
-                                          image: NetworkImage(tale.createdBy!.avatar!),
+                                          image: NetworkImage(
+                                              tale.createdBy!.avatar!),
                                           fit: BoxFit.cover)),
                                 ),
                               Padding(
-                                padding: const EdgeInsets.only(left: UIConstants.xminPadding),
-                                child: Text((tale.createdBy?.firstName != null &&
+                                padding: const EdgeInsets.only(
+                                    left: UIConstants.xminPadding),
+                                child: Text((tale.createdBy?.firstName !=
+                                            null &&
                                         tale.createdBy?.lastName != null)
                                     ? "${tale.createdBy!.firstName} ${tale.createdBy?.lastName}"
                                     : (tale.createdBy?.nickName ?? "--")),
@@ -99,23 +105,30 @@ class TaleIntroPage extends StatelessWidget {
                           child: Container(
                             height: 58,
                             width: 58,
-                            padding: EdgeInsets.symmetric(horizontal: UIConstants.minPadding),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: UIConstants.minPadding),
                             decoration: BoxDecoration(
                                 boxShadow: [
                                   BoxShadow(
-                                      color: AppColors.purpleAccent.withOpacity(0.4),
+                                      color: AppColors.purpleAccent
+                                          .withOpacity(0.4),
                                       blurRadius: 10,
                                       spreadRadius: 1,
                                       offset: Offset(0, 3))
                                 ],
                                 color: AppColors.purpleAccent,
-                                borderRadius: BorderRadius.circular(UIConstants.borderRadius)),
+                                borderRadius: BorderRadius.circular(
+                                    UIConstants.borderRadius)),
                             child: (tale.distance! <= 1.00)
                                 ? Center(
                                     child: Text(
                                     "Join",
-                                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                        color: Colors.white, fontWeight: FontWeight.bold),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium
+                                        ?.copyWith(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold),
                                   ))
                                 : Transform.rotate(
                                     angle: 45 * (3.14159265359 / 180),
@@ -136,7 +149,9 @@ class TaleIntroPage extends StatelessWidget {
                           style: Theme.of(context)
                               .textTheme
                               .bodyMedium
-                              ?.copyWith(color: AppColors.black, fontWeight: FontWeight.bold),
+                              ?.copyWith(
+                                  color: AppColors.black,
+                                  fontWeight: FontWeight.bold),
                         ),
                       ],
                     )
@@ -144,82 +159,95 @@ class TaleIntroPage extends StatelessWidget {
               ),
               Gapper.vmGap(),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(UIConstants.minBorderRadius),
-                        color: AppColors.purpleAccent.withOpacity(0.1)),
-                    width: 110,
-                    height: 90,
-                    padding: EdgeInsets.all(UIConstants.minPadding),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "1224",
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium
-                              ?.copyWith(fontSize: 24, fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          "Daily visit",
-                          style: Theme.of(context).textTheme.bodyMedium,
-                        ),
-                      ],
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(
+                              UIConstants.minBorderRadius),
+                          color: AppColors.purpleAccent.withOpacity(0.1)),
+                      width: double.maxFinite,
+                      height: 90,
+                      padding: EdgeInsets.all(UIConstants.minPadding),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "1224",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
+                                    fontSize: 24, fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            "Daily visit",
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   Gapper.hmGap(),
-                  Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(UIConstants.minBorderRadius),
-                        color: AppColors.purpleAccent.withOpacity(0.1)),
-                    width: 110,
-                    height: 90,
-                    padding: EdgeInsets.all(UIConstants.minPadding),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "42k",
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium
-                              ?.copyWith(fontSize: 24, fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          "Followers",
-                          style: Theme.of(context).textTheme.bodyMedium,
-                        ),
-                      ],
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(
+                              UIConstants.minBorderRadius),
+                          color: AppColors.purpleAccent.withOpacity(0.1)),
+                      width: double.maxFinite,
+                      height: 90,
+                      padding: EdgeInsets.all(UIConstants.minPadding),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "42k",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
+                                    fontSize: 24, fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            "Followers",
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   Gapper.hmGap(),
-                  Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(UIConstants.minBorderRadius),
-                        color: AppColors.purpleAccent.withOpacity(0.1)),
-                    width: 110,
-                    height: 90,
-                    padding: EdgeInsets.all(UIConstants.minPadding),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "12 Aug",
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium
-                              ?.copyWith(fontSize: 24, fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          "Started on",
-                          style: Theme.of(context).textTheme.bodyMedium,
-                        ),
-                      ],
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(
+                              UIConstants.minBorderRadius),
+                          color: AppColors.purpleAccent.withOpacity(0.1)),
+                      width: double.maxFinite,
+                      height: 90,
+                      padding: EdgeInsets.all(UIConstants.minPadding),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "12 Aug",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
+                                    fontSize: 24, fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            "Started on",
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                        ],
+                      ),
                     ),
                   )
                 ],
