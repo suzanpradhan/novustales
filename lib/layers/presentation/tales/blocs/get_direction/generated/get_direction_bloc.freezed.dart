@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of '../get_profile_bloc.dart';
+part of '../get_direction_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,20 +15,22 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$GetProfileEvent {
+mixin _$GetDirectionEvent {
+  LatLng get origin => throw _privateConstructorUsedError;
+  LatLng get destination => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() request,
+    required TResult Function(LatLng origin, LatLng destination) request,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? request,
+    TResult? Function(LatLng origin, LatLng destination)? request,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? request,
+    TResult Function(LatLng origin, LatLng destination)? request,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -48,85 +50,154 @@ mixin _$GetProfileEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  /// Create a copy of GetDirectionEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $GetDirectionEventCopyWith<GetDirectionEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GetProfileEventCopyWith<$Res> {
-  factory $GetProfileEventCopyWith(
-          GetProfileEvent value, $Res Function(GetProfileEvent) then) =
-      _$GetProfileEventCopyWithImpl<$Res, GetProfileEvent>;
+abstract class $GetDirectionEventCopyWith<$Res> {
+  factory $GetDirectionEventCopyWith(
+          GetDirectionEvent value, $Res Function(GetDirectionEvent) then) =
+      _$GetDirectionEventCopyWithImpl<$Res, GetDirectionEvent>;
+  @useResult
+  $Res call({LatLng origin, LatLng destination});
 }
 
 /// @nodoc
-class _$GetProfileEventCopyWithImpl<$Res, $Val extends GetProfileEvent>
-    implements $GetProfileEventCopyWith<$Res> {
-  _$GetProfileEventCopyWithImpl(this._value, this._then);
+class _$GetDirectionEventCopyWithImpl<$Res, $Val extends GetDirectionEvent>
+    implements $GetDirectionEventCopyWith<$Res> {
+  _$GetDirectionEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of GetDirectionEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? origin = null,
+    Object? destination = null,
+  }) {
+    return _then(_value.copyWith(
+      origin: null == origin
+          ? _value.origin
+          : origin // ignore: cast_nullable_to_non_nullable
+              as LatLng,
+      destination: null == destination
+          ? _value.destination
+          : destination // ignore: cast_nullable_to_non_nullable
+              as LatLng,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$RequestImplCopyWith<$Res> {
+abstract class _$$RequestImplCopyWith<$Res>
+    implements $GetDirectionEventCopyWith<$Res> {
   factory _$$RequestImplCopyWith(
           _$RequestImpl value, $Res Function(_$RequestImpl) then) =
       __$$RequestImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({LatLng origin, LatLng destination});
 }
 
 /// @nodoc
 class __$$RequestImplCopyWithImpl<$Res>
-    extends _$GetProfileEventCopyWithImpl<$Res, _$RequestImpl>
+    extends _$GetDirectionEventCopyWithImpl<$Res, _$RequestImpl>
     implements _$$RequestImplCopyWith<$Res> {
   __$$RequestImplCopyWithImpl(
       _$RequestImpl _value, $Res Function(_$RequestImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of GetDirectionEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? origin = null,
+    Object? destination = null,
+  }) {
+    return _then(_$RequestImpl(
+      origin: null == origin
+          ? _value.origin
+          : origin // ignore: cast_nullable_to_non_nullable
+              as LatLng,
+      destination: null == destination
+          ? _value.destination
+          : destination // ignore: cast_nullable_to_non_nullable
+              as LatLng,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$RequestImpl implements _Request {
-  const _$RequestImpl();
+  const _$RequestImpl({required this.origin, required this.destination});
+
+  @override
+  final LatLng origin;
+  @override
+  final LatLng destination;
 
   @override
   String toString() {
-    return 'GetProfileEvent.request()';
+    return 'GetDirectionEvent.request(origin: $origin, destination: $destination)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$RequestImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$RequestImpl &&
+            (identical(other.origin, origin) || other.origin == origin) &&
+            (identical(other.destination, destination) ||
+                other.destination == destination));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, origin, destination);
+
+  /// Create a copy of GetDirectionEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RequestImplCopyWith<_$RequestImpl> get copyWith =>
+      __$$RequestImplCopyWithImpl<_$RequestImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() request,
+    required TResult Function(LatLng origin, LatLng destination) request,
   }) {
-    return request();
+    return request(origin, destination);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? request,
+    TResult? Function(LatLng origin, LatLng destination)? request,
   }) {
-    return request?.call();
+    return request?.call(origin, destination);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? request,
+    TResult Function(LatLng origin, LatLng destination)? request,
     required TResult orElse(),
   }) {
     if (request != null) {
-      return request();
+      return request(origin, destination);
     }
     return orElse();
   }
@@ -160,17 +231,31 @@ class _$RequestImpl implements _Request {
   }
 }
 
-abstract class _Request implements GetProfileEvent {
-  const factory _Request() = _$RequestImpl;
+abstract class _Request implements GetDirectionEvent {
+  const factory _Request(
+      {required final LatLng origin,
+      required final LatLng destination}) = _$RequestImpl;
+
+  @override
+  LatLng get origin;
+  @override
+  LatLng get destination;
+
+  /// Create a copy of GetDirectionEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$RequestImplCopyWith<_$RequestImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$GetProfileState {
+mixin _$GetDirectionState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ProfileEntity me) success,
+    required TResult Function(List<LatLng> polylinePoints) success,
     required TResult Function(String message) failed,
   }) =>
       throw _privateConstructorUsedError;
@@ -178,7 +263,7 @@ mixin _$GetProfileState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ProfileEntity me)? success,
+    TResult? Function(List<LatLng> polylinePoints)? success,
     TResult? Function(String message)? failed,
   }) =>
       throw _privateConstructorUsedError;
@@ -186,7 +271,7 @@ mixin _$GetProfileState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ProfileEntity me)? success,
+    TResult Function(List<LatLng> polylinePoints)? success,
     TResult Function(String message)? failed,
     required TResult orElse(),
   }) =>
@@ -219,21 +304,24 @@ mixin _$GetProfileState {
 }
 
 /// @nodoc
-abstract class $GetProfileStateCopyWith<$Res> {
-  factory $GetProfileStateCopyWith(
-          GetProfileState value, $Res Function(GetProfileState) then) =
-      _$GetProfileStateCopyWithImpl<$Res, GetProfileState>;
+abstract class $GetDirectionStateCopyWith<$Res> {
+  factory $GetDirectionStateCopyWith(
+          GetDirectionState value, $Res Function(GetDirectionState) then) =
+      _$GetDirectionStateCopyWithImpl<$Res, GetDirectionState>;
 }
 
 /// @nodoc
-class _$GetProfileStateCopyWithImpl<$Res, $Val extends GetProfileState>
-    implements $GetProfileStateCopyWith<$Res> {
-  _$GetProfileStateCopyWithImpl(this._value, this._then);
+class _$GetDirectionStateCopyWithImpl<$Res, $Val extends GetDirectionState>
+    implements $GetDirectionStateCopyWith<$Res> {
+  _$GetDirectionStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of GetDirectionState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -245,11 +333,14 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$GetProfileStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$GetDirectionStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of GetDirectionState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -259,7 +350,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'GetProfileState.initial()';
+    return 'GetDirectionState.initial()';
   }
 
   @override
@@ -276,7 +367,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ProfileEntity me) success,
+    required TResult Function(List<LatLng> polylinePoints) success,
     required TResult Function(String message) failed,
   }) {
     return initial();
@@ -287,7 +378,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ProfileEntity me)? success,
+    TResult? Function(List<LatLng> polylinePoints)? success,
     TResult? Function(String message)? failed,
   }) {
     return initial?.call();
@@ -298,7 +389,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ProfileEntity me)? success,
+    TResult Function(List<LatLng> polylinePoints)? success,
     TResult Function(String message)? failed,
     required TResult orElse(),
   }) {
@@ -346,7 +437,7 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements GetProfileState {
+abstract class _Initial implements GetDirectionState {
   const factory _Initial() = _$InitialImpl;
 }
 
@@ -359,11 +450,14 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$GetProfileStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$GetDirectionStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of GetDirectionState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -373,7 +467,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'GetProfileState.loading()';
+    return 'GetDirectionState.loading()';
   }
 
   @override
@@ -390,7 +484,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ProfileEntity me) success,
+    required TResult Function(List<LatLng> polylinePoints) success,
     required TResult Function(String message) failed,
   }) {
     return loading();
@@ -401,7 +495,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ProfileEntity me)? success,
+    TResult? Function(List<LatLng> polylinePoints)? success,
     TResult? Function(String message)? failed,
   }) {
     return loading?.call();
@@ -412,7 +506,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ProfileEntity me)? success,
+    TResult Function(List<LatLng> polylinePoints)? success,
     TResult Function(String message)? failed,
     required TResult orElse(),
   }) {
@@ -460,7 +554,7 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements GetProfileState {
+abstract class _Loading implements GetDirectionState {
   const factory _Loading() = _$LoadingImpl;
 }
 
@@ -470,52 +564,50 @@ abstract class _$$SuccessImplCopyWith<$Res> {
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({ProfileEntity me});
-
-  $ProfileEntityCopyWith<$Res> get me;
+  $Res call({List<LatLng> polylinePoints});
 }
 
 /// @nodoc
 class __$$SuccessImplCopyWithImpl<$Res>
-    extends _$GetProfileStateCopyWithImpl<$Res, _$SuccessImpl>
+    extends _$GetDirectionStateCopyWithImpl<$Res, _$SuccessImpl>
     implements _$$SuccessImplCopyWith<$Res> {
   __$$SuccessImplCopyWithImpl(
       _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GetDirectionState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? me = null,
+    Object? polylinePoints = null,
   }) {
     return _then(_$SuccessImpl(
-      me: null == me
-          ? _value.me
-          : me // ignore: cast_nullable_to_non_nullable
-              as ProfileEntity,
+      polylinePoints: null == polylinePoints
+          ? _value._polylinePoints
+          : polylinePoints // ignore: cast_nullable_to_non_nullable
+              as List<LatLng>,
     ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ProfileEntityCopyWith<$Res> get me {
-    return $ProfileEntityCopyWith<$Res>(_value.me, (value) {
-      return _then(_value.copyWith(me: value));
-    });
   }
 }
 
 /// @nodoc
 
 class _$SuccessImpl implements _Success {
-  const _$SuccessImpl({required this.me});
+  const _$SuccessImpl({required final List<LatLng> polylinePoints})
+      : _polylinePoints = polylinePoints;
 
+  final List<LatLng> _polylinePoints;
   @override
-  final ProfileEntity me;
+  List<LatLng> get polylinePoints {
+    if (_polylinePoints is EqualUnmodifiableListView) return _polylinePoints;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_polylinePoints);
+  }
 
   @override
   String toString() {
-    return 'GetProfileState.success(me: $me)';
+    return 'GetDirectionState.success(polylinePoints: $polylinePoints)';
   }
 
   @override
@@ -523,13 +615,17 @@ class _$SuccessImpl implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SuccessImpl &&
-            (identical(other.me, me) || other.me == me));
+            const DeepCollectionEquality()
+                .equals(other._polylinePoints, _polylinePoints));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, me);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_polylinePoints));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GetDirectionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
@@ -540,10 +636,10 @@ class _$SuccessImpl implements _Success {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ProfileEntity me) success,
+    required TResult Function(List<LatLng> polylinePoints) success,
     required TResult Function(String message) failed,
   }) {
-    return success(me);
+    return success(polylinePoints);
   }
 
   @override
@@ -551,10 +647,10 @@ class _$SuccessImpl implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ProfileEntity me)? success,
+    TResult? Function(List<LatLng> polylinePoints)? success,
     TResult? Function(String message)? failed,
   }) {
-    return success?.call(me);
+    return success?.call(polylinePoints);
   }
 
   @override
@@ -562,12 +658,12 @@ class _$SuccessImpl implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ProfileEntity me)? success,
+    TResult Function(List<LatLng> polylinePoints)? success,
     TResult Function(String message)? failed,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(me);
+      return success(polylinePoints);
     }
     return orElse();
   }
@@ -610,11 +706,15 @@ class _$SuccessImpl implements _Success {
   }
 }
 
-abstract class _Success implements GetProfileState {
-  const factory _Success({required final ProfileEntity me}) = _$SuccessImpl;
+abstract class _Success implements GetDirectionState {
+  const factory _Success({required final List<LatLng> polylinePoints}) =
+      _$SuccessImpl;
 
-  ProfileEntity get me;
-  @JsonKey(ignore: true)
+  List<LatLng> get polylinePoints;
+
+  /// Create a copy of GetDirectionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -630,12 +730,14 @@ abstract class _$$FailedImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$FailedImplCopyWithImpl<$Res>
-    extends _$GetProfileStateCopyWithImpl<$Res, _$FailedImpl>
+    extends _$GetDirectionStateCopyWithImpl<$Res, _$FailedImpl>
     implements _$$FailedImplCopyWith<$Res> {
   __$$FailedImplCopyWithImpl(
       _$FailedImpl _value, $Res Function(_$FailedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GetDirectionState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -660,7 +762,7 @@ class _$FailedImpl implements _Failed {
 
   @override
   String toString() {
-    return 'GetProfileState.failed(message: $message)';
+    return 'GetDirectionState.failed(message: $message)';
   }
 
   @override
@@ -674,7 +776,9 @@ class _$FailedImpl implements _Failed {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GetDirectionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FailedImplCopyWith<_$FailedImpl> get copyWith =>
@@ -685,7 +789,7 @@ class _$FailedImpl implements _Failed {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ProfileEntity me) success,
+    required TResult Function(List<LatLng> polylinePoints) success,
     required TResult Function(String message) failed,
   }) {
     return failed(message);
@@ -696,7 +800,7 @@ class _$FailedImpl implements _Failed {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ProfileEntity me)? success,
+    TResult? Function(List<LatLng> polylinePoints)? success,
     TResult? Function(String message)? failed,
   }) {
     return failed?.call(message);
@@ -707,7 +811,7 @@ class _$FailedImpl implements _Failed {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ProfileEntity me)? success,
+    TResult Function(List<LatLng> polylinePoints)? success,
     TResult Function(String message)? failed,
     required TResult orElse(),
   }) {
@@ -755,11 +859,14 @@ class _$FailedImpl implements _Failed {
   }
 }
 
-abstract class _Failed implements GetProfileState {
+abstract class _Failed implements GetDirectionState {
   const factory _Failed({required final String message}) = _$FailedImpl;
 
   String get message;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GetDirectionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailedImplCopyWith<_$FailedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

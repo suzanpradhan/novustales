@@ -43,7 +43,7 @@ dependencies:
   lottie:
 
   modal_bottom_sheet: ^3.0.0-pre
-  flutter_image_compress:
+  # flutter_image_compress:
   overlay_support:
   overlay_lottie:
   flutter_svg: ^2.0.10+1
@@ -143,6 +143,7 @@ dependencies:
   pull_to_refresh_plus: ^2.0.3
   timeago: ^3.7.0
   humanize_duration: ^0.0.2
+  flutter_polyline_points: ^2.1.0
 
 dev_dependencies:
   flutter_test:
@@ -183,6 +184,7 @@ flutter:
     - assets/icons/
     - assets/videos/
     - assets/icons/svg/
+    - .env
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

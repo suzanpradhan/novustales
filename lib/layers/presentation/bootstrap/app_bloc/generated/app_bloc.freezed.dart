@@ -71,6 +71,9 @@ class _$AppEventCopyWithImpl<$Res, $Val extends AppEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of AppEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -87,6 +90,9 @@ class __$$CheckAuthenticationImplCopyWithImpl<$Res>
   __$$CheckAuthenticationImplCopyWithImpl(_$CheckAuthenticationImpl _value,
       $Res Function(_$CheckAuthenticationImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of AppEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -190,6 +196,9 @@ class __$$ClearSessionImplCopyWithImpl<$Res>
   __$$ClearSessionImplCopyWithImpl(
       _$ClearSessionImpl _value, $Res Function(_$ClearSessionImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of AppEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -354,6 +363,9 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of AppState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -370,6 +382,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of AppState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -493,6 +508,9 @@ class __$$CheckingAuthenticationImplCopyWithImpl<$Res>
       _$CheckingAuthenticationImpl _value,
       $Res Function(_$CheckingAuthenticationImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of AppState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -615,6 +633,9 @@ class __$$AuthenticatedImplCopyWithImpl<$Res>
   __$$AuthenticatedImplCopyWithImpl(
       _$AuthenticatedImpl _value, $Res Function(_$AuthenticatedImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of AppState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -739,6 +760,8 @@ class __$$UnAuthentictedImplCopyWithImpl<$Res>
       _$UnAuthentictedImpl _value, $Res Function(_$UnAuthentictedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AppState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -777,7 +800,9 @@ class _$UnAuthentictedImpl implements _UnAuthenticted {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AppState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UnAuthentictedImplCopyWith<_$UnAuthentictedImpl> get copyWith =>
@@ -870,7 +895,10 @@ abstract class _UnAuthenticted implements AppState {
   const factory _UnAuthenticted({final String? message}) = _$UnAuthentictedImpl;
 
   String? get message;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AppState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UnAuthentictedImplCopyWith<_$UnAuthentictedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -889,6 +917,9 @@ class __$$ClearedSessionImplCopyWithImpl<$Res>
   __$$ClearedSessionImplCopyWithImpl(
       _$ClearedSessionImpl _value, $Res Function(_$ClearedSessionImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of AppState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc

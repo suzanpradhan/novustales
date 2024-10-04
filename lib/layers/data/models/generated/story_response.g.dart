@@ -8,14 +8,14 @@ part of '../story_response.dart';
 
 _$StoryResponseImpl _$$StoryResponseImplFromJson(Map<String, dynamic> json) =>
     _$StoryResponseImpl(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       userDetails: json['user_details'] == null
           ? null
           : StoryUserDetail.fromJson(
               json['user_details'] as Map<String, dynamic>),
       mediaUrl: json['media_url'] as String?,
       category: json['category'] as String?,
-      views: json['views'] as int?,
+      views: (json['views'] as num?)?.toInt(),
       title: json['title'] as String?,
       media: json['media'] as String?,
       mediaUrls: json['media_urls'] as String?,
@@ -38,7 +38,7 @@ _$StoryResponseImpl _$$StoryResponseImplFromJson(Map<String, dynamic> json) =>
 _$StoryUserDetailImpl _$$StoryUserDetailImplFromJson(
         Map<String, dynamic> json) =>
     _$StoryUserDetailImpl(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       email: json['email'] as String?,
       name: json['name'] as String?,
       nickName: json['nick_name'] as String?,

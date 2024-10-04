@@ -8,28 +8,27 @@ class LocalNotificationService {
   static BuildContext? context;
   // static
   static void initialize() {
-    const InitializationSettings initializationSettings =
-        InitializationSettings(
-            android: AndroidInitializationSettings("@mipmap/ic_launcher"),
-            iOS: DarwinInitializationSettings(
-              requestSoundPermission: true,
-              requestBadgePermission: true,
-              requestAlertPermission: true,
-            ));
+    const InitializationSettings initializationSettings = InitializationSettings(
+        android: AndroidInitializationSettings("@mipmap/ic_launcher"),
+        iOS: DarwinInitializationSettings(
+          requestSoundPermission: true,
+          requestBadgePermission: true,
+          requestAlertPermission: true,
+        ));
 
     _notificationsPlugin.initialize(
       initializationSettings,
       // onSelectNotification: (String? route) async {
-      // if (route != null) {
-      //   // Navigator.of(context).pushNamed('/');
-      //
-      //   try{
-      //     notificationClickHandler(context!,  Notificationss(
-      //         path: route.toString()
-      //     ));
-      //   }catch(e){print("ERR NOTIFICATION :: " + e.toString());}
-      //   print(route);
-      // }
+      //   // if (route != null) {
+      //   //   // Navigator.of(context).pushNamed('/');
+      //   //
+      //   //   try{
+      //   //     notificationClickHandler(context!,  Notificationss(
+      //   //         path: route.toString()
+      //   //     ));
+      //   //   }catch(e){print("ERR NOTIFICATION :: " + e.toString());}
+      //   //   print(route);
+      //   // }
       // }
     );
   }
@@ -51,11 +50,8 @@ class LocalNotificationService {
             presentAlert: true,
           ));
 
-      await _notificationsPlugin.show(
-          id,
-          message.notification!.title.toString(),
-          message.notification!.body.toString(),
-          notificationDetails,
+      await _notificationsPlugin.show(id, message.notification!.title.toString(),
+          message.notification!.body.toString(), notificationDetails,
           payload: message.data["path"].toString());
     } on Exception catch (e) {
       print(e);

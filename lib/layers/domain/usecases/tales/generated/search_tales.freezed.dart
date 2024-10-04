@@ -23,8 +23,12 @@ mixin _$SearchTalesParams {
   @JsonKey(name: "search")
   String get searchText => throw _privateConstructorUsedError;
 
+  /// Serializes this SearchTalesParams to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SearchTalesParams
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SearchTalesParamsCopyWith<SearchTalesParams> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +52,8 @@ class _$SearchTalesParamsCopyWithImpl<$Res, $Val extends SearchTalesParams>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SearchTalesParams
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -81,6 +87,8 @@ class __$$SearchTalesParamsImplCopyWithImpl<$Res>
       $Res Function(_$SearchTalesParamsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SearchTalesParams
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -122,11 +130,13 @@ class _$SearchTalesParamsImpl implements _SearchTalesParams {
                 other.searchText == searchText));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, searchText);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SearchTalesParams
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SearchTalesParamsImplCopyWith<_$SearchTalesParamsImpl> get copyWith =>
@@ -152,8 +162,11 @@ abstract class _SearchTalesParams implements SearchTalesParams {
   @override
   @JsonKey(name: "search")
   String get searchText;
+
+  /// Create a copy of SearchTalesParams
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SearchTalesParamsImplCopyWith<_$SearchTalesParamsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

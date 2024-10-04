@@ -36,7 +36,9 @@ mixin _$TaleResponse {
   double? get longitude => throw _privateConstructorUsedError;
   double? get distance => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TaleResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TaleResponseCopyWith<TaleResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -73,6 +75,8 @@ class _$TaleResponseCopyWithImpl<$Res, $Val extends TaleResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TaleResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -126,6 +130,8 @@ class _$TaleResponseCopyWithImpl<$Res, $Val extends TaleResponse>
     ) as $Val);
   }
 
+  /// Create a copy of TaleResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $UserModelCopyWith<$Res>? get createdBy {
@@ -172,6 +178,8 @@ class __$$TaleResponseImplCopyWithImpl<$Res>
       _$TaleResponseImpl _value, $Res Function(_$TaleResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TaleResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -297,12 +305,14 @@ class _$TaleResponseImpl extends _TaleResponse {
                 other.distance == distance));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, title, description,
       thumbnail, categoryName, latitude, createdBy, longitude, distance);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TaleResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TaleResponseImplCopyWith<_$TaleResponseImpl> get copyWith =>
@@ -351,8 +361,11 @@ abstract class _TaleResponse extends TaleResponse {
   double? get longitude;
   @override
   double? get distance;
+
+  /// Create a copy of TaleResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TaleResponseImplCopyWith<_$TaleResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

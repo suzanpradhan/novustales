@@ -97,6 +97,9 @@ class _$RegisterEventCopyWithImpl<$Res, $Val extends RegisterEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of RegisterEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -116,6 +119,8 @@ class __$$ValidateEmailImplCopyWithImpl<$Res>
       _$ValidateEmailImpl _value, $Res Function(_$ValidateEmailImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RegisterEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -155,7 +160,9 @@ class _$ValidateEmailImpl implements _ValidateEmail {
   @override
   int get hashCode => Object.hash(runtimeType, email);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RegisterEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ValidateEmailImplCopyWith<_$ValidateEmailImpl> get copyWith =>
@@ -253,7 +260,10 @@ abstract class _ValidateEmail implements RegisterEvent {
   const factory _ValidateEmail({final String email}) = _$ValidateEmailImpl;
 
   String get email;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RegisterEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ValidateEmailImplCopyWith<_$ValidateEmailImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -275,6 +285,8 @@ class __$$ValidatePasswordImplCopyWithImpl<$Res>
       $Res Function(_$ValidatePasswordImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RegisterEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -315,7 +327,9 @@ class _$ValidatePasswordImpl implements _ValidatePassword {
   @override
   int get hashCode => Object.hash(runtimeType, password);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RegisterEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ValidatePasswordImplCopyWith<_$ValidatePasswordImpl> get copyWith =>
@@ -415,7 +429,10 @@ abstract class _ValidatePassword implements RegisterEvent {
       _$ValidatePasswordImpl;
 
   String get password;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RegisterEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ValidatePasswordImplCopyWith<_$ValidatePasswordImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -439,6 +456,8 @@ class __$$ValidateConfirmPasswordImplCopyWithImpl<$Res>
       $Res Function(_$ValidateConfirmPasswordImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RegisterEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -479,7 +498,9 @@ class _$ValidateConfirmPasswordImpl implements _ValidateConfirmPassword {
   @override
   int get hashCode => Object.hash(runtimeType, confirmPassword);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RegisterEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ValidateConfirmPasswordImplCopyWith<_$ValidateConfirmPasswordImpl>
@@ -579,7 +600,10 @@ abstract class _ValidateConfirmPassword implements RegisterEvent {
       _$ValidateConfirmPasswordImpl;
 
   String get confirmPassword;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RegisterEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ValidateConfirmPasswordImplCopyWith<_$ValidateConfirmPasswordImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -601,6 +625,8 @@ class __$$ValidatePhoneImplCopyWithImpl<$Res>
       _$ValidatePhoneImpl _value, $Res Function(_$ValidatePhoneImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RegisterEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -640,7 +666,9 @@ class _$ValidatePhoneImpl implements _ValidatePhone {
   @override
   int get hashCode => Object.hash(runtimeType, phone);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RegisterEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ValidatePhoneImplCopyWith<_$ValidatePhoneImpl> get copyWith =>
@@ -738,7 +766,10 @@ abstract class _ValidatePhone implements RegisterEvent {
   const factory _ValidatePhone({final String phone}) = _$ValidatePhoneImpl;
 
   String get phone;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RegisterEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ValidatePhoneImplCopyWith<_$ValidatePhoneImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -760,6 +791,8 @@ class __$$ValidateNameImplCopyWithImpl<$Res>
       _$ValidateNameImpl _value, $Res Function(_$ValidateNameImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RegisterEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -799,7 +832,9 @@ class _$ValidateNameImpl implements _ValidateName {
   @override
   int get hashCode => Object.hash(runtimeType, name);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RegisterEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ValidateNameImplCopyWith<_$ValidateNameImpl> get copyWith =>
@@ -897,7 +932,10 @@ abstract class _ValidateName implements RegisterEvent {
   const factory _ValidateName({final String name}) = _$ValidateNameImpl;
 
   String get name;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RegisterEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ValidateNameImplCopyWith<_$ValidateNameImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -916,6 +954,9 @@ class __$$AttemptImplCopyWithImpl<$Res>
   __$$AttemptImplCopyWithImpl(
       _$AttemptImpl _value, $Res Function(_$AttemptImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of RegisterEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1040,7 +1081,9 @@ mixin _$RegisterState {
   bool get isFirstAttempt => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RegisterState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RegisterStateCopyWith<RegisterState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1072,6 +1115,8 @@ class _$RegisterStateCopyWithImpl<$Res, $Val extends RegisterState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of RegisterState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1148,6 +1193,8 @@ class __$$RegisterStateImplCopyWithImpl<$Res>
       _$RegisterStateImpl _value, $Res Function(_$RegisterStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RegisterState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1262,7 +1309,9 @@ class _$RegisterStateImpl implements _RegisterState {
   int get hashCode => Object.hash(runtimeType, status, fullName, email,
       password, confirmPassword, isValid, isFirstAttempt, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RegisterState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RegisterStateImplCopyWith<_$RegisterStateImpl> get copyWith =>
@@ -1296,8 +1345,11 @@ abstract class _RegisterState implements RegisterState {
   bool get isFirstAttempt;
   @override
   String? get message;
+
+  /// Create a copy of RegisterState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RegisterStateImplCopyWith<_$RegisterStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

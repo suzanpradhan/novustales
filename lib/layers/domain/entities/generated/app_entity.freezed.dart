@@ -18,7 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AppEntity {
   bool get isFirstTime => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AppEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AppEntityCopyWith<AppEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -41,6 +43,8 @@ class _$AppEntityCopyWithImpl<$Res, $Val extends AppEntity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AppEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -74,6 +78,8 @@ class __$$AppEntityImplCopyWithImpl<$Res>
       _$AppEntityImpl _value, $Res Function(_$AppEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AppEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -113,7 +119,9 @@ class _$AppEntityImpl implements _AppEntity {
   @override
   int get hashCode => Object.hash(runtimeType, isFirstTime);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AppEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AppEntityImplCopyWith<_$AppEntityImpl> get copyWith =>
@@ -125,8 +133,11 @@ abstract class _AppEntity implements AppEntity {
 
   @override
   bool get isFirstTime;
+
+  /// Create a copy of AppEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AppEntityImplCopyWith<_$AppEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

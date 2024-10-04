@@ -45,7 +45,9 @@ mixin _$StoryResponse {
   @JsonKey(name: 'updated_at')
   DateTime? get updatedAt => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of StoryResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $StoryResponseCopyWith<StoryResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -89,6 +91,8 @@ class _$StoryResponseCopyWithImpl<$Res, $Val extends StoryResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of StoryResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -187,6 +191,8 @@ class _$StoryResponseCopyWithImpl<$Res, $Val extends StoryResponse>
     ) as $Val);
   }
 
+  /// Create a copy of StoryResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $StoryUserDetailCopyWith<$Res>? get userDetails {
@@ -240,6 +246,8 @@ class __$$StoryResponseImplCopyWithImpl<$Res>
       _$StoryResponseImpl _value, $Res Function(_$StoryResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of StoryResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -447,7 +455,7 @@ class _$StoryResponseImpl extends _StoryResponse {
                 other.updatedAt == updatedAt));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -470,7 +478,9 @@ class _$StoryResponseImpl extends _StoryResponse {
       createdAt,
       updatedAt);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of StoryResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$StoryResponseImplCopyWith<_$StoryResponseImpl> get copyWith =>
@@ -545,8 +555,11 @@ abstract class _StoryResponse extends StoryResponse {
   @override
   @JsonKey(name: 'updated_at')
   DateTime? get updatedAt;
+
+  /// Create a copy of StoryResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$StoryResponseImplCopyWith<_$StoryResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -564,7 +577,9 @@ mixin _$StoryUserDetail {
   String? get nickName => throw _privateConstructorUsedError;
   String? get avatar => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of StoryUserDetail
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $StoryUserDetailCopyWith<StoryUserDetail> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -593,6 +608,8 @@ class _$StoryUserDetailCopyWithImpl<$Res, $Val extends StoryUserDetail>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of StoryUserDetail
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -651,6 +668,8 @@ class __$$StoryUserDetailImplCopyWithImpl<$Res>
       _$StoryUserDetailImpl _value, $Res Function(_$StoryUserDetailImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of StoryUserDetail
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -729,12 +748,14 @@ class _$StoryUserDetailImpl extends _StoryUserDetail {
             (identical(other.avatar, avatar) || other.avatar == avatar));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, id, email, name, nickName, avatar);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of StoryUserDetail
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$StoryUserDetailImplCopyWith<_$StoryUserDetailImpl> get copyWith =>
@@ -765,8 +786,11 @@ abstract class _StoryUserDetail extends StoryUserDetail {
   String? get nickName;
   @override
   String? get avatar;
+
+  /// Create a copy of StoryUserDetail
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$StoryUserDetailImplCopyWith<_$StoryUserDetailImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

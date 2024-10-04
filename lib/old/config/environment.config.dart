@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class EnvironmentConfig {
@@ -8,8 +9,9 @@ class EnvironmentConfig {
   static String? queueRouteName;
   static String? queueArgs;
   static String? ref;
+  String? googleMapKey;
 
-  init() async {
+  EnvironmentConfig() {
     if (Platform.isAndroid) {
       platform = "android";
       // Android-specific code
@@ -18,7 +20,7 @@ class EnvironmentConfig {
       platform = "ios";
     }
 
-    print(dotenv.env["LIVE_URL"]);
+    googleMapKey = dotenv.env["GOOGLE_MAP_KEY"].toString();
     switch (dotenv.env["ENV"].toString()) {
       case "production":
         url = dotenv.env["LIVE_URL"].toString();

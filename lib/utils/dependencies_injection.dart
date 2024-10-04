@@ -17,6 +17,7 @@ import 'package:storyv2/layers/domain/usecases/authentication/post_register.dart
 import 'package:storyv2/layers/domain/usecases/feed/get_for_me_story.dart';
 import 'package:storyv2/layers/domain/usecases/feed/get_trending_story.dart';
 import 'package:storyv2/layers/domain/usecases/profile/get_my_profile.dart';
+import 'package:storyv2/layers/domain/usecases/tales/get_direction.dart';
 import 'package:storyv2/layers/domain/usecases/tales/get_near_me_tales.dart';
 import 'package:storyv2/layers/domain/usecases/tales/get_popular_tales.dart';
 import 'package:storyv2/layers/domain/usecases/tales/search_tales.dart';
@@ -26,10 +27,13 @@ import 'package:storyv2/layers/presentation/bootstrap/app_bloc/app_bloc.dart';
 import 'package:storyv2/layers/presentation/feed/blocs/for_you_story/for_you_story_bloc.dart';
 import 'package:storyv2/layers/presentation/feed/blocs/trending_story/trending_story_bloc.dart';
 import 'package:storyv2/layers/presentation/me/bloc/profile_bloc/get_profile_bloc.dart';
+import 'package:storyv2/layers/presentation/tales/blocs/get_direction/get_direction_bloc.dart';
 import 'package:storyv2/layers/presentation/tales/blocs/get_near_me_tales/get_near_me_tales_bloc.dart';
 import 'package:storyv2/layers/presentation/tales/blocs/get_popular_tales/get_popular_tales_bloc.dart';
 import 'package:storyv2/layers/presentation/tales/blocs/get_tale_intro/get_tale_intro_bloc.dart';
 import 'package:storyv2/layers/presentation/tales/blocs/search_tales/search_tales_bloc.dart';
+import 'package:storyv2/old/config/environment.config.dart';
+import 'package:storyv2/utils/google_maps_service.dart';
 import 'package:storyv2/utils/secure_storage.dart';
 
 import '../layers/data/repositories/chat_repository_impl.dart';
@@ -58,10 +62,12 @@ GetIt sl = GetIt.instance;
 
 Future<void> serviceLocator() async {
   await _initDotEnv();
+  sl.registerSingleton<EnvironmentConfig>(EnvironmentConfig());
   await _initSecureStorage();
   await _initSupabase();
   await _initIsar();
   sl.registerSingleton<ApiClient>(ApiClient());
+  sl.registerSingleton<GoogleMapsService>(GoogleMapsService());
   _dataSources();
   _repositories();
   _useCase();
@@ -93,14 +99,13 @@ void _repositories() {
     () => AuthRepositoryImpl(authRemoteSource: sl(), secureStorageMixin: sl()),
   );
   sl.registerLazySingleton<TaleRepository>(
-    () => TaleRepositoryImpl(taleSource: sl()),
+    () => TaleRepositoryImpl(taleSource: sl(), mapsService: sl()),
   );
   sl.registerLazySingleton<StoryRepository>(
     () => StoryRepositoryImpl(storySource: sl()),
   );
   sl.registerLazySingleton<ProfileRepository>(
-    () => ProfileRepositoryImpl(
-        profileSource: sl(), secureStorageMixin: SecureStorageMixin()),
+    () => ProfileRepositoryImpl(profileSource: sl(), secureStorageMixin: SecureStorageMixin()),
   );
   sl.registerLazySingleton<ChatRepository>(
     () => ChatRepositoryImpl(sl()),
@@ -144,6 +149,7 @@ void _useCase() {
   sl.registerLazySingleton(() => SendMessage(sl()));
   sl.registerLazySingleton(() => MessageStream(sl()));
   sl.registerLazySingleton(() => ReadMessage(sl()));
+  sl.registerLazySingleton(() => GetDirection(sl()));
 }
 
 void _blocs() {
@@ -164,4 +170,5 @@ void _blocs() {
   sl.registerFactory(() => ChatRoomsBloc(sl()));
   sl.registerFactory(() => SendMessageBloc(sl()));
   sl.registerFactory(() => ReadMessageBloc(sl()));
+  sl.registerFactory(() => GetDirectionBloc(sl()));
 }

@@ -12,3 +12,4 @@ const String CHAT_ROUTE = "/chat";
 const String ME_ROUTE = "/me";
 const String TEST_ROUTE = "/test";
 const String SINGLE_CHAT_ROUTE = "/single-chat-route";
+const String TALE_DETAIL_ROUTE = "/tale/detail";

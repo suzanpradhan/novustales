@@ -18,7 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$RegisterResponse {
   String? get message => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RegisterResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RegisterResponseCopyWith<RegisterResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -42,6 +44,8 @@ class _$RegisterResponseCopyWithImpl<$Res, $Val extends RegisterResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of RegisterResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -75,6 +79,8 @@ class __$$RegisterResponseImplCopyWithImpl<$Res>
       $Res Function(_$RegisterResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RegisterResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -113,7 +119,9 @@ class _$RegisterResponseImpl extends _RegisterResponse {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RegisterResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RegisterResponseImplCopyWith<_$RegisterResponseImpl> get copyWith =>
@@ -128,8 +136,11 @@ abstract class _RegisterResponse extends RegisterResponse {
 
   @override
   String? get message;
+
+  /// Create a copy of RegisterResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RegisterResponseImplCopyWith<_$RegisterResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

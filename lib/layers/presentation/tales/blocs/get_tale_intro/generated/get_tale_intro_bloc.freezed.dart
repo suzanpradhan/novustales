@@ -56,7 +56,9 @@ mixin _$GetTaleIntroEvent {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GetTaleIntroEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GetTaleIntroEventCopyWith<GetTaleIntroEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -82,6 +84,8 @@ class _$GetTaleIntroEventCopyWithImpl<$Res, $Val extends GetTaleIntroEvent>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of GetTaleIntroEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -95,6 +99,8 @@ class _$GetTaleIntroEventCopyWithImpl<$Res, $Val extends GetTaleIntroEvent>
     ) as $Val);
   }
 
+  /// Create a copy of GetTaleIntroEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TaleEntityCopyWith<$Res>? get tale {
@@ -130,6 +136,8 @@ class __$$RequestImplCopyWithImpl<$Res>
       _$RequestImpl _value, $Res Function(_$RequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GetTaleIntroEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -168,7 +176,9 @@ class _$RequestImpl implements _Request {
   @override
   int get hashCode => Object.hash(runtimeType, tale);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GetTaleIntroEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RequestImplCopyWith<_$RequestImpl> get copyWith =>
@@ -242,8 +252,11 @@ abstract class _Request implements GetTaleIntroEvent {
 
   @override
   TaleEntity? get tale;
+
+  /// Create a copy of GetTaleIntroEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RequestImplCopyWith<_$RequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -270,6 +283,8 @@ class __$$ReInitiateImplCopyWithImpl<$Res>
       _$ReInitiateImpl _value, $Res Function(_$ReInitiateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GetTaleIntroEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -308,7 +323,9 @@ class _$ReInitiateImpl implements _ReInitiate {
   @override
   int get hashCode => Object.hash(runtimeType, tale);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GetTaleIntroEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ReInitiateImplCopyWith<_$ReInitiateImpl> get copyWith =>
@@ -382,8 +399,11 @@ abstract class _ReInitiate implements GetTaleIntroEvent {
 
   @override
   TaleEntity? get tale;
+
+  /// Create a copy of GetTaleIntroEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ReInitiateImplCopyWith<_$ReInitiateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -458,6 +478,9 @@ class _$GetTaleIntroStateCopyWithImpl<$Res, $Val extends GetTaleIntroState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of GetTaleIntroState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -474,6 +497,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of GetTaleIntroState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -588,6 +614,9 @@ class __$$LoadingImplCopyWithImpl<$Res>
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of GetTaleIntroState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -707,6 +736,8 @@ class __$$SuccessImplCopyWithImpl<$Res>
       _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GetTaleIntroState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -720,6 +751,8 @@ class __$$SuccessImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of GetTaleIntroState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TaleEntityCopyWith<$Res>? get tale {
@@ -757,7 +790,9 @@ class _$SuccessImpl implements _Success {
   @override
   int get hashCode => Object.hash(runtimeType, tale);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GetTaleIntroState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
@@ -842,7 +877,10 @@ abstract class _Success implements GetTaleIntroState {
   const factory _Success({final TaleEntity? tale}) = _$SuccessImpl;
 
   TaleEntity? get tale;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GetTaleIntroState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -864,6 +902,8 @@ class __$$FailedImplCopyWithImpl<$Res>
       _$FailedImpl _value, $Res Function(_$FailedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GetTaleIntroState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -902,7 +942,9 @@ class _$FailedImpl implements _Failed {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GetTaleIntroState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FailedImplCopyWith<_$FailedImpl> get copyWith =>
@@ -987,7 +1029,10 @@ abstract class _Failed implements GetTaleIntroState {
   const factory _Failed({required final String message}) = _$FailedImpl;
 
   String get message;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GetTaleIntroState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailedImplCopyWith<_$FailedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
