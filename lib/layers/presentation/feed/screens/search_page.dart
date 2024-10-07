@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,10 +28,14 @@ class _SearchPageState extends State<SearchPage> {
   void initState() {
     super.initState();
     _pageController = PageController();
+
     _pageController.addListener(() {
-      if ((_pageController.offset >= _pageController.position.maxScrollExtent &&
-              !_pageController.position.outOfRange) &&
+      log("current page: ${_pageController.page} ${context.read<SearchStoriesBloc>().state.filterData?.length}");
+      if (context.read<SearchStoriesBloc>().state.filterData != null &&
+          (_pageController.page ==
+              context.read<SearchStoriesBloc>().state.filterData!.length - 2) &&
           context.read<SearchStoriesBloc>().state.hasMoreData) {
+        // context.read<SearchStoriesBloc>().state.filterData.length -2
         context
             .read<SearchStoriesBloc>()
             .add(const SearchStoriesEvent.paginate());
