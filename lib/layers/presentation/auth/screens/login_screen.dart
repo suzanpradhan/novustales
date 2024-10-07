@@ -100,8 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             padding: const EdgeInsets.fromLTRB(18, 5, 18, 30),
                             child: Text(
                                 'Sign in by entering the information below',
-                                style:
-                                    Theme.of(context).textTheme.displayMedium),
+                                style: Theme.of(context).textTheme.bodyMedium),
                           ),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 18),
@@ -382,7 +381,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               "Terms and Conditions",
                               style: Theme.of(context)
                                   .textTheme
-                                  .displayMedium!
+                                  .bodyMedium!
                                   .copyWith(
                                       color: Theme.of(context)
                                           .colorScheme

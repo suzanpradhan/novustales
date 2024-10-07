@@ -25,7 +25,7 @@ class PostRegister
 @freezed
 class RegisterParams with _$RegisterParams {
   const factory RegisterParams(
-      {@Default("first_name") String firstName,
+      {@JsonKey(name: "first_name") @Default("") String firstName,
       @JsonKey(name: "last_name") @Default("") String lastName,
       @Default("") String email,
       @Default("") String password}) = _RegisterParams;

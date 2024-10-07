@@ -56,13 +56,16 @@ class RoomCard extends StatelessWidget {
                   width: 64,
                   clipBehavior: Clip.hardEdge,
                   decoration: BoxDecoration(
+                    color: AppColors.greyAccent.withOpacity(0.4),
                     shape: BoxShape.circle,
                   ),
                   child: ChatImageWidget(
-                      imageUrls: room.receiverUser
-                              ?.map((e) => e.avatar ?? '')
-                              .toList() ??
-                          []),
+                      imageUrls: (room.receiverUser
+                                  ?.map((e) => e.avatar ?? '')
+                                  .toList() ??
+                              [])
+                          .where((image) => image.isNotEmpty)
+                          .toList()),
                 ),
                 Gapper.hmGap(),
                 Expanded(
@@ -73,10 +76,7 @@ class RoomCard extends StatelessWidget {
                         room.receiverUser?.length == 1
                             ? room.receiverUser?.first.name ?? "-"
                             : room.name ?? "-",
-                        style: TextStyle(
-                          fontFamily: 'RalewayRegular',
-                          fontSize: 16,
-                        ),
+                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
                       Row(
                         children: [
@@ -85,10 +85,7 @@ class RoomCard extends StatelessWidget {
                               '${room.lastMessage}' ?? '',
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                fontFamily: 'RalewayRegular',
-                                fontSize: 14,
-                              ),
+                              style: Theme.of(context).textTheme.bodySmall,
                             ),
                           ),
                           Text(
@@ -96,10 +93,7 @@ class RoomCard extends StatelessWidget {
                                 ? timeago.format(
                                     DateTime.parse(room.lastMessageTime!))
                                 : '',
-                            style: TextStyle(
-                              fontFamily: 'RalewayRegular',
-                              fontSize: 10,
-                            ),
+                            style: Theme.of(context).textTheme.bodySmall,
                           ),
                         ],
                       ),

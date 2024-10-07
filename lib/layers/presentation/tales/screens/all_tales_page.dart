@@ -57,7 +57,7 @@ class _AllTalesPageState extends State<AllTalesPage> {
                                   child: Text('View all',
                                       style: Theme.of(context)
                                           .textTheme
-                                          .titleLarge),
+                                          .bodyMedium),
                                 ),
                               ),
                             ],
@@ -75,8 +75,7 @@ class _AllTalesPageState extends State<AllTalesPage> {
                               children: List.generate(tales.length, (index) {
                                 return SizedBox(
                                   width: tales.length == 1
-                                      ? MediaQuery.of(context).size.width -
-                                          UIConstants.screenPadding
+                                      ? MediaQuery.of(context).size.width
                                       : MediaQuery.of(context).size.width * 0.8,
                                   child: Padding(
                                     padding: EdgeInsets.only(
@@ -133,7 +132,7 @@ class _AllTalesPageState extends State<AllTalesPage> {
                                   child: Text('View all',
                                       style: Theme.of(context)
                                           .textTheme
-                                          .titleLarge),
+                                          .bodyMedium),
                                 ),
                               ),
                             ],
@@ -202,6 +201,9 @@ class _AllTalesPageState extends State<AllTalesPage> {
                   child: SizedBox(),
                 );
           },
+        ),
+        SliverToBoxAdapter(
+          child: Gapper.vGap(),
         )
       ],
     );

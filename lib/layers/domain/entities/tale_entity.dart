@@ -14,5 +14,7 @@ class TaleEntity with _$TaleEntity {
       String? categoryName,
       double? latitude,
       double? longitude,
+      required int followers,
+      DateTime? created_at,
       double? distance}) = _TaleEntity;
 }

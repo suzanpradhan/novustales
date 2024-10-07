@@ -15,14 +15,19 @@ class TaleResponse with _$TaleResponse {
     @JsonKey(name: "thumbnail_url") String? thumbnail,
     @JsonKey(name: "category_name") String? categoryName,
     @JsonKey(name: "latitude") double? latitude,
-    @MapToUserModelConverter() @JsonKey(name: "created_by") UserModel? createdBy,
+    @Default(0) int followers,
+    @MapToUserModelConverter()
+    @JsonKey(name: "created_by")
+    UserModel? createdBy,
     @JsonKey(name: "longitude") double? longitude,
+    String? created_at,
     double? distance,
   }) = _TaleResponse;
 
   const TaleResponse._();
 
-  factory TaleResponse.fromJson(Map<String, dynamic> json) => _$TaleResponseFromJson(json);
+  factory TaleResponse.fromJson(Map<String, dynamic> json) =>
+      _$TaleResponseFromJson(json);
 
   TaleEntity toEntity() => TaleEntity(
       id: id,
@@ -30,13 +35,16 @@ class TaleResponse with _$TaleResponse {
       description: description,
       categoryName: categoryName,
       thumbnail: thumbnail,
+      followers: followers,
       latitude: latitude,
       createdBy: createdBy?.toEntity(),
+      created_at: created_at != null ? DateTime.parse(created_at!) : null,
       longitude: longitude,
       distance: distance);
 }
 
-class MapToUserModelConverter implements JsonConverter<UserModel, Map<String, dynamic>> {
+class MapToUserModelConverter
+    implements JsonConverter<UserModel, Map<String, dynamic>> {
   const MapToUserModelConverter();
 
   @override

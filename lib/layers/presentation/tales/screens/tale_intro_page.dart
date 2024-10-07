@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:storyv2/core/routes/app_routes.dart';
 import 'package:storyv2/layers/domain/entities/tale_entity.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/ui_constants.dart';
 import '../../../../core/presentation/ui/spacer.dart';
+import '../blocs/get_direction/get_direction_bloc.dart';
 
 class TaleIntroPage extends StatelessWidget {
   final Position? currentLocation;
@@ -46,15 +50,15 @@ class TaleIntroPage extends StatelessWidget {
                       children: [
                         Text(
                           tale.title ?? "--",
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge
-                              ?.copyWith(fontWeight: FontWeight.bold),
+                          style: Theme.of(context).textTheme.bodyLarge,
                         ),
                         if (tale.categoryName != null)
                           Text(
                             tale.categoryName!,
-                            style: Theme.of(context).textTheme.bodyMedium,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(fontFamily: "UberBold"),
                           ),
                         Gapper.vmGap(),
                         if (tale.createdBy != null)
@@ -85,22 +89,25 @@ class TaleIntroPage extends StatelessWidget {
                       ],
                     ),
                   ),
+                  Gapper.hmGap(),
                   if (tale.distance != null)
                     Column(
                       children: [
                         InkWell(
                           onTap: () {
-                            // if (tale.distance! > 1.00 &&
-                            //     tale.latitude != null &&
-                            //     tale.longitude != null &&
-                            //     currentLocation != null) {
-                            //   context.read<GetDirectionBloc>().add(GetDirectionEvent.request(
-                            //       origin:
-                            //           LatLng(currentLocation!.latitude, currentLocation!.longitude),
-                            //       destination: LatLng(tale.latitude!, tale.longitude!)));
-                            // } else {
-                            context.push(TALE_DETAIL_ROUTE, extra: tale);
-                            // }
+                            if (tale.distance! > 1.00 &&
+                                tale.latitude != null &&
+                                tale.longitude != null &&
+                                currentLocation != null) {
+                              context.read<GetDirectionBloc>().add(
+                                  GetDirectionEvent.request(
+                                      origin: LatLng(currentLocation!.latitude,
+                                          currentLocation!.longitude),
+                                      destination: LatLng(
+                                          tale.latitude!, tale.longitude!)));
+                            } else {
+                              context.push(TALE_DETAIL_ROUTE, extra: tale);
+                            }
                           },
                           child: Container(
                             height: 58,
@@ -151,7 +158,7 @@ class TaleIntroPage extends StatelessWidget {
                               .bodyMedium
                               ?.copyWith(
                                   color: AppColors.black,
-                                  fontWeight: FontWeight.bold),
+                                  fontFamily: "UberBold"),
                         ),
                       ],
                     )
@@ -178,9 +185,8 @@ class TaleIntroPage extends StatelessWidget {
                             "1224",
                             style: Theme.of(context)
                                 .textTheme
-                                .bodyMedium
-                                ?.copyWith(
-                                    fontSize: 24, fontWeight: FontWeight.bold),
+                                .titleLarge
+                                ?.copyWith(fontSize: 24),
                           ),
                           Text(
                             "Daily visit",
@@ -205,12 +211,11 @@ class TaleIntroPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "42k",
+                            tale.followers.toString(),
                             style: Theme.of(context)
                                 .textTheme
-                                .bodyMedium
-                                ?.copyWith(
-                                    fontSize: 24, fontWeight: FontWeight.bold),
+                                .titleLarge
+                                ?.copyWith(fontSize: 24),
                           ),
                           Text(
                             "Followers",
@@ -235,12 +240,13 @@ class TaleIntroPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "12 Aug",
+                            tale.created_at == null
+                                ? "--"
+                                : DateFormat("d MMM").format(tale.created_at!),
                             style: Theme.of(context)
                                 .textTheme
-                                .bodyMedium
-                                ?.copyWith(
-                                    fontSize: 24, fontWeight: FontWeight.bold),
+                                .titleLarge
+                                ?.copyWith(fontSize: 24),
                           ),
                           Text(
                             "Started on",
@@ -253,7 +259,11 @@ class TaleIntroPage extends StatelessWidget {
                 ],
               ),
               Gapper.vmGap(),
-              if (tale.description != null) Text(tale.description!)
+              if (tale.description != null)
+                Text(
+                  tale.description!,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                )
             ],
           ),
         ));

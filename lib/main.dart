@@ -186,7 +186,7 @@ class MyApp extends StatelessWidget {
                         fontFamily: "UberRegular",
                         color: Colors.black)))),
             textTheme: const TextTheme(
-              displayLarge: TextStyle(fontSize: 24, fontFamily: "UberBold"),
+              displayLarge: TextStyle(fontSize: 20, fontFamily: "UberBold"),
               displayMedium: TextStyle(fontSize: 24, fontFamily: "UberRegular"),
               displaySmall: TextStyle(fontSize: 24, fontFamily: "UberMedium"),
               headlineLarge: TextStyle(fontSize: 18, fontFamily: "UberBold"),

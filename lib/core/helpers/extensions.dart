@@ -3,6 +3,11 @@ extension StringValidation on String {
     return RegExp(r'^[0-9]+$').hasMatch(this);
   }
 
+  String capitalize() {
+    if (isEmpty) return this;
+    return this[0].toUpperCase() + substring(1);
+  }
+
   bool isValidEmail() {
     // Regular expression for validating email addresses
     final RegExp emailRegex = RegExp(

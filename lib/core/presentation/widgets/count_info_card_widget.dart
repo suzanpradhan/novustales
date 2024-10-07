@@ -19,9 +19,9 @@ class CountInfoCardWidget extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(UIConstants.minBorderRadius),
-            color: AppColors.purpleAccent.withOpacity(0.1)),
+            color: AppColors.greyAccent),
         width: double.maxFinite,
-        height: 75,
+        height: 80,
         padding: EdgeInsets.all(UIConstants.minPadding),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -29,19 +29,13 @@ class CountInfoCardWidget extends StatelessWidget {
           children: [
             Text(
               text1,
-              style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                    fontFamily: "UberBold",
-                    color: AppColors.black,
-                  ),
+              style: Theme.of(context)
+                  .textTheme
+                  .titleLarge
+                  ?.copyWith(fontSize: 18),
             ),
             Gapper.v2xmGap(),
-            Text(
-              text2,
-              style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                    fontFamily: "UberMedium",
-                    color: AppColors.black.withOpacity(.6),
-                  ),
-            ),
+            Text(text2, style: Theme.of(context).textTheme.bodyMedium),
           ],
         ),
       ),

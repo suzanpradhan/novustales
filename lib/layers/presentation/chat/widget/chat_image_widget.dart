@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 import '../../../../core/constants/app_colors.dart';
@@ -7,33 +9,33 @@ import '../../../../core/presentation/widgets/image_widget.dart';
 class ChatImageWidget extends StatelessWidget {
   final List<String> imageUrls;
 
-  const ChatImageWidget({Key? key, required this.imageUrls}) : super(key: key);
+  const ChatImageWidget({super.key, required this.imageUrls});
 
   @override
   Widget build(BuildContext context) {
     Widget imageWidget(image) {
-      return ImageWidget(
-        imageUrl: image,
-        placeholderColor: AppColors.white,
-        fit: BoxFit.cover,
-        placeholder: (image == null || image!.isEmpty)
-            ? Image.asset(
-                Assets.noProfile,
-              )
-            : SizedBox(),
+      log(image);
+      return SizedBox(
+        height: double.maxFinite,
+        width: double.maxFinite,
+        child: ImageWidget(
+          imageUrl: image,
+          placeholderColor: AppColors.white,
+          fit: BoxFit.cover,
+          placeholder: (image == null || image!.isEmpty)
+              ? Image.asset(
+                  Assets.noProfile,
+                )
+              : SizedBox(),
+        ),
       );
     }
 
     return LayoutBuilder(
       builder: (context, constraints) {
-        double width = constraints.maxWidth;
-        double height = constraints.maxHeight;
-
         if (imageUrls.length == 1) {
-          // One image: full screen
           return imageWidget(imageUrls[0]);
         } else if (imageUrls.length == 2) {
-          // Two images: each takes half of the width
           return Row(
             children: [
               Expanded(child: imageWidget(imageUrls[0])),
@@ -41,7 +43,6 @@ class ChatImageWidget extends StatelessWidget {
             ],
           );
         } else if (imageUrls.length == 3) {
-          // Three images: two on top, one on bottom
           return Column(
             children: [
               Expanded(

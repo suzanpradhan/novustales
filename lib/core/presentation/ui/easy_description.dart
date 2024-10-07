@@ -38,13 +38,9 @@ class _EasyDescriptionState extends State<EasyDescription> {
             });
           },
           child: Text(
-            "${widget.description}".truncateWithEllipsis(
-                showMore ? words.length : initialWordLimit),
-            style: Theme.of(context)
-                .textTheme
-                .bodyLarge!
-                .copyWith(fontFamily: "UberRegular", color: AppColors.grayDark),
-          ),
+              "${widget.description}".truncateWithEllipsis(
+                  showMore ? words.length : initialWordLimit),
+              style: Theme.of(context).textTheme.bodyMedium!),
         ),
         if (words.length >= initialWordLimit && widget.showIsMore)
           GestureDetector(

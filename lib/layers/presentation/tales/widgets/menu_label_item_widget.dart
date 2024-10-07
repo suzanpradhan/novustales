@@ -25,13 +25,19 @@ class _MenuLabelItemWidgetState extends State<MenuLabelItemWidget> {
         right: Radius.elliptical(50, 50),
       ),
       child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
+        filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: UIConstants.minPadding),
+          padding: EdgeInsets.symmetric(horizontal: UIConstants.padding),
           // height: double.maxFinite,
           decoration: BoxDecoration(
-            color: widget.isActive ? AppColors.white : Colors.transparent,
-            border: Border.all(color: AppColors.white, width: 1.0),
+            color: widget.isActive
+                ? AppColors.white
+                : Colors.white.withOpacity(0.2),
+            border: Border.all(
+                color: widget.isActive
+                    ? AppColors.white
+                    : AppColors.grayDark.withOpacity(0.5),
+                width: 1.0),
             borderRadius: BorderRadius.horizontal(
               left: Radius.elliptical(50, 50),
               right: Radius.elliptical(50, 50),
@@ -42,7 +48,7 @@ class _MenuLabelItemWidgetState extends State<MenuLabelItemWidget> {
             widget.manuItem.name,
             style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                   fontFamily: "UberMedium",
-                  color: widget.isActive ? AppColors.black : AppColors.white,
+                  color: widget.isActive ? AppColors.black : AppColors.grayDark,
                 ),
           )),
         ),

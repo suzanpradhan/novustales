@@ -12,6 +12,23 @@ class TextInput extends FormzInput<String, TextValidationError> {
   }
 }
 
+enum FullNameValidationError { empty, invalid }
+
+class FullNameInput extends FormzInput<String, FullNameValidationError> {
+  const FullNameInput.pure() : super.pure('');
+  const FullNameInput.dirty([super.value = '']) : super.dirty();
+
+  @override
+  FullNameValidationError? validator(String value) {
+    if (value.isEmpty) return FullNameValidationError.empty;
+
+    final parts = value.trim().split(' ');
+    if (parts.length < 2) return FullNameValidationError.invalid;
+
+    return null;
+  }
+}
+
 // required Numeric
 class RequiredNumericTextInput extends TextInput {
   const RequiredNumericTextInput.pure() : super.pure();

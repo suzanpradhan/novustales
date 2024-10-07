@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:storyv2/core/constants/ui_constants.dart';
+import 'package:storyv2/core/routes/app_routes.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_icons.dart';
@@ -44,7 +46,9 @@ class _MeScreenState extends State<MeScreen> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              context.push(TEST_ROUTE);
+            },
             icon: Icon(Icons.settings),
           ),
         ],

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:storyv2/layers/domain/entities/tale_entity.dart';
 
 import '../../../../../core/constants/app_colors.dart';
 import '../../../../../core/constants/assets.dart';
@@ -12,7 +14,8 @@ import '../Image_card.dart';
 import '../ShiftableImageHolderWidget.dart';
 
 class TalesCardTabWidget extends StatefulWidget {
-  const TalesCardTabWidget({super.key});
+  final TaleEntity tale;
+  const TalesCardTabWidget({super.key, required this.tale});
 
   @override
   State<TalesCardTabWidget> createState() => _TalesCardTabWidgetState();
@@ -23,7 +26,6 @@ class _TalesCardTabWidgetState extends State<TalesCardTabWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Gapper.vmxGap(),
         Gapper.screenPadding(
           child: Container(
             decoration: BoxDecoration(
@@ -35,21 +37,14 @@ class _TalesCardTabWidgetState extends State<TalesCardTabWidget> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "Boom Town Fair",
-                    style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                          fontFamily: "UberBold",
-                          color: AppColors.black,
-                        ),
-                  ),
+                  Text(widget.tale.title ?? "--",
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleLarge
+                          ?.copyWith(fontSize: 20)),
                   Gapper.v2xmGap(),
-                  Text(
-                    "Music and Festival",
-                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                          fontFamily: "UberRegular",
-                          color: AppColors.black.withOpacity(.6),
-                        ),
-                  ),
+                  Text(widget.tale.categoryName ?? "--",
+                      style: Theme.of(context).textTheme.bodyMedium),
                   Gapper.vmGap(),
                   Row(
                     children: [
@@ -61,16 +56,15 @@ class _TalesCardTabWidgetState extends State<TalesCardTabWidget> {
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                         ),
-                        child: Image.asset(Assets.test, fit: BoxFit.cover),
+                        child: widget.tale.thumbnail != null
+                            ? Image.network(widget.tale.thumbnail!,
+                                fit: BoxFit.cover)
+                            : Image.asset(Assets.noProfile, fit: BoxFit.cover),
                       ),
                       Gapper.h2xmGap(),
                       Text(
-                        "Niwesh Shrestha",
-                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                              fontFamily: "UberMedium",
-                              color: AppColors.black,
-                            ),
-                      )
+                          "${widget.tale.createdBy?.firstName} ${widget.tale.createdBy?.lastName}",
+                          style: Theme.of(context).textTheme.bodyMedium)
                     ],
                   ),
                   Gapper.vmGap(),
@@ -78,15 +72,21 @@ class _TalesCardTabWidgetState extends State<TalesCardTabWidget> {
                     children: [
                       CountInfoCardWidget(text1: "1124", text2: "Daily Visit"),
                       Gapper.hmGap(),
-                      CountInfoCardWidget(text1: "2.4k", text2: "Followers"),
+                      CountInfoCardWidget(
+                          text1: widget.tale.followers.toString(),
+                          text2: "Followers"),
                       Gapper.hmGap(),
-                      CountInfoCardWidget(text1: "12 Oct", text2: "Started on"),
+                      CountInfoCardWidget(
+                          text1: widget.tale.created_at == null
+                              ? "--"
+                              : DateFormat("d MMM")
+                                  .format(widget.tale.created_at!),
+                          text2: "Started on"),
                     ],
                   ),
                   Gapper.vmGap(),
                   EasyDescription(
-                    description:
-                        "Join us for an unforgettable party festival event! Experience a vibrant celebration filled with live music, delicious food, exciting games, and fantastic entertainment. Dance the night away with friends, enjoy stunning performances, and create memories that will last a lifetime.",
+                    description: widget.tale.description,
                     wordLimits: 30,
                     showIsMore: false,
                   ),
@@ -139,26 +139,19 @@ class _TalesCardTabWidgetState extends State<TalesCardTabWidget> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Gapper.cardPadding(
-                  child: Text(
-                    "Leaderboard",
-                    style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                          fontFamily: "UberMedium",
-                          color: AppColors.black,
-                        ),
-                  ),
+                  child: Text("Leaderboard",
+                      style: Theme.of(context).textTheme.titleLarge),
                 ),
                 Row(
                   children: [
                     ShiftableimageholderWidget(
                       imageSize: 70,
                       count: 2,
-                      title: Text(
-                        "Daniel Apodaca",
-                        style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                              fontFamily: "UberBold",
-                              color: AppColors.black,
-                            ),
-                      ),
+                      title: Text("Daniel Apodaca",
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.copyWith(fontWeight: FontWeight.bold)),
                       mainAxisAlignment: MainAxisAlignment.end,
                       ringColor: AppColors.ringColorYellow,
                       dropShadow: AppColors.ringColorYellow.withOpacity(0.7),
@@ -167,26 +160,22 @@ class _TalesCardTabWidgetState extends State<TalesCardTabWidget> {
                     ShiftableimageholderWidget(
                       imageSize: 100,
                       count: 1,
-                      title: Text(
-                        "Chester Wade",
-                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                              fontFamily: "UberBold",
-                              color: AppColors.black,
-                            ),
-                      ),
+                      title: Text("Chester Wade",
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.copyWith(fontWeight: FontWeight.bold)),
                       mainAxisAlignment: MainAxisAlignment.center,
                     ),
                     Gapper.h2xmGap(),
                     ShiftableimageholderWidget(
                       imageSize: 70,
                       count: 3,
-                      title: Text(
-                        "Daniel Apodaca",
-                        style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                              fontFamily: "UberBold",
-                              color: AppColors.black,
-                            ),
-                      ),
+                      title: Text("Daniel Apodaca",
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.copyWith(fontWeight: FontWeight.bold)),
                       mainAxisAlignment: MainAxisAlignment.end,
                       ringColor: AppColors.ringColorPink,
                       dropShadow: AppColors.ringColorPink.withOpacity(0.7),
@@ -225,14 +214,15 @@ class _TalesCardTabWidgetState extends State<TalesCardTabWidget> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Gapper.cardPadding(
-                  child: Text(
-                    "Gallery",
-                    style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                          fontFamily: "UberMedium",
-                          color: AppColors.black,
-                        ),
-                  ),
+                  child: Text("Gallery",
+                      style: Theme.of(context).textTheme.titleLarge),
                 ),
+                SizedBox(
+                  height: 80,
+                  child: Center(
+                    child: Text("No photos"),
+                  ),
+                )
               ],
             ),
           ),

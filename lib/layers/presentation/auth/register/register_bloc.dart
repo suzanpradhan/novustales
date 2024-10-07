@@ -20,6 +20,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       final email = EmailInput.dirty(event.email);
       emit(
         state.copyWith(
+          status: FormzSubmissionStatus.initial,
           email: email,
         ),
       );
@@ -29,6 +30,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       final password = PasswordInput.dirty(event.password);
       emit(
         state.copyWith(
+          status: FormzSubmissionStatus.initial,
           password: password,
         ),
       );
@@ -38,15 +40,17 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       final confirmPassword = PasswordInput.dirty(event.confirmPassword);
       emit(
         state.copyWith(
+          status: FormzSubmissionStatus.initial,
           confirmPassword: confirmPassword,
         ),
       );
     });
 
     on<_ValidateName>((event, emit) {
-      final fullName = TextInput.dirty(event.name);
+      final fullName = FullNameInput.dirty(event.name);
       emit(
         state.copyWith(
+          status: FormzSubmissionStatus.initial,
           fullName: fullName,
         ),
       );

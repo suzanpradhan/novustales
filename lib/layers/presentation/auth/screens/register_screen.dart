@@ -76,7 +76,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   'Let’s create an account for you.',
                                   style: Theme.of(context)
                                       .textTheme
-                                      .displayMedium!
+                                      .bodyMedium!
                                       .copyWith(
                                           color: Theme.of(context)
                                               .colorScheme
@@ -92,10 +92,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     errorText: state.isFirstAttempt
                                         ? null
                                         : state.fullName.displayError ==
-                                                RequiredTextValidationError
-                                                    .empty
+                                                FullNameValidationError.empty
                                             ? "Full name is required"
-                                            : null,
+                                            : state.fullName.displayError ==
+                                                    FullNameValidationError
+                                                        .invalid
+                                                ? "Enter a valid full name"
+                                                : null,
                                     onChanged: (value) {
                                       context.read<RegisterBloc>().add(
                                           RegisterEvent.validateName(
@@ -281,7 +284,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         'OR REGISTER WITH EMAIL'.toUpperCase(),
                                         style: Theme.of(context)
                                             .textTheme
-                                            .displayMedium!
+                                            .bodySmall!
                                             .copyWith(
                                                 color: Theme.of(context)
                                                     .colorScheme
@@ -374,7 +377,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   "Terms and Conditions",
                                   style: Theme.of(context)
                                       .textTheme
-                                      .displayMedium!
+                                      .bodyMedium!
                                       .copyWith(
                                           color: Theme.of(context)
                                               .colorScheme

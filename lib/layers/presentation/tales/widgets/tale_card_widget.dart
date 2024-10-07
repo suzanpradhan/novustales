@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:storyv2/core/helpers/extensions.dart';
 import 'package:storyv2/layers/domain/entities/tale_entity.dart';
 import 'package:storyv2/layers/presentation/tales/blocs/get_tale_intro/get_tale_intro_bloc.dart';
 
@@ -17,7 +18,9 @@ class TaleCardWidget extends StatelessWidget {
         if (taleEntity.thumbnail != null)
           InkWell(
             onTap: () {
-              context.read<GetTaleIntroBloc>().add(GetTaleIntroEvent.request(tale: taleEntity));
+              context
+                  .read<GetTaleIntroBloc>()
+                  .add(GetTaleIntroEvent.request(tale: taleEntity));
             },
             child: ClipRRect(
               borderRadius: BorderRadius.circular(UIConstants.borderRadius),
@@ -34,6 +37,7 @@ class TaleCardWidget extends StatelessWidget {
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
               child: Column(
@@ -41,14 +45,11 @@ class TaleCardWidget extends StatelessWidget {
                 children: [
                   Text(
                     taleEntity.title ?? "--",
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyLarge
-                        ?.copyWith(fontWeight: FontWeight.bold),
+                    style: Theme.of(context).textTheme.bodyLarge,
                   ),
                   if (taleEntity.categoryName != null)
                     Text(
-                      taleEntity.categoryName!,
+                      taleEntity.categoryName!.capitalize(),
                       style: Theme.of(context).textTheme.bodyMedium,
                     )
                 ],
@@ -57,10 +58,13 @@ class TaleCardWidget extends StatelessWidget {
             if (taleEntity.distance != null)
               Container(
                 height: 34,
-                padding: EdgeInsets.symmetric(horizontal: UIConstants.minPadding),
+                margin: EdgeInsets.only(top: 4),
+                padding:
+                    EdgeInsets.symmetric(horizontal: UIConstants.minPadding),
                 decoration: BoxDecoration(
                     color: AppColors.dark,
-                    borderRadius: BorderRadius.circular(UIConstants.minBorderRadius)),
+                    borderRadius:
+                        BorderRadius.circular(UIConstants.minBorderRadius)),
                 child: Row(
                   children: [
                     Icon(
@@ -72,8 +76,10 @@ class TaleCardWidget extends StatelessWidget {
                     ),
                     Text(
                       "${taleEntity.distance?.toStringAsFixed(2).toString() ?? "10+"} km",
-                      style:
-                          Theme.of(context).textTheme.bodyMedium?.copyWith(color: AppColors.white),
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium
+                          ?.copyWith(color: AppColors.white),
                     ),
                   ],
                 ),

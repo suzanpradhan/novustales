@@ -24,11 +24,17 @@ class TaleDetailScreen extends StatefulWidget {
 class _TaleDetailScreenState extends State<TaleDetailScreen> {
   int _currentIndex = 0;
 
-  final List<Widget> _tabs = [
-    Center(child: TalesCardTabWidget()),
-    Center(child: StoriesCardTabWidget()),
-    Center(child: LeaderCardTabWidget()),
-  ];
+  getTabs() {
+    return [
+      Center(
+          child: TalesCardTabWidget(
+        tale: widget.tale,
+      )),
+      Center(child: StoriesCardTabWidget()),
+      Center(child: LeaderCardTabWidget()),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,7 +61,7 @@ class _TaleDetailScreenState extends State<TaleDetailScreen> {
                       width: 38.0,
                       decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: AppColors.white.withOpacity(.2)),
+                          color: AppColors.white.withOpacity(.8)),
                       child: GestureDetector(
                         onTap: () {
                           // Define your action here
@@ -129,10 +135,10 @@ class _TaleDetailScreenState extends State<TaleDetailScreen> {
                                   menuItems.indexOf(cardIndexed);
                               return Padding(
                                 padding: EdgeInsets.only(
-                                  left: UIConstants.screenPadding,
+                                  left: UIConstants.minPadding,
                                   right: menuItems.indexOf(cardIndexed) ==
                                           menuItems.length - 1
-                                      ? UIConstants.screenPadding
+                                      ? UIConstants.minPadding
                                       : 0,
                                 ),
                                 child: GestureDetector(
@@ -280,7 +286,7 @@ class _TaleDetailScreenState extends State<TaleDetailScreen> {
               ),
               child: IndexedStack(
                 index: _currentIndex, // Determines which child to display
-                children: _tabs,
+                children: getTabs(),
               ),
               // child: TalesCardTabWidget()
             ),
@@ -308,7 +314,7 @@ final List<MenuItem> menuItems = [
   MenuItem("Tales"),
   MenuItem("Stories"),
   MenuItem("Leaderboard"),
-  MenuItem("Members"),
+  // MenuItem("Members"),
 ];
 
 class MenuItem {

@@ -4,7 +4,7 @@ part of 'register_bloc.dart';
 class RegisterState with _$RegisterState {
   const factory RegisterState({
     @Default(FormzSubmissionStatus.initial) FormzSubmissionStatus status,
-    @Default(TextInput.pure()) TextInput fullName,
+    @Default(FullNameInput.pure()) FullNameInput fullName,
     @Default(EmailInput.pure()) EmailInput email,
     @Default(PasswordInput.pure()) PasswordInput password,
     @Default(PasswordInput.pure()) PasswordInput confirmPassword,
