@@ -13,3 +13,5 @@ const String ME_ROUTE = "/me";
 const String TEST_ROUTE = "/test";
 const String SINGLE_CHAT_ROUTE = "/single-chat-route";
 const String TALE_DETAIL_ROUTE = "/tale/detail";
+const String SETTIN_SCREEN_ROUTE = "/setting";
+const String EDIT_PROFILE_SCREEN_ROUTE = "/edit-profile";

@@ -41,6 +41,7 @@ import '../layers/data/repositories/tale_repository_impl.dart';
 import '../layers/data/sources/chat_remote_source.dart';
 import '../layers/data/sources/user_source.dart';
 import '../layers/domain/repositories/chat_repository.dart';
+import '../layers/domain/usecases/authentication/get_logout.dart';
 import '../layers/domain/usecases/chat/check_or_create_profile.dart';
 import '../layers/domain/usecases/chat/get_rooms.dart';
 import '../layers/domain/usecases/chat/message_stream.dart';
@@ -48,6 +49,7 @@ import '../layers/domain/usecases/chat/read_message.dart';
 import '../layers/domain/usecases/chat/send_message.dart';
 import '../layers/domain/usecases/feed/get_categories.dart';
 import '../layers/domain/usecases/feed/get_stories.dart';
+import '../layers/presentation/auth/bloc/logout_bloc.dart';
 import '../layers/presentation/chat/blocs/chat_rooms/chat_rooms_bloc.dart';
 import '../layers/presentation/chat/blocs/read_message/read_message_bloc.dart';
 import '../layers/presentation/chat/blocs/send_message/send_message_bloc.dart';
@@ -105,7 +107,8 @@ void _repositories() {
     () => StoryRepositoryImpl(storySource: sl()),
   );
   sl.registerLazySingleton<ProfileRepository>(
-    () => ProfileRepositoryImpl(profileSource: sl(), secureStorageMixin: SecureStorageMixin()),
+    () => ProfileRepositoryImpl(
+        profileSource: sl(), secureStorageMixin: SecureStorageMixin()),
   );
   sl.registerLazySingleton<ChatRepository>(
     () => ChatRepositoryImpl(sl()),
@@ -136,6 +139,7 @@ void _dataSources() {
 void _useCase() {
   sl.registerLazySingleton(() => PostLogin(sl()));
   sl.registerLazySingleton(() => PostRegister(sl()));
+  sl.registerLazySingleton(() => GetLogout(sl()));
   sl.registerLazySingleton(() => GetPopularTales(sl()));
   sl.registerLazySingleton(() => GetNearMeTales(sl()));
   sl.registerLazySingleton(() => SearchTales(sl()));
@@ -157,6 +161,7 @@ void _blocs() {
   sl.registerFactory(() => AppBloc());
   sl.registerFactory(() => LoginBloc(sl(), sl(), sl()));
   sl.registerFactory(() => RegisterBloc(sl()));
+  sl.registerFactory(() => LogoutBloc(sl()));
   sl.registerFactory(() => GetPopularTalesBloc(sl()));
   sl.registerFactory(() => GetNearMeTalesBloc(sl()));
   sl.registerFactory(() => SearchTalesBloc(sl()));

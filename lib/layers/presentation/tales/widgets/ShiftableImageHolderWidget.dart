@@ -48,8 +48,8 @@ class _ShiftableimageholderWidgetState
           children: [
             if (widget.isLead)
               SizedBox(
-                width: 25,
-                height: 25,
+                width: 28,
+                height: 28,
                 child: Image.asset(Assets.isLead, fit: BoxFit.cover),
               ),
             Stack(

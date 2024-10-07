@@ -6,11 +6,14 @@ import 'package:storyv2/layers/domain/usecases/authentication/post_login.dart';
 import 'package:storyv2/layers/domain/usecases/authentication/post_register.dart';
 
 import '../../../core/error/failures.dart';
+import '../../../core/usecases/usecase.dart';
+import '../models/logout_response.dart';
 import '../models/user_credential.dart';
 
 abstract class AuthRemoteSource {
   Future<Either<Failure, UserCredential>> login(LoginParams params);
   Future<Either<Failure, RegisterResponse>> register(RegisterParams params);
+  Future<Either<Failure, LogoutResponse>> logout(NoParams noParams);
 }
 
 class AuthRemoteSourceImpl implements AuthRemoteSource {
@@ -38,6 +41,17 @@ class AuthRemoteSourceImpl implements AuthRemoteSource {
       converter: (response) =>
           RegisterResponse.fromJson(response as Map<String, dynamic>),
     );
+    return response;
+  }
+
+  @override
+  Future<Either<Failure, LogoutResponse>> logout(NoParams noParams) async {
+    final response = await _client.getRequest(
+      ApiPaths.logoutUrl,
+      converter: (response) =>
+          LogoutResponse.fromJson(response as Map<String, dynamic>),
+    );
+
     return response;
   }
 }

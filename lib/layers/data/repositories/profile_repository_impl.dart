@@ -6,6 +6,8 @@ import 'package:storyv2/layers/domain/entities/profile_entity.dart';
 import 'package:storyv2/layers/domain/repositories/profile_repository.dart';
 
 import '../../../utils/secure_storage.dart';
+import '../../domain/entities/update_profile_entity.dart';
+import '../../domain/usecases/profile/update_profile.dart';
 
 class ProfileRepositoryImpl implements ProfileRepository {
   final ProfileSource profileSource;
@@ -26,6 +28,15 @@ class ProfileRepositoryImpl implements ProfileRepository {
             key: SecureStorageKeys.uuid, value: response.uuid);
       }
       return Right(response.toEntity());
+    });
+  }
+
+  @override
+  Future<Either<Failure, UpdateProfileEntity>> updateProfile(
+      UpdateProfileParams params) async {
+    final response = await profileSource.updateProfile(params);
+    return response.fold((failure) => Left(failure), (updateProfileResponse) {
+      return Right(updateProfileResponse.toEntity());
     });
   }
 }
