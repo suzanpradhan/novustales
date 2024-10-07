@@ -12,42 +12,32 @@ class ChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
-      value: context.read<ChatRoomsBloc>()..add(ChatRoomsEvent.attempted()),
-      child: BlocBuilder<ChatRoomsBloc, ChatRoomsState>(
-        builder: (context, state) {
-          return state.mapOrNull(
-                success: (value) {
-                  return Scaffold(
-                    appBar: AppBar(
-                      title: Text("Messages"),
-                    ),
-                    body: value.rooms.isNotEmpty
-                        ? Gapper.screenPadding(
-                            child: ListView.builder(
-                                itemCount: value.rooms.length,
-                                itemBuilder: (context, index) {
-                                  final room = value.rooms[index];
-                                  return RoomCard(room: room);
-                                }),
-                          )
-                        : Container(
-                            color: AppColors.black,
-                            child: Center(
-                              child: Text("No messages"),
+        value: context.read<ChatRoomsBloc>()..add(ChatRoomsEvent.attempted()),
+        child: Scaffold(
+            appBar: AppBar(
+              title: Text("Messages"),
+            ),
+            body: BlocBuilder<ChatRoomsBloc, ChatRoomsState>(
+              builder: (context, state) {
+                return state.mapOrNull(
+                      success: (value) => value.rooms.isNotEmpty
+                          ? Gapper.screenPadding(
+                              child: ListView.builder(
+                                  itemCount: value.rooms.length,
+                                  itemBuilder: (context, index) {
+                                    final room = value.rooms[index];
+                                    return RoomCard(room: room);
+                                  }),
+                            )
+                          : Container(
+                              color: AppColors.black,
+                              child: Center(
+                                child: Text("No messages"),
+                              ),
                             ),
-                          ),
-                  );
-                },
-                failure: (value) => Container(
-                  color: AppColors.black,
-                  child: Center(
-                    child: Text("Failure loading"),
-                  ),
-                ),
-              ) ??
-              SizedBox();
-        },
-      ),
-    );
+                    ) ??
+                    SizedBox();
+              },
+            )));
   }
 }
