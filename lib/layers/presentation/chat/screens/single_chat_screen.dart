@@ -32,9 +32,6 @@ class _SignleChatScreenState extends State<SignleChatScreen> {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => SendMessageBloc(sl()),
-        ),
-        BlocProvider(
           create: (context) => MessageStreamBloc(sl())
             ..add(MessageStreamEvent.attempted(roomId: widget.room.uuid)),
         ),

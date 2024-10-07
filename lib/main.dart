@@ -21,6 +21,7 @@ import 'package:storyv2/layers/presentation/tales/blocs/search_tales/search_tale
 import 'core/constants/app_colors.dart';
 import 'core/routes/router_builder.dart';
 import 'firebase_options.dart';
+import 'layers/presentation/chat/blocs/send_message/send_message_bloc.dart';
 import 'layers/presentation/feed/blocs/get_categories/get_categories_bloc.dart';
 import 'layers/presentation/feed/blocs/get_stories/get_stories_bloc.dart';
 import 'layers/presentation/feed/blocs/search_stories/search_stories_bloc.dart';
@@ -102,6 +103,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => ReadMessageBloc(sl()),
+        ),
+        BlocProvider(
+          create: (context) => SendMessageBloc(sl()),
         ),
       ],
       child: MaterialApp.router(
