@@ -9,6 +9,7 @@ import '../../../../core/constants/app_icons.dart';
 import '../../../../core/constants/assets.dart';
 import '../../../../core/presentation/ui/spacer.dart';
 import '../../../../core/presentation/widgets/simple_button.dart';
+import '../../../../utils/secure_storage.dart';
 import '../bloc/profile_bloc/get_profile_bloc.dart';
 import '../widgets/profile_tabs.dart';
 import '../widgets/shimmer/profile_shimmer.dart';
@@ -25,7 +26,7 @@ class MeScreen extends StatefulWidget {
 
 class _MeScreenState extends State<MeScreen> {
   String currentTab = 'stories';
-
+  final SecureStorageMixin secureStorageMixin = SecureStorageMixin();
   changeTab(String tab) {
     setState(() {
       currentTab = tab;
@@ -47,7 +48,7 @@ class _MeScreenState extends State<MeScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              context.push(TEST_ROUTE);
+              context.push(SETTIN_SCREEN_ROUTE);
             },
             icon: Icon(Icons.settings),
           ),
@@ -169,7 +170,9 @@ class _MeScreenState extends State<MeScreen> {
                                     fillColor:
                                         AppColors.greyWhite.withOpacity(.5),
                                     alignment: MainAxisAlignment.center,
-                                    handleTap: () {},
+                                    handleTap: () {
+                                      context.push(EDIT_PROFILE_SCREEN_ROUTE);
+                                    },
                                   ),
                                 ],
                               ),

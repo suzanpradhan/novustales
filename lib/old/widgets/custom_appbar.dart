@@ -10,13 +10,12 @@ class CustomAppBar extends StatelessWidget {
   final String? subTitle;
   final bool hasBackIcon;
   const CustomAppBar(
-      {Key? key,
+      {super.key,
       this.bottom = const SizedBox(),
       this.title = '',
       this.subTitle,
       this.hasBackIcon = true,
-      this.actions = const []})
-      : super(key: key);
+      this.actions = const []});
 
   @override
   Widget build(BuildContext context) {

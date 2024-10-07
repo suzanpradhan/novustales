@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:storyv2/core/presentation/blocs/internet_checker/internet_checker_bloc.dart';
+import 'package:storyv2/layers/presentation/auth/bloc/logout_bloc.dart';
 import 'package:storyv2/layers/presentation/auth/login/login_bloc.dart';
 import 'package:storyv2/layers/presentation/auth/register/register_bloc.dart';
 import 'package:storyv2/layers/presentation/bootstrap/app_bloc/app_bloc.dart';
@@ -113,6 +114,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => SendMessageBloc(sl()),
+        ),
+        BlocProvider(
+          create: (context) => LogoutBloc(sl()),
         ),
       ],
       child: MaterialApp.router(
