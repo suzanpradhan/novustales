@@ -109,19 +109,20 @@ class _TalesCardTabWidgetState extends State<TalesCardTabWidget> {
               return SizedBox(
                 width: MediaQuery.of(context).size.width * 0.6,
                 child: Padding(
-                    padding: EdgeInsets.only(
-                        left: UIConstants.screenPadding,
-                        right: cardItems.indexOf(cardIndexed) ==
-                                cardItems.length - 1
-                            ? UIConstants.screenPadding
-                            : 0),
-                    child: ImageCard(
-                      cover: cardIndexed.cover,
-                      name: cardIndexed.name,
-                      time: "7m ago",
-                      count: "857 k",
-                      height: 300,
-                    )),
+                  padding: EdgeInsets.only(
+                      left: UIConstants.screenPadding,
+                      right:
+                          cardItems.indexOf(cardIndexed) == cardItems.length - 1
+                              ? UIConstants.screenPadding
+                              : 0),
+                  child: ImageCard(
+                    cover: cardIndexed.cover,
+                    name: cardIndexed.name,
+                    time: "7m ago",
+                    count: "857 k",
+                    height: 300,
+                  ),
+                ),
               );
             }).toList(),
           ),

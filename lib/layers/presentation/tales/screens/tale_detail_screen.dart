@@ -9,6 +9,7 @@ import 'package:storyv2/layers/domain/entities/tale_entity.dart';
 
 import '../../../../core/constants/assets.dart';
 import '../widgets/menu_label_item_widget.dart';
+import '../widgets/tales/leader_card_tab_widget.dart';
 import '../widgets/tales/stories_card_tab_widget.dart';
 import '../widgets/tales/tales_card_tab_widget.dart';
 
@@ -26,7 +27,7 @@ class _TaleDetailScreenState extends State<TaleDetailScreen> {
   final List<Widget> _tabs = [
     Center(child: TalesCardTabWidget()),
     Center(child: StoriesCardTabWidget()),
-    Center(child: Text('Settings Screen')),
+    Center(child: LeaderCardTabWidget()),
   ];
   @override
   Widget build(BuildContext context) {
@@ -77,7 +78,7 @@ class _TaleDetailScreenState extends State<TaleDetailScreen> {
             elevation: 0,
             pinned: true,
             centerTitle: false,
-            expandedHeight: 400,
+            expandedHeight: _currentIndex > 0 ? 0 : 400,
             stretch: true,
             flexibleSpace: SafeArea(
               child: LayoutBuilder(
