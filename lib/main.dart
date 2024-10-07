@@ -23,6 +23,7 @@ import 'package:storyv2/layers/presentation/tales/blocs/search_tales/search_tale
 import 'core/constants/app_colors.dart';
 import 'core/routes/router_builder.dart';
 import 'firebase_options.dart';
+import 'layers/presentation/chat/blocs/send_message/send_message_bloc.dart';
 import 'layers/presentation/feed/blocs/get_categories/get_categories_bloc.dart';
 import 'layers/presentation/feed/blocs/get_stories/get_stories_bloc.dart';
 import 'layers/presentation/feed/blocs/search_stories/search_stories_bloc.dart';
@@ -110,6 +111,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => sl<GetDirectionBloc>(),
         ),
+        BlocProvider(
+          create: (context) => SendMessageBloc(sl()),
+        ),
       ],
       child: MaterialApp.router(
         title: 'NovuTales',
@@ -134,14 +138,16 @@ class MyApp extends StatelessWidget {
                 activeTrackColor: AppColors.grayDark,
                 inactiveTrackColor: AppColors.whiteShade,
                 thumbColor: AppColors.gray,
-                tickMarkShape: const RoundSliderTickMarkShape(tickMarkRadius: 0),
+                tickMarkShape:
+                    const RoundSliderTickMarkShape(tickMarkRadius: 0),
                 activeTickMarkColor: Colors.transparent,
                 showValueIndicator: ShowValueIndicator.always,
                 // trackShape: EdgeToEdgeTrackShape(),
                 // rangeTrackShape: EdgeToEdgeRangeTrackShape(),
                 trackHeight: 2,
                 minThumbSeparation: 300),
-            bottomSheetTheme: const BottomSheetThemeData(surfaceTintColor: Colors.white),
+            bottomSheetTheme:
+                const BottomSheetThemeData(surfaceTintColor: Colors.white),
             colorScheme: ColorScheme(
               primary: AppColors.white,
               onPrimary: AppColors.grayDark,
@@ -164,18 +170,21 @@ class MyApp extends StatelessWidget {
               brightness: Brightness.light,
             ),
             useMaterial3: true,
-            inputDecorationTheme: const InputDecorationTheme(focusColor: AppColors.dark),
+            inputDecorationTheme:
+                const InputDecorationTheme(focusColor: AppColors.dark),
             textButtonTheme: const TextButtonThemeData(
                 style: ButtonStyle(
-                    padding:
-                        WidgetStatePropertyAll(EdgeInsets.symmetric(horizontal: 6, vertical: 0)),
+                    padding: WidgetStatePropertyAll(
+                        EdgeInsets.symmetric(horizontal: 6, vertical: 0)),
                     overlayColor: WidgetStatePropertyAll(AppColors.whiteShade),
                     iconColor: WidgetStatePropertyAll(AppColors.black),
-                    shape: WidgetStatePropertyAll(
-                        RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(4)))),
+                    shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(4)))),
                     foregroundColor: WidgetStatePropertyAll(AppColors.grayDark),
-                    textStyle: WidgetStatePropertyAll(
-                        TextStyle(fontSize: 14, fontFamily: "UberRegular", color: Colors.black)))),
+                    textStyle: WidgetStatePropertyAll(TextStyle(
+                        fontSize: 14,
+                        fontFamily: "UberRegular",
+                        color: Colors.black)))),
             textTheme: const TextTheme(
               displayLarge: TextStyle(fontSize: 24, fontFamily: "UberBold"),
               displayMedium: TextStyle(fontSize: 24, fontFamily: "UberRegular"),
@@ -195,8 +204,8 @@ class MyApp extends StatelessWidget {
               labelSmall: TextStyle(fontSize: 12, fontFamily: "UberRegular"),
             )),
         themeAnimationDuration: const Duration(seconds: 3),
-        builder: (context, child) =>
-            ScrollConfiguration(behavior: NoOverScrollBehavior(), child: child ?? Placeholder()),
+        builder: (context, child) => ScrollConfiguration(
+            behavior: NoOverScrollBehavior(), child: child ?? Placeholder()),
         routerConfig: router,
       ),
     );
@@ -205,7 +214,8 @@ class MyApp extends StatelessWidget {
 
 class NoOverScrollBehavior extends ScrollBehavior {
   @override
-  Widget buildOverscrollIndicator(BuildContext context, Widget child, ScrollableDetails details) {
+  Widget buildOverscrollIndicator(
+      BuildContext context, Widget child, ScrollableDetails details) {
     return child;
   }
 }
