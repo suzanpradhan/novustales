@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/constants/app_colors.dart';
 import '../../../../core/presentation/ui/number_to_string.dart';
 
 class UserInfoCard extends StatelessWidget {
@@ -19,17 +18,11 @@ class UserInfoCard extends StatelessWidget {
       child: RichText(
         text: TextSpan(
           text: "${numberToString(count)}\n",
-          style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                fontFamily: "SatoshiMedium",
-                color: AppColors.dark,
-              ),
+          style: Theme.of(context).textTheme.bodyLarge,
           children: [
             TextSpan(
               text: title,
-              style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                    fontFamily: "SatoshiRegular",
-                    color: AppColors.dark.withOpacity(.8),
-                  ),
+              style: Theme.of(context).textTheme.bodySmall,
             ),
           ],
         ),

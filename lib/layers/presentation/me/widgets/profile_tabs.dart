@@ -35,8 +35,8 @@ class ProfileTabs extends StatelessWidget {
             if (currentTab == tabKey)
               Positioned(
                 bottom: 0,
-                right: 50,
-                left: 50,
+                right: 0,
+                left: 0,
                 // child: Container(
                 //   height: 2,
                 //   decoration: BoxDecoration(
@@ -45,8 +45,8 @@ class ProfileTabs extends StatelessWidget {
                 // ),
                 child: Divider(
                   height: 0.0,
-                  thickness: 2,
-                  color: AppColors.purpleAccent,
+                  thickness: 1,
+                  color: AppColors.dark,
                 ),
               )
           ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:storyv2/core/constants/ui_constants.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_icons.dart';
@@ -57,10 +58,12 @@ class _MeScreenState extends State<MeScreen> {
                   loading: (value) => ProfileShimmer(),
                   failed: (value) {
                     return Container(
-                      color: AppColors.black,
+                      padding: EdgeInsets.symmetric(
+                          vertical: UIConstants.minPadding),
+                      color: AppColors.red,
                       child: Center(
                         child: Text(
-                          value.message,
+                          "Server Error",
                           style: TextStyle(color: AppColors.white),
                         ),
                       ),
@@ -82,8 +85,8 @@ class _MeScreenState extends State<MeScreen> {
                                           alignment: Alignment.center,
                                           children: [
                                             Container(
-                                              width: 90,
-                                              height: 90,
+                                              width: 72,
+                                              height: 72,
                                               decoration: BoxDecoration(
                                                 shape: BoxShape.circle,
                                                 border: Border.all(
@@ -92,21 +95,27 @@ class _MeScreenState extends State<MeScreen> {
                                                 ),
                                               ),
                                             ),
-                                            // Circular image inside the border
                                             Container(
-                                              width:
-                                                  84, // Image size (should be slightly smaller than the outer border)
-                                              height: 84,
+                                              width: 64,
+                                              height: 64,
                                               clipBehavior: Clip.hardEdge,
                                               decoration: BoxDecoration(
                                                 shape: BoxShape.circle,
                                               ),
-                                              child: Image.asset(Assets.test,
-                                                  fit: BoxFit.cover),
+                                              child: value.me.avatar != null &&
+                                                      value
+                                                          .me.avatar!.isNotEmpty
+                                                  ? Image.network(
+                                                      value.me.avatar!,
+                                                      fit: BoxFit.cover,
+                                                    )
+                                                  : Image.asset(
+                                                      Assets.noProfile,
+                                                      fit: BoxFit.cover),
                                             ),
                                           ],
                                         ),
-                                        Gapper.hGap(),
+                                        Gapper.hmGap(),
                                         Expanded(
                                           child: Row(
                                             children: [
@@ -116,43 +125,21 @@ class _MeScreenState extends State<MeScreen> {
                                                       CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
-                                                      "${value.me.firstName} ${value.me.lastName}",
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .bodyMedium!
-                                                          .copyWith(
-                                                            color:
-                                                                AppColors.black,
-                                                            fontFamily:
-                                                                'RalewayBold',
-                                                          ),
-                                                    ),
-                                                    if (value.me.nickName != "")
-                                                      Text(
-                                                        "@${value.me.nickName}",
+                                                        "${value.me.firstName} ${value.me.lastName}",
                                                         style: Theme.of(context)
                                                             .textTheme
-                                                            .bodyMedium!
-                                                            .copyWith(
-                                                              color: AppColors
-                                                                  .grayDark,
-                                                              fontFamily:
-                                                                  'RalewayRegular',
-                                                            ),
-                                                      ),
-                                                    Gapper.v2xmGap(),
-                                                    Text(
-                                                      "Entrepreneur",
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .bodySmall!
-                                                          .copyWith(
-                                                            color:
-                                                                AppColors.dark,
-                                                            fontFamily:
-                                                                'RalewayRegular',
-                                                          ),
-                                                    ),
+                                                            .bodyLarge),
+                                                    // if (value.me.nickName != "")
+                                                    //   Text(
+                                                    //     "@${value.me.nickName}",
+                                                    //     style: Theme.of(context)
+                                                    //         .textTheme
+                                                    //         .bodyMedium,
+                                                    //   ),
+                                                    Text(value.me.email,
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .bodySmall),
                                                   ],
                                                 ),
                                               ),
@@ -187,52 +174,37 @@ class _MeScreenState extends State<MeScreen> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 crossAxisAlignment: CrossAxisAlignment.center,
-                                children: userInfo.map(
-                                  (info) {
-                                    return UserInfoCard(
-                                      title: info['title'],
-                                      count: info['count'],
-                                    );
-                                  },
-                                ).toList(),
-                              ),
-                              Gapper.vGap(),
-                              SizedBox(
-                                child: RichText(
-                                  text: TextSpan(
-                                    children: [
-                                      TextSpan(
-                                        text:
-                                            "Entrepreneur | Innovator | [Industry/Field] Enthusiast | Turning ideas into success stories. 🚀 ",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .labelSmall!
-                                            .copyWith(
-                                              fontFamily: "SatoshiRegular",
-                                              color: AppColors.dark,
-                                            ),
-                                      ),
-                                      TextSpan(
-                                        text: "#StartupLife #Innovation",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .labelSmall!
-                                            .copyWith(
-                                              fontFamily: "SatoshiBold",
-                                              color: AppColors.purpleAccent,
-                                            ),
-                                      )
-                                    ],
+                                children: [
+                                  UserInfoCard(
+                                    title: "posts",
+                                    count: value.me.numberOfStories,
                                   ),
-                                ),
-                              )
+                                  UserInfoCard(
+                                    title: "followers",
+                                    count: value.me.followers,
+                                  ),
+                                  UserInfoCard(
+                                    title: "following",
+                                    count: value.me.following,
+                                  )
+                                ],
+                              ),
+                              if (value.me.bio != null)
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: UIConstants.minPadding),
+                                  child: Text(value.me.bio!,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium),
+                                )
                             ],
                           ),
                         ),
                         Divider(
                           height: 0.0,
-                          thickness: 2,
-                          color: AppColors.greyWhite.withOpacity(.6),
+                          thickness: 1,
+                          color: AppColors.greyWhite,
                         ),
                         SizedBox(
                           child: Row(
@@ -244,7 +216,7 @@ class _MeScreenState extends State<MeScreen> {
                                 onChange: changeTab,
                                 icon: Icon(
                                   AppIcons.film,
-                                  size: 24,
+                                  size: 20,
                                 ),
                               ),
                               ProfileTabs(
@@ -253,7 +225,7 @@ class _MeScreenState extends State<MeScreen> {
                                 onChange: changeTab,
                                 icon: Icon(
                                   AppIcons.bookmarks,
-                                  size: 24,
+                                  size: 20,
                                 ),
                               ),
                             ],
