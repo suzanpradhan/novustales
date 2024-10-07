@@ -37,6 +37,12 @@ class _StoryPageState extends State<StoryPage> {
   ];
 
   @override
+  void initState() {
+    isPaused.value = false;
+    super.initState();
+  }
+
+  @override
   void dispose() {
     // Dispose of your resources here
     controller.pause();
@@ -47,7 +53,6 @@ class _StoryPageState extends State<StoryPage> {
 
   @override
   Widget build(BuildContext context) {
-    isPaused.value = false;
     final bool isVideo = videoFormats.any(
         (format) => widget.story.media?.toLowerCase().endsWith(format) == true);
     return Stack(

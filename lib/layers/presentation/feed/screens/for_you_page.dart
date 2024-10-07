@@ -14,6 +14,14 @@ class ForYouPage extends StatefulWidget {
 
 class _ForYouPageState extends State<ForYouPage> {
   @override
+  void initState() {
+    BlocProvider.value(
+      value: context.read<ForYouStoryBloc>()..add(ForYouStoryEvent.request()),
+    );
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocBuilder<ForYouStoryBloc, ForYouStoryState>(
       builder: (context, state) {

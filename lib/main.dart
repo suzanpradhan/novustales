@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:logger/logger.dart';
 import 'package:storyv2/core/presentation/blocs/internet_checker/internet_checker_bloc.dart';
 import 'package:storyv2/layers/presentation/auth/bloc/logout_bloc.dart';
 import 'package:storyv2/layers/presentation/auth/login/login_bloc.dart';
@@ -26,7 +27,6 @@ import 'core/routes/router_builder.dart';
 import 'firebase_options.dart';
 import 'layers/presentation/chat/blocs/send_message/send_message_bloc.dart';
 import 'layers/presentation/feed/blocs/get_categories/get_categories_bloc.dart';
-import 'layers/presentation/feed/blocs/get_stories/get_stories_bloc.dart';
 import 'layers/presentation/feed/blocs/search_stories/search_stories_bloc.dart';
 import 'utils/bloc_observer.dart';
 import 'utils/dependencies_injection.dart';
@@ -39,6 +39,7 @@ void main() {
 
     Bloc.observer = TitsBlocObserver();
     await serviceLocator();
+    Logger.level = Level.off;
 
     // Initialize firebase in Flutter App
     await Firebase.initializeApp(
@@ -93,9 +94,6 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => sl<GetProfileBloc>(),
-        ),
-        BlocProvider(
-          create: (context) => sl<GetStoriesBloc>(),
         ),
         BlocProvider(
           create: (context) => sl<GetCategoriesBloc>(),
