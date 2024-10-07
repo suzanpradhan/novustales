@@ -65,6 +65,7 @@ class ChatRemoteSourceImpl implements ChatRemoteSource {
               .select("content")
               .eq("room_id", contact.id)
               .eq("read", false)
+              .neq("profile_id", uuid)
               .order("created_at", ascending: false);
 
           if (receiverUserData.isNotEmpty) {
@@ -121,7 +122,6 @@ class ChatRemoteSourceImpl implements ChatRemoteSource {
       {required SendMessageParams params}) async {
     try {
       await supabaseService.client.from("messages").insert(params.toJson());
-      await supabaseService.client.from("messages").insert(params.toJson());
 
       return const Right(true);
     } catch (e) {
@@ -134,13 +134,26 @@ class ChatRemoteSourceImpl implements ChatRemoteSource {
   Future<Either<Failure, bool>> readMessage(
       {required SendMessageParams params}) async {
     try {
-      await supabaseService.client
-          .from("messages")
-          .update({'read': true}).eq("room_id", params.roomId);
-      return const Right(true);
+      String? uuid =
+          await sl<SecureStorageMixin>().getValue(SecureStorageKeys.uuid);
+      if (uuid != null) {
+        try {
+          await supabaseService.client
+              .from("messages")
+              .update({'read': true})
+              .eq("room_id", params.roomId)
+              .eq("profile_id", uuid);
+          return const Right(true);
+        } catch (e) {
+          log("read message error: ${e.toString()}");
+          return const Left(ServerFailure(message: 'Failed to read message.'));
+        }
+      } else {
+        return const Left(ServerFailure(message: 'Failed to read message.'));
+      }
     } catch (e) {
       log("read message error: ${e.toString()}");
-      return const Left(ServerFailure(message: 'Failed to send message.'));
+      return const Left(ServerFailure(message: 'Failed to read message.'));
     }
   }
 
