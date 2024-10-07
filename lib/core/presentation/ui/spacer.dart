@@ -18,6 +18,20 @@ class Gapper {
     );
   }
 
+  static Widget cardMinPadding({required Widget child}) {
+    return Padding(
+      padding: const EdgeInsets.all(UIConstants.xminPadding),
+      child: child,
+    );
+  }
+
+  static Widget card2xMinPadding({required Widget child}) {
+    return Padding(
+      padding: const EdgeInsets.all(UIConstants.x2minPadding),
+      child: child,
+    );
+  }
+
   static SizedBox hgap(double gap) {
     return SizedBox(
       width: gap,

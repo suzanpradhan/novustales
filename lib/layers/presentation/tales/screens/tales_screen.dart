@@ -28,7 +28,8 @@ class _TalesScreenState extends State<TalesScreen> {
   double _bottomSheetHeight = 0.6;
   Position? myLocation;
   GoogleMapController? _mapController;
-  final DraggableScrollableController _draggableController = DraggableScrollableController();
+  final DraggableScrollableController _draggableController =
+      DraggableScrollableController();
   String currentTab = "all";
 
   Future<Position> _determinePosition() async {
@@ -62,7 +63,9 @@ class _TalesScreenState extends State<TalesScreen> {
       myLocation = await _determinePosition();
       if (myLocation != null) {
         _mapController?.moveCamera(CameraUpdate.newCameraPosition(
-            CameraPosition(target: LatLng(myLocation!.latitude, myLocation!.longitude), zoom: 18)));
+            CameraPosition(
+                target: LatLng(myLocation!.latitude, myLocation!.longitude),
+                zoom: 18)));
         if (mounted) {
           context.read<GetNearMeTalesBloc>().add(GetNearMeTalesEvent.request(
               params: NearMeTalesParams(
@@ -103,8 +106,9 @@ class _TalesScreenState extends State<TalesScreen> {
             child: Stack(
               children: [
                 SizedBox(
-                  height:
-                      (constraints.maxHeight - (constraints.maxHeight * _bottomSheetHeight)) + 20,
+                  height: (constraints.maxHeight -
+                          (constraints.maxHeight * _bottomSheetHeight)) +
+                      20,
                   child: BlocBuilder<GetNearMeTalesBloc, GetNearMeTalesState>(
                     builder: (context, state) {
                       return BlocBuilder<GetDirectionBloc, GetDirectionState>(
@@ -113,7 +117,8 @@ class _TalesScreenState extends State<TalesScreen> {
                             return GoogleMap(
                               initialCameraPosition: CameraPosition(
                                   target: myLocation != null
-                                      ? LatLng(myLocation!.latitude, myLocation!.longitude)
+                                      ? LatLng(myLocation!.latitude,
+                                          myLocation!.longitude)
                                       : LatLng(37.7749, -122.4194),
                                   zoom: 18),
                               myLocationEnabled: true,
@@ -125,7 +130,8 @@ class _TalesScreenState extends State<TalesScreen> {
                               zoomControlsEnabled: false,
                               onCameraIdle: () async {
                                 if (_mapController == null) return;
-                                LatLng center = await _mapController!.getLatLng(ScreenCoordinate(
+                                LatLng center = await _mapController!
+                                    .getLatLng(ScreenCoordinate(
                                   x: constraints.maxWidth ~/ 2,
                                   y: constraints.maxHeight ~/ 2,
                                 ));
@@ -133,8 +139,10 @@ class _TalesScreenState extends State<TalesScreen> {
                                   context.read<GetNearMeTalesBloc>().add(
                                       GetNearMeTalesEvent.request(
                                           params: NearMeTalesParams(
-                                              latitude: center.latitude.toString(),
-                                              longitude: center.longitude.toString(),
+                                              latitude:
+                                                  center.latitude.toString(),
+                                              longitude:
+                                                  center.longitude.toString(),
                                               radius: "5")));
                                 }
                               },
@@ -142,8 +150,10 @@ class _TalesScreenState extends State<TalesScreen> {
                                     success: (tales) {
                                       return tales
                                           .map((tale) => Marker(
-                                              markerId: MarkerId(tale.id.toString()),
-                                              position: LatLng(tale.latitude!, tale.longitude!)))
+                                              markerId:
+                                                  MarkerId(tale.id.toString()),
+                                              position: LatLng(tale.latitude!,
+                                                  tale.longitude!)))
                                           .toSet();
                                     },
                                   ) ??
@@ -163,11 +173,13 @@ class _TalesScreenState extends State<TalesScreen> {
                               onMapCreated: (controller) {
                                 _mapController = controller;
                                 if (myLocation != null) {
-                                  _mapController?.moveCamera(CameraUpdate.newCameraPosition(
-                                      CameraPosition(
-                                          target:
-                                              LatLng(myLocation!.latitude, myLocation!.longitude),
-                                          zoom: 18)));
+                                  _mapController?.moveCamera(
+                                      CameraUpdate.newCameraPosition(
+                                          CameraPosition(
+                                              target: LatLng(
+                                                  myLocation!.latitude,
+                                                  myLocation!.longitude),
+                                              zoom: 18)));
                                 }
                               },
                             );
@@ -191,15 +203,18 @@ class _TalesScreenState extends State<TalesScreen> {
                     child: InkWell(
                       onTap: () {
                         if (myLocation != null) {
-                          _mapController?.moveCamera(CameraUpdate.newCameraPosition(CameraPosition(
-                              target: LatLng(myLocation!.latitude, myLocation!.longitude),
-                              zoom: 18)));
+                          _mapController?.moveCamera(
+                              CameraUpdate.newCameraPosition(CameraPosition(
+                                  target: LatLng(myLocation!.latitude,
+                                      myLocation!.longitude),
+                                  zoom: 18)));
                         }
                       },
                       child: Container(
                         decoration: BoxDecoration(
                             color: Colors.white,
-                            borderRadius: BorderRadius.circular(UIConstants.xminPadding)),
+                            borderRadius:
+                                BorderRadius.circular(UIConstants.xminPadding)),
                         padding: EdgeInsets.all(UIConstants.minPadding),
                         child: Icon(Icons.my_location),
                       ),
@@ -232,7 +247,8 @@ class _TalesScreenState extends State<TalesScreen> {
                           GestureDetector(
                             onVerticalDragUpdate: (details) {
                               final newSize = _draggableController.size -
-                                  (details.primaryDelta! / MediaQuery.of(context).size.height);
+                                  (details.primaryDelta! /
+                                      MediaQuery.of(context).size.height);
                               _draggableController.jumpTo(newSize);
                             },
                             child: Column(
@@ -248,8 +264,8 @@ class _TalesScreenState extends State<TalesScreen> {
                                       height: 8,
                                       decoration: BoxDecoration(
                                           color: AppColors.whiteShade,
-                                          borderRadius:
-                                              BorderRadius.circular(UIConstants.minBorderRadius)),
+                                          borderRadius: BorderRadius.circular(
+                                              UIConstants.minBorderRadius)),
                                     ),
                                   ),
                                 ),
@@ -257,13 +273,13 @@ class _TalesScreenState extends State<TalesScreen> {
                                   changeTab: changeTab,
                                   currentTab: currentTab,
                                 ),
-                                // Gapper.vGap(),
+                                Gapper.vmGap(),
                               ],
                             ),
                           ),
                           Flexible(
-                            child: BlocBuilder<GetTaleIntroBloc, GetTaleIntroState>(
-                                builder: (context, state) {
+                            child: BlocBuilder<GetTaleIntroBloc,
+                                GetTaleIntroState>(builder: (context, state) {
                               return state.whenOrNull(
                                     success: (tale) {
                                       if (tale == null) return null;
@@ -275,25 +291,34 @@ class _TalesScreenState extends State<TalesScreen> {
                                     },
                                   ) ??
                                   (currentTab == "all"
-                                      ? AllTalesPage(scrollController: scrollController)
+                                      ? AllTalesPage(
+                                          scrollController: scrollController)
                                       : currentTab == "search"
                                           ? FilteredTalesPage(
-                                              scrollController: scrollController,
+                                              scrollController:
+                                                  scrollController,
                                               tabKey: currentTab,
                                             )
                                           : currentTab == "near_me"
-                                              ? NearMePage(scrollController: scrollController)
+                                              ? NearMePage(
+                                                  scrollController:
+                                                      scrollController)
                                               : currentTab == "popular"
-                                                  ? PopularPage(scrollController: scrollController)
+                                                  ? PopularPage(
+                                                      scrollController:
+                                                          scrollController)
                                                   : Column(
                                                       children: [
                                                         Gapper.vmxGap(),
                                                         Text(
                                                           "No results",
-                                                          style: Theme.of(context)
+                                                          style: Theme.of(
+                                                                  context)
                                                               .textTheme
                                                               .bodyMedium
-                                                              ?.copyWith(color: AppColors.grayDark),
+                                                              ?.copyWith(
+                                                                  color: AppColors
+                                                                      .grayDark),
                                                         ),
                                                       ],
                                                     ));
@@ -325,13 +350,17 @@ class TalesTabWidget extends StatelessWidget {
   final String tabKey;
   final Function(String)? onChange;
   const TalesTabWidget(
-      {super.key, required this.currentTab, required this.tabKey, required this.onChange});
+      {super.key,
+      required this.currentTab,
+      required this.tabKey,
+      required this.onChange});
 
   String tabKeyToTitle(String text) {
     return text
         .split('_')
-        .map((word) =>
-            word.isNotEmpty ? word[0].toUpperCase() + word.substring(1).toLowerCase() : '')
+        .map((word) => word.isNotEmpty
+            ? word[0].toUpperCase() + word.substring(1).toLowerCase()
+            : '')
         .join(' ');
   }
 
@@ -348,7 +377,8 @@ class TalesTabWidget extends StatelessWidget {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(42),
             color: currentTab == tabKey ? AppColors.dark : null,
-            border: Border.all(color: currentTab == tabKey ? AppColors.dark : AppColors.gray)),
+            border: Border.all(
+                color: currentTab == tabKey ? AppColors.dark : AppColors.gray)),
         child: Center(
             child: Text(
           tabKeyToTitle(tabKey),
@@ -365,7 +395,8 @@ class TalesTabWidget extends StatelessWidget {
 class TabsWidget extends StatefulWidget {
   final Function(String) changeTab;
   final String currentTab;
-  const TabsWidget({super.key, required this.changeTab, required this.currentTab});
+  const TabsWidget(
+      {super.key, required this.changeTab, required this.currentTab});
 
   @override
   State<TabsWidget> createState() => _TabsWidgetState();
@@ -381,14 +412,16 @@ class _TabsWidgetState extends State<TabsWidget> {
         builder: (context, state) {
           return ListView(
             scrollDirection: Axis.horizontal,
-            padding: EdgeInsets.symmetric(horizontal: UIConstants.screenPadding),
+            padding:
+                EdgeInsets.symmetric(horizontal: UIConstants.screenPadding),
             children: [
               BlocBuilder<GetTaleIntroBloc, GetTaleIntroState>(
                 builder: (context, state) {
                   return state.whenOrNull(
                         success: (tale) {
                           return Padding(
-                            padding: const EdgeInsets.only(right: UIConstants.minPadding),
+                            padding: const EdgeInsets.only(
+                                right: UIConstants.minPadding),
                             child: InkWell(
                               onTap: () {
                                 context
@@ -397,10 +430,12 @@ class _TabsWidgetState extends State<TabsWidget> {
                               },
                               child: Container(
                                   padding: EdgeInsets.only(
-                                      left: UIConstants.maxPadding, right: UIConstants.maxPadding),
+                                      left: UIConstants.maxPadding,
+                                      right: UIConstants.maxPadding),
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(42),
-                                      border: Border.all(color: AppColors.gray)),
+                                      border:
+                                          Border.all(color: AppColors.gray)),
                                   child: Icon(Icons.arrow_back)),
                             ),
                           );
@@ -415,11 +450,13 @@ class _TabsWidgetState extends State<TabsWidget> {
                 },
                 child: AnimatedContainer(
                   width: (widget.currentTab == "search")
-                      ? (MediaQuery.of(context).size.width - (UIConstants.screenPadding * 2))
+                      ? (MediaQuery.of(context).size.width -
+                          (UIConstants.screenPadding * 2))
                       : null,
                   duration: Duration(seconds: 300),
-                  padding:
-                      EdgeInsets.only(left: UIConstants.maxPadding, right: UIConstants.maxPadding),
+                  padding: EdgeInsets.only(
+                      left: UIConstants.maxPadding,
+                      right: UIConstants.maxPadding),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(42),
                       border: Border.all(color: AppColors.gray)),
@@ -430,19 +467,22 @@ class _TabsWidgetState extends State<TabsWidget> {
                       if (widget.currentTab == "search")
                         Expanded(
                             child: Padding(
-                          padding: EdgeInsets.only(left: UIConstants.xminPadding),
+                          padding:
+                              EdgeInsets.only(left: UIConstants.xminPadding),
                           child: BlocBuilder<SearchTalesBloc, SearchTalesState>(
                             builder: (context, state) {
                               return TextField(
                                 controller: _controller,
                                 onEditingComplete: () {
-                                  context
-                                      .read<SearchTalesBloc>()
-                                      .add(SearchTalesEvent.request(searchText: _controller.text));
+                                  context.read<SearchTalesBloc>().add(
+                                      SearchTalesEvent.request(
+                                          searchText: _controller.text));
                                   FocusScope.of(context).unfocus();
                                 },
                                 decoration: InputDecoration(
-                                    hintText: "Search", isDense: true, border: InputBorder.none),
+                                    hintText: "Search",
+                                    isDense: true,
+                                    border: InputBorder.none),
                               );
                             },
                           ),
@@ -452,7 +492,8 @@ class _TabsWidgetState extends State<TabsWidget> {
                           onTap: () {
                             widget.changeTab("all");
                           },
-                          child: SizedBox(width: 38, height: 38, child: Icon(Icons.close)),
+                          child: SizedBox(
+                              width: 38, height: 38, child: Icon(Icons.close)),
                         )
                     ],
                   ),
