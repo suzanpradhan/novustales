@@ -17,19 +17,20 @@ import '../../../../core/presentation/ui/text_input.dart';
 import '../../../../core/presentation/widgets/form_fields/form_group.dart';
 import '../../../../core/presentation/widgets/form_fields/form_input_field.dart';
 import '../../../../core/presentation/widgets/simple_button.dart';
+import '../../../../utils/dependencies_injection.dart';
 import '../../../domain/entities/profile_entity.dart';
 import '../bloc/profile_bloc/get_profile_bloc.dart';
 import '../bloc/update_profile_bloc/update_profile_bloc.dart';
 
-class EditProfilePage extends StatefulWidget {
+class UpdateProfileScreen extends StatefulWidget {
   final ProfileEntity profileData;
-  const EditProfilePage({super.key, required this.profileData});
+  const UpdateProfileScreen({super.key, required this.profileData});
 
   @override
-  State<EditProfilePage> createState() => _EditProfilePageState();
+  State<UpdateProfileScreen> createState() => _UpdateProfileScreenState();
 }
 
-class _EditProfilePageState extends State<EditProfilePage> {
+class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
   String? localImageAvatar;
   void changeLocalImage(String value) {
     setState(() {
@@ -49,155 +50,161 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Edit Profile"),
-      ),
-      body: BlocListener<UpdateProfileBloc, UpdateProfileState>(
-        listener: (_, state) {
-          if (state.status.isSuccess) {
-            context.pop();
-            context.read<GetProfileBloc>().add(const GetProfileEvent.request());
-            ScaffoldMessenger.of(context)
-                .showSnackBar(SnackBar(content: Text(state.message ?? "")));
-          } else if (state.status.isFailure) {
-            if (state.message != null) {
+    return BlocProvider(
+      create: (context) => UpdateProfileBloc(
+          currentProfileData: widget.profileData, updateProfile: sl()),
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text("Edit Profile"),
+        ),
+        body: BlocListener<UpdateProfileBloc, UpdateProfileState>(
+          listener: (_, state) {
+            if (state.status.isSuccess) {
+              context.pop();
+              context
+                  .read<GetProfileBloc>()
+                  .add(const GetProfileEvent.request());
               ScaffoldMessenger.of(context)
-                  .showSnackBar(SnackBar(content: Text(state.message!)));
+                  .showSnackBar(SnackBar(content: Text(state.message ?? "")));
+            } else if (state.status.isFailure) {
+              if (state.message != null) {
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(SnackBar(content: Text(state.message!)));
+              }
             }
-          }
-        },
-        child: SingleChildScrollView(
-          physics: const ClampingScrollPhysics(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // ProfileHeader(
-              //   isEditable: true,
-              //   avatar: widget.profileData.avatar,
-              //   changeLocalImage: changeLocalImage,
-              // ),
-              Gapper.vGap(),
-              Gapper.screenPadding(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    BlocBuilder<UpdateProfileBloc, UpdateProfileState>(
-                      builder: (context, state) {
-                        return FormGroup(
-                            label: Text("First Name"),
-                            formField: FormInputField(
-                              initialValue: state.firstName.value,
-                              selectorLabel: "First Name",
-                              placeholder: "",
-                              context: context,
-                              textInputType: TextInputType.text,
-                              alignment: InputAlignment.vertical,
-                              errorText: state.firstName.displayError ==
-                                      RequiredTextValidationError.empty
-                                  ? "First name is required"
-                                  : null,
-                              onChanged: (value) {
-                                context.read<UpdateProfileBloc>().add(
-                                    UpdateProfileEvent.validateFirstName(
-                                        firstName: value));
-                              },
-                            ));
-                      },
-                    ),
-                    Gapper.vGap(),
-                    BlocBuilder<UpdateProfileBloc, UpdateProfileState>(
-                      builder: (context, state) {
-                        return FormGroup(
-                            label: Text("Last Name"),
-                            formField: FormInputField(
-                              initialValue: state.lastName.value,
-                              selectorLabel: "Last Name",
-                              placeholder: "",
-                              context: context,
-                              textInputType: TextInputType.text,
-                              alignment: InputAlignment.vertical,
-                              errorText: state.lastName.displayError ==
-                                      RequiredTextValidationError.empty
-                                  ? "Last name is required"
-                                  : null,
-                              onChanged: (value) {
-                                context.read<UpdateProfileBloc>().add(
-                                    UpdateProfileEvent.validateLastName(
-                                        lastName: value));
-                              },
-                            ));
-                      },
-                    ),
-                    Gapper.vGap(),
-                    BlocBuilder<UpdateProfileBloc, UpdateProfileState>(
+          },
+          child: SingleChildScrollView(
+            physics: const ClampingScrollPhysics(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // ProfileHeader(
+                //   isEditable: true,
+                //   avatar: widget.profileData.avatar,
+                //   changeLocalImage: changeLocalImage,
+                // ),
+                Gapper.vGap(),
+                Gapper.screenPadding(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      BlocBuilder<UpdateProfileBloc, UpdateProfileState>(
                         builder: (context, state) {
-                      return FormGroup(
-                          label: Text("Bio"),
-                          formField: FormInputField(
-                            initialValue: state.bio.value,
-                            selectorLabel: "Bio",
-                            placeholder: "",
-                            prefixText: const Text("Write your bio here"),
-                            context: context,
-                            textInputType:
-                                const TextInputType.numberWithOptions(
-                                    signed: true),
-                            inputFormatters: [
-                              FilteringTextInputFormatter.digitsOnly
-                            ],
-                            alignment: InputAlignment.vertical,
-                            errorText: state.bio.displayError ==
-                                    RequiredTextValidationError.empty
-                                ? "Bio is required"
-                                : null,
-                            onChanged: (value) {
-                              context.read<UpdateProfileBloc>().add(
-                                  UpdateProfileEvent.validateBio(bio: value));
-                            },
-                          ));
-                    }),
-                  ],
-                ),
-              )
-            ],
+                          return FormGroup(
+                              label: Text("First Name"),
+                              formField: FormInputField(
+                                initialValue: state.firstName.value,
+                                selectorLabel: "First Name",
+                                placeholder: "",
+                                context: context,
+                                textInputType: TextInputType.text,
+                                alignment: InputAlignment.vertical,
+                                errorText: state.firstName.displayError ==
+                                        RequiredTextValidationError.empty
+                                    ? "First name is required"
+                                    : null,
+                                onChanged: (value) {
+                                  context.read<UpdateProfileBloc>().add(
+                                      UpdateProfileEvent.validateFirstName(
+                                          firstName: value));
+                                },
+                              ));
+                        },
+                      ),
+                      Gapper.vGap(),
+                      BlocBuilder<UpdateProfileBloc, UpdateProfileState>(
+                        builder: (context, state) {
+                          return FormGroup(
+                              label: Text("Last Name"),
+                              formField: FormInputField(
+                                initialValue: state.lastName.value,
+                                selectorLabel: "Last Name",
+                                placeholder: "",
+                                context: context,
+                                textInputType: TextInputType.text,
+                                alignment: InputAlignment.vertical,
+                                errorText: state.lastName.displayError ==
+                                        RequiredTextValidationError.empty
+                                    ? "Last name is required"
+                                    : null,
+                                onChanged: (value) {
+                                  context.read<UpdateProfileBloc>().add(
+                                      UpdateProfileEvent.validateLastName(
+                                          lastName: value));
+                                },
+                              ));
+                        },
+                      ),
+                      Gapper.vGap(),
+                      BlocBuilder<UpdateProfileBloc, UpdateProfileState>(
+                          builder: (context, state) {
+                        return FormGroup(
+                            label: Text("Bio"),
+                            formField: FormInputField(
+                              initialValue: state.bio.value,
+                              selectorLabel: "Bio",
+                              placeholder: "",
+                              prefixText: const Text("Write your bio here"),
+                              context: context,
+                              textInputType:
+                                  const TextInputType.numberWithOptions(
+                                      signed: true),
+                              inputFormatters: [
+                                FilteringTextInputFormatter.digitsOnly
+                              ],
+                              alignment: InputAlignment.vertical,
+                              errorText: state.bio.displayError ==
+                                      RequiredTextValidationError.empty
+                                  ? "Bio is required"
+                                  : null,
+                              onChanged: (value) {
+                                context.read<UpdateProfileBloc>().add(
+                                    UpdateProfileEvent.validateBio(bio: value));
+                              },
+                            ));
+                      }),
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
-      ),
-      bottomNavigationBar: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-              horizontal: UIConstants.screenPadding,
-              vertical: UIConstants.screenPadding),
-          child: Row(
-            children: [
-              Expanded(
-                  child: SimpleButton(
-                buttonLabel: 'Cancel',
-                alignment: MainAxisAlignment.center,
-                textColor: Colors.black,
-                borderColor: Colors.grey.shade500,
-              )),
-              const SizedBox(
-                width: 8,
-              ),
-              Expanded(
-                child: BlocBuilder<UpdateProfileBloc, UpdateProfileState>(
-                  builder: (context, state) {
-                    return SimpleButton(
-                        buttonLabel: 'Update',
-                        isFilled: true,
-                        fillColor: AppColors.purpleAccent,
-                        alignment: MainAxisAlignment.center,
-                        handleTap: () {
-                          context
-                              .read<UpdateProfileBloc>()
-                              .add(const UpdateProfileEvent.attempt());
-                        });
-                  },
+        bottomNavigationBar: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+                horizontal: UIConstants.screenPadding,
+                vertical: UIConstants.screenPadding),
+            child: Row(
+              children: [
+                Expanded(
+                    child: SimpleButton(
+                  buttonLabel: 'Cancel',
+                  alignment: MainAxisAlignment.center,
+                  textColor: Colors.black,
+                  borderColor: Colors.grey.shade500,
+                )),
+                const SizedBox(
+                  width: 8,
                 ),
-              )
-            ],
+                Expanded(
+                  child: BlocBuilder<UpdateProfileBloc, UpdateProfileState>(
+                    builder: (context, state) {
+                      return SimpleButton(
+                          buttonLabel: 'Update',
+                          isFilled: true,
+                          fillColor: AppColors.purpleAccent,
+                          alignment: MainAxisAlignment.center,
+                          handleTap: () {
+                            context
+                                .read<UpdateProfileBloc>()
+                                .add(const UpdateProfileEvent.attempt());
+                          });
+                    },
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

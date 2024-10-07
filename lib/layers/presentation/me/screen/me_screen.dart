@@ -155,7 +155,7 @@ class _MeScreenState extends State<MeScreen> {
                                     ),
                                   ),
                                   SimpleButton(
-                                    buttonLabel: "Login",
+                                    buttonLabel: "",
                                     label: Text(
                                       "Edit Profile",
                                       style: Theme.of(context)
@@ -171,7 +171,8 @@ class _MeScreenState extends State<MeScreen> {
                                         AppColors.greyWhite.withOpacity(.5),
                                     alignment: MainAxisAlignment.center,
                                     handleTap: () {
-                                      context.push(EDIT_PROFILE_SCREEN_ROUTE);
+                                      context.push(EDIT_PROFILE_SCREEN_ROUTE,
+                                          extra: value.me);
                                     },
                                   ),
                                 ],
