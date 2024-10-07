@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:ionicons/ionicons.dart';
+import 'package:storyv2/core/presentation/ui/novus_icons.dart';
 import 'package:storyv2/layers/presentation/feed/blocs/for_you_story/for_you_story_bloc.dart';
 import 'package:storyv2/layers/presentation/feed/blocs/trending_story/trending_story_bloc.dart';
 import 'package:storyv2/layers/presentation/me/bloc/profile_bloc/get_profile_bloc.dart';
@@ -100,8 +102,8 @@ class HomeWrapperWidgetState extends State<HomeWrapperWidget> {
                       },
                       icon: Icon(
                         (widget.navigationShell.currentIndex == 0)
-                            ? Icons.home_filled
-                            : Icons.home,
+                            ? NovusIcons.homeActive
+                            : NovusIcons.home,
                         size: 22,
                         color: (widget.navigationShell.currentIndex == 0)
                             ? Colors.black
@@ -115,9 +117,9 @@ class HomeWrapperWidgetState extends State<HomeWrapperWidget> {
                       },
                       icon: Icon(
                         (widget.navigationShell.currentIndex == 1)
-                            ? Icons.explore
-                            : Icons.explore,
-                        size: 22,
+                            ? Ionicons.planet
+                            : Ionicons.planet_outline,
+                        size: 25,
                         color: (widget.navigationShell.currentIndex == 1)
                             ? Colors.black
                             : Colors.grey,
@@ -130,8 +132,8 @@ class HomeWrapperWidgetState extends State<HomeWrapperWidget> {
                       },
                       icon: Icon(
                         (widget.navigationShell.currentIndex == 2)
-                            ? Icons.add_box_outlined
-                            : Icons.add_box_outlined,
+                            ? NovusIcons.addActive
+                            : NovusIcons.add,
                         size: 22,
                         color: (widget.navigationShell.currentIndex == 2)
                             ? Colors.black
@@ -145,8 +147,8 @@ class HomeWrapperWidgetState extends State<HomeWrapperWidget> {
                       },
                       icon: Icon(
                         (widget.navigationShell.currentIndex == 3)
-                            ? Icons.message
-                            : Icons.message,
+                            ? NovusIcons.messageActive
+                            : NovusIcons.message,
                         size: 22,
                         color: (widget.navigationShell.currentIndex == 3)
                             ? Colors.black
@@ -160,8 +162,8 @@ class HomeWrapperWidgetState extends State<HomeWrapperWidget> {
                       },
                       icon: Icon(
                         (widget.navigationShell.currentIndex == 4)
-                            ? Icons.person
-                            : Icons.person,
+                            ? NovusIcons.profileActive
+                            : NovusIcons.profile,
                         size: 22,
                         color: (widget.navigationShell.currentIndex == 4)
                             ? Colors.black
