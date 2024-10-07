@@ -31,6 +31,7 @@ class SearchStoryParams with _$SearchStoryParams {
     @Default(1) int page,
     String? search,
     @JsonKey(name: "category__name__in") List<String>? categoryNameIn,
+    @JsonKey(name: "recommend_type") String? recommendType,
   }) = _SearchStoryParams;
 
   factory SearchStoryParams.fromJson(Map<String, dynamic> json) =>

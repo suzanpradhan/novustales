@@ -78,7 +78,6 @@ class ChatRemoteSourceImpl implements ChatRemoteSource {
                     .toList()));
           }
         }
-        log("_>>>>>>>>>>>>>>>>>>>>>>>>>>>> $newContacts ");
 
         return newContacts;
       } else {
@@ -86,7 +85,6 @@ class ChatRemoteSourceImpl implements ChatRemoteSource {
         throw const ServerFailure(message: "No user found");
       }
     } catch (e) {
-      log("_>>>>>>>>>>>>>>>>>>>>>>>>>>>> ${e.toString()}");
       throw const ServerFailure(message: "No user found");
     }
   }
