@@ -24,20 +24,20 @@ class _ForYouPageState extends State<ForYouPage> {
                     color: AppColors.black,
                     child: Center(
                       child: Text(
-                        message ?? "",
+                        message ?? "No Stories for you currently.",
                         style: TextStyle(color: AppColors.white),
                       ),
                     ),
                   );
                 }
-                return Container(
-                  color: AppColors.black,
-                  child: Center(
-                    child: Text(
-                      'No Stories for you currently.',
-                      style: TextStyle(color: AppColors.white),
-                    ),
-                  ),
+                return PageView.builder(
+                  scrollDirection: Axis.vertical,
+                  itemCount: stories.length,
+                  itemBuilder: (context, index) {
+                    return StoryPage(
+                      story: stories[index],
+                    );
+                  },
                 );
               },
               loading: (stories, hasMoreData) {
