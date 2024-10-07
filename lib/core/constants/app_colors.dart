@@ -15,4 +15,7 @@ class AppColors {
   static const Color greyWhite = Color(0xffe1e1e1);
   static const Color greyAccent = Color(0xffEDECF5);
   static const Color border = Color(0xffDCDCDC);
+  static const Color taleBackground = Color(0xffEDECF5);
+  static const Color ringColorYellow = Color(0xffFFA800);
+  static const Color ringColorPink = Color(0xffC110FF);
 }

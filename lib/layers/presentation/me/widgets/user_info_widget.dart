@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/constants/app_colors.dart';
+import '../../../../core/presentation/ui/number_to_string.dart';
 
 class UserInfoCard extends StatelessWidget {
   const UserInfoCard({
     super.key,
     required this.title,
-    required this.num,
+    required this.count,
   });
   final String title;
-  final String num;
+  final int count;
 
   @override
   Widget build(BuildContext context) {
@@ -17,23 +18,18 @@ class UserInfoCard extends StatelessWidget {
       flex: 1,
       child: RichText(
         text: TextSpan(
-          text: '$num\n',
-          style: TextStyle(
-            fontFamily: 'Satoshi',
-            fontSize: 18,
-            fontWeight: FontWeight.w500,
-            height: 1.2,
-            color: AppColors.darkBlue,
-          ),
+          text: "${numberToString(count)}\n",
+          style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                fontFamily: "SatoshiMedium",
+                color: AppColors.dark,
+              ),
           children: [
             TextSpan(
               text: title,
-              style: TextStyle(
-                fontFamily: 'Satoshi',
-                fontSize: 13,
-                fontWeight: FontWeight.normal,
-                color: Color(0xff414357),
-              ),
+              style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                    fontFamily: "SatoshiRegular",
+                    color: AppColors.dark.withOpacity(.8),
+                  ),
             ),
           ],
         ),

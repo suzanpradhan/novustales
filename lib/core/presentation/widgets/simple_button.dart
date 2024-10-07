@@ -11,6 +11,7 @@ class SimpleButton extends StatelessWidget {
     this.width,
     this.height = 48,
     required this.buttonLabel,
+    this.label,
     this.prefixWidget,
     this.suffixWidget,
     this.borderColor,
@@ -27,6 +28,7 @@ class SimpleButton extends StatelessWidget {
     this.isButtonDisabled,
   });
   final String buttonLabel;
+  final Text? label;
   final double? width;
   final bool isExpanded;
   final double? height;
@@ -96,17 +98,18 @@ class SimpleButton extends StatelessWidget {
                   children: [
                     if (prefixWidget != null) prefixWidget!,
                     isLoading != null && !isLoading!
-                        ? Text(
-                            buttonLabel,
-                            overflow: TextOverflow.ellipsis,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium!
-                                .copyWith(
-                                    fontSize: fontSize,
-                                    color: textColor ??
-                                        (isFilled ? AppColors.white : null)),
-                          )
+                        ? label ??
+                            Text(
+                              buttonLabel,
+                              overflow: TextOverflow.ellipsis,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(
+                                      fontSize: fontSize,
+                                      color: textColor ??
+                                          (isFilled ? AppColors.white : null)),
+                            )
                         : SizedBox(
                             width: 24,
                             height: 24,

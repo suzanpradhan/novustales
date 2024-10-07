@@ -38,7 +38,8 @@ class _AllTalesPageState extends State<AllTalesPage> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 14.0),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 14.0),
                                 child: Text(
                                   "Near Me",
                                   style: Theme.of(context)
@@ -54,7 +55,9 @@ class _AllTalesPageState extends State<AllTalesPage> {
                                 child: Padding(
                                   padding: const EdgeInsets.only(right: 14.0),
                                   child: Text('View all',
-                                      style: Theme.of(context).textTheme.displayMedium),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleLarge),
                                 ),
                               ),
                             ],
@@ -111,7 +114,8 @@ class _AllTalesPageState extends State<AllTalesPage> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 14.0),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 14.0),
                                 child: Text(
                                   "Popular",
                                   style: Theme.of(context)
@@ -127,7 +131,9 @@ class _AllTalesPageState extends State<AllTalesPage> {
                                 child: Padding(
                                   padding: const EdgeInsets.only(right: 14.0),
                                   child: Text('View all',
-                                      style: Theme.of(context).textTheme.displayMedium),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleLarge),
                                 ),
                               ),
                             ],
@@ -180,8 +186,11 @@ class _AllTalesPageState extends State<AllTalesPage> {
                       itemCount: tales.length,
                       itemBuilder: (context, index) {
                         return Padding(
-                            padding: EdgeInsets.fromLTRB(UIConstants.screenPadding,
-                                UIConstants.padding, UIConstants.screenPadding, 0),
+                            padding: EdgeInsets.fromLTRB(
+                                UIConstants.screenPadding,
+                                UIConstants.padding,
+                                UIConstants.screenPadding,
+                                0),
                             child: TaleCardWidget(
                               taleEntity: tales[index],
                             ));

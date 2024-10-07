@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:storyv2/core/presentation/blocs/internet_checker/internet_checker_bloc.dart';
 import 'package:storyv2/layers/presentation/auth/login/login_bloc.dart';
 import 'package:storyv2/layers/presentation/auth/register/register_bloc.dart';
@@ -13,6 +14,7 @@ import 'package:storyv2/layers/presentation/chat/blocs/read_message/read_message
 import 'package:storyv2/layers/presentation/feed/blocs/for_you_story/for_you_story_bloc.dart';
 import 'package:storyv2/layers/presentation/feed/blocs/trending_story/trending_story_bloc.dart';
 import 'package:storyv2/layers/presentation/me/bloc/profile_bloc/get_profile_bloc.dart';
+import 'package:storyv2/layers/presentation/tales/blocs/get_direction/get_direction_bloc.dart';
 import 'package:storyv2/layers/presentation/tales/blocs/get_near_me_tales/get_near_me_tales_bloc.dart';
 import 'package:storyv2/layers/presentation/tales/blocs/get_popular_tales/get_popular_tales_bloc.dart';
 import 'package:storyv2/layers/presentation/tales/blocs/get_tale_intro/get_tale_intro_bloc.dart';
@@ -31,6 +33,8 @@ import 'utils/dependencies_injection.dart';
 void main() {
   runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
+
+    await dotenv.load(fileName: ".env");
 
     Bloc.observer = TitsBlocObserver();
     await serviceLocator();
@@ -105,6 +109,9 @@ class MyApp extends StatelessWidget {
           create: (context) => ReadMessageBloc(sl()),
         ),
         BlocProvider(
+          create: (context) => sl<GetDirectionBloc>(),
+        ),
+        BlocProvider(
           create: (context) => SendMessageBloc(sl()),
         ),
       ],
@@ -142,25 +149,25 @@ class MyApp extends StatelessWidget {
             bottomSheetTheme:
                 const BottomSheetThemeData(surfaceTintColor: Colors.white),
             colorScheme: ColorScheme(
-              brightness: Brightness.light,
-              onSurface: AppColors.dark,
               primary: AppColors.white,
-              secondary: AppColors.whiteShade,
-              surface: AppColors.white,
               onPrimary: AppColors.grayDark,
+              primaryContainer: AppColors.white,
+              inversePrimary: AppColors.white,
+              secondary: AppColors.whiteShade,
               onSecondary: AppColors.blueAccent,
+              secondaryContainer: AppColors.greyWhite,
+              onSecondaryContainer: AppColors.gray,
+              surface: AppColors.white,
+              onSurface: AppColors.dark,
               tertiary: AppColors.gray,
               onTertiary: AppColors.gray,
-              primaryContainer: AppColors.white,
-              secondaryContainer: AppColors.white,
               outline: AppColors.gray,
               outlineVariant: AppColors.gray,
-              inversePrimary: AppColors.white,
-              onSecondaryContainer: AppColors.gray,
-              onErrorContainer: AppColors.red,
-              errorContainer: AppColors.red.withOpacity(0.1),
-              onError: AppColors.red.withOpacity(0.5),
               error: AppColors.red,
+              onError: AppColors.red.withOpacity(0.5),
+              errorContainer: AppColors.red.withOpacity(0.1),
+              onErrorContainer: AppColors.red,
+              brightness: Brightness.light,
             ),
             useMaterial3: true,
             inputDecorationTheme:
@@ -176,19 +183,25 @@ class MyApp extends StatelessWidget {
                     foregroundColor: WidgetStatePropertyAll(AppColors.grayDark),
                     textStyle: WidgetStatePropertyAll(TextStyle(
                         fontSize: 14,
-                        fontFamily: "SatoshiRegular",
+                        fontFamily: "UberRegular",
                         color: Colors.black)))),
             textTheme: const TextTheme(
-              displayLarge: TextStyle(fontSize: 24, fontFamily: "RalewayBold"),
-              displayMedium:
-                  TextStyle(fontSize: 16, fontFamily: "SatoshiRegular"),
-              displaySmall:
-                  TextStyle(fontSize: 12, fontFamily: "SatoshiRegular"),
-              titleMedium:
-                  TextStyle(fontSize: 16, fontFamily: "SatoshiRegular"),
-              bodyLarge: TextStyle(fontSize: 18, fontFamily: "SatoshiRegular"),
-              bodyMedium: TextStyle(fontSize: 16, fontFamily: "SatoshiRegular"),
-              bodySmall: TextStyle(fontSize: 14, fontFamily: "SatoshiRegular"),
+              displayLarge: TextStyle(fontSize: 24, fontFamily: "UberBold"),
+              displayMedium: TextStyle(fontSize: 24, fontFamily: "UberRegular"),
+              displaySmall: TextStyle(fontSize: 24, fontFamily: "UberMedium"),
+              headlineLarge: TextStyle(fontSize: 18, fontFamily: "UberBold"),
+              headlineMedium:
+                  TextStyle(fontSize: 18, fontFamily: "UberRegular"),
+              headlineSmall: TextStyle(fontSize: 18, fontFamily: "UberMedium"),
+              titleLarge: TextStyle(fontSize: 16, fontFamily: "UberBold"),
+              titleMedium: TextStyle(fontSize: 16, fontFamily: "UberRegular"),
+              titleSmall: TextStyle(fontSize: 16, fontFamily: "UberMedium"),
+              bodyLarge: TextStyle(fontSize: 14, fontFamily: "UberBold"),
+              bodyMedium: TextStyle(fontSize: 14, fontFamily: "UberRegular"),
+              bodySmall: TextStyle(fontSize: 14, fontFamily: "UberMedium"),
+              labelLarge: TextStyle(fontSize: 12, fontFamily: "UberBold"),
+              labelMedium: TextStyle(fontSize: 12, fontFamily: "UberMedium"),
+              labelSmall: TextStyle(fontSize: 12, fontFamily: "UberRegular"),
             )),
         themeAnimationDuration: const Duration(seconds: 3),
         builder: (context, child) => ScrollConfiguration(

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:storyv2/layers/domain/entities/tale_entity.dart';
 import 'package:storyv2/layers/presentation/chat/screens/chat_screen.dart';
 import 'package:storyv2/layers/presentation/create/screens/create_screen.dart';
 import 'package:storyv2/layers/presentation/feed/screens/archived/test_screen.dart';
 import 'package:storyv2/layers/presentation/feed/screens/feed_screen.dart';
 import 'package:storyv2/layers/presentation/me/screen/me_screen.dart';
+import 'package:storyv2/layers/presentation/tales/screens/tale_detail_screen.dart';
 
 import '../../layers/domain/entities/chat/room_entity.dart';
 import '../../layers/presentation/auth/screens/login_screen.dart';
@@ -45,6 +47,7 @@ class NoTransition extends CustomTransitionPage<void> {
 final _rootKey = GlobalKey<NavigatorState>();
 
 final _homeShellNavigatorKey = GlobalKey<NavigatorState>();
+
 final GoRouter router = GoRouter(
     navigatorKey: _rootKey,
     initialLocation: SPLASH_ROUTE,
@@ -130,6 +133,16 @@ final GoRouter router = GoRouter(
             ),
           ]),
         ],
+      ),
+      GoRoute(
+        path: TALE_DETAIL_ROUTE,
+        pageBuilder: (context, state) {
+          return MaterialPage(
+              key: state.pageKey,
+              child: TaleDetailScreen(
+                tale: state.extra as TaleEntity,
+              ));
+        },
       ),
       GoRoute(
         path: SINGLE_CHAT_ROUTE,
