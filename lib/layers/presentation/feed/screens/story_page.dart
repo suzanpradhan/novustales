@@ -57,11 +57,13 @@ class _StoryPageState extends State<StoryPage> {
             isVideo
                 ? StoryItem.pageVideo(
                     widget.story.media.toString(),
+                    imageFit: BoxFit.fitWidth,
                     controller: controller,
                   )
                 : StoryItem.pageImage(
                     url: widget.story.media.toString(),
                     controller: controller,
+                    imageFit: BoxFit.fitWidth,
                     caption: Text(widget.story.title.toString()),
                   ),
           ],

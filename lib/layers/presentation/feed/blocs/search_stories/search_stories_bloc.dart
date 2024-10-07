@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -72,6 +74,7 @@ class SearchStoriesBloc extends Bloc<SearchStoriesEvent, SearchStoriesState> {
         emit(state.copyWith(message: failure.message ?? "Server Error!"));
       }
     }, (response) {
+      log('paginated response ${response.results?.map((item) => item.title).toList()}');
       bool hasMoreData = response.nextPage ?? false;
       emit(state.copyWith(
           message: "Successful fetching Stories",

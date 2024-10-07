@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:storyv2/core/constants/app_colors.dart';
-import 'package:storyv2/layers/presentation/feed/screens/story_page.dart';
 
-import '../blocs/get_stories/get_stories_bloc.dart';
+import '../blocs/for_you_story/for_you_story_bloc.dart';
+import 'story_page.dart';
 
 class ForYouPage extends StatefulWidget {
   const ForYouPage({super.key});
@@ -15,22 +15,33 @@ class ForYouPage extends StatefulWidget {
 class _ForYouPageState extends State<ForYouPage> {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GetStoriesBloc, GetStoriesState>(
+    return BlocBuilder<ForYouStoryBloc, ForYouStoryState>(
       builder: (context, state) {
         return state.whenOrNull(
-              failed: (message) {
-                return Container(
-                  color: AppColors.black,
-                  child: Center(
-                    child: Text(
-                      message,
-                      style: TextStyle(color: AppColors.white),
+              failed: (stories, hasMoreData, message) {
+                if (stories == null || stories.isEmpty) {
+                  return Container(
+                    color: AppColors.black,
+                    child: Center(
+                      child: Text(
+                        message ?? "No Stories for you currently.",
+                        style: TextStyle(color: AppColors.white),
+                      ),
                     ),
-                  ),
+                  );
+                }
+                return PageView.builder(
+                  scrollDirection: Axis.vertical,
+                  itemCount: stories.length,
+                  itemBuilder: (context, index) {
+                    return StoryPage(
+                      story: stories[index],
+                    );
+                  },
                 );
               },
-              success: (story) {
-                if (story.isEmpty) {
+              loading: (stories, hasMoreData) {
+                if (stories == null || stories.isEmpty) {
                   return Container(
                     color: AppColors.black,
                     child: Center(
@@ -43,10 +54,32 @@ class _ForYouPageState extends State<ForYouPage> {
                 }
                 return PageView.builder(
                   scrollDirection: Axis.vertical,
-                  itemCount: story.length,
+                  itemCount: stories.length,
                   itemBuilder: (context, index) {
                     return StoryPage(
-                      story: story[index],
+                      story: stories[index],
+                    );
+                  },
+                );
+              },
+              success: (stories, hasMoreData) {
+                if (stories == null || stories.isEmpty) {
+                  return Container(
+                    color: AppColors.black,
+                    child: Center(
+                      child: Text(
+                        'No Stories for you currently.',
+                        style: TextStyle(color: AppColors.white),
+                      ),
+                    ),
+                  );
+                }
+                return PageView.builder(
+                  scrollDirection: Axis.vertical,
+                  itemCount: stories.length,
+                  itemBuilder: (context, index) {
+                    return StoryPage(
+                      story: stories[index],
                     );
                   },
                 );
