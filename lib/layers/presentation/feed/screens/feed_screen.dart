@@ -70,6 +70,24 @@ class _FeedScreenState extends State<FeedScreen> {
       child: Stack(
         children: [
           _getPageForCurrentTab(),
+          if (currentTab == 'search')
+            Container(
+              height: 300,
+              width: double.maxFinite,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    AppColors.black.withOpacity(0.8),
+                    AppColors.black.withOpacity(0.5),
+                    AppColors.black.withOpacity(0)
+                  ],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  stops: [0.1, 0.6, 1],
+                  tileMode: TileMode.repeated,
+                ),
+              ),
+            ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -211,10 +229,9 @@ class _FeedScreenState extends State<FeedScreen> {
                                 return Gapper.screenPadding(
                                     child: ChipsRadioField(
                                   items: [
-                                    ...value.categories
-                                        .map((item) => ChipItemData(
+                                    ...value.categories.map((item) =>
+                                        ChipItemData(
                                             label: item.name, value: item.name))
-                                        .toList()
                                   ],
                                   chipBuilder: (item) {
                                     return GestureDetector(
@@ -275,75 +292,7 @@ class _FeedScreenState extends State<FeedScreen> {
                                     );
                                   },
                                   context: context,
-                                )
-                                    // child: Wrap(
-                                    //     runAlignment: WrapAlignment.spaceBetween,
-                                    //     crossAxisAlignment:
-                                    //         WrapCrossAlignment.start,
-                                    //     runSpacing: UIConstants.padding,
-                                    //     spacing: UIConstants.minPadding,
-                                    //     children: value.categories
-                                    //         .map((item) => GestureDetector(
-                                    //               onTap: () {
-                                    //                 context
-                                    //                     .read<SearchStoriesBloc>()
-                                    //                     .add(SearchStoriesEvent
-                                    //                         .registerCategoryName(
-                                    //                             categoryName:
-                                    //                                 item.name));
-                                    //                 // selectedCategories = [
-                                    //                 //   ...selectedCategories,
-                                    //                 //   item.id
-                                    //                 // ];
-                                    //                 // setState(() {});
-                                    //                 // log(selectedCategories.toString());
-                                    //               },
-                                    //               child: ClipRRect(
-                                    //                 borderRadius: BorderRadius.all(
-                                    //                     Radius.circular((UIConstants
-                                    //                             .minPadding +
-                                    //                         24))),
-                                    //                 child: BackdropFilter(
-                                    //                   filter: ImageFilter.blur(
-                                    //                       sigmaX: 5, sigmaY: 5),
-                                    //                   child: Container(
-                                    //                     padding:
-                                    //                         EdgeInsets.symmetric(
-                                    //                             vertical:
-                                    //                                 UIConstants
-                                    //                                     .minPadding,
-                                    //                             horizontal:
-                                    //                                 UIConstants
-                                    //                                     .maxPadding),
-                                    //                     decoration: BoxDecoration(
-                                    //                       color: searchState
-                                    //                               .categoryNames
-                                    //                               .contains(item.id)
-                                    //                           ? AppColors.white
-                                    //                           : null,
-                                    //                       borderRadius: BorderRadius
-                                    //                           .all(Radius.circular(
-                                    //                               (UIConstants
-                                    //                                       .minPadding +
-                                    //                                   24))),
-                                    //                       border: Border.all(
-                                    //                           color: AppColors
-                                    //                               .border
-                                    //                               .withOpacity(
-                                    //                                   0.2)),
-                                    //                     ),
-                                    //                     child: Text(
-                                    //                       item.name,
-                                    //                       style: TextStyle(
-                                    //                           color:
-                                    //                               AppColors.white),
-                                    //                     ),
-                                    //                   ),
-                                    //                 ),
-                                    //               ),
-                                    //             ))
-                                    //         .toList()),
-                                    );
+                                ));
                               },
                             ) ??
                             SizedBox();
