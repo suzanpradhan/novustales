@@ -145,6 +145,7 @@ class _TalesCardTabWidgetState extends State<TalesCardTabWidget> {
                 Row(
                   children: [
                     ShiftableimageholderWidget(
+                      flex: 1,
                       imageSize: 70,
                       count: 2,
                       title: Text("Daniel Apodaca",
@@ -158,6 +159,8 @@ class _TalesCardTabWidgetState extends State<TalesCardTabWidget> {
                     ),
                     Gapper.h2xmGap(),
                     ShiftableimageholderWidget(
+                      isLead: true,
+                      flex: 2,
                       imageSize: 100,
                       count: 1,
                       title: Text("Chester Wade",
@@ -169,6 +172,7 @@ class _TalesCardTabWidgetState extends State<TalesCardTabWidget> {
                     ),
                     Gapper.h2xmGap(),
                     ShiftableimageholderWidget(
+                      flex: 1,
                       imageSize: 70,
                       count: 3,
                       title: Text("Daniel Apodaca",

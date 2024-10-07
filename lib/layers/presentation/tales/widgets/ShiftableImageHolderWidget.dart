@@ -13,6 +13,8 @@ class ShiftableimageholderWidget extends StatefulWidget {
   final Text? title;
   final Color? ringColor;
   final Color? dropShadow;
+  final bool isLead;
+  final int flex;
   const ShiftableimageholderWidget({
     super.key,
     required this.imageSize,
@@ -24,6 +26,8 @@ class ShiftableimageholderWidget extends StatefulWidget {
     this.title,
     this.ringColor,
     this.dropShadow,
+    this.isLead = false,
+    required this.flex,
   });
 
   @override
@@ -36,18 +40,24 @@ class _ShiftableimageholderWidgetState
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      flex: 1,
-      child: Container(
-        color: widget.backgroundColor ?? Colors.transparent,
+      flex: widget.flex,
+      child: SizedBox(
         height: widget.areaHeight ?? 180,
         child: Column(
           mainAxisAlignment: widget.mainAxisAlignment ?? MainAxisAlignment.end,
           children: [
+            if (widget.isLead)
+              SizedBox(
+                width: 25,
+                height: 25,
+                child: Image.asset(Assets.isLead, fit: BoxFit.cover),
+              ),
             Stack(
               alignment: Alignment.center,
               children: [
                 SizedBox(
                   height: widget.imageSize + 15,
+                  width: widget.imageSize + 20,
                 ),
                 Container(
                   width: widget.imageSize,
