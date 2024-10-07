@@ -9,4 +9,5 @@ class UIConstants {
   static const double minBorderRadius = 6.0;
   static const double maxBordeRadius = 10.0;
   static const double borderWidth = 2.0;
+  static const double normalBorderRadius = 6.0;
 }
