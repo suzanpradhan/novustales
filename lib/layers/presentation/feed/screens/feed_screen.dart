@@ -12,6 +12,7 @@ import 'package:storyv2/layers/presentation/feed/screens/trending_page.dart';
 
 import '../../../../core/presentation/widgets/form_fields/chips_radio_field.dart';
 import '../blocs/get_categories/get_categories_bloc.dart';
+import '../blocs/get_stories/get_stories_bloc.dart';
 import '../blocs/search_stories/search_stories_bloc.dart';
 import '../widgets/feed_tab_widget.dart';
 
@@ -62,6 +63,14 @@ class _FeedScreenState extends State<FeedScreen> {
           ),
         );
     }
+  }
+
+  @override
+  void initState() {
+    BlocProvider.value(
+      value: context.read<GetStoriesBloc>()..add(GetStoriesEvent.started()),
+    );
+    super.initState();
   }
 
   @override
@@ -211,10 +220,9 @@ class _FeedScreenState extends State<FeedScreen> {
                                 return Gapper.screenPadding(
                                     child: ChipsRadioField(
                                   items: [
-                                    ...value.categories
-                                        .map((item) => ChipItemData(
+                                    ...value.categories.map((item) =>
+                                        ChipItemData(
                                             label: item.name, value: item.name))
-                                        .toList()
                                   ],
                                   chipBuilder: (item) {
                                     return GestureDetector(

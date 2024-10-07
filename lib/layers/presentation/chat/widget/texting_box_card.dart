@@ -72,7 +72,7 @@ class _TextingBoxState extends State<TextingBox> {
                                   widget.message.content ?? "",
                                   style: Theme.of(context)
                                       .textTheme
-                                      .bodySmall!
+                                      .bodyMedium!
                                       .copyWith(
                                           color: Theme.of(context)
                                               .colorScheme
@@ -91,7 +91,7 @@ class _TextingBoxState extends State<TextingBox> {
                                   ? timeago
                                       .format(DateTime.parse(widget.createdAt!))
                                   : "",
-                              style: Theme.of(context).textTheme.displaySmall,
+                              style: Theme.of(context).textTheme.bodySmall,
                             ),
                           )
                         ],
@@ -129,7 +129,10 @@ class _TextingBoxState extends State<TextingBox> {
                           if (widget.name != null)
                             Text(
                               widget.name!,
-                              style: Theme.of(context).textTheme.displaySmall,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodySmall
+                                  ?.copyWith(fontWeight: FontWeight.bold),
                             ),
                           if (widget.name != null) Gapper.v2xmGap(),
                           InkWell(
@@ -157,7 +160,7 @@ class _TextingBoxState extends State<TextingBox> {
                                     horizontal: 12.0, vertical: 10.0),
                                 child: Text(
                                   widget.message.content ?? "",
-                                  style: Theme.of(context).textTheme.bodySmall!,
+                                  style: Theme.of(context).textTheme.bodyMedium,
                                 ),
                               ),
                             ),
@@ -165,7 +168,7 @@ class _TextingBoxState extends State<TextingBox> {
                           if (widget.createdAt != null && showCreatedAt)
                             Text(
                               timeago.format(DateTime.parse(widget.createdAt!)),
-                              style: Theme.of(context).textTheme.displaySmall,
+                              style: Theme.of(context).textTheme.bodySmall,
                             ),
                           if (widget.createdAt != null && showCreatedAt)
                             Gapper.v2xmGap(),

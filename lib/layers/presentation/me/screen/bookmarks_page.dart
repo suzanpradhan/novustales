@@ -15,7 +15,7 @@ class BookmarksPage extends StatelessWidget {
         crossAxisCount: 3,
         childAspectRatio: 0.6,
       ),
-      itemCount: 9,
+      itemCount: 0,
       itemBuilder: (context, index) {
         return Container(
           decoration: BoxDecoration(

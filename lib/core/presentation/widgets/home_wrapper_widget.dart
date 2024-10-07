@@ -9,7 +9,6 @@ import 'package:storyv2/layers/presentation/me/bloc/profile_bloc/get_profile_blo
 import 'package:storyv2/layers/presentation/tales/blocs/get_popular_tales/get_popular_tales_bloc.dart';
 
 import '../../../layers/presentation/feed/blocs/get_categories/get_categories_bloc.dart';
-import '../../../layers/presentation/feed/blocs/get_stories/get_stories_bloc.dart';
 import '../widgets/internet_status_widget.dart';
 
 class HomeWrapperWidget extends StatefulWidget {
@@ -44,9 +43,7 @@ class HomeWrapperWidgetState extends State<HomeWrapperWidget> {
           value: context.read<TrendingStoryBloc>()
             ..add(TrendingStoryEvent.request()),
         ),
-        BlocProvider.value(
-          value: context.read<GetStoriesBloc>()..add(GetStoriesEvent.started()),
-        ),
+
         // BlocProvider.value(
         //   value: context.read<SearchStoriesBloc>()
         //     ..add(SearchStoriesEvent.attempt()),

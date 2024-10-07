@@ -39,6 +39,7 @@ class _StoryPageState extends State<StoryPage> {
   @override
   void dispose() {
     // Dispose of your resources here
+    controller.pause();
     controller.dispose();
     isPaused.dispose();
     super.dispose();
@@ -155,7 +156,7 @@ class _StoryPageState extends State<StoryPage> {
                         }
                       },
                     );
-                  }).toList(),
+                  }),
                   SizedBox(height: 30),
                 ],
               ),
