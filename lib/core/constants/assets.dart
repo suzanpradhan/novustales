@@ -8,4 +8,5 @@ class Assets {
   static const cel3 = 'assets/images/cel3.jpg';
   static const cel4 = 'assets/images/cel4.jpg';
   static const cel5 = 'assets/images/cel5.jpg';
+  static const isLead = 'assets/icons/lead.png';
 }

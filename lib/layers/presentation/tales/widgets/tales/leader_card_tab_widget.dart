@@ -41,6 +41,7 @@ class _LeaderCardTabWidgetState extends State<LeaderCardTabWidget> {
                   children: [
                     ShiftableimageholderWidget(
                       imageSize: 70,
+                      flex: 1,
                       count: 2,
                       title: Text(
                         "Daniel Apodaca",
@@ -55,6 +56,8 @@ class _LeaderCardTabWidgetState extends State<LeaderCardTabWidget> {
                     ),
                     Gapper.h2xmGap(),
                     ShiftableimageholderWidget(
+                      isLead: true,
+                      flex: 2,
                       imageSize: 100,
                       count: 1,
                       title: Text(
@@ -69,6 +72,7 @@ class _LeaderCardTabWidgetState extends State<LeaderCardTabWidget> {
                     Gapper.h2xmGap(),
                     ShiftableimageholderWidget(
                       imageSize: 70,
+                      flex: 1,
                       count: 3,
                       title: Text(
                         "Daniel Apodaca",

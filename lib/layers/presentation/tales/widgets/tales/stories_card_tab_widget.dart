@@ -64,30 +64,6 @@ class _StoriesCardTabWidgetState extends State<StoriesCardTabWidget> {
                     count: "857 k",
                     height: 300,
                   ),
-                  // child: Container(
-                  //   decoration: BoxDecoration(
-                  //     color: item.color,
-                  //     borderRadius: BorderRadius.circular(
-                  //         UIConstants.normalBorderRadius),
-                  //   ),
-                  //   child: Column(
-                  //     mainAxisAlignment: MainAxisAlignment.center,
-                  //     children: [
-                  //       Image(
-                  //         image: AssetImage(item.icon),
-                  //         width: 45,
-                  //         colorBlendMode: BlendMode.modulate,
-                  //       ),
-                  //       Text(
-                  //         item.label,
-                  //         style: Theme.of(context)
-                  //             .textTheme
-                  //             .bodyLarge!
-                  //             .copyWith(fontFamily: "ManropeSemiBold"),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
                 );
               }).toList(),
             ),
