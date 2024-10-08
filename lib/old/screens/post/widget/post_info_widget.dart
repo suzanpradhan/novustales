@@ -28,10 +28,10 @@ class PostInfo extends StatefulWidget {
   final List<XFile>? selectImages;
 
   const PostInfo({
-    Key? key,
+    super.key,
     required this.path,
     required this.selectImages,
-  }) : super(key: key);
+  });
 
   @override
   _PostInfoState createState() => _PostInfoState();

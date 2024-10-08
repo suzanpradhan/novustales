@@ -31,7 +31,7 @@ import 'my_story_screen.dart';
 
 class UserProfileScreen extends StatefulWidget {
   static const String routeName = "/profile";
-  const UserProfileScreen({Key? key}) : super(key: key);
+  const UserProfileScreen({super.key});
 
   @override
   UserProfileScreenState createState() => UserProfileScreenState();
@@ -426,8 +426,8 @@ class VideoThumbnailWidget extends StatefulWidget {
   final String videoUrl;
   dynamic views;
 
-  VideoThumbnailWidget({Key? key, required this.videoUrl, required this.views})
-      : super(key: key);
+  VideoThumbnailWidget(
+      {super.key, required this.videoUrl, required this.views});
 
   @override
   _VideoThumbnailWidgetState createState() => _VideoThumbnailWidgetState();

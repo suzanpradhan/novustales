@@ -18,11 +18,11 @@ class BottomChatField extends ConsumerStatefulWidget {
   final bool isGroupChat;
   String senderId;
   BottomChatField({
-    Key? key,
+    super.key,
     required this.recieverUserId,
     required this.senderId,
     required this.isGroupChat,
-  }) : super(key: key);
+  });
 
   @override
   ConsumerState<BottomChatField> createState() => _BottomChatFieldState();

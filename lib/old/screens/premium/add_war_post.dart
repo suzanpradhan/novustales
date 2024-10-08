@@ -356,8 +356,9 @@ class _AddWarPostState extends State<AddWarPost> {
   }
 
   submit(BuildContext context) async {
-    if (titleCtr.text.isEmpty)
+    if (titleCtr.text.isEmpty) {
       return setState(() => errorMsg = "Title is required");
+    }
     if (imageFile == null && videoFile == null) {
       return setState(() => errorMsg = "Story image or video is required");
     }

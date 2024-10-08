@@ -8,11 +8,11 @@ class UserFirebaseModel {
 
   UserFirebaseModel(
       {this.name,
-        this.uid,
-        this.image,
-        this.email,
-        this.isOnline,
-        this.groupId});
+      this.uid,
+      this.image,
+      this.email,
+      this.isOnline,
+      this.groupId});
 
   UserFirebaseModel.fromJson(Map<String, dynamic> json) {
     name = json['name'];
@@ -24,13 +24,13 @@ class UserFirebaseModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['uid'] = this.uid;
-    data['image'] = this.image;
-    data['email'] = this.email;
-    data['isOnline'] = this.isOnline;
-    data['groupId'] = this.groupId;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
+    data['uid'] = uid;
+    data['image'] = image;
+    data['email'] = email;
+    data['isOnline'] = isOnline;
+    data['groupId'] = groupId;
     return data;
   }
 }

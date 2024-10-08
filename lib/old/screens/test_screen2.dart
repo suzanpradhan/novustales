@@ -5,7 +5,7 @@ import 'package:video_player/video_player.dart';
 
 class TestScreen extends StatefulWidget {
   dynamic data;
-  TestScreen({Key? key, this.data}) : super(key: key);
+  TestScreen({super.key, this.data});
 
   @override
   _TestScreenState createState() => _TestScreenState();

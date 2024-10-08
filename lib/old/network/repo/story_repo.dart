@@ -10,7 +10,6 @@ import 'package:storyv2/old/network/api_endpoints.dart';
 import '../../constants/string.dart';
 import '../../model/response/common_response.dart';
 import '../../model/response/for_you_response.dart';
-import '../../model/response/single_story_comment_response.dart';
 import 'package:http/http.dart' as http;
 
 const String REGION = 'ny';

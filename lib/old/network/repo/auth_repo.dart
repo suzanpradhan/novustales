@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:storyv2/old/model/request/login_request.dart';
 import 'package:storyv2/old/model/request/register_request.dart';
 import 'package:storyv2/old/model/response/user_location.dart';
 

@@ -27,8 +27,8 @@ import 'components/buttom_bar.dart';
 
 class Navigation extends StatefulWidget {
   const Navigation({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<Navigation> createState() => _NavigationState();
@@ -65,7 +65,8 @@ class _NavigationState extends State<Navigation>
       _coinViewModel = Provider.of<CoinViewModel>(context, listen: false);
       _coinViewModel.fetchOwnCoins();
       _provider4 = Provider.of<PinnedViewModel>(context, listen: false);
-      categoryViewModel = Provider.of<CategoryViewModel>(context, listen: false);
+      categoryViewModel =
+          Provider.of<CategoryViewModel>(context, listen: false);
       categoryViewModel.fetchCategories();
 
       /// 10
@@ -73,14 +74,16 @@ class _NavigationState extends State<Navigation>
 
       _forYouViewModel.fetchStoryForYou().then((value) {
         for (int i = 0; i < 3; i++) {
-          _forYouViewModel.preload(_forYouViewModel.forYou[i]['media_url'], context);
+          _forYouViewModel.preload(
+              _forYouViewModel.forYou[i]['media_url'], context);
         }
       });
 
       authViewModel = Provider.of<AuthViewModel>(context, listen: false);
       authViewModel.fetchUser().then((value) {
         for (int i = 0; i < 3; i++) {
-          authViewModel.preload(authViewModel.userData['stories'][i]['media_urls'], context);
+          authViewModel.preload(
+              authViewModel.userData['stories'][i]['media_urls'], context);
         }
       });
       _locationProvider = Provider.of<LocationProvider>(context, listen: false);
@@ -118,7 +121,8 @@ class _NavigationState extends State<Navigation>
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
-    if (state == AppLifecycleState.paused || state == AppLifecycleState.detached) {
+    if (state == AppLifecycleState.paused ||
+        state == AppLifecycleState.detached) {
       // User has closed the app or sent it to the background
       storyViewModel.postUserInteraction();
     }
@@ -126,7 +130,8 @@ class _NavigationState extends State<Navigation>
 
   @override
   Widget build(BuildContext context) {
-    return Consumer2<CommonViewModel, StoryViewModel>(builder: (context, common, story, child) {
+    return Consumer2<CommonViewModel, StoryViewModel>(
+        builder: (context, common, story, child) {
       return WillPopScope(
         onWillPop: () {
           if (common.navigationIndex == 0) {

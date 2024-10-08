@@ -18,10 +18,10 @@ class ChatList extends ConsumerStatefulWidget {
   final String recieverUserId;
   final bool isGroupChat;
   const ChatList({
-    Key? key,
+    super.key,
     required this.recieverUserId,
     required this.isGroupChat,
-  }) : super(key: key);
+  });
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _ChatListState();

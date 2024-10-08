@@ -12,7 +12,7 @@ import '../add_story_screen.dart';
 List<CameraDescription> cameras = [];
 
 class CameraPage extends StatelessWidget {
-  const CameraPage({Key? key}) : super(key: key);
+  const CameraPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class CameraPage extends StatelessWidget {
 }
 
 class CameraScreen extends StatefulWidget {
-  const CameraScreen({Key? key}) : super(key: key);
+  const CameraScreen({super.key});
 
   @override
   _CameraScreenState createState() => _CameraScreenState();
@@ -364,7 +364,8 @@ class _CameraScreenState extends State<CameraScreen> {
       transform = transform + pi;
     });
     int cameraPos = iscamerafront ? 0 : 1;
-    _cameraController = CameraController(cameras[cameraPos], ResolutionPreset.high);
+    _cameraController =
+        CameraController(cameras[cameraPos], ResolutionPreset.high);
     _cameraInitialization = _cameraController.initialize();
   }
 
@@ -414,7 +415,8 @@ class _CameraScreenState extends State<CameraScreen> {
 
   Future<void> handlePickedFile(XFile pickedFile) async {
     try {
-      if (pickedFile.path.contains(".mp4") || pickedFile.path.contains(".mov")) {
+      if (pickedFile.path.contains(".mp4") ||
+          pickedFile.path.contains(".mov")) {
         // await handleVideo(pickedFile);
       } else {
         await handleImage(pickedFile);

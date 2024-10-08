@@ -4,7 +4,7 @@ import 'package:shimmer/shimmer.dart';
 
 class VerticalLoader extends StatelessWidget {
   int? count;
-  VerticalLoader({Key? key, required this.count}) : super(key: key);
+  VerticalLoader({super.key, required this.count});
 
   @override
   Widget build(BuildContext context) {

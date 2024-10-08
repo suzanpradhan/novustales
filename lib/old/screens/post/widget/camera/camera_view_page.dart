@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import '../post_info_widget.dart';
 
 class CameraViewPage extends StatelessWidget {
-  CameraViewPage({Key? key, required this.path, required this.selectImages})
-      : super(key: key);
+  const CameraViewPage(
+      {super.key, required this.path, required this.selectImages});
   final XFile path;
   final List<XFile>? selectImages;
 
@@ -36,7 +36,7 @@ class CameraViewPage extends StatelessWidget {
           )
         ],
       ),
-      body: Container(
+      body: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: Stack(

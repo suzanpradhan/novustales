@@ -15,7 +15,7 @@ class MyMessageCard extends StatelessWidget {
   final bool isSeen;
 
   const MyMessageCard({
-    Key? key,
+    super.key,
     required this.message,
     required this.date,
     required this.type,
@@ -24,7 +24,7 @@ class MyMessageCard extends StatelessWidget {
     required this.username,
     required this.repliedMessageType,
     required this.isSeen,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

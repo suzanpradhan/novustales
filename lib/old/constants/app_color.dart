@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 Color backgroundColor = Color(0xff1d1f24);
 const Color storyBlue = Color(0xff3FA3FF);
 const Color storyBrown = Color(0xffCA7558);
@@ -54,16 +55,12 @@ Color darkColor = Color(0xff151619);
 Color fbColor = Color(0xff3c5a9a);
 Color videoCall = Colors.red;
 
-
 //background
 const Color kPrimaryColor = Color(0xFFEEEEEE);
 
 //buttons-texts-containers
 const Color kSecondaryColor = Color(0XFF023047);
 
-
-
 //grey text color
 const bluishGrey = Color(0xff273238);
 const red1 = Color(0xffFF4D00);
-

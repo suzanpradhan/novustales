@@ -12,7 +12,7 @@ class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<Offset> _offsetAnimation;
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
   bool isListVisible = false;
   bool scrolled = false;
 
@@ -191,7 +191,7 @@ class _HomePageState extends State<HomePage>
                                             itemBuilder: (context, index) =>
                                                 Card(
                                               margin: EdgeInsets.all(8),
-                                              child: Container(
+                                              child: SizedBox(
                                                 width: 100,
                                                 height: 60,
                                                 child: Center(

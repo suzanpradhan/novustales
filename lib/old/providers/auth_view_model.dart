@@ -2,7 +2,6 @@ import 'dart:collection';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:storyv2/old/config/preference_utils.dart';

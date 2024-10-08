@@ -3,11 +3,10 @@ import 'package:video_player/video_player.dart';
 
 class ViewFullVideoPlayerScreen extends StatefulWidget {
   const ViewFullVideoPlayerScreen(
-      {Key? key,
+      {super.key,
       required this.videoPath,
       required this.controller,
-      required this.initializeVideoPlayerFuture})
-      : super(key: key);
+      required this.initializeVideoPlayerFuture});
 
   final String videoPath;
   final VideoPlayerController controller;
@@ -19,8 +18,6 @@ class ViewFullVideoPlayerScreen extends StatefulWidget {
 }
 
 class _ViewFullVideoPlayerScreenState extends State<ViewFullVideoPlayerScreen> {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,5 +62,3 @@ class _ViewFullVideoPlayerScreenState extends State<ViewFullVideoPlayerScreen> {
         ));
   }
 }
-
-

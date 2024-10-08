@@ -12,7 +12,7 @@ import '../../helper/custom_loader.dart';
 import '../../helper/overlay_notification.dart';
 
 class QrViewCameraScreen extends StatefulWidget {
-  const QrViewCameraScreen({Key? key}) : super(key: key);
+  const QrViewCameraScreen({super.key});
 
   @override
   State<StatefulWidget> createState() => _QrViewCameraScreenState();

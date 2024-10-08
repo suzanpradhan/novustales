@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +8,6 @@ import 'package:provider/provider.dart' as provider;
 import '../../config/preference_utils.dart';
 import '../../constants/app_color.dart';
 import '../../providers/auth_view_model.dart';
-import '../chat/group/group_detail.dart';
 import 'components/bottom_chat_field.dart';
 import 'components/chat_list.dart';
 

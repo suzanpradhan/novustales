@@ -1,27 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart';
-import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:provider/provider.dart';
 import 'package:storyv2/old/constants/app_color.dart';
 import 'package:storyv2/old/providers/auth_view_model.dart';
-import 'package:storyv2/old/providers/common_view_model.dart';
 import 'package:storyv2/old/helper/overlay_notification.dart';
-import 'package:storyv2/old/helper/size.dart';
-import 'package:storyv2/old/model/request/register_request.dart';
-import 'package:storyv2/old/network/repo/auth_repo.dart';
 import 'package:storyv2/old/routes/route_name.dart';
 import 'package:storyv2/old/routes/router_generator.dart';
-import 'package:storyv2/old/widgets/app_logo.dart';
-import 'package:storyv2/old/widgets/custom_appbar.dart';
 import 'package:storyv2/old/widgets/custom_button.dart';
-import 'package:storyv2/old/widgets/custom_phone_number.dart';
 import 'package:storyv2/old/widgets/custom_text_field.dart';
 
-import '../../../constants/text_style.dart';
 import '../../../model/response/google_user_model.dart';
 import '../../../network/repo/google_auth_repo.dart';
-import '../../../widgets/appLogo_title.dart';
 import '../../onboarding/components/single_compo.dart';
 
 class RegisterScreen extends StatefulWidget {

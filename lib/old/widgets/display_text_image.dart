@@ -11,11 +11,10 @@ class DisplayTextImageGIF extends StatelessWidget {
   final MessageEnum type;
   final isSender;
   const DisplayTextImageGIF(
-      {Key? key,
+      {super.key,
       required this.message,
       required this.type,
-      required this.isSender})
-      : super(key: key);
+      required this.isSender});
 
   @override
   Widget build(BuildContext context) {

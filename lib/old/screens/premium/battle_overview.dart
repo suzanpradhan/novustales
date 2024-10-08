@@ -187,8 +187,9 @@ class _BattleOverviewState extends State<BattleOverview> {
 
   getWarSubmissions() async {
     war = widget.prm.war;
-    if (war.submissions.isNotEmpty)
+    if (war.submissions.isNotEmpty) {
       return setState(() => submissionLoading = false);
+    }
 
     final res = await premiumRepo.getWarDetail("${war.id}");
     if (res.status == Status.COMPLETED) {

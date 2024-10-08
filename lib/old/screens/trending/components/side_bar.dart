@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_share/flutter_share.dart';
 import 'package:provider/provider.dart';
 import 'package:storyv2/old/providers/comment_view_model.dart';
 import 'package:storyv2/old/providers/story_view_model.dart';
@@ -54,10 +53,10 @@ class _SideBarState extends State<SideBar> {
                   await FirebaseDynamicLinkService.createReferralLink(
                       true, widget.storyId);
 
-              await FlutterShare.share(
-                title: 'Share Story',
-                linkUrl: deepLink,
-              );
+              // await FlutterShare.share(
+              //   title: 'Share Story',
+              //   linkUrl: deepLink,
+              // );
             }),
             PopupMenuButton<int>(
               onSelected: (item) async {

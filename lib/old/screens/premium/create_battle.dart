@@ -103,8 +103,9 @@ class _CreateBattleState extends State<CreateBattle> {
                           child: TextFormField(
                             controller: titleCtr,
                             validator: (value) {
-                              if (value == null || value.isEmpty)
+                              if (value == null || value.isEmpty) {
                                 return "Title is required";
+                              }
                               return null;
                             },
                             style: TextStyle(
@@ -133,8 +134,9 @@ class _CreateBattleState extends State<CreateBattle> {
                           child: TextFormField(
                             controller: descriptionCtr,
                             validator: (value) {
-                              if (value == null || value.isEmpty)
+                              if (value == null || value.isEmpty) {
                                 return "Description is required";
+                              }
                               return null;
                             },
                             maxLines: 3,
@@ -519,8 +521,9 @@ class _CreateBattleState extends State<CreateBattle> {
     if (prm.isEmpty) return;
 
     final res = await premiumRepo.search(prm, skipWar: true);
-    if (res.status == Status.COMPLETED)
+    if (res.status == Status.COMPLETED) {
       setState(() => searchedUsers = res.data!.users);
+    }
   }
 
   submit() async {

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:storyv2/old/constants/app_color.dart';
 import 'package:storyv2/old/widgets/app_logo.dart';
 

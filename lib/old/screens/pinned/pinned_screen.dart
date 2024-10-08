@@ -19,7 +19,7 @@ import '../chat/chat_box/chat_box_screen.dart';
 
 class PinnedScreen extends StatefulWidget {
   static const String routeName = "/pinned";
-  const PinnedScreen({Key? key}) : super(key: key);
+  const PinnedScreen({super.key});
   @override
   State<PinnedScreen> createState() => _PinnedScreenState();
 }

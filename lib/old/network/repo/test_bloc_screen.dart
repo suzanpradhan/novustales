@@ -7,7 +7,7 @@ import 'package:storyv2/old/network/repo/test_bloc.dart';
 import 'package:video_player/video_player.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -148,7 +148,7 @@ class _HomeScreenState extends State<HomeScreen> {
 class VideoWidget extends StatefulWidget {
   final String url;
 
-  const VideoWidget({Key? key, required this.url}) : super(key: key);
+  const VideoWidget({super.key, required this.url});
 
   @override
   _VideoWidgetState createState() => _VideoWidgetState();

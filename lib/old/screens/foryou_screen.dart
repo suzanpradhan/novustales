@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
@@ -10,13 +9,11 @@ import 'package:storyv2/old/providers/comment_view_model.dart';
 import 'package:storyv2/old/providers/common_view_model.dart';
 import 'package:storyv2/old/providers/for_you_view_model.dart';
 import 'package:storyv2/old/screens/trending/components/side_bar.dart';
-import 'package:storyv2/old/screens/trending/components/trending_app_bar.dart';
 import 'package:storyv2/old/screens/trending/components/video_detail.dart';
 import 'package:storyv2/old/screens/trending/trending_screen.dart';
 import 'package:video_player/video_player.dart';
 
 import '../config/api_response_config.dart';
-import '../providers/story_view_model.dart';
 
 class ForYouScreen extends StatefulWidget {
   const ForYouScreen({super.key});

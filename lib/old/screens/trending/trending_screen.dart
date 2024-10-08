@@ -1,14 +1,9 @@
 import 'dart:async';
-import 'dart:math';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:lottie/lottie.dart';
-import 'package:overlay_lottie/overlay_lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:storyv2/old/constants/app_color.dart';
-import 'package:storyv2/old/helper/overlay_notification.dart';
 import 'package:storyv2/old/providers/comment_view_model.dart';
 import 'package:storyv2/old/providers/common_view_model.dart';
 import 'package:storyv2/old/providers/pinned_view_model.dart';
@@ -18,7 +13,6 @@ import 'package:video_player/video_player.dart';
 
 import '../../config/api_response_config.dart';
 import '../../providers/coin_view_model.dart';
-import '../../providers/common_view_model.dart';
 import '../../providers/story_view_model.dart';
 import '../foryou_screen.dart';
 import 'components/video_detail.dart';

@@ -4,9 +4,9 @@ import 'package:video_player/video_player.dart';
 class VideoPlayerChat extends StatefulWidget {
   final String videoUrl;
   const VideoPlayerChat({
-    Key? key,
+    super.key,
     required this.videoUrl,
-  }) : super(key: key);
+  });
 
   @override
   State<VideoPlayerChat> createState() => _VideoPlayerChatState();

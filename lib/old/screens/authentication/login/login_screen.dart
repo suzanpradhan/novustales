@@ -4,24 +4,11 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:provider/provider.dart';
 import 'package:storyv2/old/constants/app_color.dart';
-import 'package:storyv2/old/providers/common_view_model.dart';
-import 'package:storyv2/old/helper/overlay_notification.dart';
-import 'package:storyv2/old/helper/size.dart';
-import 'package:storyv2/old/model/request/register_request.dart';
-import 'package:storyv2/old/network/repo/auth_repo.dart';
-import 'package:storyv2/old/widgets/app_logo.dart';
-import 'package:storyv2/old/widgets/custom_appbar.dart';
 import 'package:storyv2/old/widgets/custom_button.dart';
-import 'package:storyv2/old/widgets/custom_phone_number.dart';
-import 'package:storyv2/old/widgets/custom_text_field.dart';
 
-import '../../../constants/text_style.dart';
 import '../../../providers/auth_view_model.dart';
-import '../../../widgets/appLogo_title.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

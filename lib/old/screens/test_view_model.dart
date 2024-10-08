@@ -7,12 +7,13 @@ import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
 class TestViewModel extends ChangeNotifier {
-  BuildContext ? _context;
+  BuildContext? _context;
 
-  updateContext(BuildContext context){
+  updateContext(BuildContext context) {
     _context = context;
     notifyListeners();
   }
+
   late Isolate _isolate;
   late SendPort _sendPort;
   late ReceivePort _receivePort;
@@ -29,7 +30,7 @@ class TestViewModel extends ChangeNotifier {
     _sendPort = await _receivePort.first;
   }
 
-   void _isolateEntryPoint(SendPort sendPort) {
+  void _isolateEntryPoint(SendPort sendPort) {
     final receivePort = ReceivePort();
     sendPort.send(receivePort.sendPort);
 
@@ -40,14 +41,14 @@ class TestViewModel extends ChangeNotifier {
       // Perform preloading tasks based on the URL
       dynamic preloadedContent;
       if (url.endsWith('.mp4')) {
-        final videoPlayerController =
-        VideoPlayerController.network(url);
+        final videoPlayerController = VideoPlayerController.network(url);
         await videoPlayerController.initialize();
         preloadedContent = videoPlayerController;
       } else {
         // Preload images or handle other tasks
         final imageProvider = NetworkImage(url);
-        await precacheImage(imageProvider, _context!); // Pass a suitable context if needed
+        await precacheImage(
+            imageProvider, _context!); // Pass a suitable context if needed
         preloadedContent = imageProvider;
       }
 
@@ -72,11 +73,11 @@ class TestViewModel extends ChangeNotifier {
 
   @override
   void dispose() {
-    _preloadedContent.values.forEach((dynamic content) {
+    for (var content in _preloadedContent.values) {
       if (content is VideoPlayerController) {
         content.dispose();
       }
-    });
+    }
     _receivePort.close();
     _isolate.kill();
     super.dispose();

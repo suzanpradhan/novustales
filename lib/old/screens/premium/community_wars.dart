@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:storyv2/old/constants/app_color.dart';
 import 'package:storyv2/old/constants/font_size.dart';

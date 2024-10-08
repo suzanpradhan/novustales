@@ -1,11 +1,7 @@
 import 'dart:async';
-import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:video_player/video_player.dart';
 
 import '../model/response/comment_response.dart';
-import '../model/response/single_story_comment_response.dart';
 import '../network/api_response.dart';
 import '../network/repo/story_repo.dart';
 

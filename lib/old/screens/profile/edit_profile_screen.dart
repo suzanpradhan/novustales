@@ -17,7 +17,7 @@ import '../../widgets/custom_decoration.dart';
 
 class EditProfileScreen extends StatefulWidget {
   static const String routeName = "/edit-profile";
-  const EditProfileScreen({Key? key}) : super(key: key);
+  const EditProfileScreen({super.key});
   @override
   State<EditProfileScreen> createState() => _EditProfileScreenState();
 }

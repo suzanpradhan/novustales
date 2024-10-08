@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_share/flutter_share.dart';
 import 'package:storyv2/core/constants/app_icons.dart';
 import 'package:storyv2/layers/presentation/feed/utils/kwargs.dart';
 
@@ -25,12 +24,12 @@ List<FeedOptions> feedOptions = [
     title: "Share",
     icon: AppIcons.shareSocial,
     actions: ((Kwargs kwargs) async {
-      await FlutterShare.share(
-        title: kwargs.data['title'],
-        text: kwargs.data['title'],
-        linkUrl: kwargs.data['link'],
-        chooserTitle: 'Share',
-      );
+      // await FlutterShare.share(
+      //   title: kwargs.data['title'],
+      //   text: kwargs.data['title'],
+      //   linkUrl: kwargs.data['link'],
+      //   chooserTitle: 'Share',
+      // );
     }),
   ),
   FeedOptions(

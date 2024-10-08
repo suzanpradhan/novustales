@@ -15,7 +15,7 @@ import '../widget/single_user_request.dart';
 
 class ChatRequestScreen extends StatefulWidget {
   static const String routeName = "/chat-request";
-  const ChatRequestScreen({Key? key}) : super(key: key);
+  const ChatRequestScreen({super.key});
 
   @override
   State<ChatRequestScreen> createState() => _ChatRequestScreenState();

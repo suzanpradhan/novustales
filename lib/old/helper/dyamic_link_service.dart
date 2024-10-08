@@ -16,7 +16,7 @@ class FirebaseDynamicLinkService {
   handleDynamicLink() async {
     print('HANLDE LINK SERVICE STARTED');
     String? initialLink = await getInitialLink();
-    print("This is initial link::::${initialLink}");
+    print("This is initial link::::$initialLink");
     if (initialLink != null) {
       FirebaseDynamicLinks.instance
           .getDynamicLink(Uri.parse(initialLink.toString()))

@@ -14,7 +14,7 @@ import 'group_chat.dart';
 import 'one_to_one_chat_screen.dart';
 
 class ChatBoxScreen extends StatefulWidget {
-  const ChatBoxScreen({Key? key}) : super(key: key);
+  const ChatBoxScreen({super.key});
 
   @override
   State<ChatBoxScreen> createState() => _ChatBoxScreenState();

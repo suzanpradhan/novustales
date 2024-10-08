@@ -36,7 +36,7 @@ class PinnedRepo {
       }).catchError((e) {
         return PinnedResponse(success: false, results: []);
       });
-    } on SocketException catch (e) {
+    } on SocketException {
       return PinnedResponse(success: false, results: []);
     } on HttpException {
       return PinnedResponse(success: false, results: []);
@@ -74,7 +74,7 @@ class PinnedRepo {
       }).catchError((e) {
         return PinUserResponse(message: "Error", success: false);
       });
-    } on SocketException catch (e) {
+    } on SocketException {
       return PinUserResponse(message: "Error", success: false);
     } on HttpException {
       return PinUserResponse(message: "Error", success: false);

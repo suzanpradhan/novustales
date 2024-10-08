@@ -1,10 +1,8 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
-import 'package:storyv2/old/network/api_endpoints.dart';
 import 'package:video_player/video_player.dart';
 
-import '../model/response/common_response.dart';
 import '../model/response/for_you_response.dart';
 import '../network/api_response.dart';
 import '../network/repo/story_repo.dart';

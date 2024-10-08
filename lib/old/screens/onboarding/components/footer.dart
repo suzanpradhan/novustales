@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:storyv2/old/constants/font_size.dart';
 import 'package:storyv2/old/routes/route_name.dart';
 import 'package:storyv2/old/routes/router_generator.dart';
 import 'package:storyv2/old/widgets/appLogo_title.dart';
 
 import '../../../constants/app_color.dart';
-import '../../../constants/app_image.dart';
 import '../../../constants/text_style.dart';
 import '../../../widgets/custom_button.dart';
 

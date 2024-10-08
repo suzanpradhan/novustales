@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:storyv2/old/model/response/story_response.dart';
 import 'package:storyv2/old/network/repo/test_repo.dart';
 
 import '../../model/story_response.dart';

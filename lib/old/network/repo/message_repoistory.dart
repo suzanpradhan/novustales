@@ -59,7 +59,7 @@ class MessageRepository {
             friends: [],
             detail: "Error sending message request");
       });
-    } on SocketException catch (e) {
+    } on SocketException {
       return SendMessageRequestResponse(
           success: false,
           friends: [],
@@ -117,11 +117,11 @@ class MessageRepository {
         print(e.toString());
         return <FriendRequestResponse>[];
       });
-    } on SocketException catch (e) {
+    } on SocketException {
       return <FriendRequestResponse>[];
     } on HttpException {
       return <FriendRequestResponse>[];
-    } on FormatException catch (e) {
+    } on FormatException {
       return <FriendRequestResponse>[];
     }
   }
@@ -164,7 +164,7 @@ class MessageRepository {
       }).catchError((e) {
         return FriendRequestResponse();
       });
-    } on SocketException catch (e) {
+    } on SocketException {
       return FriendRequestResponse(
           detail: "Please Check your Internet Connection");
     } on HttpException {
@@ -215,7 +215,7 @@ class MessageRepository {
       }).catchError((e) {
         return FriendRequestResponse();
       });
-    } on SocketException catch (e) {
+    } on SocketException {
       return FriendRequestResponse(
           detail: "Please Check your Internet Connection");
     } on HttpException {
@@ -302,7 +302,7 @@ class MessageRepository {
       }).catchError((e) {
         return AcceptFriendList();
       });
-    } on SocketException catch (e) {
+    } on SocketException {
       return AcceptFriendList(detail: "Please Check your Internet Connection");
     } on HttpException {
       return AcceptFriendList(detail: "Please Check your Internet Connection");

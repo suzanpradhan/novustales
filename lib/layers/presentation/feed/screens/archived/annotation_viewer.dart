@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:storyv2/layers/data/near_me_mocks.dart';
 
 import 'annotations.dart';
 import 'story_view_screen.dart';

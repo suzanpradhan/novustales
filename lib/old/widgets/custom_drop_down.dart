@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../constants/string.dart';
 
 class CustomDropDown extends StatefulWidget {
-  const CustomDropDown(this.items, this.callback, {Key? key}) : super(key: key);
+  const CustomDropDown(this.items, this.callback, {super.key});
   final List<String> items;
   final Function(String item) callback;
 

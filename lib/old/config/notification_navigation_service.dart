@@ -1,6 +1,5 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
 
 import '../helper/notification_service.dart';
 

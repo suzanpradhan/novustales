@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-
-
 class Testsssss extends StatelessWidget {
+  const Testsssss({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,6 +16,8 @@ class Testsssss extends StatelessWidget {
 }
 
 class CategoryScreen extends StatefulWidget {
+  const CategoryScreen({super.key});
+
   @override
   _CategoryScreenState createState() => _CategoryScreenState();
 }
@@ -32,7 +34,8 @@ class _CategoryScreenState extends State<CategoryScreen>
     super.initState();
     _animationController =
         AnimationController(vsync: this, duration: Duration(milliseconds: 300));
-    _animation = Tween<double>(begin: 0, end: 200).animate(_animationController);
+    _animation =
+        Tween<double>(begin: 0, end: 200).animate(_animationController);
   }
 
   @override
@@ -66,13 +69,12 @@ class _CategoryScreenState extends State<CategoryScreen>
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: [
-                    ElevatedButton(onPressed: (){}, child: Text("Category 1")),
-                    ElevatedButton(onPressed: (){}, child: Text("Category 1")),
-                    ElevatedButton(onPressed: (){}, child: Text("Category 1")),
-                    ElevatedButton(onPressed: (){}, child: Text("Category 1")),
-                    ElevatedButton(onPressed: (){}, child: Text("Category 1")),
-                    ElevatedButton(onPressed: (){}, child: Text("Category 1")),
-
+                    ElevatedButton(onPressed: () {}, child: Text("Category 1")),
+                    ElevatedButton(onPressed: () {}, child: Text("Category 1")),
+                    ElevatedButton(onPressed: () {}, child: Text("Category 1")),
+                    ElevatedButton(onPressed: () {}, child: Text("Category 1")),
+                    ElevatedButton(onPressed: () {}, child: Text("Category 1")),
+                    ElevatedButton(onPressed: () {}, child: Text("Category 1")),
                   ],
                 ),
               );
@@ -93,7 +95,7 @@ class _CategoryScreenState extends State<CategoryScreen>
 class CategoryItem extends StatelessWidget {
   final String title;
 
-  const CategoryItem({Key? key, required this.title}) : super(key: key);
+  const CategoryItem({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {

@@ -11,8 +11,7 @@ class CustomDatePicker extends StatefulWidget {
   final void Function()? onTap;
 
   const CustomDatePicker(
-      {Key? key, required this.data, this.onTap, required this.controller})
-      : super(key: key);
+      {super.key, required this.data, this.onTap, required this.controller});
 
   @override
   State<CustomDatePicker> createState() => _CustomDatePickerState();

@@ -11,7 +11,7 @@ import '../../model/response/user_response.dart';
 
 class UserStoryScreen extends StatefulWidget {
   final dynamic story;
-  const UserStoryScreen({Key? key, required this.story}) : super(key: key);
+  const UserStoryScreen({super.key, required this.story});
 
   @override
   UserStoryScreenState createState() => UserStoryScreenState();

@@ -4,8 +4,11 @@ class CustomCard extends StatelessWidget {
   final Widget child;
   final Color color;
   final double paddingAll;
-  const CustomCard({Key? key,required this.color,required this.child, this.paddingAll = 12.0})
-      : super(key: key);
+  const CustomCard(
+      {super.key,
+      required this.color,
+      required this.child,
+      this.paddingAll = 12.0});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +16,7 @@ class CustomCard extends StatelessWidget {
       elevation: 3,
       shape: RoundedRectangleBorder(
           side: BorderSide(
-            // border color
+              // border color
               color: color,
               // border thickness
               width: 2),

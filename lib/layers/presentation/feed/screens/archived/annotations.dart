@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:ar_location_viewer/ar_annotation.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:storyv2/layers/data/near_me_mocks.dart';
-import 'package:uuid/uuid.dart';
 
 enum AnnotationType { testPin }
 

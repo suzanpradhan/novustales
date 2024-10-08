@@ -5,7 +5,7 @@ import '../providers/common_provider.dart';
 import 'display_text_image.dart';
 
 class MessageReplyPreview extends ConsumerWidget {
-  const MessageReplyPreview({Key? key}) : super(key: key);
+  const MessageReplyPreview({super.key});
 
   void cancelReply(WidgetRef ref) {
     ref.read(messageReplyProvider.state).update((state) => null);

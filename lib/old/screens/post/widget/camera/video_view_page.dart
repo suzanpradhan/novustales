@@ -8,8 +8,7 @@ import '../post_info_widget.dart';
 
 class VideoViewPage extends StatefulWidget {
   const VideoViewPage(
-      {Key? key, required this.path, required this.selectImages})
-      : super(key: key);
+      {super.key, required this.path, required this.selectImages});
   final XFile path;
   final List<XFile>? selectImages;
 
@@ -48,26 +47,26 @@ class _VideoViewPageState extends State<VideoViewPage> {
                   context,
                   MaterialPageRoute(
                       builder: (context) => PostInfo(
-                        path: widget.path,
-                        selectImages: widget.selectImages,
-                      )));
+                            path: widget.path,
+                            selectImages: widget.selectImages,
+                          )));
             },
           )
         ],
       ),
-      body: Container(
+      body: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: Stack(
           children: [
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height - 150,
               child: _controller!.value.isInitialized
                   ? AspectRatio(
-                aspectRatio: _controller!.value.aspectRatio,
-                child: VideoPlayer(_controller!),
-              )
+                      aspectRatio: _controller!.value.aspectRatio,
+                      child: VideoPlayer(_controller!),
+                    )
                   : Container(),
             ),
             Align(

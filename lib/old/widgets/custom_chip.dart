@@ -9,12 +9,11 @@ class CustomChip extends StatelessWidget {
   final IconData? icon;
   final Function? onTap;
   const CustomChip(
-      {Key? key,
+      {super.key,
       required this.title,
       this.icon,
       this.isSelected = false,
-      this.onTap})
-      : super(key: key);
+      this.onTap});
 
   @override
   Widget build(BuildContext context) {

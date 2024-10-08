@@ -285,8 +285,9 @@ class _BattleDetailedState extends State<BattleDetailed> {
                             rating: "${rateByMe.value}",
                           );
                           final res = await premiumRepo.rateSubmission(prm);
-                          if (res.status != Status.COMPLETED)
+                          if (res.status != Status.COMPLETED) {
                             return rateByMe.value = 0;
+                          }
                           rating.value = res.data!;
                         },
                   icon: Icon(Icons.star, color: color, size: 22),

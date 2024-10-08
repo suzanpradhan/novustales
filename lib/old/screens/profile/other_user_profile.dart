@@ -13,7 +13,7 @@ import '../../widgets/capitalize_initals.dart';
 class OtherUserProfileScreen extends StatefulWidget {
   String? id;
   static const String routeName = "/otherUserprofile";
-  OtherUserProfileScreen({Key? key, required this.id}) : super(key: key);
+  OtherUserProfileScreen({super.key, required this.id});
 
   @override
   OtherUserProfileScreenState createState() => OtherUserProfileScreenState();

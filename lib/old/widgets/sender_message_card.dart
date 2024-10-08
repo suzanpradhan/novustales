@@ -6,7 +6,7 @@ import 'display_text_image.dart';
 
 class SenderMessageCard extends StatelessWidget {
   const SenderMessageCard({
-    Key? key,
+    super.key,
     required this.senderId,
     required this.message,
     required this.date,
@@ -15,7 +15,7 @@ class SenderMessageCard extends StatelessWidget {
     required this.repliedText,
     required this.username,
     required this.repliedMessageType,
-  }) : super(key: key);
+  });
   final String message;
   final String senderId;
   final String date;
