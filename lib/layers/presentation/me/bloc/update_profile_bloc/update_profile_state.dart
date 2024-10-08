@@ -7,7 +7,7 @@ class UpdateProfileState with _$UpdateProfileState {
     @Default(TextInput.pure()) TextInput firstName,
     @Default(TextInput.pure()) TextInput lastName,
     @Default(TextInput.pure()) TextInput bio,
-    @Default(TextInput.pure()) TextInput avatar,
+    String? avatar,
     int? uuid,
     @Default(false) bool isValid,
     String? message,

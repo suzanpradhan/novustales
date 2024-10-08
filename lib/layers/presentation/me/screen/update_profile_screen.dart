@@ -1,15 +1,10 @@
-import 'dart:io';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:go_router/go_router.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:storyv2/core/presentation/ui/novus_icons.dart';
 
-import '../../../../../core/api/api_paths.dart';
-import '../../../../../core/constants/assets.dart';
 import '../../../../../core/presentation/ui/spacer.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/ui_constants.dart';
@@ -21,6 +16,7 @@ import '../../../../utils/dependencies_injection.dart';
 import '../../../domain/entities/profile_entity.dart';
 import '../bloc/profile_bloc/get_profile_bloc.dart';
 import '../bloc/update_profile_bloc/update_profile_bloc.dart';
+import '../widgets/profile_header.dart';
 
 class UpdateProfileScreen extends StatefulWidget {
   final ProfileEntity profileData;
@@ -32,11 +28,7 @@ class UpdateProfileScreen extends StatefulWidget {
 
 class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
   String? localImageAvatar;
-  void changeLocalImage(String value) {
-    setState(() {
-      localImageAvatar = value;
-    });
-  }
+  // void changeLocalImage(String value) {}
 
   @override
   void initState() {
@@ -55,7 +47,13 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
           currentProfileData: widget.profileData, updateProfile: sl()),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("Edit Profile"),
+          title: Text(
+            "Edit Profile",
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                  fontFamily: "UberBold",
+                  color: AppColors.black,
+                ),
+          ),
         ),
         body: BlocListener<UpdateProfileBloc, UpdateProfileState>(
           listener: (_, state) {
@@ -64,8 +62,9 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
               context
                   .read<GetProfileBloc>()
                   .add(const GetProfileEvent.request());
-              ScaffoldMessenger.of(context)
-                  .showSnackBar(SnackBar(content: Text(state.message ?? "")));
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content:
+                      Text(state.message ?? "Profile updated successfully")));
             } else if (state.status.isFailure) {
               if (state.message != null) {
                 ScaffoldMessenger.of(context)
@@ -78,11 +77,23 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // ProfileHeader(
-                //   isEditable: true,
+                // UpdateCoverWidget(
                 //   avatar: widget.profileData.avatar,
                 //   changeLocalImage: changeLocalImage,
                 // ),
+                ProfileHeader(
+                  isEditable: true,
+                  avatar: widget.profileData.avatar,
+                  changeLocalImage: (image) {
+                    log("image:$image");
+                    context
+                        .read<UpdateProfileBloc>()
+                        .add(UpdateProfileEvent.validateImage(avatar: image));
+                    setState(() {
+                      localImageAvatar = image;
+                    });
+                  },
+                ),
                 Gapper.vGap(),
                 Gapper.screenPadding(
                   child: Column(
@@ -141,17 +152,16 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                         return FormGroup(
                             label: Text("Bio"),
                             formField: FormInputField(
+                              // height: 150,
+                              maxLines: 5,
                               initialValue: state.bio.value,
                               selectorLabel: "Bio",
-                              placeholder: "",
-                              prefixText: const Text("Write your bio here"),
+                              placeholder: "Write your bio here...",
                               context: context,
-                              textInputType:
-                                  const TextInputType.numberWithOptions(
-                                      signed: true),
-                              inputFormatters: [
-                                FilteringTextInputFormatter.digitsOnly
-                              ],
+                              textInputType: TextInputType.text,
+                              // inputFormatters: [
+                              //   FilteringTextInputFormatter.digitsOnly
+                              // ],
                               alignment: InputAlignment.vertical,
                               errorText: state.bio.displayError ==
                                       RequiredTextValidationError.empty
@@ -212,155 +222,155 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
   }
 }
 
-class UpdateCoverWidget extends StatefulWidget {
-  final Function(String) changeLocalImage;
-  final String? avatar;
-  const UpdateCoverWidget(
-      {super.key, required this.changeLocalImage, this.avatar});
+// class UpdateCoverWidget extends StatefulWidget {
+//   final Function(String) changeLocalImage;
+//   final String? avatar;
+//   const UpdateCoverWidget(
+//       {super.key, required this.changeLocalImage, this.avatar});
 
-  @override
-  State<UpdateCoverWidget> createState() => _UpdateCoverWidgetState();
-}
+//   @override
+//   State<UpdateCoverWidget> createState() => _UpdateCoverWidgetState();
+// }
 
-class _UpdateCoverWidgetState extends State<UpdateCoverWidget> {
-  String? localImageAvatar;
-  void pickImage(ImageSource source) async {
-    try {
-      final pickedFile = await ImagePicker().pickImage(source: source);
+// class _UpdateCoverWidgetState extends State<UpdateCoverWidget> {
+//   String? localImageAvatar;
+//   void pickImage(ImageSource source) async {
+//     try {
+//       final pickedFile = await ImagePicker().pickImage(source: source);
 
-      if (pickedFile != null) {
-        // print("Image picked: ${pickedFile.path}");
-        setState(() {
-          localImageAvatar = pickedFile.path;
-          widget.changeLocalImage(pickedFile.path);
-        });
-      } else {
-        // print("No image selected.");
-      }
-    } catch (e) {
-      // print("Error picking image: $e");
-    }
-  }
+//       if (pickedFile != null) {
+//         // print("Image picked: ${pickedFile.path}");
+//         setState(() {
+//           localImageAvatar = pickedFile.path;
+//           widget.changeLocalImage(pickedFile.path);
+//         });
+//       } else {
+//         // print("No image selected.");
+//       }
+//     } catch (e) {
+//       // print("Error picking image: $e");
+//     }
+//   }
 
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 250,
-      child: Stack(
-        children: [
-          SizedBox(
-              height: 150,
-              width: double.maxFinite,
-              child: widget.avatar != null
-                  ? Image.network(
-                      "${ApiPaths.storageUrl}${widget.avatar!}",
-                      fit: BoxFit.cover,
-                    )
-                  : Image.asset(
-                      "assets/images/cover_image.png",
-                      fit: BoxFit.cover,
-                    )),
-          Positioned(
-            top: 100,
-            left: 12,
-            child: GestureDetector(
-              onTap: () {
-                showDialog(
-                  context: context,
-                  builder: (context) {
-                    return SimpleDialog(
-                      shape: RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.circular(UIConstants.padding)),
-                      title: Text(
-                        "Update Profile",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyLarge
-                            ?.copyWith(fontWeight: FontWeight.bold),
-                      ),
-                      children: [
-                        SimpleDialogOption(
-                          onPressed: () {
-                            pickImage(ImageSource.camera);
-                          },
-                          child: const Text("Take a picture"),
-                        ),
-                        SimpleDialogOption(
-                          onPressed: () {
-                            pickImage(ImageSource.gallery);
-                          },
-                          child: const Text("Upload Photo"),
-                        )
-                      ],
-                    );
-                  },
-                );
-                // _pickImage(ImageSource.gallery);
-                // showModalBottomSheet(
-                //     // isDismissible: true,
-                //     backgroundColor: Colors.white,
-                //     shape: const RoundedRectangleBorder(
-                //         borderRadius: BorderRadius.only(
-                //             topLeft: Radius.circular(20),
-                //             topRight: Radius.circular(20))),
-                //     context: context,
-                //     builder: (context) {
-                //       return GalleryBottomSheet(
-                //         pickImage: pickImage,
-                //       );
-                //     });
-              },
-              child: Stack(
-                children: [
-                  Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.white, width: 2),
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(50))),
-                      height: 100,
-                      width: 100,
-                      child: ClipRRect(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(50)),
-                          child: localImageAvatar != null
-                              ? Image.file(
-                                  File(localImageAvatar!),
-                                  fit: BoxFit.cover,
-                                )
-                              : widget.avatar != null
-                                  ? Image.network(
-                                      "${ApiPaths.storageUrl}${widget.avatar!}",
-                                      fit: BoxFit.cover,
-                                    )
-                                  : Image.asset(
-                                      Assets.noProfile,
-                                      fit: BoxFit.cover,
-                                    ))),
-                  Positioned(
-                    bottom: 5,
-                    right: 5,
-                    child: Container(
-                      height: 30,
-                      width: 30,
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.white, width: 2),
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(15)),
-                          color: const Color(0xFF27282D)),
-                      child: const Icon(
-                        NovusIcons.profile,
-                        size: 12,
-                        color: Colors.white,
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return SizedBox(
+//       height: 250,
+//       child: Stack(
+//         children: [
+//           SizedBox(
+//               height: 150,
+//               width: double.maxFinite,
+//               child: widget.avatar != null
+//                   ? Image.network(
+//                       "${ApiPaths.storageUrl}${widget.avatar!}",
+//                       fit: BoxFit.cover,
+//                     )
+//                   : Image.asset(
+//                       Assets.noProfile,
+//                       fit: BoxFit.cover,
+//                     )),
+//           Positioned(
+//             top: 100,
+//             left: 12,
+//             child: GestureDetector(
+//               onTap: () {
+//                 showDialog(
+//                   context: context,
+//                   builder: (context) {
+//                     return SimpleDialog(
+//                       shape: RoundedRectangleBorder(
+//                           borderRadius:
+//                               BorderRadius.circular(UIConstants.padding)),
+//                       title: Text(
+//                         "Update Profile",
+//                         style: Theme.of(context)
+//                             .textTheme
+//                             .bodyLarge
+//                             ?.copyWith(fontWeight: FontWeight.bold),
+//                       ),
+//                       children: [
+//                         SimpleDialogOption(
+//                           onPressed: () {
+//                             pickImage(ImageSource.camera);
+//                           },
+//                           child: const Text("Take a picture"),
+//                         ),
+//                         SimpleDialogOption(
+//                           onPressed: () {
+//                             pickImage(ImageSource.gallery);
+//                           },
+//                           child: const Text("Upload Photo"),
+//                         )
+//                       ],
+//                     );
+//                   },
+//                 );
+//                 // _pickImage(ImageSource.gallery);
+//                 // showModalBottomSheet(
+//                 //     // isDismissible: true,
+//                 //     backgroundColor: Colors.white,
+//                 //     shape: const RoundedRectangleBorder(
+//                 //         borderRadius: BorderRadius.only(
+//                 //             topLeft: Radius.circular(20),
+//                 //             topRight: Radius.circular(20))),
+//                 //     context: context,
+//                 //     builder: (context) {
+//                 //       return GalleryBottomSheet(
+//                 //         pickImage: pickImage,
+//                 //       );
+//                 //     });
+//               },
+//               child: Stack(
+//                 children: [
+//                   Container(
+//                       decoration: BoxDecoration(
+//                           border: Border.all(color: Colors.white, width: 2),
+//                           borderRadius:
+//                               const BorderRadius.all(Radius.circular(50))),
+//                       height: 100,
+//                       width: 100,
+//                       child: ClipRRect(
+//                           borderRadius:
+//                               const BorderRadius.all(Radius.circular(50)),
+//                           child: localImageAvatar != null
+//                               ? Image.file(
+//                                   File(localImageAvatar!),
+//                                   fit: BoxFit.cover,
+//                                 )
+//                               : widget.avatar != null
+//                                   ? Image.network(
+//                                       "${ApiPaths.storageUrl}${widget.avatar!}",
+//                                       fit: BoxFit.cover,
+//                                     )
+//                                   : Image.asset(
+//                                       Assets.noProfile,
+//                                       fit: BoxFit.cover,
+//                                     ))),
+//                   Positioned(
+//                     bottom: 5,
+//                     right: 5,
+//                     child: Container(
+//                       height: 30,
+//                       width: 30,
+//                       decoration: BoxDecoration(
+//                           border: Border.all(color: Colors.white, width: 2),
+//                           borderRadius:
+//                               const BorderRadius.all(Radius.circular(15)),
+//                           color: const Color(0xFF27282D)),
+//                       child: const Icon(
+//                         NovusIcons.profile,
+//                         size: 12,
+//                         color: Colors.white,
+//                       ),
+//                     ),
+//                   )
+//                 ],
+//               ),
+//             ),
+//           )
+//         ],
+//       ),
+//     );
+//   }
+// }

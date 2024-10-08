@@ -79,6 +79,7 @@ class _MeScreenState extends State<MeScreen> {
                       children: [
                         Gapper.cardPadding(
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,

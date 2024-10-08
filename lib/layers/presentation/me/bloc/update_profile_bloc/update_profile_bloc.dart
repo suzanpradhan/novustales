@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../../../core/error/exceptions.dart';
 import '../../../../../core/error/failures.dart';
 import '../../../../../core/presentation/ui/text_input.dart';
 import '../../../../domain/entities/profile_entity.dart';
@@ -19,10 +20,9 @@ class UpdateProfileBloc extends Bloc<UpdateProfileEvent, UpdateProfileState> {
   UpdateProfileBloc(
       {required this.updateProfile, required this.currentProfileData})
       : super(UpdateProfileState(
-          firstName: TextInput.dirty(currentProfileData.firstName ?? ""),
-          lastName: TextInput.dirty(currentProfileData.lastName ?? ""),
+          firstName: TextInput.dirty(currentProfileData.firstName),
+          lastName: TextInput.dirty(currentProfileData.lastName),
           bio: TextInput.dirty(currentProfileData.bio ?? ""),
-          avatar: TextInput.dirty(currentProfileData.avatar ?? ""),
         )) {
     on<UpdateProfileEvent>((event, emit) {});
 
@@ -31,8 +31,7 @@ class UpdateProfileBloc extends Bloc<UpdateProfileEvent, UpdateProfileState> {
 
       emit(
         state.copyWith(
-          firstName: firstName,
-        ),
+            firstName: firstName, status: FormzSubmissionStatus.initial),
       );
     });
 
@@ -41,79 +40,95 @@ class UpdateProfileBloc extends Bloc<UpdateProfileEvent, UpdateProfileState> {
 
       emit(
         state.copyWith(
-          lastName: lastName,
-        ),
+            lastName: lastName, status: FormzSubmissionStatus.initial),
       );
     });
 
     on<_ValidateBio>((event, emit) {
       final bio = TextInput.dirty(event.bio);
       emit(
-        state.copyWith(
-          bio: bio,
-        ),
+        state.copyWith(bio: bio, status: FormzSubmissionStatus.initial),
       );
     });
 
     on<_ValidateImage>((event, emit) {
+      log("Avatar Image logged here: ${event.avatar}");
       final avatar = TextInput.dirty(event.avatar);
       emit(
         state.copyWith(
-          avatar: avatar,
+          avatar: avatar.value,
         ),
       );
     });
 
-    on<_ExtraFields>(
-      (event, emit) {
-        emit(
-          state.copyWith(
-            status: FormzSubmissionStatus.initial,
-            uuid: event.uuid,
-          ),
-        );
-      },
-    );
+    on<_Attempt>((event, emit) async {
+      emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
+      log("firstName: ${state.firstName.value} lastName: ${state.lastName.value} avatar: ${state.avatar} bio: ${state.bio.value}");
+      if (Formz.validate([state.firstName, state.lastName, state.bio])) {
+        final data = await updateProfile.call(UpdateProfileParams(
+          firstName: state.firstName.value,
+          lastName: state.lastName.value,
+          bio: state.bio.value,
+          avatar: state.avatar,
+        ));
 
-    on<_Attempt>(
-      (event, emit) async {
-        emit(
-          state.copyWith(
-            status: FormzSubmissionStatus.inProgress,
-            isValid: Formz.validate(
-              [state.firstName, state.lastName, state.bio],
-            ),
-          ),
-        );
-        log("firstName: ${state.firstName.value} lastName: ${state.lastName.value} avatar: ${state.avatar.value} bio: ${state.bio.value}");
+        data.fold((failure) {
+          if (failure is ServerFailure) {
+            emit(state.copyWith(
+                status: FormzSubmissionStatus.failure,
+                message: failure.message ?? "Server Error!"));
+          } else if (failure is UnauthorizedFailure) {
+            addError(UnauthorizedException());
+          }
+        },
+            (updateProfileEntity) => emit(state.copyWith(
+                status: FormzSubmissionStatus.success,
+                message: updateProfileEntity.message)));
+      } else {
+        emit(state.copyWith(
+            status: FormzSubmissionStatus.failure,
+            message: "Please verify your details."));
+      }
+    });
 
-        if (state.isValid) {
-          final data = await updateProfile.call(
-            UpdateProfileParams(
-              uuid: state.uuid,
-              firstName: state.firstName.value,
-              lastName: state.lastName.value,
-              bio: state.bio.value,
-              avatar: state.avatar.value,
-            ),
-          );
+    // on<_Attempt>(
+    //   (event, emit) async {
+    //     emit(
+    //       state.copyWith(
+    //         status: FormzSubmissionStatus.inProgress,
+    //         isValid: Formz.validate(
+    //           [state.firstName, state.lastName, state.bio],
+    //         ),
+    //       ),
+    //     );
+    //     log("firstName: ${state.firstName.value} lastName: ${state.lastName.value} avatar: ${state.avatar.value} bio: ${state.bio.value}");
+    //     if (state.isValid) {
+    //       final data = await updateProfile.call(
+    //         UpdateProfileParams(
+    //           uuid: state.uuid,
+    //           firstName: state.firstName.value,
+    //           lastName: state.lastName.value,
+    //           bio: state.bio.value,
+    //           avatar: state.avatar.value,
+    //         ),
+    //       );
 
-          data.fold((failure) {
-            if (failure is ServerFailure) {
-              emit(state.copyWith(
-                  status: FormzSubmissionStatus.failure,
-                  message: failure.message ?? "Server Error!"));
-            }
-          },
-              (registerResponse) => emit(state.copyWith(
-                  status: FormzSubmissionStatus.success,
-                  message: registerResponse.message)));
-        } else {
-          emit(state.copyWith(
-              status: FormzSubmissionStatus.failure,
-              message: "Please verify your details."));
-        }
-      },
-    );
+    //       data.fold((failure) {
+    //         if (failure is ServerFailure) {
+    //           emit(state.copyWith(
+    //               status: FormzSubmissionStatus.failure,
+    //               message: failure.message ?? "Server Error!"));
+    //         }
+    //       },
+    //           (registerResponse) => emit(state.copyWith(
+    //               status: FormzSubmissionStatus.success,
+    //               message: registerResponse.message)));
+    //     } else {
+    //       emit(state.copyWith(
+    //           status: FormzSubmissionStatus.failure,
+    //           message: "Please verify your details."));
+    //     }
+    //   },
+    // );
   }
 }

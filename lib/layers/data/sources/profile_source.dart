@@ -35,7 +35,7 @@ class ProfileSourceImpl implements ProfileSource {
           .add(MapEntry("avatar", MultipartFile.fromFileSync(params.avatar!)));
     }
 
-    final response = await _apiClient.postRequest(
+    final response = await _apiClient.patchRequest(
       ApiPaths.postUpdateProfileUrl,
       formData: formData,
       converter: (response) =>
