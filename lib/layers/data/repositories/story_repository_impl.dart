@@ -40,9 +40,7 @@ class StoryRepositoryImpl implements StoryRepository {
     return response.fold((failure) => Left(failure), (response) {
       return Right(PaginationEntity<StoryEntity>(
           nextPage: response.pagination?.next != null ? true : false,
-          results: (response.results as List<StoryResponse>)
-              .map((e) => e.toEntity())
-              .toList()));
+          results: (response.results).map((e) => e.toEntity()).toList()));
     });
   }
 
@@ -51,6 +49,19 @@ class StoryRepositoryImpl implements StoryRepository {
     final response = await storySource.getCategories(NoParams());
     return response.fold((failure) => Left(failure), (response) {
       return Right(response.map((e) => e.toEntity()).toList());
+    });
+  }
+
+  @override
+  Future<Either<Failure, PaginationEntity<StoryEntity>>> getMyStories(
+      NoParams noParams) async {
+    final response = await storySource.getMyStories(noParams);
+    return response.fold((failure) => Left(failure), (response) {
+      return Right(PaginationEntity<StoryEntity>(
+          nextPage: response.pagination?.next != null ? true : false,
+          results: (response.results as List<StoryResponse>)
+              .map((e) => e.toEntity())
+              .toList()));
     });
   }
 }
