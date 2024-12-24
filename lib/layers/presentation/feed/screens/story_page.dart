@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:story_view/story_view.dart';
 import 'package:storyv2/layers/domain/entities/story_entity.dart';
 
@@ -25,6 +26,8 @@ class StoryPage extends StatefulWidget {
 class _StoryPageState extends State<StoryPage> {
   StoryController controller = StoryController();
   final ValueNotifier<bool> isPaused = ValueNotifier(false);
+  late GoRouter router;
+
   final List<String> videoFormats = [
     '.m4v',
     '.mp4',
@@ -39,6 +42,8 @@ class _StoryPageState extends State<StoryPage> {
   @override
   void initState() {
     isPaused.value = false;
+    router = GoRouter.of(context);
+    router.routeInformationProvider.addListener(_onRouteChange);
     super.initState();
   }
 
@@ -46,37 +51,52 @@ class _StoryPageState extends State<StoryPage> {
   void dispose() {
     // Dispose of your resources here
     controller.pause();
+    router.routeInformationProvider.removeListener(_onRouteChange);
     controller.dispose();
     isPaused.dispose();
     super.dispose();
   }
 
+  void _onRouteChange() {
+    if (router.routeInformationProvider.value.uri.toString() != '/') {
+      controller.pause();
+      isPaused.value = true;
+    } else {
+      controller.play();
+      isPaused.value = false;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final bool isVideo = videoFormats.any(
-        (format) => widget.story.media?.toLowerCase().endsWith(format) == true);
+    final bool isVideo =
+        videoFormats.any((format) => widget.story.media?.toLowerCase().endsWith(format) == true);
     return Stack(
       children: [
-        StoryView(
-          storyItems: [
-            isVideo
-                ? StoryItem.pageVideo(
-                    widget.story.media.toString(),
-                    imageFit: BoxFit.fitWidth,
-                    controller: controller,
-                  )
-                : StoryItem.pageImage(
-                    url: widget.story.media.toString(),
-                    controller: controller,
-                    imageFit: BoxFit.fitWidth,
-                    caption: Text(widget.story.title.toString()),
-                  ),
-          ],
-          controller: controller,
-          repeat: true,
-          onStoryShow: ((item, storyIndex) => {}),
-          onComplete: () {},
-          progressPosition: ProgressPosition.none,
+        Container(
+          height: double.infinity,
+          color: AppColors.red,
+          child: StoryView(
+            storyItems: [
+              isVideo
+                  ? StoryItem.pageVideo(
+                      widget.story.media.toString(),
+                      imageFit: BoxFit.fitWidth,
+                      controller: controller,
+                    )
+                  : StoryItem.pageImage(
+                      url: widget.story.media.toString(),
+                      controller: controller,
+                      imageFit: BoxFit.fitWidth,
+                      caption: Text(widget.story.title.toString()),
+                    ),
+            ],
+            controller: controller,
+            repeat: true,
+            onStoryShow: ((item, storyIndex) => {}),
+            onComplete: () {},
+            progressPosition: ProgressPosition.none,
+          ),
         ),
         if (isVideo)
           InkWell(
@@ -108,8 +128,7 @@ class _StoryPageState extends State<StoryPage> {
                           filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
                           child: Padding(
                             padding: EdgeInsets.symmetric(
-                                vertical: UIConstants.padding,
-                                horizontal: UIConstants.padding),
+                                vertical: UIConstants.padding, horizontal: UIConstants.padding),
                             child: Icon(
                               value ? Icons.play_arrow : Icons.pause,
                               size: 40,
@@ -134,8 +153,7 @@ class _StoryPageState extends State<StoryPage> {
               FeedInfo(
                 avtarUrl: widget.story.userDetails!.avatar.toString(),
                 userName: widget.story.userDetails!.name.toString(),
-                feedTime: getTimeDifferenceFromNow(widget.story.updatedAt!)
-                    .toString(),
+                feedTime: getTimeDifferenceFromNow(widget.story.updatedAt!).toString(),
                 feedDescription: widget.story.title.toString(),
               ),
               Column(
@@ -170,8 +188,7 @@ class _StoryPageState extends State<StoryPage> {
             ],
           ),
         ),
-        if (controller.playbackNotifier.isPaused)
-          Positioned(child: Icon(Icons.play_circle_fill))
+        if (controller.playbackNotifier.isPaused) Positioned(child: Icon(Icons.play_circle_fill))
       ],
     );
   }
