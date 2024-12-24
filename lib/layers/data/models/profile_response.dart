@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:storyv2/layers/data/models/story_response.dart';
 import 'package:storyv2/layers/domain/entities/story_entity.dart';
-import 'package:storyv2/old/screens/premium/constants/api_paths.dart';
 
+import '../../../core/api/api_paths.dart';
 import '../../domain/entities/profile_entity.dart';
 
 part 'generated/profile_response.freezed.dart';
@@ -11,24 +11,22 @@ part 'generated/profile_response.g.dart';
 @Freezed(toJson: false)
 class ProfileResponse with _$ProfileResponse {
   const factory ProfileResponse(
-          {required int id,
-          required String email,
-          required String uuid,
-          @JsonKey(name: 'first_name') required String firstName,
-          @JsonKey(name: 'last_name') required String lastName,
-          @JsonKey(name: 'nick_name') required String nickName,
-          String? avatar,
-          String? bio,
-          @Default(0) int followers,
-          @Default(0) int following,
-          @JsonKey(name: 'number_of_stories') @Default(0) int numberOfStories,
-          @JsonKey(name: 'number_of_views') @Default(0) int numberOfViews}) =
-      _ProfileResponse;
+      {required int id,
+      required String email,
+      required String uuid,
+      @JsonKey(name: 'first_name') required String firstName,
+      @JsonKey(name: 'last_name') required String lastName,
+      @JsonKey(name: 'nick_name') required String nickName,
+      String? avatar,
+      String? bio,
+      @Default(0) int followers,
+      @Default(0) int following,
+      @JsonKey(name: 'number_of_stories') @Default(0) int numberOfStories,
+      @JsonKey(name: 'number_of_views') @Default(0) int numberOfViews}) = _ProfileResponse;
 
   const ProfileResponse._();
 
-  factory ProfileResponse.fromJson(Map<String, dynamic> json) =>
-      _$ProfileResponseFromJson(json);
+  factory ProfileResponse.fromJson(Map<String, dynamic> json) => _$ProfileResponseFromJson(json);
 
   ProfileEntity toEntity() => ProfileEntity(
         id: id,
@@ -71,8 +69,7 @@ class UserStory with _$UserStory {
 
   const UserStory._();
 
-  factory UserStory.fromJson(Map<String, dynamic> json) =>
-      _$UserStoryFromJson(json);
+  factory UserStory.fromJson(Map<String, dynamic> json) => _$UserStoryFromJson(json);
 
   StoryEntity toEntity() => StoryEntity(
         id: id,
@@ -81,7 +78,7 @@ class UserStory with _$UserStory {
         category: category,
         views: views,
         title: title,
-        media: media!.contains(baseUrl) ? media : baseUrl + media!,
+        media: media!.contains(ApiPaths.baseUrl) ? media : ApiPaths.baseUrl + media!,
         mediaUrls: mediaUrls,
         blobRef: blobRef,
         latitude: latitude,

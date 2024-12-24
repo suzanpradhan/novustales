@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:storyv2/layers/domain/entities/story_entity.dart';
-import 'package:storyv2/old/screens/premium/constants/api_paths.dart';
+
+import '../../../core/api/api_paths.dart';
 
 part 'generated/story_response.freezed.dart';
 part 'generated/story_response.g.dart';
@@ -30,8 +31,7 @@ class StoryResponse with _$StoryResponse {
 
   const StoryResponse._();
 
-  factory StoryResponse.fromJson(Map<String, dynamic> json) =>
-      _$StoryResponseFromJson(json);
+  factory StoryResponse.fromJson(Map<String, dynamic> json) => _$StoryResponseFromJson(json);
 
   StoryEntity toEntity() => StoryEntity(
         id: id,
@@ -65,13 +65,12 @@ class StoryUserDetail with _$StoryUserDetail {
 
   const StoryUserDetail._();
 
-  factory StoryUserDetail.fromJson(Map<String, dynamic> json) =>
-      _$StoryUserDetailFromJson(json);
+  factory StoryUserDetail.fromJson(Map<String, dynamic> json) => _$StoryUserDetailFromJson(json);
 
   UserDetailsEntity toEntity() => UserDetailsEntity(
         email: email,
         name: name,
         nickName: nickName,
-        avatar: baseUrl + avatar!,
+        avatar: ApiPaths.baseUrl + avatar!,
       );
 }
