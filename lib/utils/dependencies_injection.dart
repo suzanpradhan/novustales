@@ -129,7 +129,7 @@ void _dataSources() {
     () => ProfileSourceImpl(sl()),
   );
   sl.registerLazySingleton<ChatRemoteSource>(
-    () => ChatRemoteSourceImpl(sl(), sl()),
+    () => ChatRemoteSourceImpl(sl()),
   );
   sl.registerLazySingleton<UserSource>(
     () => UserSourceImpl(sl(), sl(), sl()),

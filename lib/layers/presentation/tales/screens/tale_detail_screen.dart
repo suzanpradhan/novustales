@@ -174,6 +174,7 @@ class _TaleDetailScreenState extends State<TaleDetailScreen> {
                       // ),
                     ),
                   ),
+                  collapseMode: CollapseMode.parallax,
                   background: Stack(
                     children: [
                       Positioned(
@@ -190,14 +191,14 @@ class _TaleDetailScreenState extends State<TaleDetailScreen> {
                           ),
                         ),
                       ),
-                      ClipRRect(
-                        child: Image.network(
-                          widget.tale.thumbnail!,
-                          height: MediaQuery.of(context).size.height * 0.75,
-                          width: MediaQuery.of(context).size.width,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+                      // ClipRRect(
+                      //   child: Image.network(
+                      //     widget.tale.thumbnail!,
+                      //     height: MediaQuery.of(context).size.height * 0.75,
+                      //     width: MediaQuery.of(context).size.width,
+                      //     fit: BoxFit.cover,
+                      //   ),
+                      // ),
                       // Gradient for fade effect
                       Container(
                         height: MediaQuery.of(context).size.height * 0.75,

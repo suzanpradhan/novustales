@@ -235,7 +235,7 @@ class _TalesScreenState extends State<TalesScreen> {
                 color: AppColors.white,
                 child: DraggableScrollableSheet(
                     initialChildSize: _bottomSheetHeight,
-                    minChildSize: 0.1,
+                    minChildSize: 0.3,
                     snap: true,
                     maxChildSize: 0.9,
                     expand: false,

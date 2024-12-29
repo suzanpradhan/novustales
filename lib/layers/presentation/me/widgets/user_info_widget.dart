@@ -15,17 +15,28 @@ class UserInfoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       flex: 1,
-      child: RichText(
-        text: TextSpan(
-          text: "${numberToString(count)}\n",
-          style: Theme.of(context).textTheme.bodyLarge,
-          children: [
-            TextSpan(
-              text: title,
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
-          ],
-        ),
+      child: Column(
+        // text: TextSpan(
+
+        //   text: "${numberToString(count)}\n",
+        //   style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: AppColors.white),
+        //   children: [
+        //     TextSpan(
+        //       text: title,
+        //       style: Theme.of(context).textTheme.bodySmall,
+        //     ),
+        //   ],
+        // ),
+        children: [
+          Text(
+            "${numberToString(count)}\n",
+            style: Theme.of(context).textTheme.displayLarge!.copyWith(
+                  fontSize: 36,
+                  height: 0.6,
+                ),
+          ),
+          Text(title, style: Theme.of(context).textTheme.titleSmall),
+        ],
       ),
     );
   }

@@ -12,7 +12,6 @@ import '../../domain/usecases/chat/check_or_create_profile.dart';
 import '../models/chat/chat_user.dart';
 import '../models/chat/message_modal.dart';
 import '../models/chat/room_response.dart';
-import 'user_source.dart';
 
 abstract class ChatRemoteSource {
   Future<List<RoomModel>> getRooms(NoParams noParams);
@@ -27,9 +26,11 @@ abstract class ChatRemoteSource {
 
 class ChatRemoteSourceImpl implements ChatRemoteSource {
   final SupabaseService supabaseService;
-  final UserSource userSource;
+  // final UserSource userSource;
 
-  ChatRemoteSourceImpl(this.supabaseService, this.userSource);
+  ChatRemoteSourceImpl(
+    this.supabaseService,
+  );
 
   @override
   Future<List<RoomModel>> getRooms(NoParams noParams) async {

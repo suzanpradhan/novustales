@@ -5,6 +5,7 @@ class UIConstants {
   static const double x2minPadding = 5.0;
   static const double padding = 14.0;
   static const double maxPadding = 18.0;
+  static const double max2padding = 24.0;
   static const double borderRadius = 8.0;
   static const double minBorderRadius = 6.0;
   static const double maxBordeRadius = 10.0;
