@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:storyv2/core/routes/app_routes.dart';
 import 'package:storyv2/layers/domain/entities/tale_entity.dart';
@@ -10,7 +8,6 @@ import 'package:storyv2/layers/domain/entities/tale_entity.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/ui_constants.dart';
 import '../../../../core/presentation/ui/spacer.dart';
-import '../blocs/get_direction/get_direction_bloc.dart';
 
 class TaleIntroPage extends StatelessWidget {
   final Position? currentLocation;
@@ -95,19 +92,19 @@ class TaleIntroPage extends StatelessWidget {
                       children: [
                         InkWell(
                           onTap: () {
-                            if (tale.distance! > 1.00 &&
-                                tale.latitude != null &&
-                                tale.longitude != null &&
-                                currentLocation != null) {
-                              context.read<GetDirectionBloc>().add(
-                                  GetDirectionEvent.request(
-                                      origin: LatLng(currentLocation!.latitude,
-                                          currentLocation!.longitude),
-                                      destination: LatLng(
-                                          tale.latitude!, tale.longitude!)));
-                            } else {
-                              context.push(TALE_DETAIL_ROUTE, extra: tale);
-                            }
+                            // if (tale.distance! > 1.00 &&
+                            //     tale.latitude != null &&
+                            //     tale.longitude != null &&
+                            //     currentLocation != null) {
+                            //   context.read<GetDirectionBloc>().add(
+                            //       GetDirectionEvent.request(
+                            //           origin: LatLng(currentLocation!.latitude,
+                            //               currentLocation!.longitude),
+                            //           destination: LatLng(
+                            //               tale.latitude!, tale.longitude!)));
+                            // } else {
+                            context.push(TALE_DETAIL_ROUTE, extra: tale);
+                            // }
                           },
                           child: Container(
                             height: 58,

@@ -17,5 +17,8 @@
   // cursor
   "editor.cursorBlinking": "smooth", // smol cursor animation, looks nice
   "editor.cursorSmoothCaretAnimation": "on",
+  "dart.flutterSdkPath": ".fvm/versions/3.24.3",
+  "dart.flutterHotReloadOnSave": "manualIfDirty",
+  "dart.lineLength": 80,
   "cSpell.words": ["autovalidate", "Formz", "Obsecure", "unfocus"] // move cursor smoothly
 }
