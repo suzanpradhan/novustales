@@ -39,7 +39,7 @@ void main() {
 
     Bloc.observer = TitsBlocObserver();
     await serviceLocator();
-    Logger.level = Level.off;
+    Logger.level = Level.all;
 
     // Initialize firebase in Flutter App
     await Firebase.initializeApp(
@@ -140,14 +140,16 @@ class MyApp extends StatelessWidget {
                 activeTrackColor: AppColors.grayDark,
                 inactiveTrackColor: AppColors.whiteShade,
                 thumbColor: AppColors.gray,
-                tickMarkShape: const RoundSliderTickMarkShape(tickMarkRadius: 0),
+                tickMarkShape:
+                    const RoundSliderTickMarkShape(tickMarkRadius: 0),
                 activeTickMarkColor: Colors.transparent,
                 showValueIndicator: ShowValueIndicator.always,
                 // trackShape: EdgeToEdgeTrackShape(),
                 // rangeTrackShape: EdgeToEdgeRangeTrackShape(),
                 trackHeight: 2,
                 minThumbSeparation: 300),
-            bottomSheetTheme: const BottomSheetThemeData(surfaceTintColor: Colors.white),
+            bottomSheetTheme:
+                const BottomSheetThemeData(surfaceTintColor: Colors.white),
             colorScheme: ColorScheme(
               primary: AppColors.white,
               onPrimary: AppColors.grayDark,
@@ -170,24 +172,28 @@ class MyApp extends StatelessWidget {
               brightness: Brightness.light,
             ),
             useMaterial3: true,
-            inputDecorationTheme: const InputDecorationTheme(focusColor: AppColors.dark),
+            inputDecorationTheme:
+                const InputDecorationTheme(focusColor: AppColors.dark),
             textButtonTheme: const TextButtonThemeData(
                 style: ButtonStyle(
-                    padding:
-                        WidgetStatePropertyAll(EdgeInsets.symmetric(horizontal: 6, vertical: 0)),
+                    padding: WidgetStatePropertyAll(
+                        EdgeInsets.symmetric(horizontal: 6, vertical: 0)),
                     overlayColor: WidgetStatePropertyAll(AppColors.whiteShade),
                     iconColor: WidgetStatePropertyAll(AppColors.black),
-                    shape: WidgetStatePropertyAll(
-                        RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(4)))),
+                    shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(4)))),
                     foregroundColor: WidgetStatePropertyAll(AppColors.grayDark),
-                    textStyle: WidgetStatePropertyAll(
-                        TextStyle(fontSize: 14, fontFamily: "UberRegular", color: Colors.black)))),
+                    textStyle: WidgetStatePropertyAll(TextStyle(
+                        fontSize: 14,
+                        fontFamily: "UberRegular",
+                        color: Colors.black)))),
             textTheme: const TextTheme(
               displayLarge: TextStyle(fontSize: 20, fontFamily: "UberBold"),
               displayMedium: TextStyle(fontSize: 24, fontFamily: "UberRegular"),
               displaySmall: TextStyle(fontSize: 24, fontFamily: "UberMedium"),
               headlineLarge: TextStyle(fontSize: 18, fontFamily: "UberBold"),
-              headlineMedium: TextStyle(fontSize: 18, fontFamily: "UberRegular"),
+              headlineMedium:
+                  TextStyle(fontSize: 18, fontFamily: "UberRegular"),
               headlineSmall: TextStyle(fontSize: 18, fontFamily: "UberMedium"),
               titleLarge: TextStyle(fontSize: 16, fontFamily: "UberBold"),
               titleMedium: TextStyle(fontSize: 16, fontFamily: "UberRegular"),
@@ -200,8 +206,8 @@ class MyApp extends StatelessWidget {
               labelSmall: TextStyle(fontSize: 12, fontFamily: "UberRegular"),
             )),
         themeAnimationDuration: const Duration(seconds: 3),
-        builder: (context, child) =>
-            ScrollConfiguration(behavior: NoOverScrollBehavior(), child: child ?? Placeholder()),
+        builder: (context, child) => ScrollConfiguration(
+            behavior: NoOverScrollBehavior(), child: child ?? Placeholder()),
         routerConfig: router,
       ),
     );
@@ -210,7 +216,8 @@ class MyApp extends StatelessWidget {
 
 class NoOverScrollBehavior extends ScrollBehavior {
   @override
-  Widget buildOverscrollIndicator(BuildContext context, Widget child, ScrollableDetails details) {
+  Widget buildOverscrollIndicator(
+      BuildContext context, Widget child, ScrollableDetails details) {
     return child;
   }
 }

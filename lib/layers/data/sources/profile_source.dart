@@ -29,13 +29,25 @@ class ProfileSourceImpl implements ProfileSource {
   @override
   Future<Either<Failure, UpdateProfileResponse>> updateProfile(
       UpdateProfileParams params) async {
-    FormData formData = FormData.fromMap(params.toJson());
+    // final newParams = params.avatar != null && params.avatar!.isNotEmpty
+    //     ? params.toJson()
+    //     : params.toJson().remove("avatar");
+    // log(">>>>>>>>>> $newParams");
+    final Map<String, dynamic> paramsJson = {};
+
+    for (final key in params.toJson().keys) {
+      if (params.toJson()[key] != null) {
+        paramsJson[key] = params.toJson()[key];
+      }
+    }
+
+    FormData formData = FormData.fromMap(paramsJson);
     if (params.avatar != null && params.avatar!.isNotEmpty) {
       formData.files
           .add(MapEntry("avatar", MultipartFile.fromFileSync(params.avatar!)));
     }
 
-    final response = await _apiClient.postRequest(
+    final response = await _apiClient.patchRequest(
       ApiPaths.postUpdateProfileUrl,
       formData: formData,
       converter: (response) =>

@@ -2,12 +2,15 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:storyv2/core/constants/ui_constants.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_icons.dart';
 import '../../../../core/constants/assets.dart';
 import '../../../../core/presentation/ui/spacer.dart';
+import '../../../../core/routes/app_routes.dart';
 import '../bloc/profile_bloc/get_profile_bloc.dart';
 import '../widgets/profile_tabs.dart';
 import '../widgets/user_info_widget.dart';
@@ -60,7 +63,7 @@ class _MeScreenV4State extends State<MeScreen> {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
-      final top = 330 - (_containerSizeFactor * 210);
+      final top = 305 - (_containerSizeFactor * 210);
       return BlocBuilder<GetProfileBloc, GetProfileState>(
         builder: (context, state) {
           return state.mapOrNull(
@@ -81,13 +84,12 @@ class _MeScreenV4State extends State<MeScreen> {
                                   width: double.maxFinite,
                                   decoration: BoxDecoration(
                                       image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: NetworkImage(
-                                            value.me.avatar != null &&
-                                                    value.me.avatar!.isNotEmpty
-                                                ? value.me.avatar!
-                                                : Assets.noProfile,
-                                          ))),
+                                    fit: BoxFit.cover,
+                                    image: value.me.avatar != null &&
+                                            value.me.avatar!.isNotEmpty
+                                        ? NetworkImage(value.me.avatar!)
+                                        : AssetImage(Assets.noProfile),
+                                  )),
                                   child: ClipRRect(
                                     // make sure we apply clip it properly
                                     child: BackdropFilter(
@@ -133,9 +135,40 @@ class _MeScreenV4State extends State<MeScreen> {
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
-                                        Icon(Icons.edit),
+                                        InkWell(
+                                            onTap: () {
+                                              context.push(
+                                                  EDIT_PROFILE_SCREEN_ROUTE,
+                                                  extra: value.me);
+                                            },
+                                            child: Container(
+                                                padding: EdgeInsets.all(8),
+                                                decoration: BoxDecoration(
+                                                    shape: BoxShape.circle,
+                                                    color: AppColors.black
+                                                        .withOpacity(0.6)),
+                                                child: Icon(
+                                                  Iconsax.edit_24,
+                                                  size: 16,
+                                                  color: AppColors.white,
+                                                ))),
                                         Gapper.hmGap(),
-                                        Icon(Icons.settings),
+                                        InkWell(
+                                            onTap: () {
+                                              context.push(SETTIN_SCREEN_ROUTE,
+                                                  extra: value.me);
+                                            },
+                                            child: Container(
+                                                padding: EdgeInsets.all(8),
+                                                decoration: BoxDecoration(
+                                                    shape: BoxShape.circle,
+                                                    color: AppColors.black
+                                                        .withOpacity(0.6)),
+                                                child: Icon(
+                                                  Iconsax.setting_2,
+                                                  size: 16,
+                                                  color: AppColors.white,
+                                                ))),
                                       ],
                                     ),
                                     Padding(
@@ -353,11 +386,33 @@ class _MeScreenV4State extends State<MeScreen> {
                               opacity: _opacityFactor,
                               child: CircleAvatar(
                                 radius: double.maxFinite,
-                                backgroundImage: NetworkImage(
-                                  value.me.avatar != null &&
-                                          value.me.avatar!.isNotEmpty
-                                      ? value.me.avatar!
-                                      : Assets.noProfile,
+                                backgroundImage: value.me.avatar != null &&
+                                        value.me.avatar!.isNotEmpty
+                                    ? NetworkImage(value.me.avatar!)
+                                    : null,
+                                child: Container(
+                                  height: double.maxFinite,
+                                  width: double.maxFinite,
+                                  decoration: BoxDecoration(
+                                      color: AppColors.purpleAccent
+                                          .withOpacity(0.2),
+                                      shape: BoxShape.circle),
+                                  child: Center(
+                                    child: value.me.avatar == null ||
+                                            value.me.avatar!.isEmpty
+                                        ? Text(
+                                            value.me.firstName.isNotEmpty
+                                                ? value.me.firstName[0]
+                                                    .toUpperCase()
+                                                : value.me.email[0]
+                                                    .toUpperCase(),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .displayLarge!
+                                                .copyWith(fontSize: 60),
+                                          )
+                                        : null,
+                                  ),
                                 ),
                               ),
                             ),
