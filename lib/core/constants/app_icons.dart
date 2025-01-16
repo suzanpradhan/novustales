@@ -17,4 +17,5 @@ class AppIcons {
   static const sharePlane = Ionicons.paper_plane;
   static const bookmarks = Ionicons.bookmarks_outline;
   static const film = Iconsax.video_play;
+  static const comment = Ionicons.chatbubbles_outline;
 }

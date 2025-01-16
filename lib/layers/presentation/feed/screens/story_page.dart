@@ -69,8 +69,8 @@ class _StoryPageState extends State<StoryPage> {
 
   @override
   Widget build(BuildContext context) {
-    final bool isVideo =
-        videoFormats.any((format) => widget.story.media?.toLowerCase().endsWith(format) == true);
+    final bool isVideo = videoFormats.any(
+        (format) => widget.story.media?.toLowerCase().endsWith(format) == true);
     return Stack(
       children: [
         Container(
@@ -128,7 +128,8 @@ class _StoryPageState extends State<StoryPage> {
                           filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
                           child: Padding(
                             padding: EdgeInsets.symmetric(
-                                vertical: UIConstants.padding, horizontal: UIConstants.padding),
+                                vertical: UIConstants.padding,
+                                horizontal: UIConstants.padding),
                             child: Icon(
                               value ? Icons.play_arrow : Icons.pause,
                               size: 40,
@@ -153,7 +154,8 @@ class _StoryPageState extends State<StoryPage> {
               FeedInfo(
                 avtarUrl: widget.story.userDetails!.avatar.toString(),
                 userName: widget.story.userDetails!.name.toString(),
-                feedTime: getTimeDifferenceFromNow(widget.story.updatedAt!).toString(),
+                feedTime: getTimeDifferenceFromNow(widget.story.updatedAt!)
+                    .toString(),
                 feedDescription: widget.story.title.toString(),
               ),
               Column(
@@ -168,15 +170,27 @@ class _StoryPageState extends State<StoryPage> {
                       icon: Icon(option.icon),
                       onPressed: () async {
                         if (option.actions != null) {
-                          if (option.title == 'Share') {
-                            await option.actions!.call(
-                              Kwargs(
-                                {
-                                  'title': "${widget.story.title}",
-                                  'link': widget.story.media,
-                                },
-                              ),
-                            );
+                          switch (option.title) {
+                            case 'Share':
+                              await option.actions!.call(
+                                Kwargs(
+                                  {
+                                    'title': "${widget.story.title}",
+                                    'link': widget.story.media,
+                                  },
+                                ),
+                              );
+                              break;
+                            case 'Comment':
+                              option.actions!.call(
+                                Kwargs(
+                                  {
+                                    'context': context,
+                                  },
+                                ),
+                              );
+                              break;
+                            default:
                           }
                         }
                       },
@@ -188,7 +202,8 @@ class _StoryPageState extends State<StoryPage> {
             ],
           ),
         ),
-        if (controller.playbackNotifier.isPaused) Positioned(child: Icon(Icons.play_circle_fill))
+        if (controller.playbackNotifier.isPaused)
+          Positioned(child: Icon(Icons.play_circle_fill))
       ],
     );
   }

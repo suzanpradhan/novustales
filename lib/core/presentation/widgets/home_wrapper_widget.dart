@@ -61,13 +61,16 @@ class HomeWrapperWidgetState extends State<HomeWrapperWidget> {
         //   ),
         //   actions: const [],
         // ),
+        resizeToAvoidBottomInset: false,
         body: Column(
           children: [
             Expanded(flex: 1, child: widget.navigationShell),
             const InternetStatusBar(),
           ],
         ),
-        bottomNavigationBar: Material(
+        bottomNavigationBar: BottomAppBar(
+          height: 50,
+          padding: EdgeInsets.all(0),
           color: Colors.white,
           shadowColor: Colors.white,
           child: SafeArea(
