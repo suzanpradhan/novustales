@@ -49,6 +49,7 @@ import '../layers/domain/usecases/chat/read_message.dart';
 import '../layers/domain/usecases/chat/send_message.dart';
 import '../layers/domain/usecases/feed/get_categories.dart';
 import '../layers/domain/usecases/feed/get_stories.dart';
+import '../layers/domain/usecases/profile/update_profile.dart';
 import '../layers/presentation/auth/bloc/logout_bloc.dart';
 import '../layers/presentation/chat/blocs/chat_rooms/chat_rooms_bloc.dart';
 import '../layers/presentation/chat/blocs/read_message/read_message_bloc.dart';
@@ -140,6 +141,7 @@ void _useCase() {
   sl.registerLazySingleton(() => PostLogin(sl()));
   sl.registerLazySingleton(() => PostRegister(sl()));
   sl.registerLazySingleton(() => GetLogout(sl()));
+  sl.registerLazySingleton(() => UpdateProfile(sl()));
   sl.registerLazySingleton(() => GetPopularTales(sl()));
   sl.registerLazySingleton(() => GetNearMeTales(sl()));
   sl.registerLazySingleton(() => SearchTales(sl()));
