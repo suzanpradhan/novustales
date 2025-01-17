@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -96,7 +94,6 @@ class _VerticalInputFieldState extends State<VerticalInputField> {
 
   @override
   Widget build(BuildContext context) {
-    log("cotroller text${_controller.text}");
     return Container(
       constraints: BoxConstraints(minHeight: widget.height ?? 42),
       decoration: BoxDecoration(

@@ -1,57 +1,87 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:storyv2/layers/presentation/feed/widgets/emoji_imput_field.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/presentation/ui/spacer.dart';
+import '../../../../utils/dependencies_injection.dart';
+import '../blocs/get_comments/get_comments_bloc.dart';
+import '../blocs/post_comment/post_comment_bloc.dart';
+import 'comment_card.dart';
 
 class CommentModalBottomSheet extends StatelessWidget {
-  final int? storyId;
-  const CommentModalBottomSheet({super.key, this.storyId});
+  final int storyId;
+  const CommentModalBottomSheet({super.key, required this.storyId});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding:
-          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-      child: DraggableScrollableSheet(
-        initialChildSize: 0.6,
-        minChildSize: 0.6,
-        maxChildSize: 0.9,
-        snap: true,
-        expand: false,
-        builder: (context, scrollController) {
-          return Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20),
-                topRight: Radius.circular(20),
-              ),
-            ),
-            child: Column(
-              children: [
-                _buildHeader(context),
-                Expanded(
-                  child: CustomScrollView(
-                    controller: scrollController,
-                    slivers: [
-                      // Scrollable Content
-                      SliverList(
-                        delegate: SliverChildBuilderDelegate(
-                          (context, index) => ListTile(
-                            title: Text('Comment $index'),
-                          ),
-                          childCount: 50,
-                        ),
-                      ),
-                    ],
-                  ),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => PostCommentBloc(sl()),
+        ),
+        BlocProvider(
+          create: (context) => GetCommentsBloc(sl())
+            ..add(GetCommentsEvent.attempt(storyId: storyId.toString())),
+        ),
+      ],
+      child: Padding(
+        padding:
+            EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+        child: DraggableScrollableSheet(
+          initialChildSize: 0.6,
+          minChildSize: 0.6,
+          maxChildSize: 0.9,
+          snap: true,
+          expand: false,
+          builder: (context, scrollController) {
+            return Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular(20),
                 ),
-                _buildFooter(storyId),
-              ],
-            ),
-          );
-        },
+              ),
+              child: Column(
+                children: [
+                  _buildHeader(context),
+                  Expanded(
+                    child: Gapper.screenPadding(
+                      child: CustomScrollView(
+                        controller: scrollController,
+                        slivers: [
+                          // Scrollable Content
+                          BlocBuilder<GetCommentsBloc, GetCommentsState>(
+                            builder: (context, getCommentsState) {
+                              return getCommentsState.mapOrNull(
+                                    success: (value) {
+                                      return SliverList(
+                                        delegate: SliverChildBuilderDelegate(
+                                          (context, index) =>
+                                              value.stories[index] != null
+                                                  ? CommentCard(
+                                                      comment:
+                                                          value.stories[index])
+                                                  : SizedBox(),
+                                          childCount: value.stories.length,
+                                        ),
+                                      );
+                                    },
+                                  ) ??
+                                  SliverToBoxAdapter();
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  _buildFooter(storyId),
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }

@@ -44,3 +44,12 @@ extension StringValidation on String {
     return result;
   }
 }
+
+extension QueryStringExtension on Map<String, dynamic> {
+  String toQueryString() {
+    return entries
+        .where((entry) => entry.value != null) // Exclude null values
+        .map((entry) => '${entry.key}=${entry.value}') // Format as key=value
+        .join('&'); // Join with &
+  }
+}

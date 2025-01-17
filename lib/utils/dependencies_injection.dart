@@ -50,6 +50,7 @@ import '../layers/domain/usecases/chat/get_rooms.dart';
 import '../layers/domain/usecases/chat/message_stream.dart';
 import '../layers/domain/usecases/chat/read_message.dart';
 import '../layers/domain/usecases/chat/send_message.dart';
+import '../layers/domain/usecases/comments/get_comments.dart';
 import '../layers/domain/usecases/comments/post_comment.dart';
 import '../layers/domain/usecases/feed/get_categories.dart';
 import '../layers/domain/usecases/feed/get_stories.dart';
@@ -59,6 +60,7 @@ import '../layers/presentation/chat/blocs/chat_rooms/chat_rooms_bloc.dart';
 import '../layers/presentation/chat/blocs/read_message/read_message_bloc.dart';
 import '../layers/presentation/chat/blocs/send_message/send_message_bloc.dart';
 import '../layers/presentation/feed/blocs/get_categories/get_categories_bloc.dart';
+import '../layers/presentation/feed/blocs/get_comments/get_comments_bloc.dart';
 import '../layers/presentation/feed/blocs/get_stories/get_stories_bloc.dart';
 import '../layers/presentation/feed/blocs/post_comment/post_comment_bloc.dart';
 import '../layers/presentation/feed/blocs/search_stories/search_stories_bloc.dart';
@@ -171,6 +173,7 @@ void _useCase() {
   sl.registerLazySingleton(() => ReadMessage(sl()));
   sl.registerLazySingleton(() => GetDirection(sl()));
   sl.registerLazySingleton(() => PostComment(sl()));
+  sl.registerLazySingleton(() => GetComments(sl()));
 }
 
 void _blocs() {
@@ -194,4 +197,5 @@ void _blocs() {
   sl.registerFactory(() => ReadMessageBloc(sl()));
   sl.registerFactory(() => GetDirectionBloc(sl()));
   sl.registerFactory(() => PostCommentBloc(sl()));
+  sl.registerFactory(() => GetCommentsBloc(sl()));
 }

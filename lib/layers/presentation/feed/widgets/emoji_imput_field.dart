@@ -21,7 +21,6 @@ class Emojiinputfield extends StatelessWidget {
       },
       builder: (context, state) {
         final comment = state.comment.value;
-        log("comment $comment");
         return Column(
           children: [
             Gapper.v2xmGap(),
@@ -42,6 +41,7 @@ class Emojiinputfield extends StatelessWidget {
             FormInputField(
               placeholder: "Type a message",
               height: 50,
+              maxLines: 1,
               initialValue: comment,
               color: AppColors.white,
               border: Border.all(width: 0, color: Colors.transparent),

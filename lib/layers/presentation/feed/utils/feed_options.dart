@@ -38,9 +38,11 @@ List<FeedOptions> feedOptions = [
           useRootNavigator: true,
           isDismissible: true,
           builder: (context) {
-            return CommentModalBottomSheet(
-              storyId: kwargs.data['storyId'],
-            );
+            return kwargs.data['storyId'] != null
+                ? CommentModalBottomSheet(
+                    storyId: kwargs.data['storyId'],
+                  )
+                : SizedBox();
           });
     }),
   ),
