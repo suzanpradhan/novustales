@@ -5,7 +5,8 @@ import '../../../../core/constants/app_colors.dart';
 import '../../../../core/presentation/ui/spacer.dart';
 
 class CommentModalBottomSheet extends StatelessWidget {
-  const CommentModalBottomSheet({super.key});
+  final int? storyId;
+  const CommentModalBottomSheet({super.key, this.storyId});
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +47,7 @@ class CommentModalBottomSheet extends StatelessWidget {
                     ],
                   ),
                 ),
-                _buildFooter(),
+                _buildFooter(storyId),
               ],
             ),
           );
@@ -77,7 +78,7 @@ class CommentModalBottomSheet extends StatelessWidget {
     );
   }
 
-  Widget _buildFooter() {
+  Widget _buildFooter(int? storyId) {
     return Container(
         height: 88, // Fixed height for the footer
         padding: EdgeInsets.symmetric(horizontal: 0),
@@ -87,6 +88,8 @@ class CommentModalBottomSheet extends StatelessWidget {
             top: BorderSide(color: Colors.grey.shade300, width: 1),
           ),
         ),
-        child: Emojiinputfield());
+        child: Emojiinputfield(
+          storyId: storyId,
+        ));
   }
 }

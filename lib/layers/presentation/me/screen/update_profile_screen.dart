@@ -144,16 +144,12 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                         return FormGroup(
                             label: Text("Bio"),
                             formField: FormInputField(
-                              // height: 150,
                               maxLines: 5,
                               initialValue: state.bio.value,
                               selectorLabel: "Bio",
                               placeholder: "Write your bio here...",
                               context: context,
                               textInputType: TextInputType.text,
-                              // inputFormatters: [
-                              //   FilteringTextInputFormatter.digitsOnly
-                              // ],
                               alignment: InputAlignment.vertical,
                               errorText: state.bio.displayError ==
                                       RequiredTextValidationError.empty

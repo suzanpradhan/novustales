@@ -31,6 +31,7 @@ class FormInputField extends FormField<String> {
   final Text? suffixText;
   final Text? prefixText;
   final BoxBorder? border;
+  final Color? color;
   @override
   final String? initialValue;
   final void Function()? onEditingComplete;
@@ -51,6 +52,7 @@ class FormInputField extends FormField<String> {
       this.border,
       this.selectorLabel,
       this.placeholder,
+      this.color,
       this.alignment = InputAlignment.vertical,
       this.isSearchable = false,
       this.errorText,
@@ -84,6 +86,7 @@ class FormInputField extends FormField<String> {
                       errorText: errorText,
                     )
                   : VerticalInputField(
+                      color: color,
                       maxLines: maxLines,
                       state: state,
                       textInputType: textInputType,

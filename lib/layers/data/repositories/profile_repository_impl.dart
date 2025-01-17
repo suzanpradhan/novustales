@@ -21,14 +21,8 @@ class ProfileRepositoryImpl implements ProfileRepository {
   @override
   Future<Either<Failure, ProfileEntity>> getMyProfileInfo() async {
     final response = await profileSource.getMyProfile(NoParams());
-    return response.fold((failure) => Left(failure), (response) async {
-      final uuid = await secureStorageMixin.getValue(SecureStorageKeys.uuid);
-      if (uuid == null) {
-        await secureStorageMixin.storeValue(
-            key: SecureStorageKeys.uuid, value: response.uuid);
-      }
-      return Right(response.toEntity());
-    });
+    return response.fold((failure) => Left(failure),
+        (response) async => Right(response.toEntity()));
   }
 
   @override

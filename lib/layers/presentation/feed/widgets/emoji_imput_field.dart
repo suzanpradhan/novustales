@@ -1,94 +1,91 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/constants/app_colors.dart';
+import '../../../../core/constants/ui_constants.dart';
 import '../../../../core/presentation/ui/spacer.dart';
+import '../../../../core/presentation/widgets/form_fields/form_input_field.dart';
+import '../blocs/post_comment/post_comment_bloc.dart';
 
-class Emojiinputfield extends StatefulWidget {
-  const Emojiinputfield({super.key});
-
-  @override
-  State<Emojiinputfield> createState() => _EmojiinputfieldState();
-}
-
-class _EmojiinputfieldState extends State<Emojiinputfield> {
-  final TextEditingController _commentController = TextEditingController();
-
-  void _addEmojiToComment(String emoji) {
-    // Appends the selected emoji to the current comment text
-    setState(() {
-      _commentController.text += emoji;
-    });
-    // Moves the cursor to the end of the text
-    _commentController.selection = TextSelection.fromPosition(
-      TextPosition(offset: _commentController.text.length),
-    );
-  }
+class Emojiinputfield extends StatelessWidget {
+  final int? storyId;
+  const Emojiinputfield({super.key, this.storyId});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Gapper.v2xmGap(),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+    return BlocConsumer<PostCommentBloc, PostCommentState>(
+      listener: (context, state) {
+        // TODO: implement listener
+      },
+      builder: (context, state) {
+        final comment = state.comment.value;
+        log("comment $comment");
+        return Column(
           children: [
-            _buildEmojiButton("❤️"),
-            _buildEmojiButton("🙌"),
-            _buildEmojiButton("👏"),
-            _buildEmojiButton("🔥"),
-            _buildEmojiButton("😢"),
-            _buildEmojiButton("😮"),
-            _buildEmojiButton("😂"),
-            _buildEmojiButton("😍"),
-          ],
-        ),
-        // Input Field
-        Container(
-          child: Row(
-            children: [
-              Expanded(
-                child: TextFormField(
-                  // controller: _commentController,
-                  keyboardType: TextInputType.text,
-                  onEditingComplete: () => {},
-                  cursorColor: Colors.black,
-                  style: Theme.of(context).textTheme.bodyMedium,
-
-                  decoration: InputDecoration(
-                      isCollapsed: true,
-                      isDense: true,
-                      contentPadding:
-                          EdgeInsets.symmetric(vertical: 8, horizontal: 10),
-                      hintText: "Add a Comment",
-                      hintStyle: Theme.of(context)
-                          .textTheme
-                          .bodyMedium
-                          ?.copyWith(
-                              fontWeight: FontWeight.normal,
-                              color: Theme.of(context).colorScheme.onPrimary),
-                      border: const UnderlineInputBorder(
-                        borderSide: BorderSide.none,
-                      )),
+            Gapper.v2xmGap(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                _buildEmojiButton("❤️", context, state),
+                _buildEmojiButton("🙌", context, state),
+                _buildEmojiButton("👏", context, state),
+                _buildEmojiButton("🔥", context, state),
+                _buildEmojiButton("😢", context, state),
+                _buildEmojiButton("😮", context, state),
+                _buildEmojiButton("😂", context, state),
+                _buildEmojiButton("😍", context, state),
+              ],
+            ),
+            // Input Field
+            FormInputField(
+              placeholder: "Type a message",
+              height: 50,
+              initialValue: comment,
+              color: AppColors.white,
+              border: Border.all(width: 0, color: Colors.transparent),
+              suffix: InkWell(
+                onTap: () {
+                  if (storyId != null) {
+                    context
+                        .read<PostCommentBloc>()
+                        .add(PostCommentEvent.postComment(story: storyId!));
+                  }
+                },
+                child: Container(
+                  margin: const EdgeInsets.only(right: UIConstants.xminPadding),
+                  width: 36,
+                  height: 36,
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.secondary,
+                      borderRadius:
+                          BorderRadius.circular(UIConstants.minBorderRadius)),
+                  child: Icon(Icons.send,
+                      size: 20, color: Theme.of(context).colorScheme.onSurface),
                 ),
               ),
-              SizedBox(width: 8),
-              IconButton(
-                icon: Icon(Icons.send, color: Colors.blue),
-                onPressed: () {
-                  // // Handle comment submission
-                  // print("Comment: ${_commentController.text}");
-                  // _commentController.clear();
-                },
-              ),
-            ],
-          ),
-        ),
-      ],
+              onChanged: (value) {
+                log("value $value");
+                context
+                    .read<PostCommentBloc>()
+                    .add(PostCommentEvent.validateComment(comment: value));
+              },
+              context: context,
+              alignment: InputAlignment.vertical,
+            ),
+          ],
+        );
+      },
     );
   }
 
-  Widget _buildEmojiButton(String emoji) {
+  Widget _buildEmojiButton(
+      String emoji, BuildContext context, PostCommentState state) {
     return GestureDetector(
-      onTap: () => _addEmojiToComment(emoji),
+      onTap: () => context.read<PostCommentBloc>().add(
+          PostCommentEvent.validateComment(
+              comment: "${state.comment.value}$emoji")),
       child: Text(
         emoji,
         style: TextStyle(fontSize: 16),

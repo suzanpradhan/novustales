@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -16,6 +18,7 @@ class VerticalInputField extends StatefulWidget {
   final double? horizontalPadding;
   final double? verticalPadding;
   final double? height;
+  final Color? color;
   final Widget? suffix;
   final Text? suffixText;
   final Text? prefixText;
@@ -28,6 +31,7 @@ class VerticalInputField extends StatefulWidget {
   const VerticalInputField({
     this.textInputType,
     this.maxLines,
+    this.color,
     this.errorText,
     this.suffix,
     this.prefix,
@@ -53,6 +57,7 @@ class VerticalInputField extends StatefulWidget {
 }
 
 class _VerticalInputFieldState extends State<VerticalInputField> {
+  late TextEditingController _controller;
   late FocusNode _inputFocusNode;
   late bool isObsecure;
   bool isFocused = false;
@@ -66,6 +71,7 @@ class _VerticalInputFieldState extends State<VerticalInputField> {
         _inputFocusNode.unfocus();
       }
     });
+    _initializeState();
     super.initState();
   }
 
@@ -76,12 +82,25 @@ class _VerticalInputFieldState extends State<VerticalInputField> {
     super.dispose();
   }
 
+  void _initializeState() {
+    _controller = TextEditingController(text: widget.initialValue);
+  }
+
+  @override
+  void didUpdateWidget(covariant VerticalInputField oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.initialValue != oldWidget.initialValue) {
+      _controller.text = widget.initialValue ?? '';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    log("cotroller text${_controller.text}");
     return Container(
       constraints: BoxConstraints(minHeight: widget.height ?? 42),
       decoration: BoxDecoration(
-        color: AppColors.greyAccent.withOpacity(0.5),
+        color: widget.color ?? AppColors.greyAccent.withOpacity(0.5),
         border: widget.border ??
             Border.all(
               color: (widget.state.hasError || widget.errorText != null)
@@ -118,30 +137,27 @@ class _VerticalInputFieldState extends State<VerticalInputField> {
                             BoxConstraints(minHeight: widget.height ?? 42),
                         padding: const EdgeInsets.symmetric(
                             horizontal: UIConstants.minPadding),
-                        decoration: const BoxDecoration(
-                          color: AppColors.whiteShade,
-                        ),
+                        decoration: BoxDecoration(),
                         child: Center(child: widget.prefixText),
                       ),
                     Expanded(
                       child: TextFormField(
                         obscureText: isObsecure,
                         obscuringCharacter: "•",
-                        initialValue: widget.initialValue,
                         maxLines: widget.isSecret ? 1 : widget.maxLines,
                         keyboardType:
                             widget.textInputType ?? TextInputType.text,
                         inputFormatters: widget.inputFormatters,
                         onChanged: (value) {
-                          widget.state.didChange(value);
                           if (widget.onChanged != null) {
                             widget.onChanged!(value);
+                            widget.state.didChange(value);
                           }
                         },
                         onEditingComplete: widget.onEditingComplete,
                         focusNode: _inputFocusNode,
                         cursorColor: Colors.black,
-                        controller: widget.controller,
+                        controller: widget.controller ?? _controller,
                         style: Theme.of(context).textTheme.bodyMedium,
                         decoration: InputDecoration(
                             isCollapsed: true,

@@ -29,7 +29,6 @@ List<FeedOptions> feedOptions = [
     title: "Comment",
     icon: AppIcons.comment,
     actions: ((Kwargs kwargs) {
-      // log("$kwargs");
       showModalBottomSheet(
           useSafeArea: true,
           context: kwargs.data['context'],
@@ -39,7 +38,9 @@ List<FeedOptions> feedOptions = [
           useRootNavigator: true,
           isDismissible: true,
           builder: (context) {
-            return CommentModalBottomSheet();
+            return CommentModalBottomSheet(
+              storyId: kwargs.data['storyId'],
+            );
           });
     }),
   ),
