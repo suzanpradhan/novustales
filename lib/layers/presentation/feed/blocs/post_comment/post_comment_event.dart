@@ -6,6 +6,9 @@ class PostCommentEvent with _$PostCommentEvent {
       {@Default("") String comment}) = _ValidateComment;
   const factory PostCommentEvent.postComment({
     required int story,
-    int? parent,
   }) = _PostComment;
+  const factory PostCommentEvent.replyComment({
+    int? parent,
+    UserDetailsEntity? replyToUser,
+  }) = _ReplyComment;
 }

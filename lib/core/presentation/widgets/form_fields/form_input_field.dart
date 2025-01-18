@@ -32,6 +32,7 @@ class FormInputField extends FormField<String> {
   final Text? prefixText;
   final BoxBorder? border;
   final Color? color;
+  final FocusNode? focusNode;
   @override
   final String? initialValue;
   final void Function()? onEditingComplete;
@@ -39,6 +40,7 @@ class FormInputField extends FormField<String> {
   FormInputField(
       {super.key,
       this.maxLines,
+      this.focusNode,
       this.vehiclePropUnit,
       this.onEditingComplete,
       this.onChanged,
@@ -94,6 +96,7 @@ class FormInputField extends FormField<String> {
                       errorText: errorText,
                       controller: controller,
                       prefix: prefix,
+                      focusNode: focusNode,
                       onEditingComplete: onEditingComplete,
                       suffix: suffix,
                       suffixText: suffixText,

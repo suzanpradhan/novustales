@@ -24,6 +24,7 @@ class VerticalInputField extends StatefulWidget {
   final Widget? prefix;
   final bool isSecret;
   final String? initialValue;
+  final FocusNode? focusNode;
   final void Function()? onEditingComplete;
 
   const VerticalInputField({
@@ -31,6 +32,7 @@ class VerticalInputField extends StatefulWidget {
     this.maxLines,
     this.color,
     this.errorText,
+    this.focusNode,
     this.suffix,
     this.prefix,
     this.onEditingComplete,
@@ -56,33 +58,35 @@ class VerticalInputField extends StatefulWidget {
 
 class _VerticalInputFieldState extends State<VerticalInputField> {
   late TextEditingController _controller;
-  late FocusNode _inputFocusNode;
+  late FocusNode? _inputFocusNode;
   late bool isObsecure;
   bool isFocused = false;
 
   @override
   void initState() {
     isObsecure = widget.isSecret;
-    _inputFocusNode = FocusNode();
-    _inputFocusNode.addListener(() {
-      if (!_inputFocusNode.hasPrimaryFocus) {
-        _inputFocusNode.unfocus();
-      }
-    });
+    _inputFocusNode = widget.focusNode ?? FocusNode();
+    // _inputFocusNode.addListener(() {
+    //   if (!_inputFocusNode.hasPrimaryFocus) {
+    //     _inputFocusNode.unfocus();
+    //   }
+    // });
     _initializeState();
-    super.initState();
-  }
 
-  @override
-  void dispose() {
-    _inputFocusNode.unfocus();
-    _inputFocusNode.dispose();
-    super.dispose();
+    super.initState();
   }
 
   void _initializeState() {
     _controller = TextEditingController(text: widget.initialValue);
   }
+
+  // @override
+  // void dispose() {
+  //   super.dispose();
+  //   if (widget.focusNode != null) {
+  //     _inputFocusNode?.dispose();
+  //   }
+  // }
 
   @override
   void didUpdateWidget(covariant VerticalInputField oldWidget) {
@@ -94,6 +98,8 @@ class _VerticalInputFieldState extends State<VerticalInputField> {
 
   @override
   Widget build(BuildContext context) {
+    // log('build method${widget.focusNode?.hasFocus} ${widget.focusNode?.hasPrimaryFocus}');
+
     return Container(
       constraints: BoxConstraints(minHeight: widget.height ?? 42),
       decoration: BoxDecoration(
@@ -118,96 +124,83 @@ class _VerticalInputFieldState extends State<VerticalInputField> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            FocusScope(
-              child: Focus(
-                onFocusChange: (value) {
-                  setState(() {
-                    isFocused = value;
-                  });
-                },
-                child: Row(
-                  children: [
-                    if (widget.prefix != null) widget.prefix!,
-                    if (widget.prefix == null && widget.prefixText != null)
-                      Container(
-                        constraints:
-                            BoxConstraints(minHeight: widget.height ?? 42),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: UIConstants.minPadding),
-                        decoration: BoxDecoration(),
-                        child: Center(child: widget.prefixText),
-                      ),
-                    Expanded(
-                      child: TextFormField(
-                        obscureText: isObsecure,
-                        obscuringCharacter: "•",
-                        maxLines: widget.isSecret ? 1 : widget.maxLines,
-                        keyboardType:
-                            widget.textInputType ?? TextInputType.text,
-                        inputFormatters: widget.inputFormatters,
-                        onChanged: (value) {
-                          if (widget.onChanged != null) {
-                            widget.onChanged!(value);
-                            widget.state.didChange(value);
-                          }
-                        },
-                        onEditingComplete: widget.onEditingComplete,
-                        focusNode: _inputFocusNode,
-                        cursorColor: Colors.black,
-                        controller: widget.controller ?? _controller,
-                        style: Theme.of(context).textTheme.bodyMedium,
-                        decoration: InputDecoration(
-                            isCollapsed: true,
-                            isDense: true,
-                            contentPadding: EdgeInsets.symmetric(
-                                vertical: widget.verticalPadding ?? 8,
-                                horizontal: widget.horizontalPadding ?? 10),
-                            hintText: widget.placeholder,
-                            hintStyle: Theme.of(context)
-                                .textTheme
-                                .bodyMedium
-                                ?.copyWith(
-                                    fontWeight: FontWeight.normal,
-                                    color: widget.state.hasError
-                                        ? AppColors.red
-                                        : Theme.of(context)
-                                            .colorScheme
-                                            .onPrimary),
-                            border: const UnderlineInputBorder(
-                              borderSide: BorderSide.none,
-                            )),
-                      ),
-                    ),
-                    if (widget.isSecret)
-                      Padding(
-                        padding: const EdgeInsets.only(right: 8),
-                        child: GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                isObsecure = !isObsecure;
-                              });
-                            },
-                            child: Icon(
-                              isObsecure
-                                  ? Icons.visibility_off
-                                  : Icons.visibility,
-                            )),
-                      ),
-                    if (widget.suffix != null) widget.suffix!,
-                    if (widget.suffix == null && widget.suffixText != null)
-                      Container(
-                        constraints:
-                            BoxConstraints(minHeight: widget.height ?? 42),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: UIConstants.minPadding),
-                        decoration: const BoxDecoration(
-                          color: AppColors.whiteShade,
-                        ),
-                        child: Center(child: widget.suffixText),
-                      ),
-                  ],
+            Row(
+              children: [
+                if (widget.prefix != null) widget.prefix!,
+                if (widget.prefix == null && widget.prefixText != null)
+                  Container(
+                    constraints: BoxConstraints(minHeight: widget.height ?? 42),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: UIConstants.minPadding),
+                    decoration: BoxDecoration(),
+                    child: Center(child: widget.prefixText),
+                  ),
+                Expanded(
+                  child: TextFormField(
+                    obscureText: isObsecure,
+                    obscuringCharacter: "•",
+                    maxLines: widget.isSecret ? 1 : widget.maxLines,
+                    keyboardType: widget.textInputType ?? TextInputType.text,
+                    inputFormatters: widget.inputFormatters,
+                    focusNode: _inputFocusNode,
+                    onChanged: (value) {
+                      if (widget.onChanged != null) {
+                        widget.onChanged!(value);
+                        widget.state.didChange(value);
+                      }
+                    },
+                    onEditingComplete: widget.onEditingComplete,
+                    cursorColor: Colors.black,
+
+                    // onTap: () => FocusScope.of(context)
+                    //     .requestFocus(_inputFocusNode),
+                    controller: widget.controller ?? _controller,
+                    style: Theme.of(context).textTheme.bodyMedium,
+                    decoration: InputDecoration(
+                        isCollapsed: true,
+                        isDense: true,
+                        contentPadding: EdgeInsets.symmetric(
+                            vertical: widget.verticalPadding ?? 8,
+                            horizontal: widget.horizontalPadding ?? 10),
+                        hintText: widget.placeholder,
+                        hintStyle: Theme.of(context)
+                            .textTheme
+                            .bodyMedium
+                            ?.copyWith(
+                                fontWeight: FontWeight.normal,
+                                color: widget.state.hasError
+                                    ? AppColors.red
+                                    : Theme.of(context).colorScheme.onPrimary),
+                        border: const UnderlineInputBorder(
+                          borderSide: BorderSide.none,
+                        )),
+                  ),
                 ),
-              ),
+                if (widget.isSecret)
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8),
+                    child: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            isObsecure = !isObsecure;
+                          });
+                        },
+                        child: Icon(
+                          isObsecure ? Icons.visibility_off : Icons.visibility,
+                        )),
+                  ),
+                if (widget.suffix != null) widget.suffix!,
+                if (widget.suffix == null && widget.suffixText != null)
+                  Container(
+                    constraints: BoxConstraints(minHeight: widget.height ?? 42),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: UIConstants.minPadding),
+                    decoration: const BoxDecoration(
+                      color: AppColors.whiteShade,
+                    ),
+                    child: Center(child: widget.suffixText),
+                  ),
+              ],
             ),
             if (widget.errorText != null)
               Container(

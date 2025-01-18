@@ -5,5 +5,7 @@ class PostCommentState with _$PostCommentState {
   const factory PostCommentState({
     @Default(FormzSubmissionStatus.initial) FormzSubmissionStatus status,
     @Default(RequiredTextInput.pure()) RequiredTextInput comment,
+    UserDetailsEntity? replyToUser,
+    int? parentId,
   }) = _PostCommentState;
 }

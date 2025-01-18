@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/ui_constants.dart';
 import '../../../../core/presentation/ui/spacer.dart';
 import '../../../domain/entities/comment_entity.dart';
+import '../blocs/post_comment/post_comment_bloc.dart';
 
 class CommentCard extends StatelessWidget {
   final CommentEntity comment;
@@ -87,7 +89,14 @@ class CommentCard extends StatelessWidget {
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      if (comment.id != null && comment.userDetails != null) {
+                        context.read<PostCommentBloc>().add(
+                            PostCommentEvent.replyComment(
+                                parent: comment.id!,
+                                replyToUser: comment.userDetails!));
+                      }
+                    },
                     child: Text("Reply",
                         style: Theme.of(context).textTheme.labelSmall),
                   )

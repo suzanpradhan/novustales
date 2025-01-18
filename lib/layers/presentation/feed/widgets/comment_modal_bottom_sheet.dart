@@ -85,17 +85,8 @@ class CommentModalBottomSheet extends StatelessWidget {
   }
 
   Widget buildFooter(int? storyId) {
-    return Container(
-        height: 88, // Fixed height for the footer
-        padding: EdgeInsets.symmetric(horizontal: 0),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border(
-            top: BorderSide(color: Colors.grey.shade300, width: 1),
-          ),
-        ),
-        child: Emojiinputfield(
-          storyId: storyId,
-        ));
+    return Emojiinputfield(
+      storyId: storyId,
+    );
   }
 }
