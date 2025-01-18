@@ -12,8 +12,8 @@ class CommentCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final formattedTime =
-        timeago.format(DateTime.parse(comment.createdAt!), allowFromNow: false);
+    final formattedTime = timeago.format(DateTime.parse(comment.createdAt!),
+        locale: 'en_short', allowFromNow: false);
     return Container(
         padding: EdgeInsets.symmetric(vertical: UIConstants.minPadding),
         child: Row(
@@ -69,12 +69,13 @@ class CommentCard extends StatelessWidget {
                           ),
                           WidgetSpan(child: Gapper.h2xmGap()),
                           TextSpan(
-                              text: comment.createdAt != null
-                                  ? (formattedTime.split(" ")[0] == 'a'
-                                          ? "1"
-                                          : formattedTime.split(" ")[0]) +
-                                      formattedTime.split(" ")[1].split('')[0]
-                                  : "",
+                              // text: comment.createdAt != null
+                              //     ? (formattedTime.split(" ")[0] == 'a'
+                              //             ? "1"
+                              //             : formattedTime.split(" ")[0]) +
+                              //         formattedTime.split(" ")[1].split('')[0]
+                              //     : "",
+                              text: formattedTime,
                               style: Theme.of(context).textTheme.labelSmall)
                         ]),
                   ),
@@ -85,6 +86,11 @@ class CommentCard extends StatelessWidget {
                     overflow: TextOverflow.clip,
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
+                  InkWell(
+                    onTap: () {},
+                    child: Text("Reply",
+                        style: Theme.of(context).textTheme.labelSmall),
+                  )
                 ],
               ),
             )
