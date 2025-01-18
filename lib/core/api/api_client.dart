@@ -120,4 +120,44 @@ class ApiClient with SecureStorageMixin {
       );
     }
   }
+
+  Future<Either<Failure, T>> patchRequest<T>(String url,
+      {Map<String, dynamic>? data,
+      FormData? formData,
+      required ResponseConverter<T> converter,
+      String? requestName}) async {
+    try {
+      final response = await (await dio).patch(url, data: data ?? formData);
+      if ((response.statusCode ?? 0) < 200 ||
+          (response.statusCode ?? 0) > 201) {
+        throw DioException(
+          requestOptions: response.requestOptions,
+          response: response,
+        );
+      }
+      return Right(converter(response.data));
+    } on DioException catch (e) {
+      if (e.response?.statusCode == 422 &&
+          e.response != null &&
+          (e.response!.data as Map).containsKey("meta")) {
+        List validationErrors =
+            ((e.response!.data as Map)["meta"][0] as Map).entries.toList();
+        if (validationErrors.isEmpty) {
+          return const Left(
+              ValidationFailure(message: "Oops! Check your details again."));
+        } else {
+          return Left(ValidationFailure(
+              message:
+                  (validationErrors.first as MapEntry).value[0].toString()));
+        }
+      } else if (e.response?.statusCode == 401) {
+        return Left(UnauthorizedFailure());
+      }
+      return Left(
+        ServerFailure(
+          message: e.response?.data['message'] as String? ?? e.message,
+        ),
+      );
+    }
+  }
 }

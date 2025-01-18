@@ -9,6 +9,7 @@ import '../../../../core/presentation/ui/spacer.dart';
 import '../../../../core/routes/app_routes.dart';
 import '../../../../core/usecases/usecase.dart';
 import '../../auth/bloc/logout_bloc.dart';
+import '../../me/bloc/profile_bloc/get_profile_bloc.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({super.key});
@@ -58,34 +59,46 @@ class SettingScreen extends StatelessWidget {
                         style: Theme.of(context).textTheme.bodyLarge,
                       ),
                       Gapper.vmGap(),
-                      Material(
-                        color: AppColors.white,
-                        borderRadius:
-                            BorderRadius.circular(UIConstants.borderRadius),
-                        child: InkWell(
-                          onTap: () {
-                            context.push(EDIT_PROFILE_SCREEN_ROUTE);
-                          },
-                          borderRadius:
-                              BorderRadius.circular(UIConstants.borderRadius),
-                          child: Gapper.cardMinPadding(
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Icon(NovusIcons.profile, size: 20),
-                                Gapper.hGap(),
-                                Expanded(
-                                  child: Text(
-                                    "Edit profile",
-                                    style:
-                                        Theme.of(context).textTheme.bodyMedium,
-                                  ),
-                                ),
-                                Icon(NovusIcons.arrowLeft, size: 20)
-                              ],
-                            ),
-                          ),
-                        ),
+                      BlocBuilder<GetProfileBloc, GetProfileState>(
+                        builder: (context, state) {
+                          return state.mapOrNull(
+                                success: (value) {
+                                  return Material(
+                                    color: AppColors.white,
+                                    borderRadius: BorderRadius.circular(
+                                        UIConstants.borderRadius),
+                                    child: InkWell(
+                                      onTap: () {
+                                        context.push(EDIT_PROFILE_SCREEN_ROUTE,
+                                            extra: value.me);
+                                      },
+                                      borderRadius: BorderRadius.circular(
+                                          UIConstants.borderRadius),
+                                      child: Gapper.cardMinPadding(
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Icon(NovusIcons.profile, size: 20),
+                                            Gapper.hGap(),
+                                            Expanded(
+                                              child: Text(
+                                                "Edit profile",
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium,
+                                              ),
+                                            ),
+                                            Icon(NovusIcons.arrowLeft, size: 20)
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ) ??
+                              SizedBox();
+                        },
                       ),
                       Gapper.v2xmGap(),
                       Material(

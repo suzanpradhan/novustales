@@ -37,24 +37,32 @@ import 'package:storyv2/utils/google_maps_service.dart';
 import 'package:storyv2/utils/secure_storage.dart';
 
 import '../layers/data/repositories/chat_repository_impl.dart';
+import '../layers/data/repositories/comment_repository_impl.dart';
 import '../layers/data/repositories/tale_repository_impl.dart';
 import '../layers/data/sources/chat_remote_source.dart';
+import '../layers/data/sources/comment_source.dart';
 import '../layers/data/sources/user_source.dart';
 import '../layers/domain/repositories/chat_repository.dart';
+import '../layers/domain/repositories/comment_repository.dart';
 import '../layers/domain/usecases/authentication/get_logout.dart';
 import '../layers/domain/usecases/chat/check_or_create_profile.dart';
 import '../layers/domain/usecases/chat/get_rooms.dart';
 import '../layers/domain/usecases/chat/message_stream.dart';
 import '../layers/domain/usecases/chat/read_message.dart';
 import '../layers/domain/usecases/chat/send_message.dart';
+import '../layers/domain/usecases/comments/get_comments.dart';
+import '../layers/domain/usecases/comments/post_comment.dart';
 import '../layers/domain/usecases/feed/get_categories.dart';
 import '../layers/domain/usecases/feed/get_stories.dart';
+import '../layers/domain/usecases/profile/update_profile.dart';
 import '../layers/presentation/auth/bloc/logout_bloc.dart';
 import '../layers/presentation/chat/blocs/chat_rooms/chat_rooms_bloc.dart';
 import '../layers/presentation/chat/blocs/read_message/read_message_bloc.dart';
 import '../layers/presentation/chat/blocs/send_message/send_message_bloc.dart';
 import '../layers/presentation/feed/blocs/get_categories/get_categories_bloc.dart';
+import '../layers/presentation/feed/blocs/get_comments/get_comments_bloc.dart';
 import '../layers/presentation/feed/blocs/get_stories/get_stories_bloc.dart';
+import '../layers/presentation/feed/blocs/post_comment/post_comment_bloc.dart';
 import '../layers/presentation/feed/blocs/search_stories/search_stories_bloc.dart';
 import 'services/dotenv_service.dart';
 import 'services/isar_service.dart';
@@ -98,7 +106,8 @@ Future<void> _initSupabase() async {
 
 void _repositories() {
   sl.registerLazySingleton<AuthRepository>(
-    () => AuthRepositoryImpl(authRemoteSource: sl(), secureStorageMixin: sl()),
+    () => AuthRepositoryImpl(
+        authRemoteSource: sl(), secureStorageMixin: sl(), profileSource: sl()),
   );
   sl.registerLazySingleton<TaleRepository>(
     () => TaleRepositoryImpl(taleSource: sl(), mapsService: sl()),
@@ -112,6 +121,9 @@ void _repositories() {
   );
   sl.registerLazySingleton<ChatRepository>(
     () => ChatRepositoryImpl(sl()),
+  );
+  sl.registerLazySingleton<CommentRepository>(
+    () => CommentRepositoryImpl(source: sl()),
   );
 }
 
@@ -134,12 +146,18 @@ void _dataSources() {
   sl.registerLazySingleton<UserSource>(
     () => UserSourceImpl(sl(), sl(), sl()),
   );
+  sl.registerLazySingleton<CommentSource>(
+    () => CommentSourceImpl(
+      sl(),
+    ),
+  );
 }
 
 void _useCase() {
   sl.registerLazySingleton(() => PostLogin(sl()));
   sl.registerLazySingleton(() => PostRegister(sl()));
   sl.registerLazySingleton(() => GetLogout(sl()));
+  sl.registerLazySingleton(() => UpdateProfile(sl()));
   sl.registerLazySingleton(() => GetPopularTales(sl()));
   sl.registerLazySingleton(() => GetNearMeTales(sl()));
   sl.registerLazySingleton(() => SearchTales(sl()));
@@ -154,6 +172,8 @@ void _useCase() {
   sl.registerLazySingleton(() => MessageStream(sl()));
   sl.registerLazySingleton(() => ReadMessage(sl()));
   sl.registerLazySingleton(() => GetDirection(sl()));
+  sl.registerLazySingleton(() => PostComment(sl()));
+  sl.registerLazySingleton(() => GetComments(sl()));
 }
 
 void _blocs() {
@@ -176,4 +196,6 @@ void _blocs() {
   sl.registerFactory(() => SendMessageBloc(sl()));
   sl.registerFactory(() => ReadMessageBloc(sl()));
   sl.registerFactory(() => GetDirectionBloc(sl()));
+  sl.registerFactory(() => PostCommentBloc(sl()));
+  sl.registerFactory(() => GetCommentsBloc(sl()));
 }

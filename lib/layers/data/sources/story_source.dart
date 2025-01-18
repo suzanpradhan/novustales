@@ -15,6 +15,8 @@ abstract class StorySource {
       NoParams params);
   Future<Either<Failure, PaginatedResponse<StoryResponse>>> getStories(
       SearchStoryParams params);
+  Future<Either<Failure, PaginatedResponse<StoryResponse>>> getMyStories(
+      NoParams noParams);
   Future<Either<Failure, List<CategoryResponse>>> getCategories(
       NoParams params);
 }
@@ -67,6 +69,17 @@ class StorySourceImpl implements StorySource {
       converter: (response) => (response["results"] as List)
           .map((story) => CategoryResponse.fromJson(story))
           .toList(),
+    );
+    return response;
+  }
+
+  @override
+  Future<Either<Failure, PaginatedResponse<StoryResponse>>> getMyStories(
+      NoParams noParams) async {
+    final response = await _apiClient.getRequest(
+      '${ApiPaths.myStoryUrl}/',
+      converter: (response) => PaginatedResponse<StoryResponse>.fromJson(
+          response, StoryResponse.fromJson),
     );
     return response;
   }

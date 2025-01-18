@@ -8,12 +8,14 @@ import 'package:storyv2/layers/presentation/feed/screens/feed_screen.dart';
 import 'package:storyv2/layers/presentation/tales/screens/tale_detail_screen.dart';
 
 import '../../layers/domain/entities/chat/room_entity.dart';
+import '../../layers/domain/entities/profile_entity.dart';
 import '../../layers/presentation/auth/screens/login_screen.dart';
 import '../../layers/presentation/auth/screens/register_screen.dart';
 import '../../layers/presentation/bootstrap/screens/splash_screen.dart';
 import '../../layers/presentation/bootstrap/screens/welcome_screen.dart';
 import '../../layers/presentation/chat/screens/single_chat_screen.dart';
 import '../../layers/presentation/me/screen/me_screen.dart';
+import '../../layers/presentation/me/screen/update_profile_screen.dart';
 import '../../layers/presentation/settings/screen/setting_screen.dart';
 import '../../layers/presentation/tales/screens/tales_screen.dart';
 import '../presentation/widgets/home_wrapper_widget.dart';
@@ -160,11 +162,15 @@ final GoRouter router = GoRouter(
         return MaterialPage(key: state.pageKey, child: SettingScreen());
       },
     ),
-    // GoRoute(
-    //   path: EDIT_PROFILE_SCREEN_ROUTE,
-    //   pageBuilder: (context, state) {
-    //     return MaterialPage(key: state.pageKey, child: UpdateProfileScreen());
-    //   },
-    // ),
+    GoRoute(
+      path: EDIT_PROFILE_SCREEN_ROUTE,
+      pageBuilder: (context, state) {
+        return MaterialPage(
+            key: state.pageKey,
+            child: UpdateProfileScreen(
+              profileData: state.extra as ProfileEntity,
+            ));
+      },
+    ),
   ],
 );

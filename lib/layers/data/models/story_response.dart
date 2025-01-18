@@ -10,7 +10,7 @@ part 'generated/story_response.g.dart';
 class StoryResponse with _$StoryResponse {
   const factory StoryResponse({
     int? id,
-    @JsonKey(name: 'user_details') StoryUserDetail? userDetails,
+    @JsonKey(name: 'user_details') UserDetail? userDetails,
     @JsonKey(name: 'media_url') String? mediaUrl,
     String? category,
     int? views,
@@ -31,7 +31,8 @@ class StoryResponse with _$StoryResponse {
 
   const StoryResponse._();
 
-  factory StoryResponse.fromJson(Map<String, dynamic> json) => _$StoryResponseFromJson(json);
+  factory StoryResponse.fromJson(Map<String, dynamic> json) =>
+      _$StoryResponseFromJson(json);
 
   StoryEntity toEntity() => StoryEntity(
         id: id,
@@ -54,18 +55,19 @@ class StoryResponse with _$StoryResponse {
 }
 
 @Freezed(toJson: false)
-class StoryUserDetail with _$StoryUserDetail {
-  const factory StoryUserDetail({
+class UserDetail with _$UserDetail {
+  const factory UserDetail({
     int? id,
     String? email,
     String? name,
     @JsonKey(name: 'nick_name') String? nickName,
     String? avatar,
-  }) = _StoryUserDetail;
+  }) = _UserDetail;
 
-  const StoryUserDetail._();
+  const UserDetail._();
 
-  factory StoryUserDetail.fromJson(Map<String, dynamic> json) => _$StoryUserDetailFromJson(json);
+  factory UserDetail.fromJson(Map<String, dynamic> json) =>
+      _$UserDetailFromJson(json);
 
   UserDetailsEntity toEntity() => UserDetailsEntity(
         email: email,

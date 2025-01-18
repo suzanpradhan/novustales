@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:storyv2/utils/secure_storage.dart';
@@ -15,8 +17,11 @@ class AppBloc extends Bloc<AppEvent, AppState> {
                   ?.read(key: SecureStorageKeys.isLogin.name)) ??
               "false") ==
           "true")) {
+        log("authenticated");
         emit(const AppState.unAuthenticated());
       } else {
+        log("not authenticated");
+
         emit(AppState.authenticated());
       }
     });
