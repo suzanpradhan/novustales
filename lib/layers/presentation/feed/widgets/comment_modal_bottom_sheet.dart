@@ -7,7 +7,7 @@ import '../../../../core/presentation/ui/spacer.dart';
 import '../../../../utils/dependencies_injection.dart';
 import '../blocs/get_comments/get_comments_bloc.dart';
 import '../blocs/post_comment/post_comment_bloc.dart';
-import 'comment_card.dart';
+import 'scrollable_comment_list.dart';
 
 class CommentModalBottomSheet extends StatelessWidget {
   final int storyId;
@@ -45,38 +45,14 @@ class CommentModalBottomSheet extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  _buildHeader(context),
+                  buildHeader(context),
                   Expanded(
                     child: Gapper.screenPadding(
-                      child: CustomScrollView(
-                        controller: scrollController,
-                        slivers: [
-                          // Scrollable Content
-                          BlocBuilder<GetCommentsBloc, GetCommentsState>(
-                            builder: (context, getCommentsState) {
-                              return getCommentsState.mapOrNull(
-                                    success: (value) {
-                                      return SliverList(
-                                        delegate: SliverChildBuilderDelegate(
-                                          (context, index) =>
-                                              value.stories[index] != null
-                                                  ? CommentCard(
-                                                      comment:
-                                                          value.stories[index])
-                                                  : SizedBox(),
-                                          childCount: value.stories.length,
-                                        ),
-                                      );
-                                    },
-                                  ) ??
-                                  SliverToBoxAdapter();
-                            },
-                          ),
-                        ],
-                      ),
-                    ),
+                        child: ScrollableCommentList(
+                            scrollController: scrollController,
+                            storyId: storyId)),
                   ),
-                  _buildFooter(storyId),
+                  buildFooter(storyId),
                 ],
               ),
             );
@@ -86,7 +62,7 @@ class CommentModalBottomSheet extends StatelessWidget {
     );
   }
 
-  Widget _buildHeader(BuildContext context) {
+  Widget buildHeader(BuildContext context) {
     return SizedBox(
       width: double.maxFinite,
       child: Column(
@@ -108,7 +84,7 @@ class CommentModalBottomSheet extends StatelessWidget {
     );
   }
 
-  Widget _buildFooter(int? storyId) {
+  Widget buildFooter(int? storyId) {
     return Container(
         height: 88, // Fixed height for the footer
         padding: EdgeInsets.symmetric(horizontal: 0),

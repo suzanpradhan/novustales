@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -14,41 +12,47 @@ part 'get_comments_state.dart';
 class GetCommentsBloc extends Bloc<GetCommentsEvent, GetCommentsState> {
   final GetComments _getComments;
   int currentPage = 0;
+  bool hasMoreData = true;
 
-  GetCommentsBloc(this._getComments) : super(_Initial()) {
+  GetCommentsBloc(this._getComments) : super(_Initial(stories: [])) {
     on<GetCommentsEvent>((event, emit) {});
 
     on<_Attempt>((event, emit) async {
-      log("here");
-      emit(_Loading());
-      currentPage = 1;
+      if (hasMoreData) {
+        currentPage += 1;
+        emit(_Loading(stories: state.stories));
+        final data = await _getComments.call(GetCommentsParams(
+            storyId: int.parse(event.storyId), page: currentPage));
+        data.fold((failure) {
+          if (failure is ServerFailure) {
+            emit(_Failed(
+                message: failure.message ?? '', stories: state.stories));
+          }
+        }, (response) {
+          hasMoreData = response.nextPage ?? false;
 
-      final data = await _getComments
-          .call(GetCommentsParams(storyId: int.parse(event.storyId)));
-      data.fold((failure) {
-        if (failure is ServerFailure) {
-          emit(_Failed(message: failure.message ?? ''));
-        }
-      }, (response) {
-        emit(_Success(stories: response.results ?? []));
-      });
+          emit(_Success(stories: state.stories + (response.results ?? [])));
+        });
+      }
     });
 
-    on<_Paginate>((event, emit) async {
-      emit(_Loading());
-      currentPage = currentPage + 1;
-      final data = await _getComments.call(GetCommentsParams(
-          storyId: int.parse(event.storyId), page: currentPage));
-      data.fold((failure) {
-        if (failure is ServerFailure) {
-          emit(_Failed(message: failure.message ?? ''));
-        }
-      }, (response) {
-        bool hasMoreData = response.nextPage ?? false;
-        if (hasMoreData) {
-          emit(_Success(stories: response.results ?? []));
-        }
-      });
-    });
+    // on<_Paginate>((event, emit) async {
+    //   emit(_Loading(stories: state.stories));
+
+    //   if (hasMoreData) {
+    //     final data = await _getComments.call(GetCommentsParams(
+    //         storyId: int.parse(event.storyId), page: currentPage));
+    //     data.fold((failure) {
+    //       if (failure is ServerFailure) {
+    //         emit(_Failed(
+    //             message: failure.message ?? '', stories: state.stories));
+    //       }
+    //     }, (response) {
+    //       hasMoreData = response.nextPage ?? false;
+    //       currentPage = currentPage + 1;
+    //       emit(_Success(stories: state.stories + (response.results ?? [])));
+    //     });
+    //   }
+    // });
   }
 }
